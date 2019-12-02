@@ -6,6 +6,8 @@
 
         <title>Laravel</title>
 
+        <script defer src="{{ mix('/js/app.js') }}"></script>
+
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
         <link href="https://fonts.googleapis.com/css?family=Calistoga|Roboto&display=swap" rel="stylesheet">
@@ -34,11 +36,7 @@
 
                         <div class="col-md-6 position-relative">
                             <div class="image-placeholder">
-                                <div class="signup">
-                                    <label for="email">Signup for our launch</label>
-                                    <input type="text" id="email" class="form-control" placeholder="Email Address">
-                                </div><!-- /.signup -->
-
+                                <signup></signup>
                                 <div class="image"></div>
                             </div><!-- /.image-placeholder -->
                         </div><!-- /.col-md-6 -->

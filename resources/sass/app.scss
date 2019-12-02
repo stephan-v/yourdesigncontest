@@ -53,30 +53,6 @@ $rotation: 60deg;
         right: -5%;
         overflow: hidden;
 
-        .signup {
-            z-index: 1;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: rotate($rotation) translate(-50%, 0%);
-            font-family: 'Roboto', sans-serif;
-
-            label {
-                color: white;
-                font-size: 1.2rem;
-            }
-
-            input {
-                border-radius: 2rem;
-                border: 0;
-                padding: 0.5rem 1rem;
-
-                &::placeholder {
-                    color: #006c9c;
-                }
-            }
-        }
-
         .image {
             background-image: url(https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
             background-size: cover;
