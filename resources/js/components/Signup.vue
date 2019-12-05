@@ -6,6 +6,8 @@
 </template>
 
 <script>
+    import swal from 'sweetalert';
+
     export default {
         data() {
             return {
@@ -16,7 +18,7 @@
         methods: {
             submit() {
                 axios.post('/register', { email: this.email }).then(response => {
-                    console.log(response.data);
+                    swal(response.data);
                 }).catch(response => {
                     console.log(response);
                 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -63,5 +64,24 @@ class RegisterController extends Controller
         return User::create([
             'email' => $data['email'],
         ]);
+    }
+
+    /**
+     * The user has been registered.
+     *
+     * @return Response The HTTP server response.
+     */
+    protected function registered()
+    {
+        // Data used to populate the frontend sweetalert message.
+        $data = [
+            'title' => 'Thanks for joining our community',
+            'text' => 'We have sent you an email to verify your signup',
+            'icon' => 'success',
+            'timer' => 3000,
+            'buttons' => false,
+        ];
+
+        return response($data);
     }
 }
