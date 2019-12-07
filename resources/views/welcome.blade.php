@@ -10,6 +10,7 @@
 
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
         <link href="https://fonts.googleapis.com/css?family=Calistoga|Roboto&display=swap" rel="stylesheet">
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -30,7 +31,7 @@
                         <h1 class="mb-5">YourDesignContest<span class="orange">.</span></h1>
                         <p>We love putting designers and clients in touch with each other.</p>
                         <p>Join us and become part the next wave of independent designers and freelancers.</p>
-                        <p>Or host a graphic design contest and attract the best designers in our portfolio.</p>
+                        <p>Or host a graphic design contest and attract the best designers in our community.</p>
                     </div><!-- /.col-md-6 -->
 
                     <div class="col-md-6 position-relative">
