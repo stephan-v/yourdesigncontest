@@ -41,8 +41,7 @@ $rotation: 60deg;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.03);
 
     h1 {
-        font-size: 2rem;
-        margin-top: -15px;
+        font-size: 1.5rem;
         font-family: 'Calistoga', cursive;
 
         .orange {
@@ -84,5 +83,11 @@ $rotation: 60deg;
                 opacity: 0.8;
             }
         }
+    }
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 2rem;
     }
 }

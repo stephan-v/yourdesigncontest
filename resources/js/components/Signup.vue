@@ -1,7 +1,12 @@
 <template>
-    <form class="signup" @submit.prevent="submit">
+    <form class="signup" @submit.prevent="submit" @keydown="clear">
         <label for="email">Signup for our launch</label>
-        <input type="text" id="email" class="form-control" placeholder="Email Address" v-model="email">
+
+        <div class="d-flex position-relative">
+            <input type="text" id="email" class="form-control" placeholder="Email Address" v-model="email">
+            <input type="submit" value="signup" class="ml-1 submit">
+            <error :error="error" :key="error" v-for="error in errors"></error>
+        </div><!-- /.d-flex -->
     </form><!-- /.signup -->
 </template>
 
@@ -12,15 +17,20 @@
         data() {
             return {
                 email: '',
+                errors: []
             }
         },
 
         methods: {
+            clear() {
+                this.errors = [];
+            },
+
             submit() {
                 axios.post('/register', { email: this.email }).then(response => {
                     swal(response.data);
-                }).catch(response => {
-                    console.log(response);
+                }).catch(error => {
+                    this.errors = error.response.data.errors;
                 });
             }
         }
@@ -31,10 +41,11 @@
     .signup {
         z-index: 1;
         position: absolute;
-        top: 50%;
-        left: 50%;
+        top: 55%;
+        left: 45%;
         transform: rotate(60deg) translate(-50%, 0%);
         font-family: 'Roboto', sans-serif;
+        width: 300px;
 
         label {
             color: white;
@@ -49,6 +60,12 @@
             &::placeholder {
                 color: #006c9c;
             }
+        }
+
+        .submit {
+            outline: 0;
+            color: white;
+            background-color: orange;
         }
     }
 </style>
