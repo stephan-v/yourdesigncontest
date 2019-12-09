@@ -31,16 +31,6 @@ class RegisterController extends Controller
     protected $redirectTo = '/';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
-
-    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -73,9 +63,8 @@ class RegisterController extends Controller
      */
     protected function registered()
     {
-        // Data used to populate the frontend sweetalert message.
         $data = [
-            'title' => 'Thanks for joining our community',
+            'title' => 'Awesome!',
             'text' => 'We have sent you an email to verify your signup',
             'icon' => 'success',
             'timer' => 3000,
