@@ -65,7 +65,7 @@ $rotation: 60deg;
         overflow: hidden;
 
         .image {
-            background-image: url(https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+            background-image: url("/images/pexels.jpg");
             background-size: cover;
             transform: rotate($rotation);
             width: 140%;
