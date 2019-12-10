@@ -15,4 +15,6 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes(['verify' => true]);
 
+Route::resource('contests', 'ContestController');
+
 Route::get('blog', 'BlogController@index');
