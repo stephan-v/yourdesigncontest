@@ -10,8 +10,8 @@
             error: {
                 type: Array,
                 required: true,
-            }
-        }
+            },
+        },
     };
 </script>
 

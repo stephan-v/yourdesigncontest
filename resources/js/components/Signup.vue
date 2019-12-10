@@ -17,8 +17,8 @@
         data() {
             return {
                 email: '',
-                errors: []
-            }
+                errors: [],
+            };
         },
 
         methods: {
@@ -27,13 +27,13 @@
             },
 
             submit() {
-                axios.post('/register', { email: this.email }).then(response => {
+                axios.post('/register', { email: this.email }).then((response) => {
                     swal(response.data);
-                }).catch(error => {
+                }).catch((error) => {
                     this.errors = error.response.data.errors;
                 });
-            }
-        }
+            },
+        },
     };
 </script>
 

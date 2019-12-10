@@ -8,8 +8,7 @@ module.exports = {
     'airbnb-base',
   ],
   globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
+    axios: "readonly",
   },
   parserOptions: {
     ecmaVersion: 2018,
@@ -20,5 +19,15 @@ module.exports = {
   ],
   rules: {
       "indent": ["error", 4],
+      "max-len": ["error", { "code": 120 }],
+      "vue/script-indent": ["error", 4, { "baseIndent": 1 }],
   },
+  overrides: [
+    {
+      files: ['*.vue'],
+      rules: {
+        indent: 'off'
+      }
+    }
+  ]
 };

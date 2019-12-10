@@ -4,8 +4,8 @@
     export default {
         props: {
             data: {
-                type: Object
-            }
+                type: Object,
+            },
         },
 
         render() {
@@ -14,6 +14,6 @@
 
         mounted() {
             swal(this.data);
-        }
+        },
     };
 </script>
