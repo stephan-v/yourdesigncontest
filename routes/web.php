@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Auth::routes(['verify' => true]);
+
+Route::get('blog', 'BlogController@index');

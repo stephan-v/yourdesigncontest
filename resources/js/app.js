@@ -1,6 +1,6 @@
 import './bootstrap';
 import Vue from 'vue';
 
-new Vue({
+(() => new Vue({
     el: '#app',
-});
+}))();
