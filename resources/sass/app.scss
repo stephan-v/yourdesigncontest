@@ -7,7 +7,9 @@ body, html, #app {
 }
 
 body {
+    color: #424851;
     background: whitesmoke;
+    font-family: 'Muli', sans-serif;
 
     &:after {
         content: '';
@@ -51,7 +53,6 @@ $rotation: 60deg;
 
     p {
         line-height: 1.7;
-        font-family: 'Roboto', sans-serif;
     }
 
     .image-placeholder {

@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
         <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-        <link href="https://fonts.googleapis.com/css?family=Calistoga|Roboto&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Calistoga|Muli:400,900&display=swap" rel="stylesheet">
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-67055393-6"></script>
