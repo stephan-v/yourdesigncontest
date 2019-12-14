@@ -24,4 +24,4 @@
         </script>
     </head>
     <body>
-        <div id="app" class="h-100 d-flex align-items-center">
+        <div id="app">
