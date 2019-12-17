@@ -19,7 +19,7 @@ class WordPress
      */
     public function post(int $id)
     {
-        $url = $this->url . 'posts/' . $id;
+        $url = $this->url . 'posts/' . $id . '?_embed';
 
         return $this->toJson($url);
     }

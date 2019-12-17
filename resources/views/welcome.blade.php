@@ -1,5 +1,91 @@
 @extends('layouts.master')
 
+@section('styles')
+    <style>
+        body:after {
+            content: "";
+            background-image: url("/images/pattern.png");
+            opacity: 0.1;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 960px;
+        }
+
+        .row {
+            width: 100%;
+        }
+
+        .center {
+            overflow: hidden;
+            height: 500px;
+            background: white;
+            display: block;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .center h1 {
+            font-size: 1.5rem;
+            font-family: "Calistoga", cursive;
+        }
+
+        .center h1 .orange {
+            color: orange;
+        }
+
+        .center p {
+            line-height: 1.7;
+        }
+
+        .center .image-placeholder {
+            border-radius: 20%;
+            -webkit-transform: rotate(-60deg);
+            transform: rotate(-60deg);
+            width: 110%;
+            height: 110%;
+            position: absolute;
+            bottom: -35%;
+            right: -5%;
+            overflow: hidden;
+        }
+
+        .center .image-placeholder .image {
+            background-image: url("/images/pexels.jpg");
+            background-size: cover;
+            -webkit-transform: rotate(60deg);
+            transform: rotate(60deg);
+            width: 140%;
+            height: 140%;
+            left: 0;
+            top: -35%;
+            position: relative;
+        }
+
+        .center .image-placeholder .image:after {
+            content: "";
+            width: 95%;
+            height: 95%;
+            background: -webkit-gradient(linear, left bottom, left top, from(#006c9c), to(#02b0ff));
+            background: linear-gradient(0deg, #006c9c, #02b0ff);
+            display: block;
+            opacity: 0.8;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="h-100 d-flex align-items-center">
         <div class="container">

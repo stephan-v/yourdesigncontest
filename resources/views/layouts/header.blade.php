@@ -9,6 +9,9 @@
         <script defer src="{{ mix('/js/app.js') }}"></script>
 
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+        @stack('stylesheets')
+
+        @yield('styles')
 
         <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
         <link href="https://fonts.googleapis.com/css?family=Calistoga|Muli:400,900&display=swap" rel="stylesheet">
