@@ -19,3 +19,7 @@ Route::resource('contest', 'ContestController');
 Route::resource('blog', 'BlogController');
 
 Route::get('blog', 'BlogController@index');
+
+Route::get('checkout-session', 'CheckoutController@session');
+Route::get('checkout', 'CheckoutController@index');
+Route::get('success', 'CheckoutController@success');
