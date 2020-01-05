@@ -23,3 +23,7 @@ Route::get('blog', 'BlogController@index');
 Route::get('checkout-session', 'CheckoutController@session');
 Route::get('checkout', 'CheckoutController@index');
 Route::get('success', 'CheckoutController@success');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

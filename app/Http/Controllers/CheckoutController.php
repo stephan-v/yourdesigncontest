@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Stripe\AccountLink;
 use Stripe\Checkout\Session;
 use Stripe\Exception\ApiErrorException;
 use Stripe\Stripe;
@@ -10,6 +11,16 @@ class CheckoutController extends Controller
 {
     public function index()
     {
+        $link = AccountLink::create([
+            'account' => auth()->user()->stripe_id,
+            'failure_url' => 'https://example.com/failure',
+            'success_url' => 'https://example.com/success',
+            'type' => 'custom_account_verification',
+            'collect' => 'eventually_due',
+        ]);
+
+        dd($link);
+
         return view('checkout.index');
     }
 
