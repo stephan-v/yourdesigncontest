@@ -15,14 +15,12 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes(['verify' => true]);
 
-Route::resource('contest', 'ContestController');
-Route::resource('blog', 'BlogController');
+Route::resource('contests', 'ContestController');
+Route::resource('blog', 'BlogController')->only(['index', 'show']);
 
-Route::get('blog', 'BlogController@index');
+Route::post('checkouts', 'CheckoutController@store');
 
-Route::get('checkout-session', 'CheckoutController@session');
-Route::get('checkout', 'CheckoutController@index');
-Route::get('success', 'CheckoutController@success');
+Route::get('success', 'CheckoutController@store');
 
 Auth::routes();
 

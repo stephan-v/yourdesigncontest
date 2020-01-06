@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Contest;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ContestController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response The HTML server response.
      */
     public function index()
     {
@@ -22,11 +23,11 @@ class ContestController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response The HTML server response.
      */
     public function create()
     {
-        //
+        return view('contest.create');
     }
 
     /**

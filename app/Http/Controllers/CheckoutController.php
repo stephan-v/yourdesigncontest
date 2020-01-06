@@ -2,60 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use Stripe\AccountLink;
+use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use Stripe\Exception\ApiErrorException;
-use Stripe\Stripe;
 
 class CheckoutController extends Controller
 {
-    public function index()
-    {
-        $link = AccountLink::create([
-            'account' => auth()->user()->stripe_id,
-            'failure_url' => 'https://example.com/failure',
-            'success_url' => 'https://example.com/success',
-            'type' => 'custom_account_verification',
-            'collect' => 'eventually_due',
-        ]);
-
-        dd($link);
-
-        return view('checkout.index');
-    }
-
     /**
      * Start a new session.
      *
-     * @return mixed
-     * @throws ApiErrorException
+     * @param Request $request The incoming HTTP request.
+     * @return string The session ID which is used to redirect the customer to Stripe.
+     * @throws ApiErrorException Thrown if the request fails.
      */
-    public function session()
+    public function store(Request $request)
     {
-        // @TODO change to the production key when needed.
-        Stripe::setApiKey(config('services.stripe.key'));
+        // @TODO add validation.
 
         $session = Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [
                 [
-                    'name' => 'T-shirt',
-                    'description' => 'Comfortable cotton t-shirt',
-                    'images' => ['https://example.com/t-shirt.png'],
-                    'amount' => 500,
+                    'name' => $request->name,
+                    'description' => $request->name,
+                    'images' => [
+                        'https://example.com/t-shirt.png'
+                    ],
+                    'amount' => ($request->amount * 100),
                     'currency' => 'eur',
                     'quantity' => 1,
                 ]
             ],
-            'success_url' => 'http://yourdesigncontest.test/success?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => 'http://yourdesigncontest.test/cancel',
+            'success_url' => config('app.url') . '/success?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => config('app.url') . '/cancel',
         ]);
 
-        return $session;
-    }
-
-    public function success()
-    {
-        return view('checkout.index');
+        return $session['id'];
     }
 }

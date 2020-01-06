@@ -8,6 +8,8 @@
 
         <script defer src="{{ mix('/js/app.js') }}"></script>
 
+        @stack('scripts')
+
         <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
         @stack('stylesheets')
 
