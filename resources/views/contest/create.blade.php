@@ -6,8 +6,12 @@
 
 @section('content')
     <div class="container">
-        <h1>Create a contest</h1>
+        <div class="row mt-5">
+            <div class="col-md-8 offset-md-2">
+                <h1>Create a contest</h1>
 
-        <checkout></checkout>
+                <checkout></checkout>
+            </div>
+        </div>
     </div>
 @endsection

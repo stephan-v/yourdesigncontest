@@ -24,4 +24,6 @@ Route::get('success', 'CheckoutController@store');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home');
+
+Route::post('stripe/webhook', 'StripeWebhookController@handleWebhook');

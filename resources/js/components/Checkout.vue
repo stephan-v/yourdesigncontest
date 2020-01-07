@@ -2,17 +2,25 @@
     <form @submit.prevent>
         <div class="form-group">
             <label for="name">Contest name</label>
-            <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="Name of your contest" v-model="name">
+            <input type="text"
+                   class="form-control"
+                   id="name"
+                   placeholder="Name of your contest"
+                   v-model="name">
             <small class="form-text text-muted">Please provide the name of your design contest.</small>
         </div>
 
         <div class="form-group">
             <label for="amount">Amount</label>
-            <input type="number" class="form-control" id="amount" aria-describedby="amount" placeholder="Amount in euro's" v-model.number="amount">
+            <input type="number"
+                   class="form-control"
+                   id="amount"
+                   placeholder="Amount in euro's"
+                   v-model.number="amount">
             <small class="form-text text-muted">Select your own price.</small>
         </div>
 
-        <button type="submit" class="btn btn-primary" @click="submit">Submit</button>
+        <button type="submit" class="btn btn-primary" @click="submit">Checkout</button>
     </form>
 </template>
 
