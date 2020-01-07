@@ -20,7 +20,7 @@ Route::resource('blog', 'BlogController')->only(['index', 'show']);
 
 Route::post('checkouts', 'CheckoutController@store');
 
-Route::get('success', 'CheckoutController@store');
+Route::get('success', 'CheckoutController@success');
 
 Auth::routes();
 

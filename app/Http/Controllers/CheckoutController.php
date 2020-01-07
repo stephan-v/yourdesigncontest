@@ -39,4 +39,12 @@ class CheckoutController extends Controller
 
         return $session['id'];
     }
+
+    /**
+     * The response when a checkout has been completed with success.
+     */
+    public function success()
+    {
+        return view('checkout.success');
+    }
 }
