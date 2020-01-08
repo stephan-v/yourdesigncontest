@@ -46,6 +46,7 @@ class StripeWebhookController extends Controller
     public function handleCheckoutSessionCompleted(array $payload)
     {
         // @TODO Set the contest live.
+        // Send out email receipt.
 
         return $this->successMethod();
     }
