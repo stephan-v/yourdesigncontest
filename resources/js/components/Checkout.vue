@@ -32,7 +32,7 @@
 
         <div class="card mb-5">
             <div class="card-body">
-                <h5 class="card-title">Order summary</h5>
+                <h5 class="card-title">Order details</h5>
 
                 <ul class="total-price">
                     <li class="d-flex justify-content-between">
@@ -119,7 +119,7 @@
         list-style: none;
 
         li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
 
             &:last-child {
                 margin: 0;
@@ -127,8 +127,8 @@
         }
 
         .total {
-            padding-top: 0.5rem;
-            border-top: 1px solid #6c757d;
+            padding-top: 0.75rem;
+            border-top: 1px dashed #b3b3b3;
         }
     }
 </style>
