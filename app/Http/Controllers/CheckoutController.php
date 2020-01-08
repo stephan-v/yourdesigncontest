@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StripeSessionRequest;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
 use Stripe\Checkout\Session;
 use Stripe\Exception\ApiErrorException;
 
@@ -18,6 +20,7 @@ class CheckoutController extends Controller
     public function store(StripeSessionRequest $request)
     {
         $session = Session::create([
+            'customer_email' => $request->email,
             'payment_method_types' => ['card'],
             'line_items' => [
                 [
@@ -26,7 +29,7 @@ class CheckoutController extends Controller
                     'images' => [
                         'https://example.com/t-shirt.png'
                     ],
-                    'amount' => ($request->amount * 100),
+                    'amount' => $request->amount,
                     'currency' => 'eur',
                     'quantity' => 1,
                 ]
@@ -40,9 +43,18 @@ class CheckoutController extends Controller
 
     /**
      * The response when a checkout has been completed with success.
+     *
+     * @param Request $request The incoming HTTP request.
+     * @return View The HTML server response.
+     * @throws ApiErrorException If the request fails.
      */
-    public function success()
+    public function success(Request $request)
     {
-        return view('checkout.success');
+        $session = Session::retrieve($request->session_id);
+
+        $amount = reset($session->display_items)->amount / 100;
+        $email = $session->customer_email;
+
+        return view('checkout.success', compact(['amount', 'email']));
     }
 }

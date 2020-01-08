@@ -3,15 +3,15 @@
 @section('content')
     <div class="h-100 d-flex align-items-center">
         <div class="container">
-            <div class="row pb-3">
+            <div class="row mb-3">
                 <div class="col-md-8 offset-md-2">
-                    <h1 class="success font-weight-bold">
+                    <h1 class="success font-weight-bold mb-3">
                         <i class="fa fa-check-circle"></i>
                         Payment confirmed
                     </h1>
 
                     <p>Thank you, your payment has been successful and your contest is now live.</p>
-                    <p>A confirmation email has been sent to: stephan-v@hotmail.com.</p>
+                    <p>A confirmation email has been sent to: {{ $email }}.</p>
                 </div>
             </div>
 
@@ -30,12 +30,12 @@
 
                                     <tr>
                                         <td class="w-50">Email:</td>
-                                        <td class="w-50">stephan-v@hotmail.com</td>
+                                        <td class="w-50">{{ $email }}</td>
                                     </tr>
 
                                     <tr>
                                         <td class="w-50">Total price</td>
-                                        <td class="w-50">$1000</td>
+                                        <td class="w-50">{{ number_format($amount, 2)}}</td>
                                     </tr>
                                 </tbody>
                             </table>

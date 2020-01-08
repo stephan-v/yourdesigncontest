@@ -18,15 +18,5 @@ body {
     color: #1DB15F;
 }
 
-.table {
-    tr {
-        td {
-            &:first-child {
-                text-align: right;
-            }
-        }
-    }
-}
-
 // Pages.
 @import 'pages/blog';
