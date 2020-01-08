@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StripeSessionRequest;
 use Stripe\Checkout\Session;
 use Stripe\Exception\ApiErrorException;
 
@@ -11,14 +11,12 @@ class CheckoutController extends Controller
     /**
      * Start a new session.
      *
-     * @param Request $request The incoming HTTP request.
+     * @param StripeSessionRequest $request The incoming HTTP request.
      * @return string The session ID which is used to redirect the customer to Stripe.
      * @throws ApiErrorException Thrown if the request fails.
      */
-    public function store(Request $request)
+    public function store(StripeSessionRequest $request)
     {
-        // @TODO add validation.
-
         $session = Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [

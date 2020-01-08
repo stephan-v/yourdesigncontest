@@ -13,7 +13,7 @@ class StripeSessionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class StripeSessionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'amount' => ['required', 'numeric', 'min:25'],
+            'name' => ['required', 'string'],
         ];
     }
 }
