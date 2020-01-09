@@ -22,6 +22,11 @@ class CheckoutController extends Controller
         $session = Session::create([
             'customer_email' => $request->email,
             'payment_method_types' => ['card'],
+            'payment_intent_data' => [
+                'metadata' => [
+                    'contest_id' => $request->contest_id,
+                ]
+            ],
             'line_items' => [
                 [
                     'name' => $request->name,
