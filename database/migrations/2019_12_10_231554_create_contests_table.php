@@ -15,10 +15,10 @@ class CreateContestsTable extends Migration
     {
         Schema::create('contests', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('category');
-            $table->string('title');
+            $table->string('name');
             $table->text('description');
-            $table->float('budget');
+            $table->unsignedInteger('amount')->nullable();
+            $table->enum('status', ['offline', 'online'])->default('offline');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

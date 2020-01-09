@@ -9,6 +9,7 @@ module.exports = {
   ],
   globals: {
     axios: "readonly",
+    Stripe: "readonly",
   },
   parserOptions: {
     ecmaVersion: 2018,
@@ -20,6 +21,7 @@ module.exports = {
   rules: {
       "indent": ["error", 4],
       "max-len": ["error", { "code": 120 }],
+      "no-console": 0,
       "vue/script-indent": ["error", 4, { "baseIndent": 1 }],
   },
   overrides: [

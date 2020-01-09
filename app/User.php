@@ -36,4 +36,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the contests for the user.
+     */
+    public function contests()
+    {
+        return $this->hasMany(Contest::class);
+    }
 }

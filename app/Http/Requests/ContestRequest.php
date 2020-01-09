@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class StripeSessionRequest extends FormRequest
+class ContestRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class StripeSessionRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -24,9 +25,8 @@ class StripeSessionRequest extends FormRequest
     public function rules()
     {
         return [
-            'amount' => ['required', 'numeric', 'min:25'],
-            // 'contest_id' => ['required', 'exists:contests,id'],
-            'email' => ['required', 'email'],
+            'description' => ['required', 'string'],
+            'expiration' => ['required', 'digits_between:1,4'],
             'name' => ['required', 'string'],
         ];
     }

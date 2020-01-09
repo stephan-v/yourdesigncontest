@@ -3,15 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Contest;
+use App\Http\Requests\ContestRequest;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class ContestController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Response The HTML server response.
+     * @return View The HTML server response.
      */
     public function index()
     {
@@ -23,7 +28,7 @@ class ContestController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response The HTML server response.
+     * @return View The HTML server response.
      */
     public function create()
     {
@@ -33,12 +38,21 @@ class ContestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ContestRequest $request The incoming HTTP client request.
+     * @return Response The server response.
+     * @throws \Exception Emits Exception in case of an error.
      */
-    public function store(Request $request)
+    public function store(ContestRequest $request)
     {
-        //
+        $data = [
+            'description' => $request->description,
+            'expires_at' => (new Carbon())->addWeeks($request->expiration),
+            'name' => $request->name,
+        ];
+
+        $contest = $request->user()->contests()->create($data);
+
+        return response($contest);
     }
 
     /**
