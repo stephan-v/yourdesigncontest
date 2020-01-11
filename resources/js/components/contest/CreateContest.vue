@@ -8,10 +8,10 @@
     export default {
         data() {
             return {
+                id: null,
                 step: 0,
                 steps: [
                     'contest',
-                    'register',
                     'checkout',
                 ],
             };

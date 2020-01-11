@@ -11,5 +11,14 @@ class Contest extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['description', 'expirates_at', 'name'];
+    protected $fillable = ['description', 'expires_at', 'name'];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array $dates
+     */
+    protected $dates = [
+        'expires_at',
+    ];
 }

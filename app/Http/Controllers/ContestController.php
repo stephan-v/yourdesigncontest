@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Contest;
 use App\Http\Requests\ContestRequest;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class ContestController extends Controller
