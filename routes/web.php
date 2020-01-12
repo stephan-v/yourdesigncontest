@@ -15,7 +15,10 @@ Route::get('/', 'HomeController@index');
 
 Auth::routes(['verify' => true]);
 
-Route::resource('contests', 'ContestController');
+// Contest routes.
+Route::get('contests/create', 'ContestController@create')->middleware('auth');
+Route::resource('contests', 'ContestController')->except(['create']);
+
 Route::resource('blog', 'BlogController')->only(['index', 'show']);
 
 Route::post('checkouts', 'CheckoutController@store');

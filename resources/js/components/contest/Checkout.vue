@@ -43,6 +43,7 @@
 
 <script>
     import Dinero from 'dinero.js';
+    import { mapGetters } from 'vuex';
 
     export default {
         data() {
@@ -64,10 +65,12 @@
             submit() {
                 const stripe = Stripe(this.key);
 
+                // @TODO update contest_id in this component.
+
                 axios.post('/checkouts', {
                     amount: this.total.getAmount(),
                     contest_id: this.contest_id,
-                    email: this.email,
+                    email: this.user.email,
                     name: this.name,
                 }).then((response) => {
                     stripe.redirectToCheckout({ sessionId: response.data }).then((result) => {
@@ -81,6 +84,10 @@
         },
 
         computed: {
+            ...mapGetters('authentication', [
+                'user',
+            ]),
+
             price() {
                 return Dinero({ amount: this.amount * 100 || 0 });
             },

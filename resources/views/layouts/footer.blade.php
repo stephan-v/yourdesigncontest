@@ -1,6 +1,10 @@
             @if (Session::has('flash'))
-                <flash-message :data="{{ json_encode(Session::get('flash')) }}"></flash-message>
+                <flash-message :data="@json(Session::get('flash'))"></flash-message>
             @endif
         </div><!-- /#app -->
+
+        <script>
+            window.user = @json(auth()->user());
+        </script>
     </body>
 </html>

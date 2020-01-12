@@ -25,7 +25,7 @@ class StripeSessionRequest extends FormRequest
     {
         return [
             'amount' => ['required', 'numeric', 'min:25'],
-            // 'contest_id' => ['required', 'exists:contests,id'],
+            'contest_id' => ['required', 'exists:contests,id'],
             'email' => ['required', 'email'],
             'name' => ['required', 'string'],
         ];
