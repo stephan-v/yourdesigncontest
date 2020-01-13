@@ -13,23 +13,24 @@
 
                             <div class="form-group">
                                 <label for="name">Contest name</label>
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Name of your contest">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Name of your contest" value="{{ old('name') }}">
                                 <small class="form-text text-muted">Please provide the name of your design contest.</small>
                             </div>
 
                             <div class="form-group">
                                 <label for="name">Contest description</label>
-                                <textarea name="description" class="form-control" id="description" rows="5" placeholder="Briefing of your contest"></textarea>
+                                <textarea name="description" class="form-control" id="description" rows="5" placeholder="Briefing of your contest" value="{{ old('description') }}"></textarea>
                                 <small class="form-text text-muted">Please provide a short briefing for your design contest.</small>
                             </div>
 
                             <div class="form-group">
                                 <label for="expires_at">Expires in</label>
                                 <select name="expires_at" class="form-control" id="expires_at">
-                                    <option value="1">1 week</option>
-                                    <option value="2">2 weeks</option>
-                                    <option value="3">3 weeks</option>
-                                    <option value="4">4 weeks</option>
+                                    @for ($i = 1; $i <= 4; $i++)
+                                        <option value="{{ $i }}" @if (old('expires_at') == $i) selected @endif>
+                                            {{ $i }} {{ Str::plural('week', $i) }}
+                                        </option>
+                                    @endfor
                                 </select>
                             </div>
 
