@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,8 +28,23 @@ class ContestRequest extends FormRequest
     {
         return [
             'description' => ['required', 'string'],
-            'expiration' => ['required', 'digits_between:1,4'],
+            'expires_at' => ['required', 'digits_between:1,4'],
             'name' => ['required', 'string'],
         ];
+    }
+
+    /**
+     * Override this method to modify request data AFTER it's validated.
+     *
+     * @return array The modified array of validated data.
+     * @throws Exception Emits Exception in case of an error.
+     */
+    public function validated()
+    {
+        $data = $this->validator->validated();
+
+        $data['expires_at'] = (new Carbon())->addWeeks($data['expires_at']);
+
+        return $data;
     }
 }

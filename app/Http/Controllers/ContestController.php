@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Contest;
 use App\Http\Requests\ContestRequest;
-use Carbon\Carbon;
+use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class ContestController extends Controller
@@ -37,20 +37,18 @@ class ContestController extends Controller
      * Store a newly created resource in storage.
      *
      * @param ContestRequest $request The incoming HTTP client request.
-     * @return Response The server response.
-     * @throws \Exception Emits Exception in case of an error.
+     * @return RedirectResponse Response to redirect to the checkout.
+     * @throws Exception Emits Exception in case of an error.
      */
     public function store(ContestRequest $request)
     {
-        $data = [
-            'description' => $request->description,
-            'expires_at' => (new Carbon())->addWeeks($request->expiration),
-            'name' => $request->name,
-        ];
+        $contest = $request->user()->contests()->create(
+            $request->validated()
+        );
 
-        $contest = $request->user()->contests()->create($data);
+        $request->session()->put('contest', $contest);
 
-        return response($contest);
+        return redirect()->route('checkout.create', ['contest' => $contest->id]);
     }
 
     /**

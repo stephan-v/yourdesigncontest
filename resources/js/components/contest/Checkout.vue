@@ -1,43 +1,45 @@
 <template>
-    <div class="card-body">
-        <h1>Checkout</h1>
+    <div class="card">
+        <div class="card-body">
+            <h1>Checkout</h1>
 
-        <form @submit.prevent>
-            <div class="form-group mb-5">
-                <label for="amount">Price money</label>
-                <input type="number"
-                       class="form-control"
-                       id="amount"
-                       placeholder="Amount in euro's"
-                       v-model.number="amount">
-                <small class="form-text text-muted">Select how much the winning designer will earn.</small>
-            </div>
-
-            <div class="card mb-5">
-                <div class="card-body">
-                    <h5 class="card-title">Order details</h5>
-
-                    <ul class="total-price">
-                        <li class="d-flex justify-content-between">
-                            <span class="text-muted">Amount</span>
-                            <span>{{ this.price.toFormat() }}</span>
-                        </li>
-
-                        <li class="d-flex justify-content-between">
-                            <span class="text-muted">Fee ({{ this.percentage }}%)</span>
-                            <span>{{ this.fee.toFormat() }}</span>
-                        </li>
-
-                        <li class="total d-flex justify-content-between">
-                            <span class="text-muted">Total</span>
-                            <span>{{ this.total.toFormat() }}</span>
-                        </li>
-                    </ul>
+            <form @submit.prevent>
+                <div class="form-group mb-5">
+                    <label for="amount">Price money</label>
+                    <input type="number"
+                           class="form-control"
+                           id="amount"
+                           placeholder="Amount in euro's"
+                           v-model.number="amount">
+                    <small class="form-text text-muted">Select how much the winning designer will earn.</small>
                 </div>
-            </div>
 
-            <button type="submit" class="btn btn-primary" @click="submit">Checkout</button>
-        </form>
+                <div class="card mb-5">
+                    <div class="card-body">
+                        <h5 class="card-title">Order details</h5>
+
+                        <ul class="total-price">
+                            <li class="d-flex justify-content-between">
+                                <span class="text-muted">Amount</span>
+                                <span>{{ this.price.toFormat() }}</span>
+                            </li>
+
+                            <li class="d-flex justify-content-between">
+                                <span class="text-muted">Fee ({{ this.percentage }}%)</span>
+                                <span>{{ this.fee.toFormat() }}</span>
+                            </li>
+
+                            <li class="total d-flex justify-content-between">
+                                <span class="text-muted">Total</span>
+                                <span>{{ this.total.toFormat() }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" @click="submit">Checkout</button>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -49,10 +51,16 @@
         data() {
             return {
                 amount: null,
-                contest_id: 1,
-                key: 'pk_test_xS6i7CE8EvKafYNJijLGchad',
+                stripe: Stripe('pk_test_xS6i7CE8EvKafYNJijLGchad'),
                 percentage: 10,
             };
+        },
+
+        props: {
+            contest: {
+                required: true,
+                type: Object,
+            }
         },
 
         created() {
@@ -63,21 +71,11 @@
 
         methods: {
             submit() {
-                const stripe = Stripe(this.key);
-
-                // @TODO update contest_id in this component.
-
-                axios.post('/checkouts', {
-                    amount: this.total.getAmount(),
-                    contest_id: this.contest_id,
-                    email: this.user.email,
-                    name: this.name,
-                }).then((response) => {
-                    stripe.redirectToCheckout({ sessionId: response.data }).then((result) => {
+                axios.post('/checkouts', this.data).then((response) => {
+                    this.stripe.redirectToCheckout({ sessionId: response.data }).then((result) => {
                         console.log(result.error);
                     });
                 }).catch((error) => {
-                    // Validation errors,
                     console.log(error.response.data.errors);
                 });
             },
@@ -87,6 +85,19 @@
             ...mapGetters('authentication', [
                 'user',
             ]),
+
+            data() {
+                return {
+                    amount: this.amount,
+                    contest_id: this.contest.id,
+                    email: this.user.email,
+                    name: this.contest.name,
+                };
+            },
+
+            amount() {
+                return this.total.getAmount();
+            },
 
             price() {
                 return Dinero({ amount: this.amount * 100 || 0 });

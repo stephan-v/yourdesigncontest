@@ -1,14 +1,52 @@
 @extends('layouts.master')
 
-@push('scripts')
-    <script src="https://js.stripe.com/v3/"></script>
-@endpush
-
 @section('content')
     <div class="container">
         <div class="row pt-5">
             <div class="col-md-8 offset-md-2">
-                <create-contest></create-contest>
+                <div class="card">
+                    <div class="card-body">
+                        <h1>Create a contest</h1>
+
+                        <form action="/contests" method="post">
+                            @csrf
+
+                            <div class="form-group">
+                                <label for="name">Contest name</label>
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Name of your contest">
+                                <small class="form-text text-muted">Please provide the name of your design contest.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Contest description</label>
+                                <textarea name="description" class="form-control" id="description" rows="5" placeholder="Briefing of your contest"></textarea>
+                                <small class="form-text text-muted">Please provide a short briefing for your design contest.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="expires_at">Expires in</label>
+                                <select name="expires_at" class="form-control" id="expires_at">
+                                    <option value="1">1 week</option>
+                                    <option value="2">2 weeks</option>
+                                    <option value="3">3 weeks</option>
+                                    <option value="4">4 weeks</option>
+                                </select>
+                            </div>
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul class="mb-0">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <button type="submit" class="btn btn-primary">Next</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
