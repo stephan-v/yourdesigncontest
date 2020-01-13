@@ -78,6 +78,6 @@ class ContestCheckoutController extends Controller
         $amount = reset($session->display_items)->amount / 100;
         $email = $session->customer_email;
 
-        return view('checkout.success', compact(['amount', 'email']));
+        return view('checkout.success', compact('amount', 'email'));
     }
 }
