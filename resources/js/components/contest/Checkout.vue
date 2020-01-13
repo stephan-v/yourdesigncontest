@@ -4,7 +4,7 @@
             <h1>Checkout</h1>
 
             <form @submit.prevent>
-                <div class="form-group mb-5">
+                <div class="form-group mb-3">
                     <label for="amount">Price money</label>
                     <input type="number"
                            class="form-control"
@@ -14,7 +14,7 @@
                     <small class="form-text text-muted">Select how much the winning designer will earn.</small>
                 </div>
 
-                <div class="card mb-5">
+                <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Order details</h5>
 
@@ -36,6 +36,8 @@
                         </ul>
                     </div>
                 </div>
+
+                <img src="/images/powered_by_stripe.png" alt="" class="d-block mb-3">
 
                 <button type="submit" class="btn btn-primary" @click="submit">Checkout</button>
             </form>
