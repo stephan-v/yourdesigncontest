@@ -37,9 +37,13 @@
                     </div>
                 </div>
 
-                <img src="/images/powered_by_stripe.png" alt="" class="d-block mb-3">
+                <div class="alert alert-danger" v-if="errors.length">
+                    <ul class="mb-0">
+                        <li v-for="error in errors" :key="error">{{ error }}</li>
+                    </ul>
+                </div>
 
-                <button type="submit" class="btn btn-primary" @click="submit">Checkout</button>
+                <button type="submit" class="btn btn-primary" @click="submit">Continue to checkout</button>
             </form>
         </div>
     </div>
@@ -53,6 +57,7 @@
         data() {
             return {
                 amount: null,
+                rawErrors: [],
                 stripe: Stripe('pk_test_xS6i7CE8EvKafYNJijLGchad'),
                 percentage: 10,
             };
@@ -62,7 +67,7 @@
             contest: {
                 required: true,
                 type: Object,
-            }
+            },
         },
 
         created() {
@@ -78,7 +83,7 @@
                         console.log(result.error);
                     });
                 }).catch((error) => {
-                    console.log(error.response.data.errors);
+                    this.rawErrors = error.response.data.errors;
                 });
             },
         },
@@ -88,17 +93,17 @@
                 'user',
             ]),
 
+            errors() {
+                return Object.values(this.rawErrors).flat();
+            },
+
             data() {
                 return {
-                    amount: this.amount,
+                    amount: this.total.getAmount(),
                     contest_id: this.contest.id,
                     email: this.user.email,
                     name: this.contest.name,
                 };
-            },
-
-            amount() {
-                return this.total.getAmount();
             },
 
             price() {
