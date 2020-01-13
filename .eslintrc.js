@@ -23,6 +23,8 @@ module.exports = {
       "max-len": ["error", { "code": 120 }],
       "no-console": 0,
       "vue/script-indent": ["error", 4, { "baseIndent": 1 }],
+      "no-shadow": ["error", { "allow": ["state"] }],
+      "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
   },
   overrides: [
     {
