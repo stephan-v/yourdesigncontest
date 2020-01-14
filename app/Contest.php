@@ -11,7 +11,9 @@ class Contest extends Model
      *
      * @var array $fillable
      */
-    protected $fillable = ['description', 'expires_at', 'name'];
+    protected $fillable = [
+        'description', 'expires_at', 'name'
+    ];
 
     /**
      * The attributes that should be mutated to dates.
@@ -21,4 +23,20 @@ class Contest extends Model
     protected $dates = [
         'expires_at',
     ];
+
+    /**
+     * Get the transaction record associated with the transaction.
+     */
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class);
+    }
+
+    /**
+     * Get the user that owns the phone.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

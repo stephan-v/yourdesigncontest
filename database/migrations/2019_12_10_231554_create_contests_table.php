@@ -17,7 +17,6 @@ class CreateContestsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
-            $table->unsignedInteger('amount')->nullable();
             $table->enum('status', ['offline', 'online'])->default('offline');
 
             $table->unsignedBigInteger('user_id');

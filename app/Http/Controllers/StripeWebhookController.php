@@ -49,6 +49,8 @@ class StripeWebhookController extends Controller
         // Set the contest live.
         // Send out email receipt.
 
+        // @TODO create a Transaction attached to the contest_id of the payload.
+
         return $this->successMethod();
     }
 
