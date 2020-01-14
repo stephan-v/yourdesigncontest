@@ -49,4 +49,13 @@ class Contest extends Model
     {
         return $this->transaction()->exists();
     }
+
+    /**
+     * Determines if the contest has not been paid for.
+     *
+     * @return bool Whether the contest has been paid for or not.
+     */
+    public function isNotPaidFor() {
+        return !$this->isPaidFor();
+    }
 }

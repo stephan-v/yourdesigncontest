@@ -7,6 +7,7 @@ use App\Http\Requests\ContestRequest;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class ContestController extends Controller
@@ -18,7 +19,7 @@ class ContestController extends Controller
      */
     public function index()
     {
-        $contests = Contest::all();
+        $contests = Contest::has('transaction')->get();
 
         return view('contest.index', compact('contests'));
     }
@@ -54,19 +55,27 @@ class ContestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Contest  $contest
-     * @return \Illuminate\Http\Response
+     * @param Contest $contest
+     * @return RedirectResponse|View The HTML server response.
      */
     public function show(Contest $contest)
     {
-        //
+        if ($contest->isNotPaidFor()) {
+            // @TODO show a modal only to the attached user stating it has not been paid for yet.
+                // return view with flash data for a modal.
+
+            // @TODO simply redirect other users.
+            return redirect('/');
+        }
+
+        return view('contest.show', compact('contest'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Contest  $contest
-     * @return \Illuminate\Http\Response
+     * @param Contest $contest
+     * @return Response
      */
     public function edit(Contest $contest)
     {
@@ -77,8 +86,8 @@ class ContestController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Contest  $contest
-     * @return \Illuminate\Http\Response
+     * @param Contest $contest
+     * @return Response
      */
     public function update(Request $request, Contest $contest)
     {
@@ -88,8 +97,8 @@ class ContestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Contest  $contest
-     * @return \Illuminate\Http\Response
+     * @param Contest $contest
+     * @return Response
      */
     public function destroy(Contest $contest)
     {
