@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contest;
 use App\Http\Requests\StripeSessionRequest;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;

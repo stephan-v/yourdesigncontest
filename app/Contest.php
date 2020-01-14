@@ -37,6 +37,16 @@ class Contest extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Determines if the contest has been paid for.
+     *
+     * @return bool Whether the contest has been paid for or not.
+     */
+    public function isPaidFor()
+    {
+        return $this->transaction()->exists();
     }
 }

@@ -16,16 +16,18 @@ class UserObserver
      */
     public function creating(User $user)
     {
-        $account = Account::create([
-            'business_type' => 'individual',
-            'country' => 'NL',
-            'type' => 'custom',
-            'requested_capabilities' => [
-                'card_payments',
-                'transfers'
-            ],
-        ]);
+        // @TODO Implement Stripe Connect functionality later on.
 
-        $user->stripe_id = $account['id'];
+//        $account = Account::create([
+//            'business_type' => 'individual',
+//            'country' => 'NL',
+//            'type' => 'custom',
+//            'requested_capabilities' => [
+//                'card_payments',
+//                'transfers'
+//            ],
+//        ]);
+//
+//        $user->stripe_id = $account['id'];
     }
 }

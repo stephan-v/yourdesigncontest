@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Contest;
 use App\Http\Middleware\VerifyWebhookSignature;
+use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,22 +36,27 @@ class StripeWebhookController extends Controller
             return $this->{$method}($payload);
         }
 
-        return $this->missingMethod();
+        return $this->missingMethod($method);
     }
 
     /**
-     * Handle completed checkout sessions.
+     * Handle a completed payment intent.
      *
      * @param array $payload The Stripe payload.
      * @return Response The server response.
      */
-    public function handleCheckoutSessionCompleted(array $payload)
+    public function handlePaymentIntentSucceeded(array $payload)
     {
         // Set the contest amount (winning price money).
         // Set the contest live.
         // Send out email receipt.
 
-        // @TODO create a Transaction attached to the contest_id of the payload.
+        $contestId = $payload['data']['object']['metadata']['contest_id'];
+        $paymentId = $payload['data']['object']['id'];
+
+        Contest::findOrFail($contestId)->transaction()->create([
+            'payment_id' => $paymentId
+        ]);
 
         return $this->successMethod();
     }
@@ -67,10 +74,11 @@ class StripeWebhookController extends Controller
     /**
      * Handle calls to missing methods on the controller.
      *
+     * @param string $method The missing method.
      * @return Response The server response.
      */
-    protected function missingMethod()
+    protected function missingMethod(string $method)
     {
-        return new Response;
+        return new Response("Method: '$method' not found");
     }
 }
