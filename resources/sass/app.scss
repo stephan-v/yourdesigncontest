@@ -13,10 +13,18 @@ body {
 }
 
 // Successful payment page.
-
 .success {
     color: #1DB15F;
 }
 
+.absolute-center {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
 // Pages.
 @import 'pages/blog';
+@import 'pages/contest';
+@import 'pages/home';

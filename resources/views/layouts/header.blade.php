@@ -31,3 +31,20 @@
     </head>
     <body>
         <div id="app">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="branding">
+                <div class="container">
+                    <h1 class="mb-3 mb-sm-5 logo">
+                        YourDesignContest<span class="period">.</span>
+                    </h1>
+                </div>
+            </div>
