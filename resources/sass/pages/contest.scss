@@ -3,6 +3,10 @@
     font-size: 1.1rem;
     position: relative;
 
+    p {
+        text-shadow: 0 0 5px black;
+    }
+
     &:before {
         content: '';
         width: 100%;
