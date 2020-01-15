@@ -12,7 +12,7 @@ class Transaction extends Model
      * @var array
      */
     protected $fillable = [
-        'contest_id', 'payment_id'
+        'amount', 'contest_id', 'payment_id'
     ];
 
     /**
@@ -21,5 +21,15 @@ class Transaction extends Model
     public function contest()
     {
         return $this->belongsTo(Contest::class);
+    }
+
+    /**
+     * The payout amount for designers.
+     *
+     * @return int The payout price in cents.
+     */
+    public function payout()
+    {
+        return number_format(($this->amount / 100), 2);
     }
 }

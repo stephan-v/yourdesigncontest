@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 
 class Contest extends Model
@@ -41,6 +43,14 @@ class Contest extends Model
     }
 
     /**
+     * Get the submissions for the contest.
+     */
+    public function submissions()
+    {
+        return $this->hasMany(Submission::class);
+    }
+
+    /**
      * Determines if the contest has been paid for.
      *
      * @return bool Whether the contest has been paid for or not.
@@ -57,5 +67,17 @@ class Contest extends Model
      */
     public function isNotPaidFor() {
         return !$this->isPaidFor();
+    }
+
+    /**
+     * Get the contests's expiration date.
+     *
+     * @param string $value The expiration timestamp.
+     * @return string The human readable expiration date.
+     * @throws Exception Thrown if a Carbon exception is thrown.
+     */
+    public function getExpiresAtAttribute($value)
+    {
+        return (new Carbon($value))->diffForHumans();
     }
 }

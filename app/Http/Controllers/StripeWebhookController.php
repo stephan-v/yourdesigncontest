@@ -47,14 +47,15 @@ class StripeWebhookController extends Controller
      */
     public function handlePaymentIntentSucceeded(array $payload)
     {
-        // Set the contest amount (winning price money).
         // Set the contest live.
         // Send out email receipt.
 
+        $amount = $payload['data']['object']['amount'];
         $contestId = $payload['data']['object']['metadata']['contest_id'];
         $paymentId = $payload['data']['object']['id'];
 
         Contest::findOrFail($contestId)->transaction()->create([
+            'amount' => $amount,
             'payment_id' => $paymentId
         ]);
 

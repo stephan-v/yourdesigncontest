@@ -17,3 +17,17 @@
         }
     }
 }
+
+.contest-table {
+    thead {
+        color: white;
+
+        td {
+            background: #ff6664;
+        }
+    }
+
+    tbody {
+        text-align: right;
+    }
+}
