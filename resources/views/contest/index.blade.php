@@ -46,7 +46,7 @@
                                     <td>{{ $contest->name }}</td>
                                     <td>{{ $contest->category }}</td>
                                     <td>{{ $contest->submissions->count() }}</td>
-                                    <td>{{ $contest->transaction->payout() }}</td>
+                                    <td>{{ $contest->transaction->payout }}</td>
                                     <td>{{ $contest->expires_at }}</td>
                                 </tr>
                             @endforeach

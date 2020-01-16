@@ -52,10 +52,12 @@ class StripeWebhookController extends Controller
 
         $amount = $payload['data']['object']['amount'];
         $contestId = $payload['data']['object']['metadata']['contest_id'];
+        $currency = $payload['data']['object']['currency'];
         $paymentId = $payload['data']['object']['id'];
 
         Contest::findOrFail($contestId)->transaction()->create([
             'amount' => $amount,
+            'currency' => strtoupper($currency),
             'payment_id' => $paymentId
         ]);
 

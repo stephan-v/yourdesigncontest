@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Presenters\TransactionPresenter;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+    use TransactionPresenter;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,15 +24,5 @@ class Transaction extends Model
     public function contest()
     {
         return $this->belongsTo(Contest::class);
-    }
-
-    /**
-     * The payout amount for designers.
-     *
-     * @return int The payout price in cents.
-     */
-    public function payout()
-    {
-        return number_format(($this->amount / 100), 2);
     }
 }
