@@ -6,5 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Submission extends Model
 {
-    //
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'file'
+    ];
+
+    /**
+     * Get the contest that owns the submission.
+     */
+    public function contest()
+    {
+        return $this->belongsTo(Contest::class);
+    }
 }

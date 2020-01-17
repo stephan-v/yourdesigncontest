@@ -23,5 +23,21 @@
                 <p>Add submission</p>
             </div>
         </div>
+
+        <div class="row">
+            @foreach ($contest->submissions as $submission)
+                <div class="col-md-3">
+                    <div class="submission ">
+                        <div class="d-flex align-content-center justify-content-center p-3">
+                            <img src="{{ asset($submission->file) }}" alt="" class="img-fluid">
+                        </div>
+
+                        <div class="caption p-3 border-top">
+                            {{ $contest->user->name }}
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
 @endsection

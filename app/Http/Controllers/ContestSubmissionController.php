@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contest;
 use App\Http\Requests\ContestSubmissionRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -22,7 +23,7 @@ class ContestSubmissionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param Contest $contest
+     * @param Contest $contest The contest to show a submissions create view for.
      * @return View The HTML server response.
      */
     public function create(Contest $contest)
@@ -33,12 +34,22 @@ class ContestSubmissionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param Contest $contest The contest which we are storing submissions for.
      * @param ContestSubmissionRequest $request The incoming HTTP client request.
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse Returns a redirect to the contest for which a submission has been added for.
      */
-    public function store(ContestSubmissionRequest $request)
+    public function store(Contest $contest, ContestSubmissionRequest $request)
     {
-        dd('Nice image');
+        $file = $request->file('file')->store(
+            "submissions/{$contest->id}",
+            ['disk' => 'public']
+        );
+
+        $contest->submissions()->create([
+            'file' => $file,
+        ]);
+
+        return redirect()->route('contests.show', ['contest' => $contest->id]);
     }
 
     /**

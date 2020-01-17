@@ -68,6 +68,8 @@ class ContestController extends Controller
             return redirect('/');
         }
 
+        $contest->load('submissions');
+
         return view('contest.show', compact('contest'));
     }
 
