@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <h1>Create a contest</h1>
 
-                        <form action="/contests" method="post">
+                        <form action="{{ route('contests.store') }}" method="post">
                             @csrf
 
                             <div class="form-group">

@@ -23,11 +23,15 @@ Route::resource('contests', 'ContestController')->except(['create']);
 Route::resource('blog', 'BlogController')->only(['index', 'show']);
 
 Route::post('checkouts', 'ContestCheckoutController@store');
-
 Route::get('success', 'ContestCheckoutController@success');
 
+// Authentication routes.
 Auth::routes();
 
 Route::get('home', 'HomeController@index')->name('home');
 
+Route::resource('contests.submissions', 'ContestSubmissionController');
+
+// Stripe webhooks.
 Route::post('stripe/webhook', 'StripeWebhookController@handleWebhook');
+
