@@ -10,5 +10,7 @@ $factory->define(Transaction::class, function (Faker $faker) {
         'amount' => $faker->randomNumber(4) * 100,
         'currency' => $faker->randomElement(['EUR', 'USD']),
         'payment_id' => $faker->regexify('[A-Za-z0-9]{10}'),
+        'created_at' => now(),
+        'updated_at' => now(),
     ];
 });

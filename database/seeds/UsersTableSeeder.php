@@ -17,6 +17,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'test-account@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('test'),
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

@@ -19,11 +19,11 @@ class Currency
      */
     public function handle($request, Closure $next)
     {
-        if ($user = $request->user()) {
-            app()->singleton(\Money\Currency::class, function() use ($user) {
-                return new \Money\Currency($user->currency);
-            });
-        }
+        $currency = Auth::check() ? $request->user()->currency : 'USD';
+
+        app()->singleton(\Money\Currency::class, function() use ($currency) {
+            return new \Money\Currency($currency);
+        });
 
         return $next($request);
     }

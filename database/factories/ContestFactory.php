@@ -12,5 +12,7 @@ $factory->define(Contest::class, function (Faker $faker) {
         'status' => 'online',
         'user_id' => 1,
         'expires_at' => now()->addWeeks(1),
+        'created_at' => now(),
+        'updated_at' => now(),
     ];
 });
