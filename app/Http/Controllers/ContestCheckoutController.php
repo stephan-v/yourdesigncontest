@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Contest;
 use App\Http\Requests\StripeSessionRequest;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -20,6 +19,7 @@ class ContestCheckoutController extends Controller
      */
     public function create(Request $request)
     {
+        // Redirect back to the contest creation when that step has not been completed.
         if (!$request->session()->has('contest')) {
             return redirect('contests');
         }
@@ -50,9 +50,7 @@ class ContestCheckoutController extends Controller
                 [
                     'name' => $request->name,
                     'description' => $request->name,
-                    'images' => [
-                        'https://example.com/t-shirt.png'
-                    ],
+                    'images' => null,
                     'amount' => $request->amount,
                     'currency' => 'eur',
                     'quantity' => 1,
@@ -79,6 +77,8 @@ class ContestCheckoutController extends Controller
         $amount = reset($session->display_items)->amount / 100;
         $email = $session->customer_email;
 
-        return view('checkout.success', compact('amount', 'email'));
+        $contest = $request->session()->get('contest');
+
+        return view('checkout.success', compact('amount', 'contest', 'email'));
     }
 }

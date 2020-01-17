@@ -12,6 +12,10 @@
 
                     <p>Thank you, your payment has been successful and your contest is now live.</p>
                     <p>A confirmation email has been sent to: {{ $email }}.</p>
+
+                    <a href="{{ route('contests.show', ['contest' => $contest->id]) }}">
+                        Click here to continue to your contest.
+                    </a>
                 </div>
             </div>
 

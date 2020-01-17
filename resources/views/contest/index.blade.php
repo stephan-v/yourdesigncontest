@@ -43,7 +43,11 @@
                         <tbody>
                             @foreach ($contests as $contest)
                                 <tr>
-                                    <td>{{ $contest->name }}</td>
+                                    <td>
+                                        <a href="{{ route('contests.show', ['contest' => $contest->id]) }}">
+                                            {{ $contest->name }}
+                                        </a>
+                                    </td>
                                     <td>{{ $contest->category }}</td>
                                     <td>{{ $contest->submissions->count() }}</td>
                                     <td>{{ $contest->transaction->payout }}</td>

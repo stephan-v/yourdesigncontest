@@ -17,7 +17,8 @@ class CreateContestsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
-            $table->enum('status', ['offline', 'online'])->default('offline');
+            $table->enum('status', ['offline', 'online']);
+            $table->enum('category', ['branding', 'webdesign', 'packaging']);
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

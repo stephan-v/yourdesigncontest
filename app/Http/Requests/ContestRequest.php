@@ -27,6 +27,7 @@ class ContestRequest extends FormRequest
     public function rules()
     {
         return [
+            'category' => ['required', 'string'],
             'description' => ['required', 'string'],
             'expires_at' => ['required', 'digits_between:1,4'],
             'name' => ['required', 'string'],

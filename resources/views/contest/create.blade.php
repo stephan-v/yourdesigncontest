@@ -24,6 +24,15 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="category">Category</label>
+                                <select name="category" class="form-control" id="category">
+                                    <option value="branding" @if (old('branding')) selected @endif>Branding</option>
+                                    <option value="webdesign" @if (old('webdesign')) selected @endif>Webdesign</option>
+                                    <option value="packaging" @if (old('packaging')) selected @endif>Packaging</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="expires_at">Expires in</label>
                                 <select name="expires_at" class="form-control" id="expires_at">
                                     @for ($i = 1; $i <= 4; $i++)
