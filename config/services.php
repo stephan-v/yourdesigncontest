@@ -35,5 +35,10 @@ return [
         'webhook' => [
             'secret' => env('STRIPE_WEBHOOK_SECRET')
         ]
-    ]
+    ],
+
+    'fixer' => [
+        'key' => env('FIXER_APP_KEY'),
+        'url' => env('FIXER_URL'),
+    ],
 ];
