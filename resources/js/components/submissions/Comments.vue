@@ -10,7 +10,7 @@
             </div>
         </form>
 
-        <div class="comment mb-3" v-for="comment in comments">
+        <div class="comment mb-3" v-for="comment in comments" :key="comment.id">
             <div>{{ comment.comment }}</div>
             <small class="text-muted">{{ comment.user.name}}</small>
         </div>
