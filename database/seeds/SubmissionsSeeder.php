@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ExchangeRatesSeeder extends Seeder
+class SubmissionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,10 +12,9 @@ class ExchangeRatesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('exchange_rates')->insert([
-            'rate' => 1.11,
-            'from' => 'EUR',
-            'to' => 'USD',
+        DB::table('submissions')->insert([
+            'file' => 'submissions/1/a6G50uLhxZbfadWjiBQZimG2evHtuF3esG40QuAY.png',
+            'contest_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

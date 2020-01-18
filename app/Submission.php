@@ -22,4 +22,12 @@ class Submission extends Model
     {
         return $this->belongsTo(Contest::class);
     }
+
+    /**
+     * Get all of the submission comments.
+     */
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')->orderByDesc('created_at');
+    }
 }

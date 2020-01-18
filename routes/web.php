@@ -35,6 +35,9 @@ Route::get('user/{user}', 'UserController@show')->name('users.show');
 
 Route::resource('contests.submissions', 'ContestSubmissionController');
 
+// Comments.
+Route::resource('submissions.comments', 'SubmissionCommentController');
+
 // Stripe webhooks.
 Route::post('stripe/webhook', 'StripeWebhookController@handleWebhook');
 

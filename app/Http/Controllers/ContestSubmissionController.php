@@ -62,6 +62,8 @@ class ContestSubmissionController extends Controller
      */
     public function show(Contest $contest, Submission $submission)
     {
+        $submission->load('comments.user');
+
         return view('submission.show', compact('submission'));
     }
 
