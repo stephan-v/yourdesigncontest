@@ -17,6 +17,7 @@ class CreateSubmissionsTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('file');
+            $table->float('rating', 9, 2)->nullable();
 
             $table->unsignedBigInteger('contest_id');
             $table->foreign('contest_id')->references('id')->on('contests');

@@ -23,9 +23,11 @@
 }
 
 .contest-table {
+    text-align: right;
+
     thead {
         color: white;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         font-weight: bold;
 
         td {
@@ -34,7 +36,9 @@
     }
 
     tbody {
-        text-align: right;
+        tr {
+            background: white;
+        }
     }
 }
 
@@ -44,4 +48,9 @@
     img {
         max-height: 10rem;
     }
+}
+
+.payout {
+    font-size: 1.5rem;
+    font-weight: bold;
 }

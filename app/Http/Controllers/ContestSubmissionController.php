@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contest;
 use App\Http\Requests\ContestSubmissionRequest;
+use App\Submission;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -49,18 +50,19 @@ class ContestSubmissionController extends Controller
             'file' => $file,
         ]);
 
-        return redirect()->route('contests.show', ['contest' => $contest->id]);
+        return redirect()->route('contests.show', ['contest' => $contest]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Contest $contest The contest which owns the submission.
+     * @param Submission $submission The submission to display.
+     * @return View The HTML server response.
      */
-    public function show($id)
+    public function show(Contest $contest, Submission $submission)
     {
-        //
+        return view('submission.show', compact('submission'));
     }
 
     /**

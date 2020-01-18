@@ -49,7 +49,7 @@ class ContestController extends Controller
 
         $request->session()->put('contest', $contest);
 
-        return redirect()->route('checkout.create', ['contest' => $contest->id]);
+        return redirect()->route('checkout.create', ['contest' => $contest]);
     }
 
     /**

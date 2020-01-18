@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <h1>Add a submission</h1>
 
-                        <form action="{{ route('contests.submissions.store', ['contest' => $contest->id]) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('contests.submissions.store', ['contest' => $contest]) }}" method="post" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
