@@ -15,6 +15,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $user->load('contests.submissions');
+
         return view('user.show', compact('user'));
     }
 }

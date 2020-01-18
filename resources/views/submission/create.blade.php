@@ -8,6 +8,8 @@
                     <div class="card-body">
                         <h1>Add a submission</h1>
 
+                        <div class="alert alert-info" role="alert">Max filesize is 1MB</div>
+
                         <form action="{{ route('contests.submissions.store', ['contest' => $contest]) }}" method="post" enctype="multipart/form-data">
                             @csrf
 
