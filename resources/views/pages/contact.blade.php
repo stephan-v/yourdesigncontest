@@ -6,7 +6,7 @@
             <div class="col-md-6 offset-md-3">
                 <div class="card">
                     <div class="card-header">
-                        <h1>Contact</h1>
+                        <h1 class="mb-0 text-center">Contact us</h1>
                     </div>
 
                     <div class="card-body">
