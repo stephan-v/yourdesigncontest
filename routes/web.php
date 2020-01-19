@@ -16,7 +16,7 @@ Route::get('/', 'HomeController@index');
 Auth::routes(['verify' => true]);
 
 // Contest/Checkout routes.
-Route::get('contests/create', 'ContestController@create')->middleware('auth');
+Route::get('contests/create', 'ContestController@create')->middleware('auth')->name('contests.create');
 Route::get('contests/{contest}/checkout/create', 'ContestCheckoutController@create')->middleware('auth')->name('checkout.create');
 Route::resource('contests', 'ContestController')->except(['create']);
 

@@ -43,7 +43,7 @@
                 <div class="shadow-card bg-white pt-3 pr-3 pb-1 pl-3">
                     <h3 class="ml-3">Contest host</h3>
 
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush mb-3">
                         <li class="list-group-item">Determine your own price</li>
                         <li class="list-group-item">Money back guarantee</li>
                         <li class="list-group-item">Easy communication with designers</li>
@@ -51,6 +51,8 @@
                         <li class="list-group-item">Get the design files and ownership agreement</li>
                         <li class="list-group-item">No additional costs after the initial payment</li>
                     </ul>
+
+                    <a class="btn btn-primary mb-3" href="{{ route('contests.create') }}" role="button">Create a contest</a>
                 </div>
             </div>
 
@@ -58,13 +60,15 @@
                 <div class="shadow-card bg-white pt-3 pr-3 pb-1 pl-3">
                     <h3 class="ml-3">Designer</h3>
 
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush mb-3">
                         <li class="list-group-item">You design we handle the rest</li>
                         <li class="list-group-item">Build a portfolio</li>
                         <li class="list-group-item">Work from wherever you want</li>
                         <li class="list-group-item">Communicate with real clients</li>
                         <li class="list-group-item">Easy way to make some extra money</li>
                     </ul>
+
+                    <a class="btn btn-primary mb-3" href="{{ route('contests.index')  }}" role="button">View all contests</a>
                 </div>
             </div>
         </div>

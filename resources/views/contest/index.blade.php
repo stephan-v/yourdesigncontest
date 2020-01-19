@@ -17,7 +17,7 @@
 
             <div class="col-md-6">
                 <div class="designer">
-                    <a href="{{ route('register') }}" class="d-block">
+                    <a href="{{ route('contests.create') }}" class="d-block">
                         <p class="absolute-center text-center text-white">
                             I'm a company looking for a winning design.
                         </p>
