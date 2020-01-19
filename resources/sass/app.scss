@@ -24,7 +24,11 @@ body {
     transform: translate(-50%, -50%);
 }
 
+// Components.
+@import 'components/submission';
+
 // Pages.
 @import 'pages/blog';
 @import 'pages/contest';
 @import 'pages/home';
+@import 'pages/process';

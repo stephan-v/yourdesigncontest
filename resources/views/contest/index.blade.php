@@ -5,21 +5,25 @@
         <div class="row mt-5">
             <div class="col-md-6">
                 <div class="company">
-                    <p class="absolute-center text-center text-white">
-                        I'm a designer who wants to join in design contests for prices.
-                    </p>
+                    <a href="{{ route('register') }}" class="d-block">
+                        <p class="absolute-center text-center text-white">
+                            I'm a designer who wants to join in design contests for prices.
+                        </p>
 
-                    <img src="/images/company.jpg" alt="" class="img-fluid w-100">
+                        <img src="/images/company.jpg" alt="" class="img-fluid w-100">
+                    </a>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="designer">
-                    <p class="absolute-center text-center text-white">
-                        I'm a company looking for a winning design.
-                    </p>
+                    <a href="{{ route('register') }}" class="d-block">
+                        <p class="absolute-center text-center text-white">
+                            I'm a company looking for a winning design.
+                        </p>
 
-                    <img src="/images/designer.jpg" alt="" class="img-fluid w-100">
+                        <img src="/images/designer.jpg" alt="" class="img-fluid w-100">
+                    </a>
                 </div>
             </div>
         </div>

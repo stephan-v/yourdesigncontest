@@ -1,3 +1,12 @@
+.logo {
+    font-size: 1.5rem;
+    font-family: "Calistoga", cursive;
+
+    .period {
+        color: orange;
+    }
+}
+
 .branding {
     background: url(/images/background.png) #2daacd;
     color: #FFF;
@@ -5,11 +14,16 @@
     height: 5rem;
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-family: "Calistoga", cursive;
+.home-banner {
+    background-image: url('/images/main_slider_svoy.jpg');
+}
 
-    .period {
-        color: orange;
+.main-banner {
+    background-size: cover;
+    height: 350px;
+
+    h1 {
+        line-height: 1.5;
+        font-size: 1.5rem;
     }
 }

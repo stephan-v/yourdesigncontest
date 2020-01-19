@@ -1,0 +1,23 @@
+.process-banner {
+    background-image: url('/images/softfacade_slide.jpg');
+
+    h1 {
+        text-shadow: 1px 1px 5px black;
+    }
+}
+
+.process-steps-banner {
+    background: #ff6664;
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+}
+
+.shadow-card {
+    box-shadow: 0  5px 10px rgba(154,160,185,0.05), 0 15px 40px rgba(166,173,201,0.2);
+}
