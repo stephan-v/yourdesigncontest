@@ -42,5 +42,6 @@ Route::resource('submissions.comments', 'SubmissionCommentController');
 Route::post('stripe/webhook', 'StripeWebhookController@handleWebhook');
 
 // Individual static pages.
-Route::get('how-it-works', 'PageController@process')->name('how-it-works');
+Route::get('how-it-works', 'PageController@process')->name('process');
+Route::get('contact', 'PageController@contact')->name('contact');
 

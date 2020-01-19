@@ -5,7 +5,7 @@
         <div class="container d-flex align-items-center h-100">
             <h1 class="text-white">
                 <div>Quick and cheap creative services</div>
-                <a href="{{ route('how-it-works') }}" class="text-white "><u>check how it works</u></a>
+                <a href="{{ route('process') }}" class="text-white "><u>check how it works</u></a>
             </h1>
         </div>
     </div>
