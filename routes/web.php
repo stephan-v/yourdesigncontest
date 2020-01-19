@@ -43,5 +43,8 @@ Route::post('stripe/webhook', 'StripeWebhookController@handleWebhook');
 
 // Individual static pages.
 Route::get('how-it-works', 'PageController@process')->name('process');
-Route::get('contact', 'PageController@contact')->name('contact');
+
+// Contact page.
+Route::get('contact', 'ContactController@form')->name('contact.form');
+Route::post('contact', 'ContactController@email')->name('contact.mail');
 

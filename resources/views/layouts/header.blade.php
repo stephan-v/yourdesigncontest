@@ -47,7 +47,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact') }}">
+                            <a class="nav-link" href="{{ route('contact.form') }}">
                                 Contact
                             </a>
                         </li>

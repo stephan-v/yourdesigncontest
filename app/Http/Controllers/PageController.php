@@ -15,14 +15,4 @@ class PageController extends Controller
     {
         return view('pages.process');
     }
-
-    /**
-     * Show the application contact page.
-     *
-     * @return View The HTML server response.
-     */
-    public function contact()
-    {
-        return view('pages.contact');
-    }
 }
