@@ -11,7 +11,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6 offset-md-3">
                 <comments :submission='@json($submission)' :initial-comments='@json($submission->comments)'></comments>
             </div>
         </div>

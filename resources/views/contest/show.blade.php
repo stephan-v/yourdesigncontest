@@ -27,13 +27,15 @@
             </div>
         </div>
 
-        <div class="row mb-5">
-            <div class="col-md-12 text-center">
-                <a href="{{ route('contests.submissions.create', ['contest' => $contest]) }}" class="btn btn-primary">
-                    Add submission
-                </a>
+        @can('submit', $contest)
+            <div class="row mb-5">
+                <div class="col-md-12 text-center">
+                    <a href="{{ route('contests.submissions.create', ['contest' => $contest]) }}" class="btn btn-primary">
+                        Add submission
+                    </a>
+                </div>
             </div>
-        </div>
+        @endcan
 
         <div class="row">
             @foreach ($contest->submissions as $submission)

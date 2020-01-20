@@ -32,6 +32,6 @@ class CreateFilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('source_files');
+        Schema::dropIfExists('files');
     }
 }

@@ -45,6 +45,8 @@ class SubmissionCommentController extends Controller
 
         $comment = $submission->comments()->create($data);
 
+        $comment->load('user');
+
         return response($comment);
     }
 

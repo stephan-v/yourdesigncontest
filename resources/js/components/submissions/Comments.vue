@@ -63,6 +63,10 @@
 </script>
 
 <style lang="scss" scoped>
+    .btn {
+        border-radius: 0 0.25rem 0.25rem 0;
+    }
+
     .comment {
         padding: 1rem;
         background: white;
