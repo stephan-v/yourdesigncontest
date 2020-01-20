@@ -12,7 +12,7 @@
 */
 
 Route::any('/tus/{any?}', function () {
-    $response = app('tus-server')->serve();
+    $response = app(\TusPhp\Tus\Server::class)->serve();
 
     return $response->send();
 })->where('any', '.*');

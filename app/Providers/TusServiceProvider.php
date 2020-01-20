@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use TusPhp\Tus\Server as TusServer;
+use TusPhp\Tus\Server;
 
 class TusServiceProvider extends ServiceProvider
 {
@@ -14,12 +14,12 @@ class TusServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('tus-server', function ($app) {
-            $server = new TusServer('redis');
+        $this->app->singleton(Server::class, function () {
+            $server = new Server('redis');
 
             $server
                 ->setApiPath('/tus')
-                ->setUploadDir(storage_path('app/public/tus'));
+                ->setUploadDir(storage_path('app/uploads'));
 
             return $server;
         });
