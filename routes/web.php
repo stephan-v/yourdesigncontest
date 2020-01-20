@@ -11,6 +11,12 @@
 |
 */
 
+Route::any('/tus/{any?}', function () {
+    $response = app('tus-server')->serve();
+
+    return $response->send();
+})->where('any', '.*');
+
 Route::get('/', 'HomeController@index');
 
 Auth::routes(['verify' => true]);
@@ -33,7 +39,11 @@ Route::get('home', 'HomeController@index')->name('home');
 // User routes.
 Route::get('users/{user}', 'UserController@show')->name('users.show');
 
+// User submissions for the contest.
 Route::resource('contests.submissions', 'ContestSubmissionController');
+
+// Source files for the contest.
+Route::resource('contests.submissions.files', 'ContestSubmissionFileController');
 
 // Comments.
 Route::resource('submissions.comments', 'SubmissionCommentController');

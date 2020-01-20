@@ -9,10 +9,10 @@ class Submission extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array $fillable
      */
     protected $fillable = [
-        'file'
+        'path'
     ];
 
     /**

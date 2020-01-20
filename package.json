@@ -25,6 +25,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@uppy/core": "^1.7.1",
+        "@uppy/dashboard": "^1.5.2",
+        "@uppy/tus": "^1.5.2",
         "axios": "^0.19",
         "bootstrap": "^4.4.1",
         "dinero.js": "^1.6.0",

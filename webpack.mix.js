@@ -25,14 +25,14 @@ mix.js('resources/js/app.js', 'public/js')
  */
 
 mix.webpackConfig({
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/
-      }
-    ]
-  }
-})
+    module: {
+        rules: [
+            {
+                enforce: 'pre',
+                test: /\.(js|vue)$/,
+                loader: 'eslint-loader',
+                exclude: /node_modules/
+            }
+        ]
+    }
+});

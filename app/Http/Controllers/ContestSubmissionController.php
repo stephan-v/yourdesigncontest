@@ -29,7 +29,7 @@ class ContestSubmissionController extends Controller
      */
     public function create(Contest $contest)
     {
-        return view('submission.create', compact('contest'));
+        return view('contest.submission.create', compact('contest'));
     }
 
     /**
@@ -41,13 +41,13 @@ class ContestSubmissionController extends Controller
      */
     public function store(Contest $contest, ContestSubmissionRequest $request)
     {
-        $file = $request->file('file')->store(
+        $path = $request->file('file')->store(
             "submissions/{$contest->id}",
             ['disk' => 'public']
         );
 
         $contest->submissions()->create([
-            'file' => $file,
+            'path' => $path,
         ]);
 
         return redirect()->route('contests.show', ['contest' => $contest]);
@@ -64,7 +64,7 @@ class ContestSubmissionController extends Controller
     {
         $submission->load('comments.user');
 
-        return view('submission.show', compact('submission'));
+        return view('contest.submission.show', compact('submission'));
     }
 
     /**

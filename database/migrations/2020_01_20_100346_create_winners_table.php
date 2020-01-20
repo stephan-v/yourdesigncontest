@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubmissionsTable extends Migration
+class CreateWinnersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateSubmissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('submissions', function (Blueprint $table) {
+        Schema::create('winners', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('path');
-            $table->float('rating', 9, 2)->nullable();
-
-            $table->unsignedBigInteger('contest_id');
-            $table->foreign('contest_id')->references('id')->on('contests');
+            $table->unsignedBigInteger('submission_id');
+            $table->foreign('submission_id')->references('id')->on('submissions');
 
             $table->timestamps();
         });
@@ -33,6 +30,6 @@ class CreateSubmissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('submissions');
+        Schema::dropIfExists('winners');
     }
 }
