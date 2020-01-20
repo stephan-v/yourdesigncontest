@@ -58,3 +58,6 @@ Route::get('how-it-works', 'PageController@process')->name('process');
 Route::get('contact', 'ContactController@form')->name('contact.form');
 Route::post('contact', 'ContactController@email')->name('contact.mail');
 
+// Assign a winner.
+Route::post('contests/{contest}/submissions/{submission}/winner', 'WinnerController@store')->name('winner');
+

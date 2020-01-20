@@ -30,4 +30,12 @@ class Submission extends Model
     {
         return $this->morphMany(Comment::class, 'commentable')->orderByDesc('created_at');
     }
+
+    /**
+     * Get the winner record associated with the submission.
+     */
+    public function winner()
+    {
+        return $this->hasOne(Winner::class);
+    }
 }

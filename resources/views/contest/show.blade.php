@@ -40,7 +40,11 @@
         <div class="row">
             @foreach ($contest->submissions as $submission)
                 <div class="col-md-3">
-                    <div class="submission ">
+                    <div class="submission @if ($submission->winner) border border-warning @endif">
+                        @if ($submission->winner)
+                            <div class="alert alert-warning text-center" role="alert">Winner!</div>
+                        @endif
+
                         <div class="d-flex align-content-center justify-content-center p-3">
                             <a href="{{ route('contests.submissions.show', ['contest' => $contest, 'submission' => $submission]) }}">
                                 <img src="{{ asset($submission->path) }}" alt="" class="img-fluid">

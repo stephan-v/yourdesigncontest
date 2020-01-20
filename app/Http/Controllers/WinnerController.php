@@ -2,84 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Winner;
+use App\Contest;
+use App\Submission;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class WinnerController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request The incoming HTTP client request.
+     * @param Contest $contest The contest which the submission belongs to.
+     * @param Submission $submission The submission to be assigned as winner.
+     * @return RedirectResponse Returns a redirect back to the original location.
      */
-    public function store(Request $request)
+    public function store(Request $request, Contest $contest, Submission $submission)
     {
-        // /contests/1/submissions/2/files
-    }
+        // @TODO list.
+        // Contest should not have a winner yet.
+        // Submission needs to belong to contest.
+        // Submission can only be assigned winner by owner of the contest.
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Winner  $winner
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Winner $winner)
-    {
-        //
-    }
+        $submission->winner()->create();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Winner  $winner
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Winner $winner)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Winner  $winner
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Winner $winner)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Winner  $winner
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Winner $winner)
-    {
-        //
+        return back();
     }
 }
