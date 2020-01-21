@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\File;
 use Illuminate\Support\ServiceProvider;
 use TusPhp\Events\TusEvent;
 use TusPhp\Tus\Server;
@@ -21,11 +22,12 @@ class TusServiceProvider extends ServiceProvider
             $server->setApiPath('/tus');
             $server->setUploadDir(storage_path('app/uploads'));
 
+            // @TODO remove the static winner_id
             $server->event()->addListener('tus-server.upload.complete', function (TusEvent $event) {
-                // @TODO attach the files to a winning submission.
-                $fileMeta = $event->getFile()->details();
-                $request  = $event->getRequest();
-                $response = $event->getResponse();
+                File::create([
+                    'path' => $event->getFile()->getFilePath(),
+                    'winner_id' => 1
+                ]);
             });
 
             return $server;

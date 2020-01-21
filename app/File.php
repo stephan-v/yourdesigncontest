@@ -12,6 +12,7 @@ class File extends Model
      * @var array $fillable
      */
     protected $fillable = [
-        'path'
+        'path',
+        'winner_id',
     ];
 }

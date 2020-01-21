@@ -9,7 +9,10 @@
 
     export default {
         mounted() {
-            const uppy = Uppy().use(Dashboard, {
+            const uppy = Uppy({
+                debug: true,
+                limit: 10,
+            }).use(Dashboard, {
                 inline: true,
                 target: this.$el,
             }).use(Tus, {
