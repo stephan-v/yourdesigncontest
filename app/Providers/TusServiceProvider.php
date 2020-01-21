@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Contest;
-use App\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 use TusPhp\Events\TusEvent;
 use TusPhp\Tus\Server;
@@ -27,6 +27,10 @@ class TusServiceProvider extends ServiceProvider
         $this->app->singleton(Server::class, function () {
             $server = new Server('redis');
 
+            if (!Storage::disk('public')->exists($this->directory)) {
+                Storage::disk('public')->makeDirectory($this->directory);
+            }
+
             $server->setApiPath('/tus');
             $server->setUploadDir(storage_path("app/public/{$this->directory}"));
             $server->setMaxUploadSize(10000000); // 10MB.
@@ -34,7 +38,8 @@ class TusServiceProvider extends ServiceProvider
             // @TODO remove the static winner_id
             $server->event()->addListener('tus-server.upload.complete', function (TusEvent $event) {
                 Contest::find(1)->files()->create([
-                    'path' =>   "{$this->directory}/{$event->getFile()->getName()}"
+                    'name' => $event->getFile()->getName(),
+                    'path' => "{$this->directory}/{$event->getFile()->getName()}"
                 ]);
             });
 
