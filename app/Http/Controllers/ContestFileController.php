@@ -17,6 +17,9 @@ class ContestFileController extends Controller
      */
     public function index(Contest $contest)
     {
+        // @TODO only visible to the owner and the winner.
+        // @TODO also fix the other method policies here.
+
         $contest->load('files');
 
         return view('contest.files.index', compact('contest'));
