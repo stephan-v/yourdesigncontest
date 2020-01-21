@@ -43,6 +43,7 @@ Route::get('users/{user}', 'UserController@show')->name('users.show');
 Route::resource('contests.submissions', 'ContestSubmissionController');
 
 // Source files for the contest.
+Route::get('contests/{contest}/files/zip', 'ContestFileController@zip')->name('zip');
 Route::resource('contests.files', 'ContestFileController');
 
 // Comments.

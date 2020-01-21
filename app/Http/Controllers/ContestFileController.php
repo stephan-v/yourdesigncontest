@@ -6,9 +6,27 @@ use App\Contest;
 use App\File;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Zip;
 
 class ContestFileController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @param Contest $contest The contest which the submission belongs to.
+     * @return Zip Build the Zip file in memory as a stream.
+     */
+    public function zip(Contest $contest)
+    {
+        // @TODO make sure only the contest owner can access this.
+
+        $files = $contest->files->map(function(File $file) {
+            return storage_path("app/public/{$file->path}");
+        });
+
+        return Zip::create("source-files.zip", $files->toArray());
+    }
+
     /**
      * Display a listing of the resource.
      *
