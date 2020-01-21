@@ -49,18 +49,15 @@
                 <div class="col-md-3">
                     <div class="submission @if ($submission->winner) border border-warning @endif">
                         @if ($submission->winner)
-                            <div class="alert alert-warning text-center" role="alert">Winner!</div>
+                            <div class="alert alert-warning text-center mb-0" role="alert">Winner!</div>
                         @endif
 
-                        <div class="d-flex align-content-center justify-content-center p-3">
-                            <a href="{{ route('contests.submissions.show', ['contest' => $contest, 'submission' => $submission]) }}">
-                                <img src="{{ asset($submission->path) }}" alt="" class="img-fluid">
-                            </a>
-                        </div>
+                        <a href="{{ route('contests.submissions.show', ['contest' => $contest, 'submission' => $submission]) }}"
+                           class="p-3 d-flex justify-content-center align-items-center">
+                            <img src="{{ asset($submission->path) }}" alt="" class="img-fluid">
+                        </a>
 
-                        <div>
-                            {{ $submission->rating }}
-                        </div>
+                        <div>{{ $submission->rating }}</div>
 
                         <div class="caption p-3 border-top">
                             <small class="text-muted">
