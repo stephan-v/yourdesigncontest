@@ -10,6 +10,19 @@
             </div>
         </div>
 
+        @if  ($submission->description)
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <small class="text-muted d-block mb-1">Description from {{ $submission->user->name }}</small>
+                            {{ $submission->description }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <form class="text-center mb-5 mt-5" method="POST" action="{{ route('winner', ['contest' => $contest, 'submission' => $submission]) }}">
