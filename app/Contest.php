@@ -100,4 +100,14 @@ class Contest extends Model
     {
         return (new Carbon($value))->diffForHumans();
     }
+
+    /**
+     * Get the contest's finished state.
+     *
+     * @return boolean Whether the contest is finished or not.
+     */
+    public function getFinishedAttribute()
+    {
+        return $this->winner()->exists();
+    }
 }

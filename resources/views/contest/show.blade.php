@@ -2,7 +2,14 @@
 
 @section('content')
     <div class="container">
-        <div class="row pt-5 mb-5">
+        @if ($contest->finished)
+            <div class="alert alert-warning mt-5" role="alert">
+                The contest is finished.
+                Click <a href="{{ route('contests.files.index', ['contest' => $contest]) }}">here</a> to review the final design files.
+            </div>
+        @endif
+
+        <div class="row mt-5 mb-5">
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header text-center">

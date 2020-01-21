@@ -4,10 +4,10 @@
     @if (count($contest->files))
         <div class="container download-files">
             <div class="d-flex justify-content-between align-items-center mt-5">
-                <h1>Source files</h1>
+                <h1>Your design files</h1>
 
                 <a class="btn btn-primary" href="{{ route('zip', ['contest' => $contest]) }}" role="button">
-                    Download all files
+                    <i class="fa fa-download" aria-hidden="true"></i> Download zip
                 </a>
             </div>
 
