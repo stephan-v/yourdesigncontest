@@ -39,7 +39,8 @@ class TusServiceProvider extends ServiceProvider
             $server->event()->addListener('tus-server.upload.complete', function (TusEvent $event) {
                 Contest::find(1)->files()->create([
                     'name' => $event->getFile()->getName(),
-                    'path' => "{$this->directory}/{$event->getFile()->getName()}"
+                    'path' => "{$this->directory}/{$event->getFile()->getName()}",
+                    'size' => $event->getFile()->getFileSize(),
                 ]);
             });
 

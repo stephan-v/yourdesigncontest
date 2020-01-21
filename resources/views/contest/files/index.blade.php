@@ -20,8 +20,13 @@
 
                                 <div class="media-body ml-3">
                                     <h5 class="mt-0 mb-1">{{ $file->name }}</h5>
-                                     Uploaded: {{ $file->created_at->diffForHumans() }}
+                                    <div>uploaded: {{ $file->created_at->diffForHumans() }}</div>
+                                    <div>size: {{ $file->size }}</div>
                                 </div>
+
+                                <a class="btn btn-secondary" href="{{ route('contests.files.show', ['contest' => $contest, 'file' => $file]) }}" role="button">
+                                    Download
+                                </a>
                             </li>
                         @endforeach
                     </ul>

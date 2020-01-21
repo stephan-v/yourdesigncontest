@@ -7,6 +7,7 @@ use App\File;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Zip;
 
 class ContestFileController extends Controller
@@ -68,18 +69,24 @@ class ContestFileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\File  $sourceFile
-     * @return View The HTML server response.
+     * @param Contest $contest The contest which the submission belongs to.
+     * @param File $file The file to download.
+     * @return BinaryFileResponse The download response.
+     * @throws AuthorizationException Thrown if the user is not allowed to view winning source files.
      */
-    public function show(File $sourceFile)
+    public function show(Contest $contest, File $file)
     {
-        //
+        $this->authorize('viewAnySourceFiles', $contest);
+
+        $path = storage_path("app/public/{$file->path}");
+
+        return response()->download($path);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\File  $sourceFile
+     * @param File $sourceFile
      * @return \Illuminate\Http\Response
      */
     public function edit(File $sourceFile)
@@ -91,7 +98,7 @@ class ContestFileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\File  $sourceFile
+     * @param File $sourceFile
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, File $sourceFile)
@@ -102,7 +109,7 @@ class ContestFileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\File  $sourceFile
+     * @param File $sourceFile
      * @return \Illuminate\Http\Response
      */
     public function destroy(File $sourceFile)

@@ -14,5 +14,20 @@ class File extends Model
     protected $fillable = [
         'name',
         'path',
+        'size',
     ];
+
+    /**
+     * Get the file's size.
+     *
+     * @param int $bytes The file size in bytes.
+     * @return string A human readable file size.
+     */
+    public function getSizeAttribute(int $bytes)
+    {
+        $size = ['B', 'kB', 'MB'];
+        $factor = floor((strlen($bytes) - 1) / 3);
+
+        return sprintf("%.2f", $bytes / pow(1024, $factor)) . @$size[$factor];
+    }
 }

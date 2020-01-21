@@ -18,6 +18,7 @@ class CreateFilesTable extends Migration
 
             $table->string('name');
             $table->string('path');
+            $table->integer('size');
 
             $table->unsignedBigInteger('contest_id');
             $table->foreign('contest_id')->references('id')->on('contests');
