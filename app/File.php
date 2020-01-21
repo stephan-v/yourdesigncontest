@@ -13,6 +13,5 @@ class File extends Model
      */
     protected $fillable = [
         'path',
-        'winner_id',
     ];
 }

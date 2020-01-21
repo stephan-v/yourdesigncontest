@@ -51,6 +51,14 @@ class Contest extends Model
     }
 
     /**
+     * Get the source files for the submission.
+     */
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
+
+    /**
      * Determines if the contest has been paid for.
      *
      * @return bool Whether the contest has been paid for or not.

@@ -18,8 +18,8 @@ class CreateFilesTable extends Migration
 
             $table->string('path');
 
-            $table->unsignedBigInteger('winner_id');
-            $table->foreign('winner_id')->references('id')->on('winners');
+            $table->unsignedBigInteger('contest_id');
+            $table->foreign('contest_id')->references('id')->on('contests');
 
             $table->timestamps();
         });

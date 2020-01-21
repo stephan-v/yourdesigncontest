@@ -2,20 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Contest;
 use App\File;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class ContestSubmissionFileController extends Controller
+class ContestFileController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param Contest $contest The contest which the submission belongs to.
      * @return View The HTML server response.
      */
-    public function index()
+    public function index(Contest $contest)
     {
-        return view('contest.submission.files.index');
+        $contest->load('files');
+
+        return view('contest.files.index', compact('contest'));
     }
 
     /**
@@ -25,7 +29,7 @@ class ContestSubmissionFileController extends Controller
      */
     public function create()
     {
-        return view('contest.submission.files.create');
+        return view('contest.files.create');
     }
 
     /**
