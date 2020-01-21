@@ -59,6 +59,18 @@ class Contest extends Model
     }
 
     /**
+     * Get the winning submission of the contest.
+     */
+    public function winner()
+    {
+        $submission = $this->submissions()->has('winner')->first();
+
+        return optional($submission, function(Submission $submission) {
+            return $submission->user;
+        }) ?? new User();
+    }
+
+    /**
      * Determines if the contest has been paid for.
      *
      * @return bool Whether the contest has been paid for or not.

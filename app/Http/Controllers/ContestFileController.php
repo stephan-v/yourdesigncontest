@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contest;
 use App\File;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Zip;
@@ -32,11 +33,11 @@ class ContestFileController extends Controller
      *
      * @param Contest $contest The contest which the submission belongs to.
      * @return View The HTML server response.
+     * @throws AuthorizationException Thrown if the user is not allowed to view winning source files.
      */
     public function index(Contest $contest)
     {
-        // @TODO only visible to the owner and the winner.
-        // @TODO also fix the other method policies here.
+        $this->authorize('viewAnySourceFiles', $contest);
 
         $contest->load('files');
 
