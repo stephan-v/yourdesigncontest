@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Contest;
+use App\Mail\ContestWinner;
 use App\Submission;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class WinnerController extends Controller
 {
@@ -26,6 +28,8 @@ class WinnerController extends Controller
 
         $submission->winner()->create();
 
-        return back();
+        Mail::to($submission->user)->send(new ContestWinner($request->all()));
+
+        return redirect()->route('contests.show', ['contest' => $contest]);
     }
 }

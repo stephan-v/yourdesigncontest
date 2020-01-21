@@ -13,6 +13,7 @@ class Submission extends Model
      */
     protected $fillable = [
         'description',
+        'user_id',
         'path',
     ];
 
@@ -38,5 +39,13 @@ class Submission extends Model
     public function winner()
     {
         return $this->hasOne(Winner::class);
+    }
+
+    /**
+     * Get the user that owns the submission.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

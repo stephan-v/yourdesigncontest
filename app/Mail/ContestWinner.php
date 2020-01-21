@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMail extends Mailable implements ShouldQueue
+class ContestWinner extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -37,6 +37,6 @@ class ContactMail extends Mailable implements ShouldQueue
     {
         return $this
             ->from(config('mail.from.address'))
-            ->markdown('mail.contact');
+            ->markdown('mail.winner');
     }
 }

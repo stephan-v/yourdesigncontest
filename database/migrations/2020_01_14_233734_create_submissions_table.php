@@ -20,6 +20,9 @@ class CreateSubmissionsTable extends Migration
             $table->string('path');
             $table->float('rating', 9, 2)->nullable();
 
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+
             $table->unsignedBigInteger('contest_id');
             $table->foreign('contest_id')->references('id')->on('contests');
 
