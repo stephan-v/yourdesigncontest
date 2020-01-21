@@ -13,7 +13,15 @@
                 <div class="row">
                     @foreach ($files as $file)
                         <div class="col-md-3">
-                            <img src="{{ asset($file->path) }}" alt="" class="img-fluid">
+                            <div>
+                                <img src="{{ asset($file->path) }}" alt="" class="img-fluid">
+
+                                <div class="caption p-3 border-top">
+                                    <small class="text-muted">
+                                        <span>Uploaded at: {{ $file->created_at }}</span>
+                                    </small>
+                                </div>
+                            </div>
                         </div>
                     @endforeach
                 </div>
