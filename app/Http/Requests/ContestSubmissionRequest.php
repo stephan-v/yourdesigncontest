@@ -25,6 +25,7 @@ class ContestSubmissionRequest extends FormRequest
     public function rules()
     {
         return [
+            'description' => ['text'],
             'file' => ['required', 'file', 'image', 'max:1000'],
         ];
     }

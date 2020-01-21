@@ -47,6 +47,7 @@ class ContestSubmissionController extends Controller
         );
 
         $contest->submissions()->create([
+            'description' => $request->description,
             'path' => $path,
         ]);
 

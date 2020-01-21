@@ -12,7 +12,8 @@ class Submission extends Model
      * @var array $fillable
      */
     protected $fillable = [
-        'path'
+        'description',
+        'path',
     ];
 
     /**

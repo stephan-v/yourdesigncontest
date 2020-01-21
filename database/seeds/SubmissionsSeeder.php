@@ -13,6 +13,7 @@ class SubmissionsSeeder extends Seeder
     public function run()
     {
         DB::table('submissions')->insert([
+            'description' => 'You should pick this as a winner',
             'path' => 'submissions/1/a6G50uLhxZbfadWjiBQZimG2evHtuF3esG40QuAY.png',
             'contest_id' => 1,
             'created_at' => now(),
