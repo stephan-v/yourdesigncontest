@@ -34,7 +34,7 @@
         </script>
     </head>
     <body>
-        <div id="app">
+        <div id="app" class="d-flex flex-column">
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
                 <div class="container">
                     <button class="navbar-toggler ml-auto"
