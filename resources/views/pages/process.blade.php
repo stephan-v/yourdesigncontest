@@ -11,25 +11,29 @@
         </div>
     </div>
 
-    <div class="process-steps-banner text-white p-3 mb-5">
+    <div class="process-steps-banner bg-white p-3 mb-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-3 text-center p-4">
+                    <img src="{{ asset('images/svg/034-poster.svg') }}" alt="" class="img-fluid mb-3">
                     <h2>Write a briefing</h2>
                     <p>Let us know your wishes, do's and don'ts. Use examples and clearly state what the assignment is.</p>
                 </div>
 
                 <div class="col-md-3 text-center p-4">
+                    <img src="{{ asset('images/svg/050-tablet pen.svg') }}" alt="" class="img-fluid mb-3">
                     <h2>Designers compete</h2>
                     <p>Our designers will then post submissions that you can review based on your briefing.</p>
                 </div>
 
                 <div class="col-md-3 text-center p-4">
+                    <img src="{{ asset('images/svg/030-website.svg') }}" alt="" class="img-fluid mb-3">
                     <h2>Manage your contest</h2>
                     <p>Communicate with designers, provide feedback and review submissions for the best end result.</p>
                 </div>
 
                 <div class="col-md-3 text-center p-4">
+                    <img src="{{ asset('images/svg/042-payment.svg') }}" alt="" class="img-fluid mb-3">
                     <h2>Pick a winner</h2>
                     <p>Choose the design that best meets your wishes from the submissions and name it the winner.</p>
                 </div>

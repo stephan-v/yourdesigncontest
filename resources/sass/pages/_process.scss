@@ -7,7 +7,12 @@
 }
 
 .process-steps-banner {
-    background: #ff6664;
+    line-height: 1.6;
+
+    img {
+        max-width: 80px;
+        max-height: 80px;
+    }
 
     h2 {
         font-size: 1.5rem;
