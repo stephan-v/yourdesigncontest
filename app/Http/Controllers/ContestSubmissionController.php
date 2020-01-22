@@ -12,16 +12,6 @@ use Illuminate\View\View;
 class ContestSubmissionController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @param Contest $contest The contest to show a submissions create view for.
@@ -83,13 +73,20 @@ class ContestSubmissionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Request $request The incoming HTTP client request.
+     * @param Contest $contest The contest which owns the submission.
+     * @param Submission $submission The submission to display.
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Contest $contest, Submission $submission)
     {
-        //
+        // @TODO Only allow the contest owner to update the rating of submissions belonging to this contest.
+        // @TODO create an api route for the update.
+        $submission->update([
+            'rating' => $request->rating
+        ]);
+
+        return response($submission);
     }
 
     /**

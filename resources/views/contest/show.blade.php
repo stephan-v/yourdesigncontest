@@ -57,7 +57,9 @@
                             <img src="{{ asset($submission->path) }}" alt="" class="img-fluid">
                         </a>
 
-                        <stars :initial-rating="{{ $submission->rating ?? 1 }}"></stars>
+                        <stars :initial-rating="{{ $submission->rating ?? 0 }}"
+                               route="{{ route('contests.submissions.update', ['contest' => $contest, 'submission' => $submission]) }}">
+                        </stars>
 
                         <div class="caption p-3 border-top">
                             <small class="text-muted">

@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-center">
         <form class="d-inline-flex flex-row-reverse p-3">
             <template v-for="value in [5, 4, 3, 2, 1]">
-                <input type="radio" name="stars" :id="value" :value="value" v-model="rating" :key="`input-${value}`"/>
+                <input type="radio" name="stars" :id="value" :value="value" v-model="rating" :key="`input-${value}`" @change="submit"/>
                 <label class="fa fa-star" :for="value" :key="`label-${value}`"></label>
             </template>
         </form>
@@ -22,10 +22,19 @@
                 type: Number,
                 required: true,
             },
+
+            route: {
+                type: String,
+                required: true,
+            },
         },
 
         methods: {
-            //
+            submit() {
+                axios.patch(this.route, {
+                    rating: this.rating,
+                });
+            },
         },
     };
 </script>

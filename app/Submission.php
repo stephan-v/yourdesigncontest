@@ -13,8 +13,9 @@ class Submission extends Model
      */
     protected $fillable = [
         'description',
-        'user_id',
         'path',
+        'rating',
+        'user_id',
     ];
 
     /**
