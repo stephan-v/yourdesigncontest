@@ -57,11 +57,11 @@
                             <img src="{{ asset($submission->path) }}" alt="" class="img-fluid">
                         </a>
 
-                        <div>{{ $submission->rating }}</div>
+                        <stars :initial-rating="{{ $submission->rating ?? 1 }}"></stars>
 
                         <div class="caption p-3 border-top">
                             <small class="text-muted">
-                                <span>By:</span>
+                                <span>Made by</span>
 
                                 <a href="{{ route('users.show', ['user' => $contest->user]) }}">
                                     {{ $contest->user->name }}
