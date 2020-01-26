@@ -2,12 +2,13 @@
 
 namespace App;
 
-use Carbon\Carbon;
-use Exception;
+use App\Presenters\ContestPresenter;
 use Illuminate\Database\Eloquent\Model;
 
 class Contest extends Model
 {
+    use ContestPresenter;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -68,48 +69,5 @@ class Contest extends Model
         return optional($submission, function(Submission $submission) {
             return $submission->user;
         }) ?? new User();
-    }
-
-    /**
-     * Determines if the contest has been paid for.
-     *
-     * @return bool Whether the contest has been paid for or not.
-     */
-    public function isPaidFor()
-    {
-        return $this->transaction()->exists();
-    }
-
-    /**
-     * Determines if the contest has not been paid for.
-     *
-     * @return bool Whether the contest has been paid for or not.
-     */
-    public function isNotPaidFor() {
-        return !$this->isPaidFor();
-    }
-
-    /**
-     * Get the contests's expiration date.
-     *
-     * @param string $value The expiration timestamp.
-     * @return string The human readable expiration date.
-     * @throws Exception Thrown if a Carbon exception is thrown.
-     */
-    public function getExpiresAtAttribute($value)
-    {
-        $dateTime = new Carbon($value);
-
-        return $dateTime->isFuture() ? $dateTime->diffForHumans() : 'finished';
-    }
-
-    /**
-     * Get the contest's finished state.
-     *
-     * @return boolean Whether the contest is finished or not.
-     */
-    public function getFinishedAttribute()
-    {
-        return $this->winner()->exists();
     }
 }
