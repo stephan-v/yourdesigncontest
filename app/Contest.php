@@ -64,10 +64,6 @@ class Contest extends Model
      */
     public function winner()
     {
-        $submission = $this->submissions()->has('winner')->first();
-
-        return optional($submission, function(Submission $submission) {
-            return $submission->user;
-        }) ?? new User();
+        return $this->submissions()->has('winner')->first();
     }
 }

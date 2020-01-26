@@ -31,6 +31,8 @@ class ContestSubmissionController extends Controller
      */
     public function store(Contest $contest, ContestSubmissionRequest $request)
     {
+        // @TODO Prevent a store if the contest is finished.
+
         $path = $request->file('file')->store(
             "submissions/{$contest->id}",
             ['disk' => 'public']

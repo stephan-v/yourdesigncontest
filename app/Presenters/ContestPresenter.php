@@ -48,7 +48,7 @@ trait ContestPresenter
      */
     public function getFinishedAttribute()
     {
-        return $this->winner()->exists();
+        return $this->winner();
     }
 
     /**
