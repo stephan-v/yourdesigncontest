@@ -98,7 +98,9 @@ class Contest extends Model
      */
     public function getExpiresAtAttribute($value)
     {
-        return (new Carbon($value))->diffForHumans();
+        $dateTime = new Carbon($value);
+
+        return $dateTime->isFuture() ? $dateTime->diffForHumans() : 'finished';
     }
 
     /**

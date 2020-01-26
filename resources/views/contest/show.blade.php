@@ -24,7 +24,13 @@
             </div>
 
             <div class="col-md-3">
-                <div class="card text-right">
+                <div class="text-right mb-3">
+                    <a class="btn btn-info btn-lg w-100" href="{{ route('contests.submissions.create', ['contest' => $contest]) }}" role="button">
+                        Submit a design
+                    </a>
+                </div>
+
+                <div class="card text-right mb-3">
                     <div class="card-header">Payout</div>
 
                     <div class="card-body">
