@@ -35,8 +35,6 @@ class ContestWinner extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this
-            ->from(config('mail.from.address'))
-            ->markdown('mail.winner');
+        return $this->markdown('mail.contest.winner');
     }
 }

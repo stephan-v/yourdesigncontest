@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ContactMail extends Mailable implements ShouldQueue
+class ContestFinished extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -35,6 +35,6 @@ class ContactMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('mail.contact');
+        return $this->markdown('mail.contest.finished');
     }
 }
