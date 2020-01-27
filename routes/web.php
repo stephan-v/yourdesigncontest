@@ -11,12 +11,6 @@
 |
 */
 
-Route::get('mailable', function () {
-    $invoice = App\Invoice::find(1);
-
-    return new App\Mail\InvoicePaid($invoice);
-});
-
 Route::any('/tus/{any?}', function () {
     $response = app(\TusPhp\Tus\Server::class)->serve();
 

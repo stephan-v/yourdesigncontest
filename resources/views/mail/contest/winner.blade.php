@@ -13,6 +13,14 @@ What happens next?
 Visit the contest
 @endcomponent
 
+## Source files
+
+In order for the completion of your payout we required you to upload your design source files.
+
+@component('mail::button', ['url' => route('contests.files.create', ['contest' => $contest])])
+Upload source files
+@endcomponent
+
 Thanks,<br>
 {{ config('app.name') }}
 @endcomponent
