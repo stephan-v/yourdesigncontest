@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Contest;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -12,20 +13,20 @@ class ContestWinner extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     /**
-     * The data available to the markdown email template.
+     * The contest data available to the markdown email template.
      *
-     * @var array $data
+     * @var Contest $contest
      */
-    public $data;
+    public $contest;
 
     /**
      * Create a new message instance.
      *
-     * @param array $data The data used in the markdown template.
+     * @param Contest $contest The contest data used in the markdown template.
      */
-    public function __construct(array $data)
+    public function __construct(Contest $contest)
     {
-        $this->data = $data;
+        $this->contest = $contest;
     }
 
     /**

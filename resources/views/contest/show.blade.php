@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        @if ($contest->finished)
+        @if ($user->can('manage', $contest) && $contest->finished)
             <div class="alert alert-warning mt-5" role="alert">
                 The contest is finished.
                 Click <a href="{{ route('contests.files.index', ['contest' => $contest]) }}">here</a> to review the final design files.
@@ -55,7 +55,7 @@
         <div class="row">
             @foreach ($contest->submissions as $submission)
                 <div class="col-md-3">
-                    <div class="submission @if ($submission->winner) border border-warning @endif">
+                    <div class="submission mb-3 @if ($submission->winner) border border-warning @endif">
                         @if ($submission->winner)
                             <div class="alert alert-warning text-center mb-0" role="alert">Winner!</div>
                         @endif

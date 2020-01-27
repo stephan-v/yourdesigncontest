@@ -29,25 +29,23 @@ trait ContestPresenter
     /**
      * Get the contests's expiration date.
      *
-     * @param string $value The expiration timestamp.
      * @return string The human readable expiration date.
      * @throws Exception Thrown if a Carbon exception is thrown.
      */
-    public function getExpiresAtAttribute($value)
+    public function getEndsInAttribute()
     {
-        $dateTime = new Carbon($value);
-
-        return $dateTime->isFuture() ? $dateTime->diffForHumans() : 'finished';
+        return $this->expires_at->isFuture() ? $this->expires_at->diffForHumans() : 'finished';
     }
 
     /**
      * Get the contest's finished state.
      *
      * @return boolean Whether the contest is finished or not.
+     * @throws Exception Emits Exception in case of an error.
      */
     public function getFinishedAttribute()
     {
-        return $this->winner();
+        return $this->expires_at->isPast() || $this->winner();
     }
 
     /**
@@ -57,6 +55,6 @@ trait ContestPresenter
      */
     public function getActiveAttribute()
     {
-        return !$this->finished;
+        return !$this->finished && !$this->winner();
     }
 }

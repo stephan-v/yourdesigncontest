@@ -17,7 +17,11 @@
 
                              <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="3" name="description">{{ old('description') }}</textarea>
+                                <textarea class="form-control @error('description') is-invalid @enderror"
+                                          placeholder="Optionally provide the motivation behind your design"
+                                          id="description"
+                                          rows="3"
+                                          name="description">{{ old('description') }}</textarea>
 
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">

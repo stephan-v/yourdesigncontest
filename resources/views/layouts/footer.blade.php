@@ -4,7 +4,7 @@
         </div><!-- /#app -->
 
         <script>
-            window.user = @json(auth()->user());
+            window.user = @json($user);
         </script>
     </body>
 </html>

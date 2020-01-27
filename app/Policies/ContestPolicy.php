@@ -16,11 +16,23 @@ class ContestPolicy
      *
      * @param User $user The user that is currently logged in.
      * @param Contest $contest The contest the user wants to enter a submission for.
-     * @return boolean Whether the user is allowed to enter a submissoin for this contest or not.
+     * @return boolean Whether the user is allowed to enter a submission for this contest or not.
      */
     public function submit(User $user, Contest $contest)
     {
         return !$user->contests->contains($contest->id);
+    }
+
+    /**
+     * Determine whether the user can manage the contest.
+     *
+     * @param User $user The user that is currently logged in.
+     * @param Contest $contest The contest the user wants to enter a submission for.
+     * @return boolean Whether the user is allowed to manage this contest or not.
+     */
+    public function manage(User $user, Contest $contest)
+    {
+        return $user->id === $contest->user->id;
     }
 
     /**
@@ -33,7 +45,7 @@ class ContestPolicy
     public function viewAnySourceFiles(User $user, Contest $contest)
     {
         $owner = $user->contests->contains($contest->id);
-        $winner = $user->id === $contest->winner()->id;
+        $winner = $user->id === optional($contest->winner())->id;
 
         // Only contest owners or contest winners are allowed to see source files.
         return ($owner || $winner)

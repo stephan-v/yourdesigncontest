@@ -16,5 +16,9 @@ class ContestsTableSeeder extends Seeder
         factory(Contest::class, 5)->create()->each(function (Contest $contest) {
             $contest->payment()->save(factory(Payment::class)->make());
         });
+
+        factory(Contest::class, 1)->states('finished')->create()->each(function (Contest $contest) {
+            $contest->payment()->save(factory(Payment::class)->make());
+        });
     }
 }

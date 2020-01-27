@@ -1,5 +1,6 @@
 <?php
 
+use App\Submission;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -20,5 +21,7 @@ class SubmissionsSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        factory(Submission::class, 50)->create();
     }
 }

@@ -28,7 +28,7 @@ class WinnerController extends Controller
 
         $submission->winner()->create();
 
-        Mail::to($submission->user)->send(new ContestWinner($request->all()));
+        Mail::to($submission->user)->send(new ContestWinner($contest));
 
         return redirect()->route('contests.show', ['contest' => $contest]);
     }

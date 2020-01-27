@@ -9,8 +9,8 @@ What happens next?
 - To receive payment you need to verify your identity using the Stripe verification process.
 - Once everything is approved you will receive your payout within 2 weeks.
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => route('contests.show', ['contest' => $contest])])
+Visit the contest
 @endcomponent
 
 Thanks,<br>

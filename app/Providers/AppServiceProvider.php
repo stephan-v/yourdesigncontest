@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Observers\UserObserver;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +28,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         User::observe(UserObserver::class);
+
+        // Share the $user variable with all views.
+        view()->composer('*', function(View $view){
+            $view->with('user', Auth::user());
+        });
     }
 }

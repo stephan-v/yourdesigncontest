@@ -4,12 +4,12 @@
             <template v-for="value in [5, 4, 3, 2, 1]">
                 <input type="radio"
                        name="stars"
-                       :id="value"
+                       :id="value + id"
                        :value="value"
                        v-model="rating"
                        :key="`input-${value}`"
                        @change="submit"/>
-                <label class="fa fa-star" :for="value" :key="`label-${value}`"></label>
+                <label class="fa fa-star" :for="value + id" :key="`label-${value}`"></label>
             </template>
         </form>
     </div>
@@ -19,6 +19,7 @@
     export default {
         data() {
             return {
+                id: Math.random(),
                 rating: this.initialRating,
             };
         },

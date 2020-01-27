@@ -16,3 +16,7 @@ $factory->define(Contest::class, function (Faker $faker) {
         'updated_at' => now(),
     ];
 });
+
+$factory->state(Contest::class, 'finished', [
+    'expires_at' => now(),
+]);
