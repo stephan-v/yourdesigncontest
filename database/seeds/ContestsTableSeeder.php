@@ -1,7 +1,7 @@
 <?php
 
 use App\Contest;
-use App\Transaction;
+use App\Payment;
 use Illuminate\Database\Seeder;
 
 class ContestsTableSeeder extends Seeder
@@ -14,7 +14,7 @@ class ContestsTableSeeder extends Seeder
     public function run()
     {
         factory(Contest::class, 5)->create()->each(function (Contest $contest) {
-            $contest->transaction()->save(factory(Transaction::class)->make());
+            $contest->payment()->save(factory(Payment::class)->make());
         });
     }
 }

@@ -36,7 +36,7 @@
                     <div class="card-header">Payout</div>
 
                     <div class="card-body">
-                        <p class="mb-0 payout">{{ $contest->transaction->payout }}</p>
+                        <p class="mb-0 payout">{{ $contest->payment->payout }}</p>
                     </div>
                 </div>
             </div>

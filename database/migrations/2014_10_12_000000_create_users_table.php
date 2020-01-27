@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->enum('currency', ['EUR', 'USD']);
             $table->string('password')->nullable();
+            $table->string('stripe_id')->nullable()->index();
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();

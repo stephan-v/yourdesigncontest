@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Transaction;
+use App\Payment;
 use Faker\Generator as Faker;
 
-$factory->define(Transaction::class, function (Faker $faker) {
+$factory->define(Payment::class, function (Faker $faker) {
     return [
         'amount' => $faker->numberBetween(200, 1500) * 100,
         'currency' => $faker->randomElement(['EUR', 'USD']),

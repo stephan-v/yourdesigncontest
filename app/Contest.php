@@ -28,11 +28,11 @@ class Contest extends Model
     ];
 
     /**
-     * Get the transaction record associated with the transaction.
+     * Get the payment record associated with the contest.
      */
-    public function transaction()
+    public function payment()
     {
-        return $this->hasOne(Transaction::class);
+        return $this->hasOne(Payment::class);
     }
 
     /**

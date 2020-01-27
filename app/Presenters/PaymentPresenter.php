@@ -4,12 +4,12 @@ namespace App\Presenters;
 
 use App\Domain\Money\Money;
 
-trait TransactionPresenter
+trait PaymentPresenter
 {
     /**
      * The amount represented as a money object.
      *
-     * @param int $value The raw amount of the transaction.
+     * @param int $value The raw amount of the payment.
      * @return Money The money object for a given amount.
      */
     public function getAmountAttribute(int $value)

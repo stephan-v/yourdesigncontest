@@ -2,7 +2,6 @@
 
 namespace App\Presenters;
 
-use App\Domain\Money\Money;
 use Carbon\Carbon;
 use Exception;
 
@@ -15,7 +14,7 @@ trait ContestPresenter
      */
     public function isPaidFor()
     {
-        return $this->transaction()->exists();
+        return $this->payment()->exists();
     }
 
     /**

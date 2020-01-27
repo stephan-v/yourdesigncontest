@@ -2,12 +2,12 @@
 
 namespace App;
 
-use App\Presenters\TransactionPresenter;
+use App\Presenters\PaymentPresenter;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Payment extends Model
 {
-    use TransactionPresenter;
+    use PaymentPresenter;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +19,7 @@ class Transaction extends Model
     ];
 
     /**
-     * Get the contest that owns the transaction.
+     * Get the contest that owns the payment.
      */
     public function contest()
     {
