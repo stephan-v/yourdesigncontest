@@ -40,7 +40,6 @@ class ContestSubmissionController extends Controller
 
         $contest->submissions()->create([
             'description' => $request->description,
-            'user_id' => $request->user()->id,
             'path' => $path,
         ]);
 

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Submission extends Model
 {
@@ -17,6 +18,20 @@ class Submission extends Model
         'rating',
         'user_id',
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function (Submission $submission) {
+            $submission->user_id = Auth::id();
+        });
+    }
 
     /**
      * Get the contest that owns the submission.

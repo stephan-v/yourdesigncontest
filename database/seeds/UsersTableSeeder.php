@@ -2,7 +2,7 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,14 +13,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'TestAccount',
-            'email' => 'test-account@gmail.com',
-            'email_verified_at' => now(),
-            'password' => bcrypt('test'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        // Create the main test user and log in with that user.
+        Auth::login(factory(User::class)->states('test')->create());
 
         factory(User::class, 5)->create();
     }

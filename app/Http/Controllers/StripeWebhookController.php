@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Contest;
 use App\Http\Middleware\VerifyWebhookSignature;
-use App\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -58,7 +58,7 @@ class StripeWebhookController extends Controller
         Contest::findOrFail($contestId)->payment()->create([
             'amount' => $amount,
             'currency' => strtoupper($currency),
-            'payment_id' => $paymentId
+            'payment_id' => $paymentId,
         ]);
 
         return $this->successMethod();

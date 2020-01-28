@@ -2,14 +2,11 @@
 
 namespace App;
 
-use App\Presenters\PaymentPresenter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
-class Payment extends Model
+class Payout extends Model
 {
-    use PaymentPresenter;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -28,8 +25,8 @@ class Payment extends Model
     {
         parent::boot();
 
-        static::creating(function (Payment $payment) {
-            $payment->user_id = Auth::id();
+        static::creating(function (Payout $payout) {
+            $payout->user_id = Auth::id();
         });
     }
 
