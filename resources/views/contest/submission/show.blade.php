@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        @if  ($submission->description)
+        @if ($submission->description)
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <div class="card">

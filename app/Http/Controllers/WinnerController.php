@@ -7,6 +7,7 @@ use App\Mail\ContestWinner;
 use App\Submission;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
 
 class WinnerController extends Controller
@@ -25,6 +26,8 @@ class WinnerController extends Controller
         // Contest should not have a winner yet.
         // Submission needs to belong to contest.
         // Submission can only be assigned winner by owner of the contest.
+
+        abort_if((bool) $contest->winner(), Response::HTTP_CONFLICT, 'A contest winner has already been declared.');
 
         $submission->winner()->create();
 
