@@ -5,6 +5,14 @@
 
             <form @submit.prevent>
                 <div class="form-group mb-3">
+                    <label for="currency">Currency</label>
+                    <select name="currency" class="form-control" id="currency" v-model="currency">
+                        <option value="eur">EUR</option>
+                        <option value="usd">USD</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
                     <label for="amount">Price money</label>
                     <input type="number"
                            class="form-control"
@@ -57,6 +65,7 @@
         data() {
             return {
                 amount: null,
+                currency: null,
                 rawErrors: [],
                 stripe: Stripe('pk_test_xS6i7CE8EvKafYNJijLGchad'),
                 percentage: 10,
@@ -100,6 +109,7 @@
             data() {
                 return {
                     amount: this.total.getAmount(),
+                    currency: this.currency,
                     contest_id: this.contest.id,
                     email: this.user.email,
                     name: this.contest.name,

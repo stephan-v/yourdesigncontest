@@ -53,7 +53,7 @@ class ContestCheckoutController extends Controller
                     'description' => 'Design contest',
                     'images' => null,
                     'amount' => $request->amount,
-                    'currency' => 'eur',
+                    'currency' => $request->currency,
                     'quantity' => 1,
                 ]
             ],
