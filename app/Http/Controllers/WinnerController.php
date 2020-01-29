@@ -7,7 +7,6 @@ use App\Submission;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class WinnerController extends Controller
 {

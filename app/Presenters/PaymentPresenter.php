@@ -26,4 +26,14 @@ trait PaymentPresenter
     {
         return $this->amount->multiply(0.9)->format();
     }
+
+    /**
+     * Set the payment's currency.
+     *
+     * @param string $value The currency which was used for the payment.
+     */
+    public function setCurrencyAttribute(string $value)
+    {
+        $this->attributes['currency'] = strtoupper($value);
+    }
 }

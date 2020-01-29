@@ -30,7 +30,7 @@ class WinnerObserver
     public function creating(Winner $winner)
     {
         abort_if(
-            (bool) $winner->contest->winner(),
+            $winner->contest->winner()->exists(),
              Response::HTTP_CONFLICT,
             'A contest winner has already been declared.'
         );

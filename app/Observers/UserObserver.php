@@ -16,8 +16,6 @@ class UserObserver
      */
     public function creating(User $user)
     {
-        // @TODO Implement Stripe Connect functionality later on.
-
 //        $account = Account::create([
 //            'business_type' => 'individual',
 //            'country' => 'NL',

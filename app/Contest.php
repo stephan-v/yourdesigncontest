@@ -36,6 +36,14 @@ class Contest extends Model
     }
 
     /**
+     * Get the payout record associated with the contest.
+     */
+    public function payout()
+    {
+        return $this->hasOne(Payout::class);
+    }
+
+    /**
      * Get the user that owns the phone.
      */
     public function user()

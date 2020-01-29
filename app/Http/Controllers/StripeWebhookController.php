@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Contest;
 use App\Http\Middleware\VerifyWebhookSignature;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -47,18 +46,26 @@ class StripeWebhookController extends Controller
      */
     public function handlePaymentIntentSucceeded(array $payload)
     {
-        // Set the contest live.
-        // Send out email receipt.
+        // @TODO Set the contest live.
+        // @TODO Send out email receipt.
 
         $amount = $payload['data']['object']['amount'];
         $contestId = $payload['data']['object']['metadata']['contest_id'];
         $currency = $payload['data']['object']['currency'];
+        $customer = $payload['data']['object']['customer'];
         $paymentId = $payload['data']['object']['id'];
 
-        Contest::findOrFail($contestId)->payment()->create([
+        // Fetch the contest.
+        $contest = Contest::findOrFail($contestId);
+
+        // Update the stripe_id so consecutive payments are linked to the same Stripe user.
+        $contest->user->update(['stripe_id' => $customer]);
+
+        $contest->payment()->create([
             'amount' => $amount,
-            'currency' => strtoupper($currency),
+            'currency' => $currency,
             'payment_id' => $paymentId,
+            'user_id' => $contest->user->id,
         ]);
 
         return $this->successMethod();

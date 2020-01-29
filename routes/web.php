@@ -26,6 +26,9 @@ Route::get('contests/create', 'ContestController@create')->middleware('auth')->n
 Route::get('contests/{contest}/checkout/create', 'ContestCheckoutController@create')->middleware('auth')->name('checkout.create');
 Route::resource('contests', 'ContestController')->except(['create']);
 
+// Contest payout.
+Route::post('contests/{contest}/payout', 'ContestPayoutController@store');
+
 Route::resource('blog', 'BlogController')->only(['index', 'show']);
 
 Route::post('checkouts', 'ContestCheckoutController@store');

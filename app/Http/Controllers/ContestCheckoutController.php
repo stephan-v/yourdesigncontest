@@ -39,6 +39,7 @@ class ContestCheckoutController extends Controller
     public function store(StripeSessionRequest $request)
     {
         $session = Session::create([
+            'customer' => $request->user()->stripe_id,
             'customer_email' => $request->email,
             'payment_method_types' => ['card'],
             'payment_intent_data' => [
@@ -49,7 +50,7 @@ class ContestCheckoutController extends Controller
             'line_items' => [
                 [
                     'name' => $request->name,
-                    'description' => $request->name,
+                    'description' => 'Design contest',
                     'images' => null,
                     'amount' => $request->amount,
                     'currency' => 'eur',
