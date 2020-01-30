@@ -96,6 +96,9 @@ class ContestCheckoutController extends Controller
 
         $contest = $request->session()->get('contest');
 
+        // Remove the contest from the session.
+        $request->session()->forget('contest');
+
         return view('checkout.success', compact('amount', 'contest', 'email'));
     }
 }

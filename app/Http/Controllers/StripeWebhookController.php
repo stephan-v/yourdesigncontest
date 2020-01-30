@@ -46,7 +46,6 @@ class StripeWebhookController extends Controller
      */
     public function handlePaymentIntentSucceeded(array $payload)
     {
-        // @TODO Set the contest live.
         // @TODO Send out email receipt.
 
         $amount = $payload['data']['object']['amount'];
