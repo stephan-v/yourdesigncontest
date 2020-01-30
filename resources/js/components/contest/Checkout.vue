@@ -17,7 +17,7 @@
                     <input type="number"
                            class="form-control"
                            id="amount"
-                           placeholder="Amount in euro's"
+                           :placeholder="currencyPlaceholder"
                            v-model.number="amount">
                     <small class="form-text text-muted">Select how much the winning designer will earn.</small>
                 </div>
@@ -65,7 +65,7 @@
         data() {
             return {
                 amount: null,
-                currency: null,
+                currency: 'eur',
                 rawErrors: [],
                 stripe: Stripe('pk_test_xS6i7CE8EvKafYNJijLGchad'),
                 percentage: 10,
@@ -81,8 +81,7 @@
 
         created() {
             Dinero.globalFormat = '$0,0';
-            Dinero.globalLocale = 'nl';
-            Dinero.defaultCurrency = 'EUR';
+            Dinero.globalLocale = 'en';
         },
 
         methods: {
@@ -117,7 +116,10 @@
             },
 
             price() {
-                return Dinero({ amount: this.amount * 100 || 0 });
+                return Dinero({
+                    amount: (this.amount * 100 || 0),
+                    currency: this.currency,
+                });
             },
 
             fee() {
@@ -126,6 +128,10 @@
 
             total() {
                 return this.price.add(this.fee);
+            },
+
+            currencyPlaceholder() {
+                return `Amount in ${this.currency.toUpperCase()}`;
             },
         },
     };

@@ -33,7 +33,7 @@
                     </form>
                 </div>
             </div>
-        @endif;
+        @endif
 
         <div class="row">
             <div class="col-md-6 offset-md-3">
