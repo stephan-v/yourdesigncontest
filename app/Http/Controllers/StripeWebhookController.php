@@ -57,8 +57,8 @@ class StripeWebhookController extends Controller
         // Fetch the contest.
         $contest = Contest::findOrFail($contestId);
 
-        // Update the stripe_id so consecutive payments are linked to the same Stripe user.
-        $contest->user->update(['stripe_id' => $customer]);
+        // Update the stripe_customer_id so consecutive payments are linked to the same Stripe user.
+        $contest->user->update(['stripe_customer_id' => $customer]);
 
         $contest->payment()->create([
             'amount' => $amount,

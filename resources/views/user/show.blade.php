@@ -10,6 +10,16 @@
 
         <div class="row">
             <div class="col-md-12">
+                <p>Click here to validation your account for payout</p>
+
+                <a href="{{ $user->connectUri }}">
+                    <img src="{{ asset('images/light-on-light.png') }}" alt="">
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
                 <h2>Your submissions</h2>
             </div>
         </div>

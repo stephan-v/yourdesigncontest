@@ -31,9 +31,13 @@ return [
     ],
 
     'stripe' => [
+        'connect' => [
+            'client_id' => env('STRIPE_CONNECT_CLIENT_ID'),
+            'uri' => env('STRIPE_CONNECT_URI'),
+        ],
         'key' => env('STRIPE_APP_KEY'),
         'webhook' => [
-            'secret' => env('STRIPE_WEBHOOK_SECRET')
+            'secret' => env('STRIPE_WEBHOOK_SECRET'),
         ]
     ],
 

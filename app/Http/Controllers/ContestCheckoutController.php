@@ -69,8 +69,8 @@ class ContestCheckoutController extends Controller
         ]);
 
         // If present use the Stripe customer id, otherwise default to an email for reference.
-        if ($stripe_id = $request->user()->stripe_id) {
-            $data->put('customer', $stripe_id);
+        if ($stripe_customer_id = $request->user()->stripe_customer_id) {
+            $data->put('customer', $stripe_customer_id);
         } else {
             $data->put('customer_email', $request->email);
         }

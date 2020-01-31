@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Observers\UserObserver;
 use App\Observers\WinnerObserver;
 use App\User;
 use App\Winner;
@@ -29,7 +28,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        User::observe(UserObserver::class);
         Winner::observe(WinnerObserver::class);
 
         $this->setViewComposer();

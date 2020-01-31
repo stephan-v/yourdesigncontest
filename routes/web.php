@@ -65,3 +65,5 @@ Route::post('contact', 'ContactController@email')->name('contact.mail');
 // Assign a winner.
 Route::post('contests/{contest}/submissions/{submission}/winner', 'WinnerController@store')->name('winner');
 
+Route::get('stripe/complete-connect', 'StripeController@complete');
+
