@@ -24,15 +24,14 @@ Auth::routes(['verify' => true]);
 // Contest/Checkout routes.
 Route::get('contests/create', 'ContestController@create')->middleware('auth')->name('contests.create');
 Route::get('contests/{contest}/checkout/create', 'ContestCheckoutController@create')->middleware('auth')->name('checkout.create');
+Route::post('contests/{contest}/checkout', 'ContestCheckoutController@store');
+Route::get('success', 'ContestCheckoutController@success');
 Route::resource('contests', 'ContestController')->except(['create']);
 
 // Contest payout.
 Route::post('contests/{contest}/payout', 'ContestPayoutController@store');
 
 Route::resource('blog', 'BlogController')->only(['index', 'show']);
-
-Route::post('checkouts', 'ContestCheckoutController@store');
-Route::get('success', 'ContestCheckoutController@success');
 
 // Authentication routes.
 Auth::routes();

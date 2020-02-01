@@ -86,7 +86,7 @@
 
         methods: {
             submit() {
-                axios.post('/checkouts', this.data).then((response) => {
+                axios.post(`/contests/${this.contest.id}/checkout`, this.data).then((response) => {
                     this.stripe.redirectToCheckout({ sessionId: response.data }).then((result) => {
                         console.log(result.error);
                     });
@@ -109,7 +109,6 @@
                 return {
                     amount: this.total.getAmount(),
                     currency: this.currency,
-                    contest_id: this.contest.id,
                     email: this.user.email,
                     name: this.contest.name,
                 };

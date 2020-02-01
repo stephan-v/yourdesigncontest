@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contest;
 use App\Http\Requests\StripeSessionRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -36,13 +37,16 @@ class ContestCheckoutController extends Controller
      * Start a new Stripe checkout session.
      *
      * @param StripeSessionRequest $request The incoming HTTP client request.
+     * @param Contest $contest The contest used for the checkout process.
      * @return string The session ID which is used to redirect the customer to Stripe.
      * @throws ApiErrorException Thrown if the request fails.
      */
-    public function store(StripeSessionRequest $request)
+    public function store(StripeSessionRequest $request, Contest $contest)
     {
+        // @TODO Check if the contest belongs to the user.
+
         abort_if(
-            $request->contest->payment,
+            $contest->payment,
             Response::HTTP_CONFLICT,
             'The contest has already been paid for.'
         );
@@ -51,7 +55,7 @@ class ContestCheckoutController extends Controller
             'payment_method_types' => ['card'],
             'payment_intent_data' => [
                 'metadata' => [
-                    'contest_id' => $request->contest_id,
+                    'contest_id' => $contest->id,
                 ]
             ],
             'line_items' => [
