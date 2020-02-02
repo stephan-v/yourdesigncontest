@@ -21,13 +21,14 @@ trait UserPresenter
      *
      * @return string The generated URI.
      */
-    public function getConnectUriAttribute(): string
+    public function getStripeConnectUriAttribute(): string
     {
         $params = http_build_query([
             'client_id' => config('services.stripe.connect.client_id'),
             'stripe_user[business_type]' => 'individual',
-            'stripe_user[email]' => 'testingggg@gmail.com',
+            'stripe_user[email]' => $this->email,
             'stripe_user[url]' => Str::replaceFirst('.test', '.com', route('users.show', ['user' => $this])),
+            'suggested_capabilities[]' => 'transfers',
             'state' => 'test',
         ]);
 

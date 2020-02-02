@@ -12,7 +12,7 @@
             <div class="col-md-12">
                 <p>Click here to validation your account for payout</p>
 
-                <a href="{{ $user->connectUri }}">
+                <a href="{{ $user->stripeConnectUri }}">
                     <img src="{{ asset('images/light-on-light.png') }}" alt="">
                 </a>
             </div>
