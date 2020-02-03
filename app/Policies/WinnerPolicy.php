@@ -21,8 +21,8 @@ class WinnerPolicy
      */
     public function create(User $user, Contest $contest, Submission $submission)
     {
-        $contestBelongsToUser = $user->contests()->where('id', $contest->id)->first();
-        $submissionBelongsToContest = $contest->submissions()->where('id', $submission->id);
+        $contestBelongsToUser = $user->contests()->where('id', $contest->id)->exists();
+        $submissionBelongsToContest = $contest->submissions()->where('id', $submission->id)->exists();
 
         return $contestBelongsToUser && $submissionBelongsToContest;
     }

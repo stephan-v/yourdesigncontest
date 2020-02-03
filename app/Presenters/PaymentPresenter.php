@@ -7,14 +7,13 @@ use App\Domain\Money\Money;
 trait PaymentPresenter
 {
     /**
-     * The amount represented as a money object.
+     * The amount converted to a money object.
      *
-     * @param int $value The raw amount of the payment.
-     * @return Money The money object for a given amount.
+     * @return Money A money object.
      */
-    public function getAmountAttribute(int $value)
+    public function getMoneyAttribute()
     {
-        return new Money($value);
+        return new Money($this->amount);
     }
 
     /**
@@ -24,7 +23,17 @@ trait PaymentPresenter
      */
     public function getPayoutAttribute()
     {
-        return $this->amount->multiply(0.9)->format();
+        return $this->money->multiply(0.9);
+    }
+
+    /**
+     * The formatted payout amount for designers.
+     *
+     * @return string The currency formatted payout price.
+     */
+    public function getFormattedPayoutAttribute()
+    {
+        return $this->payout->format();
     }
 
     /**

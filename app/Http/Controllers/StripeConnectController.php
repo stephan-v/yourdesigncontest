@@ -23,9 +23,9 @@ class StripeConnectController extends Controller
             'code' => $request->code,
         ]);
 
-        $request->user->update(['stripe_connect_id', $response->stripe_user_id]);
+        $request->user()->update(['stripe_connect_id' => $response->stripe_user_id]);
 
         // @TODO add a flash message to indicate the connect process was a success.
-        return redirect()->route('users.show', ['user', $request->user]);
+        return redirect()->route('users.show', ['user' => $request->user()]);
     }
 }

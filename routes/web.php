@@ -29,7 +29,7 @@ Route::get('success', 'ContestCheckoutController@success');
 Route::resource('contests', 'ContestController')->except(['create']);
 
 // Contest payout.
-Route::post('contests/{contest}/payout', 'ContestPayoutController@store');
+Route::get('contests/{contest}/payout', 'ContestPayoutController@store');
 
 Route::resource('blog', 'BlogController')->only(['index', 'show']);
 
@@ -64,5 +64,5 @@ Route::post('contact', 'ContactController@email')->name('contact.mail');
 // Assign a winner.
 Route::post('contests/{contest}/submissions/{submission}/winner', 'WinnerController@store')->name('winner');
 
-Route::get('stripe/complete-connect', 'StripeController@complete');
+Route::get('stripe/complete-connect', 'StripeConnectController@complete');
 

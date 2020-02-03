@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Contest;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Stripe\Account;
+use Stripe\Exception\ApiErrorException;
+use Stripe\Transfer;
 
 class ContestPayoutController extends Controller
 {
@@ -14,28 +18,43 @@ class ContestPayoutController extends Controller
      *
      * @param Request $request The incoming HTTP client request.
      * @param Contest $contest The contest with winner who should receive the contest payout.
+     * @return RedirectResponse Redirects back to the contest page.
+     * @throws ApiErrorException Thrown if the request fails.
      * @throws AuthorizationException If the user is not the contest owner.
-     * @return Response The server response.
      */
     public function store(Request $request, Contest $contest)
     {
+        // @TODO do not allow a payout to be made to a winner that has not set up their connect account.
+
         $this->authorize('manage', $contest);
 
         abort_if(
             $contest->payout()->exists(),
             Response::HTTP_CONFLICT,
-            'A payout has already been done for this contest.'
+            'A payout has already been made for this contest.'
         );
 
-        // @TODO check if the user's connect account is validated.
-        // @TODO make a request to stripe.
-        // @TODO perform this in a job because otherwise there can be no payout if the user's connect acc is not validated?
+        // Fetch the contest winner.
+        $winner = $contest->winner()->user;
 
-        $contest->payout()->create([
-            'payment_id' => 'this is coming from Stripe.',
-            'user_id' => $contest->winner()->submission()->user->id
+        // Retrieve the account of the winner to fetch the default currency.
+        $account = Account::retrieve($winner->stripe_connect_id);
+
+        // Create the Stripe transfer.
+        $transfer = Transfer::create([
+            'amount' => $contest->payment->payout->getAmount(),
+            'currency' => $account->default_currency,
+            'destination' => $account->id,
         ]);
 
-        return response('WIP');
+        // Create the local payout record.
+        $contest->payout()->create([
+            'amount' => $transfer->amount,
+            'currency' => $transfer->currency,
+            'payment_id' => $transfer->id,
+            'user_id' => $winner->id,
+        ]);
+
+        return redirect()->route('contests.show', ['contest' => $contest]);
     }
 }

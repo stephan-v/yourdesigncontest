@@ -16,8 +16,8 @@ class WinnerObserver
      */
     public function created(Winner $winner)
     {
-        $user = $winner->submission()->user;
-        $contest = $winner->submission()->contest;
+        $user = $winner->submission->user;
+        $contest = $winner->submission->contest;
 
         Mail::to($user)->send(new ContestWinner($contest));
     }
@@ -30,7 +30,7 @@ class WinnerObserver
     public function creating(Winner $winner)
     {
         abort_if(
-            $winner->contest->winner()->exists(),
+            $winner->submission->contest->winner(),
             Response::HTTP_CONFLICT,
             'A contest winner has already been declared.'
         );

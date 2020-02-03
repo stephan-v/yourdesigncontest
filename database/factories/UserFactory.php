@@ -28,5 +28,5 @@ $factory->define(User::class, function (Faker $faker) {
 
 $factory->state(User::class, 'test', [
     'name' => 'TestAccount',
-    'email' => 'test-account@gmail.com',
+    'email' => 'ydc-testing@gmail.com',
 ]);

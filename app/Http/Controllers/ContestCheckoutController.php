@@ -91,7 +91,7 @@ class ContestCheckoutController extends Controller
      *
      * @param Request $request The incoming HTTP request.
      * @return View The HTML server response.
-     * @throws ApiErrorException If the request fails.
+     * @throws ApiErrorException Thrown if the request fails.
      */
     public function success(Request $request)
     {

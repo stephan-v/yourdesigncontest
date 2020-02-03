@@ -24,6 +24,14 @@ class ContestPolicy
     }
 
     /**
+     * Determine whether the user can create a contest.
+     */
+    public function create()
+    {
+        return true;
+    }
+
+    /**
      * Determine whether the user can manage the contest.
      *
      * @param User $user The user that is currently logged in.

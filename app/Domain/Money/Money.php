@@ -2,45 +2,38 @@
 
 namespace App\Domain\Money;
 
-use Money\Currencies\ISOCurrencies;
 use Money\Currency;
-use Money\Formatter\IntlMoneyFormatter;
 use Money\Money as MoneyPHP;
-use NumberFormatter;
 
 class Money
 {
+    use Formatter;
+
+    /**
+     * The prepared money object.
+     *
+     * @var MoneyPHP
+     */
     private $money;
 
+    /**
+     * Initialize a new money instance.
+     *
+     * @param int $amount The raw amount in cents.
+     */
     public function __construct(int $amount)
     {
         $this->money = new MoneyPHP($amount, resolve(Currency::class));
     }
 
     /**
-     * Returns a new money formatter.
+     * Returns the value represented by this object.
      *
-     * @param string $locale The locale which specifies how to format an amount.
-     * @return IntlMoneyFormatter A money formatter instance.
+     * @return string
      */
-    public function formatter(string $locale = 'en_US'): IntlMoneyFormatter
+    public function getAmount(): string
     {
-        $currencies = new ISOCurrencies();
-
-        $numberFormatter = new NumberFormatter($locale, NumberFormatter::CURRENCY);
-        $moneyFormatter = new IntlMoneyFormatter($numberFormatter, $currencies);
-
-        return $moneyFormatter;
-    }
-
-    /**
-     * Format the given amount using the currency set on the user record.
-     *
-     * @return string A formatted amount.
-     */
-    public function format()
-    {
-        return $this->formatter()->format($this->money);
+        return $this->money->getAmount();
     }
 
     /**
@@ -52,7 +45,7 @@ class Money
      */
     public function __call($method, $parameters)
     {
-        $this->money->{$method}(...$parameters);
+        $this->money = $this->money->{$method}(...$parameters);
 
         return $this;
     }
