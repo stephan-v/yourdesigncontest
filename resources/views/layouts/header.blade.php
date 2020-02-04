@@ -56,15 +56,11 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('contests.index') }}">
-                                    Contests
-                                </a>
+                                <a class="nav-link" href="{{ route('contests.index') }}">Contests</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('contact.form') }}">
-                                    Contact
-                                </a>
+                                <a class="nav-link" href="{{ route('contact.form') }}">Contact</a>
                             </li>
                         </ul>
 
@@ -72,14 +68,18 @@
                             @auth
                                 <li class="nav-item">
                                     <span class="nav-link">
-                                        Notifications: {{ count($user->notifications) }}
+                                        <span class="notifications text-center position-relative">
+                                            <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
+
+                                            @if ($count = count($user->notifications))
+                                                <span class="notification-count position-absolute d-inline-block font-weight-bold">{{ $count }}</span>
+                                            @endif
+                                        </span>
                                     </span>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('users.show', ['user' => $user]) }}">
-                                        Profile
-                                    </a>
+                                    <a class="nav-link" href="{{ route('users.show', ['user' => $user]) }}">Profile</a>
                                 </li>
                             @else
                                 <li class="nav-item">

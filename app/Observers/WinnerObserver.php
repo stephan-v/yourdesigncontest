@@ -21,7 +21,7 @@ class WinnerObserver
 
         Mail::to($user)->send(new ContestWinner($contest));
 
-        if ($user->isNotVerified) {
+        if ($user->isNotStripeVerified) {
             $user->notify(new VerifyStripeIdentity());
         }
     }
