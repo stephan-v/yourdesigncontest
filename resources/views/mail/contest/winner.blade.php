@@ -25,8 +25,8 @@ Upload source files
 
 In order for the completion of your payout we require to verify your identification.
 
-@component('mail::button', ['url' => route('contests.files.create', ['contest' => $contest])])
-Upload source files
+@component('mail::button', ['url' => route('connect.dashboard')])
+Verify your identification
 @endcomponent
 
 Thanks,<br>

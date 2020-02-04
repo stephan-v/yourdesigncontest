@@ -71,6 +71,12 @@
                         <ul class="navbar-nav">
                             @auth
                                 <li class="nav-item">
+                                    <span class="nav-link">
+                                        Notifications: {{ count($user->notifications) }}
+                                    </span>
+                                </li>
+
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{ route('users.show', ['user' => $user]) }}">
                                         Profile
                                     </a>
