@@ -39,8 +39,10 @@ class VerifyStripeIdentity extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
+        $route = route('connect.onboarding');
+
         return [
-            'message' => 'Click here to verify your identity for payouts.',
+            'message' => "Click <a href='{$route}'>here</a> to verify your identity for payouts.",
         ];
     }
 }

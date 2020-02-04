@@ -44,23 +44,24 @@ class StripeConnectController extends Controller
         $id = $request->user()->stripe_connect_id;
         $dashboard = Account::createLoginLink($id);
 
-        return redirect($dashboard->url);
+        return redirect()->away($dashboard->url);
     }
 
     /**
      * Generate the Stripe connect onboarding URI.
      *
+     * @param Request $request The incoming HTTP server request.
      * @return string The generated URI.
      */
-    public function onboarding(): string
+    public function onboarding(Request $request): string
     {
-        $route = route('users.show', ['user' => $this]);
+        $route = route('users.show', ['user' => $request->user()]);
 
         $params = http_build_query([
             'client_id' => config('services.stripe.connect.client_id'),
             'redirect_uri' => route('connect.complete'),
             'stripe_user[business_type]' => 'individual',
-            'stripe_user[email]' => $this->email,
+            'stripe_user[email]' => $request->user()->email,
             'stripe_user[url]' => Str::replaceFirst('.test', '.com', $route),
             'suggested_capabilities[]' => 'transfers',
             'state' => 'test',
@@ -68,6 +69,6 @@ class StripeConnectController extends Controller
 
         $url = config('services.stripe.connect.uri') . $params;
 
-        return redirect($url);
+        return redirect()->away($url);
     }
 }

@@ -68,13 +68,7 @@
                             @auth
                                 <li class="nav-item">
                                     <span class="nav-link">
-                                        <span class="notifications text-center position-relative">
-                                            <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
-
-                                            @if ($count = count($user->notifications))
-                                                <span class="notification-count position-absolute d-inline-block font-weight-bold">{{ $count }}</span>
-                                            @endif
-                                        </span>
+                                        <notifications :notifications='@json($user->notifications)'></notifications>
                                     </span>
                                 </li>
 
