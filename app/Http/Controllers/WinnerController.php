@@ -7,6 +7,7 @@ use App\Submission;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class WinnerController extends Controller
 {
@@ -22,6 +23,12 @@ class WinnerController extends Controller
     public function store(Request $request, Contest $contest, Submission $submission)
     {
         $this->authorize('create', [$contest, $submission]);
+
+        abort_if(
+            $contest->winner,
+            Response::HTTP_CONFLICT,
+            'A contest winner has already been declared.'
+        );
 
         $submission->winner()->create();
 

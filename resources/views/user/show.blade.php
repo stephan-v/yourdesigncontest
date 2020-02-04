@@ -16,11 +16,15 @@
                     <div class="card-body">
                         <p>Click here to validation your account for payout</p>
 
-                        <a href="{{ $user->stripeConnectUri }}">
+                        <a href="{{ route('connect.onboarding') }}">
                             <img src="{{ asset('images/light-on-light.png') }}" alt="">
                         </a>
 
-                        <a href="{{ $dashboard }}" class="d-block mt-3 mb-3">Manage your payout settings</a>
+                        @if ($user->stripe_connect_id)
+                            <a href="{{ route('connect.dashboard') }}" class="d-block mt-3 mb-3">
+                                Manage your payout settings
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
