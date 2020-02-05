@@ -71,7 +71,7 @@
 
                         <div class="caption p-3 border-top">
                             <small class="text-muted">
-                                <span>Made by</span>
+                                <span># {{ $submission->number }} Made by</span>
 
                                 <a href="{{ route('users.show', $contest->user) }}">
                                     {{ $contest->user->name }}

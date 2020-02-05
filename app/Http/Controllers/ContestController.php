@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contest;
 use App\Http\Requests\ContestRequest;
+use App\Submission;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -72,6 +73,13 @@ class ContestController extends Controller
         }
 
         $contest->load('submissions');
+
+        // Add numbering to the submissions. @TODO review if there is a better place for this.
+        $contest->submissions->map(function (Submission $submission, $index) {
+            $submission->number = ++$index;
+
+            return $submission;
+        });
 
         return view('contest.show', compact('contest'));
     }
