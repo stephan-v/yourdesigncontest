@@ -18,10 +18,11 @@ class ContestFileController extends Controller
      * @param Contest $contest The contest which the submission belongs to.
      * @param ZipStream $zip The ZipStream instance.
      * @return ZipStream Build the Zip file in memory as a stream.
+     * @throws AuthorizationException Thrown if the user is not allowed to download source files.
      */
     public function zip(Contest $contest, ZipStream $zip)
     {
-        // @TODO make sure only the contest owner can access this.
+        $this->authorize('manage', $contest);
 
         $files = $contest->files->map->publicPath;
 

@@ -6,9 +6,11 @@
             <div class="d-flex justify-content-between align-items-center mt-5">
                 <h1>Your design files</h1>
 
-                <a class="btn btn-primary" href="{{ route('zip', ['contest' => $contest]) }}" role="button">
-                    <i class="fa fa-download" aria-hidden="true"></i> Download zip
-                </a>
+                @can('manage', $contest)
+                    <a class="btn btn-primary" href="{{ route('zip', ['contest' => $contest]) }}" role="button">
+                        <i class="fa fa-download" aria-hidden="true"></i> Download zip
+                    </a>
+                @endif;
             </div>
 
             <div class="row">
