@@ -55,6 +55,6 @@ class ContestPayoutController extends Controller
             'user_id' => $winner->id,
         ]);
 
-        return redirect()->route('contests.show', ['contest' => $contest]);
+        return redirect()->route('contests.show', $contest);
     }
 }

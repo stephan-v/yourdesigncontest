@@ -48,7 +48,7 @@
                             @foreach ($contests as $contest)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('contests.show', ['contest' => $contest]) }}">
+                                        <a href="{{ route('contests.show', $contest) }}">
                                             {{ $contest->name }}
                                         </a>
                                     </td>

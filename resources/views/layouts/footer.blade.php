@@ -3,9 +3,11 @@
             @endif
         </div><!-- /#app -->
 
-        <footer class="footer">
+        <footer class="footer mt-5">
             <div class="container">
-                <span class="text-muted">Example content.</span>
+                <div class="p-3">
+                    <span class="text-muted">Example content.</span>
+                </div>
             </div>
         </footer>
 

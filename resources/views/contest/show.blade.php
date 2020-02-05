@@ -5,7 +5,7 @@
         @if ($user->can('manage', $contest) && $contest->finished)
             <div class="alert alert-warning mt-5" role="alert">
                 The contest is finished.
-                Click <a href="{{ route('contests.files.index', ['contest' => $contest]) }}">here</a> to review the final design files.
+                Click <a href="{{ route('contests.files.index', $contest) }}">here</a> to review the final design files.
             </div>
         @endif
 
@@ -26,7 +26,7 @@
             <div class="col-md-3">
                 @if ($contest->active)
                     <div class="text-right mb-3">
-                        <a class="btn btn-info btn-lg w-100" href="{{ route('contests.submissions.create', ['contest' => $contest]) }}" role="button">
+                        <a class="btn btn-info btn-lg w-100" href="{{ route('contests.submissions.create', $contest) }}" role="button">
                             Submit a design
                         </a>
                     </div>
@@ -45,7 +45,7 @@
         @can('submit', $contest)
             <div class="row mb-5">
                 <div class="col-md-12 text-center">
-                    <a href="{{ route('contests.submissions.create', ['contest' => $contest]) }}" class="btn btn-primary">
+                    <a href="{{ route('contests.submissions.create', $contest) }}" class="btn btn-primary">
                         Add submission
                     </a>
                 </div>
@@ -73,7 +73,7 @@
                             <small class="text-muted">
                                 <span>Made by</span>
 
-                                <a href="{{ route('users.show', ['user' => $contest->user]) }}">
+                                <a href="{{ route('users.show', $contest->user) }}">
                                     {{ $contest->user->name }}
                                 </a>
                             </small>

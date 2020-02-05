@@ -29,7 +29,7 @@ class StripeConnectController extends Controller
         $request->user()->update(['stripe_connect_id' => $response->stripe_user_id]);
 
         // @TODO add a flash message to indicate the connect process was a success.
-        return redirect()->route('users.show', ['user' => $request->user()]);
+        return redirect()->route('users.show', $request->user());
     }
 
     /**
@@ -55,7 +55,7 @@ class StripeConnectController extends Controller
      */
     public function onboarding(Request $request): string
     {
-        $route = route('users.show', ['user' => $request->user()]);
+        $route = route('users.show', $request->user());
 
         $params = http_build_query([
             'client_id' => config('services.stripe.connect.client_id'),

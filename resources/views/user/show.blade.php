@@ -41,7 +41,7 @@
                 <div class="col-md-3">
                     <div class="submission mb-3">
                         <div class="d-flex align-content-center justify-content-center p-3">
-                            <a href="{{ route('contests.show', ['contest' => $submission->contest]) }}">
+                            <a href="{{ route('contests.show', $submission->contest) }}">
                                 <img src="{{ asset($submission->path) }}" alt="" class="img-fluid">
                             </a>
                         </div>
@@ -54,7 +54,7 @@
                             <small class="text-muted">
                                 <span>Contest:</span>
 
-                                <a href="{{ route('contests.show', ['contest' => $submission->contest]) }}">
+                                <a href="{{ route('contests.show', $submission->contest) }}">
                                     {{ $submission->contest->name }}
                                 </a>
                             </small>

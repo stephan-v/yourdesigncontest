@@ -3,7 +3,7 @@
 
 Your design was voted as the winner of the contest.
 
-@component('mail::button', ['url' => route('contests.show', ['contest' => $contest])])
+@component('mail::button', ['url' => route('contests.show', $contest)])
 Visit the contest
 @endcomponent
 
@@ -18,7 +18,7 @@ What happens next?
 
 In order for the completion of your payout we require you to upload your design source files.
 
-@component('mail::button', ['url' => route('contests.files.create', ['contest' => $contest])])
+@component('mail::button', ['url' => route('contests.files.create', $contest)])
 Upload source files
 @endcomponent
 

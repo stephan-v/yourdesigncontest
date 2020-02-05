@@ -39,7 +39,7 @@ Auth::routes();
 Route::get('home', 'HomeController@index')->name('home');
 
 // User routes.
-Route::get('users/{user}', 'UserController@show')->name('users.show');
+Route::resource('users', 'UserController');
 
 // User submissions for the contest.
 Route::resource('contests.submissions', 'ContestSubmissionController');

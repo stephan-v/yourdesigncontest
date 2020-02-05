@@ -43,7 +43,7 @@ class ContestSubmissionController extends Controller
             'path' => $path,
         ]);
 
-        return redirect()->route('contests.show', ['contest' => $contest]);
+        return redirect()->route('contests.show', $contest);
     }
 
     /**

@@ -8,7 +8,8 @@
                     <div class="card-body">
                         <h1>Edit your profile</h1>
 
-                        <form action="{{ route('contests.update') }}" method="PATCH">
+                        <form action="{{ route('users.update', $user) }}" method="POST">
+                            @method('PATCH')
                             @csrf
 
                             <div class="form-group">
@@ -32,7 +33,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="password">{{ __('E-Mail Address') }}</label>
+                                <label for="password">{{ __('Password') }}</label>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')

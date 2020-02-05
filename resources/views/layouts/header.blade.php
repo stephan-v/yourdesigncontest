@@ -74,7 +74,7 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('users.show', ['user' => $user]) }}">Profile</a>
+                                    <a class="nav-link" href="{{ route('users.show', $user) }}">Profile</a>
                                 </li>
                             @else
                                 <li class="nav-item">

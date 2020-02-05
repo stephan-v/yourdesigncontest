@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\File;
 use App\Http\Requests\UserRequest;
 use App\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -46,6 +44,7 @@ class UserController extends Controller
     {
         $user->update($request->validated());
 
-        return redirect()->back();
+        // @TODO add a message.
+        return redirect()->route('users.show', $user);
     }
 }

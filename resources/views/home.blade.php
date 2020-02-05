@@ -13,7 +13,7 @@
     <div class="container">
         <img src="{{ asset('images/header.jpg') }}" alt="A collaboration of graphic design images" class="img-fluid w-100">
 
-        <div class="bg-white p-5">
+        <div class="bg-white p-4">
             <h2>Do you need a logo or other graphic design?</h2>
 
             <p>
@@ -27,7 +27,7 @@
                 catering to real clients, work on your portfolio and expand your network all while earning cash.
             </p>
 
-            <p>
+            <p class="m-0">
                 GraphicDesignContests is the place to brand yourself as a creative specialist. Click here to learn more.
             </p>
         </div>

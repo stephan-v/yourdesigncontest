@@ -32,6 +32,6 @@ class WinnerController extends Controller
 
         $submission->winner()->create();
 
-        return redirect()->route('contests.show', ['contest' => $contest]);
+        return redirect()->route('contests.show', $contest);
     }
 }

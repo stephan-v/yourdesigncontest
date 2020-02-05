@@ -7,7 +7,7 @@
                 <h1>Your design files</h1>
 
                 @can('manage', $contest)
-                    <a class="btn btn-primary" href="{{ route('zip', ['contest' => $contest]) }}" role="button">
+                    <a class="btn btn-primary" href="{{ route('zip', $contest) }}" role="button">
                         <i class="fa fa-download" aria-hidden="true"></i> Download zip
                     </a>
                 @endif;
