@@ -16,7 +16,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('contact.mail') }}" method="post">
+                        <form action="{{ route('contact.mail') }}" method="POST">
                             @csrf
 
                             <div class="form-group">

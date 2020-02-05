@@ -19,4 +19,15 @@ class UserController extends Controller
 
         return view('user.show', compact('user'));
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param User $user The user to display.
+     * @return View The HTML server response.
+     */
+    public function edit(User $user)
+    {
+        return view('user.edit', compact('user'));
+    }
 }

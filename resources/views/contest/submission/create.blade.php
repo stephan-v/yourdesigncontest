@@ -12,7 +12,7 @@
 
                         <form action="{{ route('contests.submissions.store', ['contest' => $contest]) }}"
                               enctype="multipart/form-data"
-                              method="post">
+                              method="POST">
                             @csrf
 
                              <div class="form-group">
