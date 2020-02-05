@@ -7,8 +7,8 @@ use App\File;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use STS\ZipStream\ZipStream;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Zip;
 
 class ContestFileController extends Controller
 {
@@ -16,17 +16,16 @@ class ContestFileController extends Controller
      * Display a listing of the resource.
      *
      * @param Contest $contest The contest which the submission belongs to.
-     * @return Zip Build the Zip file in memory as a stream.
+     * @param ZipStream $zip The ZipStream instance.
+     * @return ZipStream Build the Zip file in memory as a stream.
      */
-    public function zip(Contest $contest)
+    public function zip(Contest $contest, ZipStream $zip)
     {
         // @TODO make sure only the contest owner can access this.
 
-        $files = $contest->files->map(function(File $file) {
-            return storage_path("app/public/{$file->path}");
-        });
+        $files = $contest->files->map->publicPath;
 
-        return Zip::create("source-files.zip", $files->toArray());
+        return $zip->create("source-files.zip", $files->toArray());
     }
 
     /**
@@ -53,17 +52,6 @@ class ContestFileController extends Controller
     public function create()
     {
         return view('contest.files.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
