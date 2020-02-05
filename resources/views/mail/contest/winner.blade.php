@@ -11,7 +11,8 @@ What happens next?
 
 - Before you receive payment we ask you to upload your source files using the button below.
 - To receive payment you need to verify your identity using the Stripe verification process.
-- You will receive an email once everything is approved and you will receive your payout within 2 weeks.
+- You will receive an email once everything is approved.
+- You will receive your payout within 2 weeks.
 
 ## Source files
 
