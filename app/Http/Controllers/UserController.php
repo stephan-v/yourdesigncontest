@@ -44,7 +44,8 @@ class UserController extends Controller
     {
         $user->update($request->validated());
 
-        // @TODO add a message.
+        alert()->success('Success','Your user account has been updated.');
+
         return redirect()->route('users.show', $user);
     }
 }
