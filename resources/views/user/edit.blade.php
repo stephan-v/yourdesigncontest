@@ -13,13 +13,22 @@
 
                             <div class="form-group">
                                 <label for="name">{{ __('Name') }}</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="file" name="name" value="{{ old('name') }}" required autocomplete="name">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="file" name="name" value="{{ old('name', $user->name) }}" required autocomplete="name">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="currency">Currency</label>
+
+                                <select name="currency" class="form-control" id="currency">
+                                    <option value="eur" @if ($user->currency === old('currency', 'eur')) selected @endif>EUR</option>
+                                    <option value="usd" @if ($user->currency === old('currency', 'usd')) selected @endif>USD</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
