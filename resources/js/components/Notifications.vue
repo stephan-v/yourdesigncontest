@@ -18,18 +18,19 @@
     export default {
         data() {
             return {
+                notifications: this.initialNotifications || [],
                 visible: false,
             };
         },
 
         created() {
             Echo.private(`users.${this.user.id}`).notification((notification) => {
-                console.log(notification.type);
+                this.notifications.unshift(notification);
             });
         },
 
         props: {
-            notifications: {
+            initialNotifications: {
                 type: Array,
                 required: true,
             },

@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>YourDesignContest</title>
 
@@ -68,7 +69,7 @@
                             @auth
                                 <li class="nav-item">
                                     <span class="nav-link">
-                                        <notifications :notifications='@json($user->notifications)'></notifications>
+                                        <notifications :initial-notifications='@json($user->notifications)'></notifications>
                                     </span>
                                 </li>
 
