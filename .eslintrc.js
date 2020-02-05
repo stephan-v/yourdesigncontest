@@ -10,6 +10,7 @@ module.exports = {
   globals: {
     axios: "readonly",
     Stripe: "readonly",
+    Echo: "readonly",
   },
   parserOptions: {
     ecmaVersion: 2018,

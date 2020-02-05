@@ -46,4 +46,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Contest::class);
     }
+
+    /**
+     * The channels the user receives notification broadcasts on.
+     *
+     * @return string
+     */
+    public function receivesBroadcastNotificationsOn()
+    {
+        return 'users.' . $this->id;
+    }
 }

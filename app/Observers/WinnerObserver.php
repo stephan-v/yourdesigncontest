@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Mail\ContestWinner;
-use App\Notifications\VerifyStripeIdentity;
+use App\Notifications\VerifyStripeIdentityRequest;
 use App\Winner;
 use Illuminate\Support\Facades\Mail;
 
@@ -22,7 +22,7 @@ class WinnerObserver
         Mail::to($user)->send(new ContestWinner($contest));
 
         if ($user->isNotStripeVerified) {
-            $user->notify(new VerifyStripeIdentity());
+            $user->notify(new VerifyStripeIdentityRequest());
         }
     }
 }

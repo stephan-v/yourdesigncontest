@@ -13,11 +13,19 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex';
+
     export default {
         data() {
             return {
                 visible: false,
             };
+        },
+
+        created() {
+            Echo.private(`users.${this.user.id}`).notification((notification) => {
+                console.log(notification.type);
+            });
         },
 
         props: {
@@ -34,6 +42,10 @@
         },
 
         computed: {
+            ...mapGetters('authentication', [
+                'user',
+            ]),
+
             count() {
                 return this.notifications.length;
             },
