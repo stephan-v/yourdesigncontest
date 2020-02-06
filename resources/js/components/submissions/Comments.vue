@@ -10,7 +10,7 @@
             </div>
         </form>
 
-        <Comment v-for="comment in comments" :key="comment.id" :comment="comment"></Comment>
+        <Comment v-for="comment in comments" :key="comment.id" :initial-comment="comment"></Comment>
     </div>
 </template>
 
@@ -40,8 +40,8 @@
         methods: {
             submit() {
                 axios.post(`/submissions/${this.submission.id}/comments`, {
-                    comment: this.comment,
                     user_id: this.user.id,
+                    value: this.comment,
                 }).then((response) => {
                     this.comments.unshift(response.data);
                     this.comment = '';

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
 use App\Http\Requests\CommentRequest;
 use App\Submission;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class SubmissionCommentController extends Controller
