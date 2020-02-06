@@ -10,10 +10,7 @@
             </div>
         </form>
 
-        <div class="comment mb-3" v-for="comment in comments" :key="comment.id">
-            <div>{{ comment.comment }}</div>
-            <small class="text-muted">{{ comment.user.name}}</small>
-        </div>
+        <Comment v-for="comment in comments" :key="comment.id" :comment="comment"></Comment>
     </div>
 </template>
 
@@ -65,10 +62,5 @@
 <style lang="scss" scoped>
     .btn {
         border-radius: 0 0.25rem 0.25rem 0;
-    }
-
-    .comment {
-        padding: 1rem;
-        background: white;
     }
 </style>
