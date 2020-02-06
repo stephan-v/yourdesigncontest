@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Comment;
 use App\Notifications\ReceivedComment;
+use App\User;
 
 class CommentObserver
 {
@@ -16,12 +17,14 @@ class CommentObserver
     public function created(Comment $comment)
     {
         $submission = $comment->commentable;
+
+        /** @var User $user */
         $user = $submission->user;
 
         if ($submission->user->id === $comment->user->id) {
             $user = $submission->contest->user;
         }
 
-        return $user->notify(new ReceivedComment($comment));
+        $user->notify(new ReceivedComment($comment));
     }
 }

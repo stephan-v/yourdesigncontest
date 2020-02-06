@@ -1,6 +1,6 @@
 <template>
     <div class="comments">
-        <form @submit.prevent="place">
+        <form @submit.prevent="submit">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Place a comment" v-model="comment" required>
 
@@ -41,7 +41,7 @@
         },
 
         methods: {
-            place() {
+            submit() {
                 axios.post(`/submissions/${this.submission.id}/comments`, {
                     comment: this.comment,
                     user_id: this.user.id,

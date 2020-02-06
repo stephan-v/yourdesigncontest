@@ -6,6 +6,7 @@ use App\Comment;
 use App\Observers\CommentObserver;
 use App\Observers\WinnerObserver;
 use App\Winner;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
@@ -49,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('*', function (View $view) {
             $view->with('user', Auth::user());
+            $view->with('production', App::environment('production'));
         });
     }
 }
