@@ -26,7 +26,7 @@
                                     <div>size: {{ $file->size }}</div>
                                 </div>
 
-                                <a class="btn btn-secondary" href="{{ route('contests.files.show', ['contest' => $contest, 'file' => $file]) }}" role="button">
+                                <a class="btn btn-secondary" href="{{ route('contests.files.show', [$contest, $file]) }}" role="button">
                                     Download
                                 </a>
                             </li>

@@ -10,7 +10,7 @@
 
                         <div class="alert alert-info" role="alert">Max filesize is 1MB</div>
 
-                        <form action="{{ route('contests.submissions.store', ['contest' => $contest]) }}"
+                        <form action="{{ route('contests.submissions.store', $contest) }}"
                               enctype="multipart/form-data"
                               method="POST">
                             @csrf

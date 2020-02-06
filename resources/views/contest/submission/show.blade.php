@@ -26,7 +26,7 @@
         @if (!$contest->winner())
             <div class="row">
                 <div class="col-md-6 offset-md-3">
-                    <form class="text-center mb-5 mt-5" method="POST" action="{{ route('winner', ['contest' => $contest, 'submission' => $submission]) }}">
+                    <form class="text-center mb-5 mt-5" method="POST" action="{{ route('winner', [$contest, $submission]) }}">
                         @csrf
 
                         <button type="submit" class="btn btn-primary">Select as winner</button>

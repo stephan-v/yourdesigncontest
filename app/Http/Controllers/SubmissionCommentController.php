@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Http\Requests\CommentRequest;
 use App\Submission;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -33,18 +34,12 @@ class SubmissionCommentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Submission $submission The submission to attach the comment to.
-     * @param Request $request The server request.
+     * @param CommentRequest $request The incoming HTTP client request.
      * @return Response The server response.
      */
-    public function store(Submission $submission, Request $request)
+    public function store(Submission $submission, CommentRequest $request)
     {
-        $data = $request->validate([
-            'comment' => ['required', 'string'],
-            'user_id' => ['required', 'exists:users,id'],
-        ]);
-
-        $comment = $submission->comments()->create($data);
-
+        $comment = $submission->comments()->create($request->validated());
         $comment->load('user');
 
         return response($comment);

@@ -60,13 +60,13 @@
                             <div class="alert alert-warning text-center mb-0" role="alert">Winner!</div>
                         @endif
 
-                        <a href="{{ route('contests.submissions.show', ['contest' => $contest, 'submission' => $submission]) }}"
+                        <a href="{{ route('contests.submissions.show', [$contest, $submission]) }}"
                            class="p-3 d-flex justify-content-center align-items-center">
                             <img src="{{ asset($submission->path) }}" alt="" class="img-fluid">
                         </a>
 
                         <stars :initial-rating="{{ $submission->rating ?? 0 }}"
-                               route="{{ route('contests.submissions.update', ['contest' => $contest, 'submission' => $submission]) }}">
+                               route="{{ route('contests.submissions.update', [$contest, $submission]) }}">
                         </stars>
 
                         <div class="caption p-3 border-top">

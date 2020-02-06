@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
+use App\Comment;
+use App\Observers\CommentObserver;
 use App\Observers\WinnerObserver;
-use App\User;
 use App\Winner;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
@@ -28,9 +29,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Winner::observe(WinnerObserver::class);
-
+        $this->setObservers();
         $this->setViewComposer();
+    }
+
+    /**
+     * Set all model observers.
+     */
+    private function setObservers()
+    {
+        Winner::observe(WinnerObserver::class);
+        Comment::observe(CommentObserver::class);;
     }
 
     /**
