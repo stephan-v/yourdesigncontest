@@ -37,6 +37,12 @@
             },
         },
 
+        computed: {
+            ...mapGetters('authentication', [
+                'user',
+            ]),
+        },
+
         methods: {
             submit() {
                 axios.post(`/submissions/${this.submission.id}/comments`, {
@@ -49,12 +55,6 @@
                     console.log(error.response.data);
                 });
             },
-        },
-
-        computed: {
-            ...mapGetters('authentication', [
-                'user',
-            ]),
         },
     };
 </script>

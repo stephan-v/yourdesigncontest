@@ -4,11 +4,18 @@
         <div v-else>{{ comment.value }}</div>
 
         <small class="text-muted">{{ comment.user.name }}</small>
-        <small class="text-muted" @click="edit">edit</small>
+
+        <div v-if="authorized">
+            <small class="text-muted" @click="edit">edit</small>
+            <small class="text-muted" @click="destroy">delete</small>
+        </div>
     </div>
 </template>
 
 <script>
+    import { mapGetters } from 'vuex';
+    import swal from 'sweetalert';
+
     export default {
         data() {
             return {
@@ -24,6 +31,16 @@
             },
         },
 
+        computed: {
+            ...mapGetters('authentication', [
+                'user',
+            ]),
+
+            authorized() {
+                return this.comment.id === this.user.id;
+            },
+        },
+
         methods: {
             edit() {
                 this.editing = true;
@@ -32,6 +49,10 @@
 
             focus() {
                 this.$refs.editable.focus();
+            },
+
+            destroy() {
+                swal('Destroy');
             },
 
             update() {
