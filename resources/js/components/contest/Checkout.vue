@@ -26,7 +26,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Order details</h5>
 
-                        <ul class="total-price">
+                        <ul class="total-price list-unstyled">
                             <li class="d-flex justify-content-between">
                                 <span class="text-muted">Amount</span>
                                 <span>{{ this.price.toFormat() }}</span>
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="alert alert-danger" v-if="errors.length">
-                    <ul class="mb-0">
+                    <ul class="mb-0 list-unstyled">
                         <li v-for="error in errors" :key="error">{{ error }}</li>
                     </ul>
                 </div>
@@ -138,10 +138,6 @@
 
 <style lang="scss" scoped>
     ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-
         li {
             margin-bottom: 0.75rem;
 
