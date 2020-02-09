@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import Echo from 'laravel-echo';
 import Vue from 'vue';
+import vClickOutside from 'v-click-outside';
 
 /**
  * Autoload the Vue components and register them globally.
@@ -37,6 +38,10 @@ window.axios = Axios;
  * allows your team to easily build robust real-time web applications.
  */
 
+if (!process.env.MIX_PUSHER_APP_KEY.length) {
+    console.error('A PUSHER_APP_KEY has not been provided in your .env file.');
+}
+
 window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
@@ -45,3 +50,8 @@ window.Echo = new Echo({
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
     encrypted: true,
 });
+
+/**
+ * Global v-click-outside directive.
+ */
+Vue.use(vClickOutside);

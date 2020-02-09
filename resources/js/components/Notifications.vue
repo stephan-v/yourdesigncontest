@@ -6,8 +6,12 @@
             {{ count }}
         </span>
 
-        <ul class="list-group position-absolute bg-white z-index-1" v-if="count && visible">
+        <ul class="list-group position-absolute bg-white z-index-1" v-if="count && visible" v-click-outside="toggle">
             <li v-for="notification in notifications" :key="notification.id" v-html="notification.data.message"/>
+        </ul>
+
+        <ul class="list-group position-absolute bg-white z-index-1" v-else-if="visible" v-click-outside="toggle">
+            <li>No new messages</li>
         </ul>
     </span>
 </template>
@@ -75,13 +79,13 @@
         top: 2rem;
         z-index: 1;
         color: #424851;
-        min-width: 300px;
         list-style: none;
         border-radius: 0.25rem;
 
         li {
             padding: 0.6rem 1rem;
             border-bottom: 1px solid #e0e0e0;
+            white-space: nowrap;
 
             &:last-child {
                 border: 0;
