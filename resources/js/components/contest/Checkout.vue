@@ -1,60 +1,54 @@
 <template>
-    <div class="card">
-        <div class="card-body">
-            <h1>Checkout</h1>
-
-            <form @submit.prevent>
-                <div class="form-group mb-3">
-                    <label for="currency">Currency</label>
-                    <select name="currency" class="form-control" id="currency" v-model="currency">
-                        <option value="eur">EUR</option>
-                        <option value="usd">USD</option>
-                    </select>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label for="amount">Price money</label>
-                    <input type="number"
-                           class="form-control"
-                           id="amount"
-                           :placeholder="currencyPlaceholder"
-                           v-model.number="amount">
-                    <small class="form-text text-muted">Select how much the winning designer will earn.</small>
-                </div>
-
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Order details</h5>
-
-                        <ul class="total-price list-unstyled">
-                            <li class="d-flex justify-content-between">
-                                <span class="text-muted">Amount</span>
-                                <span>{{ this.price.toFormat() }}</span>
-                            </li>
-
-                            <li class="d-flex justify-content-between">
-                                <span class="text-muted">Fee ({{ this.percentage }}%)</span>
-                                <span>{{ this.fee.toFormat() }}</span>
-                            </li>
-
-                            <li class="total d-flex justify-content-between">
-                                <span class="text-muted">Total</span>
-                                <span>{{ this.total.toFormat() }}</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="alert alert-danger" v-if="errors.length">
-                    <ul class="mb-0 list-unstyled">
-                        <li v-for="error in errors" :key="error">{{ error }}</li>
-                    </ul>
-                </div>
-
-                <button type="submit" class="btn btn-primary" @click="submit">Continue to checkout</button>
-            </form>
+    <form @submit.prevent>
+        <div class="form-group mb-3">
+            <label for="currency">Currency</label>
+            <select name="currency" class="form-control" id="currency" v-model="currency">
+                <option value="eur">EUR</option>
+                <option value="usd">USD</option>
+            </select>
         </div>
-    </div>
+
+        <div class="form-group mb-3">
+            <label for="amount">Price money</label>
+            <input type="number"
+                   class="form-control"
+                   id="amount"
+                   :placeholder="placeholder"
+                   v-model.number="amount">
+            <small class="form-text text-muted">Select how much the winning designer will earn.</small>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Order details</h5>
+
+                <ul class="total-price list-unstyled">
+                    <li class="d-flex justify-content-between">
+                        <span class="text-muted">Amount</span>
+                        <span>{{ this.price.toFormat() }}</span>
+                    </li>
+
+                    <li class="d-flex justify-content-between">
+                        <span class="text-muted">Fee ({{ this.percentage }}%)</span>
+                        <span>{{ this.fee.toFormat() }}</span>
+                    </li>
+
+                    <li class="total d-flex justify-content-between">
+                        <span class="text-muted">Total</span>
+                        <span>{{ this.total.toFormat() }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert alert-danger" v-if="errors.length">
+            <ul class="mb-0 list-unstyled">
+                <li v-for="error in errors" :key="error">{{ error }}</li>
+            </ul>
+        </div>
+
+        <button type="submit" class="btn btn-primary" @click="submit">Continue to checkout</button>
+    </form>
 </template>
 
 <script>
@@ -129,7 +123,7 @@
                 return this.price.add(this.fee);
             },
 
-            currencyPlaceholder() {
+            placeholder() {
                 return `Amount in ${this.currency.toUpperCase()}`;
             },
         },
