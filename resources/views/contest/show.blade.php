@@ -2,29 +2,29 @@
 
 @section('meta')
     @php
-        $description = 'test';
-        $image = 'image.jpg';
+        $description = "A new design contest - {$contest->name}";
+        $image = asset('images/drawing-feedback-logos-critique-17845.jpg');
     @endphp
 
     <!-- Place this data between the <head> tags of your website -->
     <meta name="description" content="{{ $description }}" />
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="The Name or Title Here">
+    <meta itemprop="name" content="{{ $contest->name }}">
     <meta itemprop="description" content="{{ $description }}">
     <meta itemprop="image" content="{{ $image }}">
 
     <!-- Twitter Card data -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@publisher_handle">
-    <meta name="twitter:title" content="Page Title">
+    <meta name="twitter:title" content="{{ config('app.name') }}">
     <meta name="twitter:description" content="{{ $description }}">
     <meta name="twitter:creator" content="@author_handle">
     <!-- Twitter summary card with large image must be at least 280x150px -->
     <meta name="twitter:image:src" content="{{ $image }}">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="Title Here" />
+    <meta property="og:title" content="{{ $contest->name }}" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:image" content="{{ $image }}" />
@@ -39,12 +39,14 @@
 
 @section('content')
     <div class="container">
-        @if ($user->can('manage', $contest) && $contest->finished)
-            <div class="alert alert-warning mt-5" role="alert">
-                The contest is finished.
-                Click <a href="{{ route('contests.files.index', $contest) }}">here</a> to review the final design files.
-            </div>
-        @endif
+        @can('manage', $contest)
+            @if ($contest->finished)
+                <div class="alert alert-warning mt-5" role="alert">
+                    The contest is finished.
+                    Click <a href="{{ route('contests.files.index', $contest) }}">here</a> to review the final design files.
+                </div>
+            @endif
+        @endcan
 
         <div class="row mt-5 mb-5">
             <div class="col-md-9">
@@ -118,6 +120,12 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 pt-4 pb-3 d-flex justify-content-center">
+                {{ $contest->submissions->links() }}
+            </div>
         </div>
     </div>
 @endsection

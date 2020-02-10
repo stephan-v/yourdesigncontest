@@ -72,7 +72,9 @@ class ContestController extends Controller
             return redirect('/');
         }
 
-        $contest->load('submissions');
+        $contest->with('submissions');
+
+        $contest->submissions = $contest->submissions()->paginate(12);
 
         // Add numbering to the submissions. @TODO review if there is a better place for this.
         $contest->submissions->map(function (Submission $submission, $index) {
