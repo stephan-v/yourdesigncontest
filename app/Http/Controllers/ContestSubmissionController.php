@@ -7,6 +7,7 @@ use App\Http\Requests\ContestSubmissionRequest;
 use App\Submission;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class ContestSubmissionController extends Controller
@@ -64,7 +65,7 @@ class ContestSubmissionController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -77,7 +78,7 @@ class ContestSubmissionController extends Controller
      * @param Request $request The incoming HTTP client request.
      * @param Contest $contest The contest which owns the submission.
      * @param Submission $submission The submission to display.
-     * @return \Illuminate\Http\Response
+     * @return Response The server response.
      */
     public function update(Request $request, Contest $contest, Submission $submission)
     {
@@ -94,7 +95,7 @@ class ContestSubmissionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

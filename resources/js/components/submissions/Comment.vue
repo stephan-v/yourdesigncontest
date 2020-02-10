@@ -37,7 +37,11 @@
             ]),
 
             authorized() {
-                return this.comment.id === this.user.id;
+                return this.comment.user.id === this.user.id;
+            },
+
+            route() {
+                return `/comments/${this.comment.id}`;
             },
         },
 
@@ -52,16 +56,27 @@
             },
 
             destroy() {
-                swal('Destroy');
+                // Confirm deletion.
+                swal({
+                    icon: 'warning',
+                    title: 'Are you sure?',
+                    text: 'You will not be able to recover this comment.',
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        // @TODO move all Axios calls to the parent?
+                        axios.delete(this.route).then(() => this.$emit('del', this.comment));
+                    }
+                });
             },
 
             update() {
-                axios.patch(`/comments/${this.comment.id}`, {
+                axios.patch(this.route, {
                     user_id: this.comment.user.id,
                     value: this.comment.value,
                 }).then(() => {
                     this.editing = false;
-                    this.editable = '';
                 }).catch((error) => {
                     console.log(error.response.data);
                 });

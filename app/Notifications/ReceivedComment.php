@@ -65,9 +65,10 @@ class ReceivedComment extends Notification implements ShouldQueue
     {
         $submission = $this->comment->commentable;
 
-        $route = route('contests.submissions.show', [$submission->contest, $submission]);
+        $route = route('contests.submissions.show', [$submission->contest, $submission], false);
 
         return [
+            'id' => $this->comment->id,
             'message' => "You have a <a href='{$route}'>new comment</a>",
         ];
     }

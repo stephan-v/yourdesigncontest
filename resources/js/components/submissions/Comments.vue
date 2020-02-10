@@ -10,7 +10,11 @@
             </div>
         </form>
 
-        <Comment v-for="comment in comments" :key="comment.id" :initial-comment="comment"></Comment>
+        <Comment v-for="comment in comments"
+                 :key="comment.id"
+                 :initial-comment="comment"
+                 @del="del">
+        </Comment>
     </div>
 </template>
 
@@ -44,6 +48,10 @@
         },
 
         methods: {
+            del(comment) {
+                this.comments.splice(this.comments.indexOf(comment), 1);
+            },
+
             submit() {
                 axios.post(`/submissions/${this.submission.id}/comments`, {
                     user_id: this.user.id,

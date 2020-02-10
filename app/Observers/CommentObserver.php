@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Comment;
 use App\Notifications\ReceivedComment;
 use App\User;
+use Illuminate\Notifications\DatabaseNotification;
 
 class CommentObserver
 {
@@ -12,7 +13,6 @@ class CommentObserver
      * Handle the comment "created" event.
      *
      * @param Comment $comment The comment which was just created.
-     * @return void
      */
     public function created(Comment $comment)
     {
@@ -21,10 +21,24 @@ class CommentObserver
         /** @var User $user */
         $user = $submission->user;
 
+        // Send out a notification to the submission or contest owner, depending on who comments.
         if ($submission->user->id === $comment->user->id) {
             $user = $submission->contest->user;
         }
 
         $user->notify(new ReceivedComment($comment));
+    }
+
+    /**
+     * Handle the comment "deleted" event.
+     *
+     * @param Comment $comment The comment which was just deleted.
+     */
+    public function deleted(Comment $comment)
+    {
+        // Deleted the notification about this comment.
+        DatabaseNotification::where('type', ReceivedComment::class)
+            ->where('data->id', $comment->id)
+            ->delete();
     }
 }
