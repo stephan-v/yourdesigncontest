@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>YourDesignContest</title>
+        @yield('meta')
+
+        <title>YourDesignContest - @yield('title')</title>
 
         <script defer src="{{ mix('/js/app.js') }}"></script>
 
