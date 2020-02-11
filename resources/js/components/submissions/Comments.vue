@@ -25,7 +25,7 @@
         data() {
             return {
                 comment: '',
-                comments: this.initialComments,
+                comments: this.initialComments || [],
             };
         },
 
@@ -69,5 +69,10 @@
 <style lang="scss" scoped>
     .btn {
         border-radius: 0 0.25rem 0.25rem 0;
+    }
+
+    input:focus {
+        box-shadow: none;
+        border: 0;
     }
 </style>

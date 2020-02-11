@@ -1,7 +1,7 @@
 <template>
-    <div @click="open" @close="close">
+    <div @click="open">
         <slot/>
-        <submission-modal :submission="submission" v-if="visible"/>
+        <submission-modal :submission="submission" @close="close" v-if="visible"/>
     </div>
 </template>
 

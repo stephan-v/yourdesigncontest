@@ -18,7 +18,7 @@
                             <div class="form-group">
                                 <label for="title">Title</label>
                                 <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                       placeholder="Optionally provide the title for your design"
+                                       placeholder="Provide the title for your design"
                                        id="title"
                                        name="title"
                                        value="{{ old('title') }}">

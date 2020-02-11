@@ -65,6 +65,7 @@ class ReceivedComment extends Notification implements ShouldQueue
     {
         $submission = $this->comment->commentable;
 
+        // @TODO update to show the modal instead.
         $route = route('contests.submissions.show', [$submission->contest, $submission], false);
 
         return [

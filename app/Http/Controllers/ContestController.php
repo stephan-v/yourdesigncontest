@@ -60,7 +60,11 @@ class ContestController extends Controller
     {
         $contest->with('submissions');
 
-        $submissions = $contest->submissions()->with('user')->paginate(12);
+        $submissions = $contest
+            ->submissions()
+            ->latest('order')
+            ->with('user')
+            ->paginate(12);
 
         return view('contest.show', compact('contest', 'submissions'));
     }

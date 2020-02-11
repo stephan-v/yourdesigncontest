@@ -40,25 +40,12 @@ class ContestSubmissionController extends Controller
         );
 
         $contest->submissions()->create([
+            'title' => $request->title,
             'description' => $request->description,
             'path' => $path,
         ]);
 
         return redirect()->route('contests.show', $contest);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param Contest $contest The contest which owns the submission.
-     * @param Submission $submission The submission to display.
-     * @return View The HTML server response.
-     */
-    public function show(Contest $contest, Submission $submission)
-    {
-        $submission->load('comments.user');
-
-        return view('contest.submission.show', compact('contest', 'submission'));
     }
 
     /**

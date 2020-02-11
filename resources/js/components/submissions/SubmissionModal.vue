@@ -1,19 +1,36 @@
 <template>
-    <div>
-        <div class="d-flex align-content-center justify-content-center">
-            <img :src="submission.path" alt="" class="img-fluid" style="max-height: 300px">
+    <div class="text-left">
+        <div class="d-flex align-items-center justify-content-between p-4">
+            <div>
+                <h2 class="mb-1">{{ submission.title }}</h2>
+                <div>By <a :href="profile">{{ submission.user.name }}</a></div>
+            </div>
+
+            <form class="text-center" @submit.prevent="submit">
+                <button type="submit" class="btn btn-dark">
+                    Select as winner <i class="fa fa-trophy ml-1" aria-hidden="true"></i>
+                </button>
+            </form>
         </div>
 
-        <div v-if="submission.description">
-            <small class="text-muted d-block mb-1">Description from {{ submission.user.name }}</small>
+        <div class="d-flex align-content-center justify-content-center bg-white">
+            <img :src="submission.path" alt="" class="img-fluid">
+        </div>
+
+        <div class="pt-4 pr-4 pl-4" v-if="submission.description">
             {{ submission.description }}
         </div>
 
-        <form class="text-center mb-5 mt-5" @submit.prevent="submit">
-            <button type="submit" class="btn btn-primary">Select as winner</button>
-        </form>
+        <div class="submission-info p-4">
+            <div class="description">
+                <div class="mb-3 font-weight-bold">Comments</div>
+                <comments :submission="submission" class="p4"/>
+            </div>
 
-        <comments :submission="submission"/>
+            <div class="metadata">
+                <p>Test</p>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -33,7 +50,9 @@
                 buttons: false,
                 className: 'submission-modal',
                 content: this.$el,
-            }).then(() => this.$emit('close'));
+            }).then(() => {
+                this.$emit('close');
+            });
         },
 
         computed: {
@@ -44,10 +63,15 @@
             route() {
                 return `/contests/${this.contest}/submissions/${this.submission.id}/winner`;
             },
+
+            profile() {
+                return `/users/${this.submission.user.id}`;
+            },
         },
 
         methods: {
             submit() {
+                // @TODO Add "are you sure" confirmation.
                 axios.post(this.route).then((response) => {
                     window.location = response.data.redirect;
                 });
@@ -58,9 +82,37 @@
 
 <style lang="scss">
     .submission-modal {
+        width: 800px;
+
         .swal-content {
             margin: 0;
             padding: 0;
+            border-radius: 6px;
+            overflow: hidden;
+            background: whitesmoke;
+
+            h2 {
+                margin: 0;
+                font-weight: bold;
+                font-size: 1.3rem;
+            }
+
+            img {
+                max-height: 600px;
+            }
+
+            .submission-info {
+                display: flex;
+
+                .description {
+                    flex: 1;
+                    margin-right: 50px;
+                }
+
+                .metadata {
+                    flex: 0 0 250px;
+                }
+            }
         }
     }
 </style>

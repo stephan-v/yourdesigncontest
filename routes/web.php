@@ -45,7 +45,7 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::resource('users', 'UserController');
 
 // User submissions for the contest.
-Route::resource('contests.submissions', 'ContestSubmissionController');
+Route::resource('contests.submissions', 'ContestSubmissionController')->except('show');
 
 // Source files for the contest.
 Route::get('contests/{contest}/files/zip', 'ContestFileController@zip')->name('zip');
