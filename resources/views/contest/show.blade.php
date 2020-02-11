@@ -92,7 +92,7 @@
         @endcan
 
         <div class="row">
-            @foreach ($contest->submissions as $submission)
+            @foreach ($submissions as $submission)
                 <div class="col-md-3">
                     <div class="submission mb-3 @if ($submission->winner) border border-warning @endif">
                         <submission :submission='@json($submission)'>
@@ -125,7 +125,7 @@
 
         <div class="row">
             <div class="col-md-12 pt-4 pb-3 d-flex justify-content-center">
-                {{ $contest->submissions->links() }}
+                {{ $submissions->links() }}
             </div>
         </div>
     </div>
