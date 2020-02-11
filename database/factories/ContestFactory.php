@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Contest::class, function (Faker $faker) {
     return [
-        'name' => $faker->word,
+        'name' => $faker->sentence,
         'description' => $faker->text,
         'status' => 'online',
         'user_id' => 1,
