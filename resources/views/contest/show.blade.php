@@ -95,14 +95,15 @@
             @foreach ($contest->submissions as $submission)
                 <div class="col-md-3">
                     <div class="submission mb-3 @if ($submission->winner) border border-warning @endif">
-                        @if ($submission->winner)
-                            <div class="alert alert-warning text-center mb-0" role="alert">Winner!</div>
-                        @endif
+                        <submission :submission='@json($submission)'>
+                            @if ($submission->winner)
+                                <div class="alert alert-warning text-center mb-0" role="alert">Winner!</div>
+                            @endif
 
-                        <a href="{{ route('contests.submissions.show', [$contest, $submission]) }}"
-                           class="p-3 d-flex justify-content-center align-items-center">
-                            <img src="{{ asset($submission->path) }}" alt="" class="img-fluid">
-                        </a>
+                            <div class="p-3 d-flex justify-content-center align-items-center">
+                                <img src="{{ asset($submission->path) }}" alt="" class="img-fluid">
+                            </div>
+                        </submission>
 
                         <stars :initial-rating="{{ $submission->rating ?? 0 }}"
                                route="{{ route('contests.submissions.update', [$contest, $submission]) }}">

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Contest;
 use App\Http\Requests\ContestRequest;
-use App\Submission;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -20,10 +19,7 @@ class ContestController extends Controller
      */
     public function index()
     {
-        $contests = Contest::has('payment')
-            ->with('submissions')
-            ->latest()
-            ->get();
+        $contests = Contest::has('payment')->with('submissions')->latest()->get();
 
         return view('contest.index', compact('contests'));
     }
@@ -47,9 +43,7 @@ class ContestController extends Controller
      */
     public function store(ContestRequest $request)
     {
-        $contest = $request->user()->contests()->create(
-            $request->validated()
-        );
+        $contest = $request->user()->contests()->create($request->validated());
 
         $request->session()->put('contest', $contest);
 
@@ -59,29 +53,12 @@ class ContestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Contest $contest
+     * @param Contest $contest The contest to display.
      * @return RedirectResponse|View The HTML server response.
      */
     public function show(Contest $contest)
     {
-        if ($contest->isNotPaidFor()) {
-            // @TODO show a modal only to the attached user stating it has not been paid for yet.
-                // return view with flash data for a modal.
-
-            // @TODO simply redirect other users.
-            return redirect('/');
-        }
-
-        $contest->with('submissions');
-
-        $contest->submissions = $contest->submissions()->paginate(12);
-
-        // Add numbering to the submissions. @TODO review if there is a better place for this.
-        $contest->submissions->map(function (Submission $submission, $index) {
-            $submission->number = ++$index;
-
-            return $submission;
-        });
+        $contest->with('submissions.user');
 
         return view('contest.show', compact('contest'));
     }

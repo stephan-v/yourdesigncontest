@@ -26,7 +26,10 @@ Route::get('contests/create', 'ContestController@create')->middleware('auth')->n
 Route::get('contests/{contest}/checkout/create', 'ContestCheckoutController@create')->middleware('auth')->name('checkout.create');
 Route::post('contests/{contest}/checkout', 'ContestCheckoutController@store');
 Route::get('success', 'ContestCheckoutController@success');
-Route::resource('contests', 'ContestController')->except(['create']);
+
+Route::get('contests', 'ContestController@index')->name('contests.index');
+Route::post('contests', 'ContestController@store')->name('contests.store');
+Route::get('contests/{contest}', 'ContestController@show')->middleware('payment.check')->name('contests.show');
 
 // Contest payout.
 Route::get('contests/{contest}/payout', 'ContestPayoutController@store');

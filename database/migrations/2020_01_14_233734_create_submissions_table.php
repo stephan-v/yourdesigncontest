@@ -1,4 +1,4 @@
-<?php
+]<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -19,6 +19,7 @@ class CreateSubmissionsTable extends Migration
             $table->text('description')->nullable();
             $table->string('path');
             $table->float('rating', 9, 2)->nullable();
+            $table->unsignedSmallInteger('order');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
@@ -26,6 +27,7 @@ class CreateSubmissionsTable extends Migration
             $table->unsignedBigInteger('contest_id');
             $table->foreign('contest_id')->references('id')->on('contests');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

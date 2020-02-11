@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Comment;
 use App\Observers\CommentObserver;
+use App\Observers\SubmissionObserver;
 use App\Observers\WinnerObserver;
+use App\Submission;
 use App\Winner;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -39,8 +41,9 @@ class AppServiceProvider extends ServiceProvider
      */
     private function setObservers()
     {
+        Comment::observe(CommentObserver::class);
+        Submission::observe(SubmissionObserver::class);
         Winner::observe(WinnerObserver::class);
-        Comment::observe(CommentObserver::class);;
     }
 
     /**

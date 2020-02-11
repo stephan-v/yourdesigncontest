@@ -14,6 +14,7 @@ class Submission extends Model
      */
     protected $fillable = [
         'description',
+        'order',
         'path',
         'rating',
         'user_id',
