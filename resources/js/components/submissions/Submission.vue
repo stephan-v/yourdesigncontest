@@ -27,8 +27,8 @@
 
             open() {
                 this.visible = true;
-            }
-        }
+            },
+        },
     };
 </script>
 

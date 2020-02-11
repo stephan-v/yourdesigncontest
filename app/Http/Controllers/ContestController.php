@@ -58,9 +58,9 @@ class ContestController extends Controller
      */
     public function show(Contest $contest)
     {
-        $contest->with('submissions.user');
+        $contest->with('submissions');
 
-        $submissions = $contest->submissions()->paginate(12);
+        $submissions = $contest->submissions()->with('user')->paginate(12);
 
         return view('contest.show', compact('contest', 'submissions'));
     }

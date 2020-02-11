@@ -19,21 +19,17 @@
             </div>
         </div>
 
-<!--        @if (!$contest->winner())-->
-<!--            <div class="row">-->
-<!--                <div class="col-md-6 offset-md-3">-->
-<!--                    <form class="text-center mb-5 mt-5" method="POST" action="{{ route('winner', [$contest, $submission]) }}">-->
-<!--                        @csrf-->
-
-<!--                        <button type="submit" class="btn btn-primary">Select as winner</button>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        @endif-->
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form class="text-center mb-5 mt-5" @submit.prevent="submit">
+                    <button type="submit" class="btn btn-primary">Select as winner</button>
+                </form>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <comments :submission="submission"></comments>
+                <comments :submission="submission"/>
             </div>
         </div>
     </div>
@@ -51,7 +47,25 @@
         },
 
         mounted() {
-            swal({ content: this.$el }).then(() => this.$emit('close'));
+            swal({ buttons: false, content: this.$el }).then(() => this.$emit('close'));
+        },
+
+        computed: {
+            contest() {
+                return this.submission.contest_id;
+            },
+
+            route() {
+                return `/contests/${this.contest}/submissions/${this.submission.id}/winner`;
+            },
+        },
+
+        methods: {
+            submit() {
+                axios.post(this.route).then((response) => {
+                    window.location = response.data.redirect;
+                });
+            },
         },
     };
 </script>

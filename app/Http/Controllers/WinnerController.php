@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Contest;
 use App\Submission;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -17,7 +16,7 @@ class WinnerController extends Controller
      * @param Request $request The incoming HTTP client request.
      * @param Contest $contest The contest which the submission belongs to.
      * @param Submission $submission The submission to be assigned as winner.
-     * @return RedirectResponse Returns a redirect back to the original location.
+     * @return Response The server response.
      * @throws AuthorizationException If the user is not authorized to create a winning submission.
      */
     public function store(Request $request, Contest $contest, Submission $submission)
@@ -32,6 +31,6 @@ class WinnerController extends Controller
 
         $submission->winner()->create();
 
-        return redirect()->route('contests.show', $contest);
+        return response(['redirect' => route('contests.show', $contest)]);
     }
 }
