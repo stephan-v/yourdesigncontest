@@ -32,7 +32,6 @@
         props: {
             initialComments: {
                 type: Array,
-                required: true,
             },
 
             submission: {

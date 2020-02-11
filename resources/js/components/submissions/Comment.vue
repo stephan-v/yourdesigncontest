@@ -43,7 +43,6 @@
 
         props: {
             initialComment: {
-                required: true,
                 type: Object,
             },
         },

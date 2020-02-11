@@ -101,7 +101,7 @@
                             @endif
 
                             <div class="p-3 d-flex justify-content-center align-items-center">
-                                <img src="{{ asset($submission->path) }}" alt="" class="img-fluid">
+                                <img src="{{ $submission->path }}" alt="" class="img-fluid">
                             </div>
                         </submission>
 

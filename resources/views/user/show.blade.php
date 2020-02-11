@@ -42,7 +42,7 @@
                     <div class="submission mb-3">
                         <div class="d-flex align-content-center justify-content-center p-3">
                             <a href="{{ route('contests.show', $submission->contest) }}">
-                                <img src="{{ asset($submission->path) }}" alt="" class="img-fluid">
+                                <img src="{{ $submission->path }}" alt="" class="img-fluid">
                             </a>
                         </div>
 

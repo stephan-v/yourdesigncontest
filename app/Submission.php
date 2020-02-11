@@ -2,11 +2,14 @@
 
 namespace App;
 
+use App\Presenters\SubmissionPresenter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class Submission extends Model
 {
+    use SubmissionPresenter;
+
     /**
      * The attributes that are mass assignable.
      *
