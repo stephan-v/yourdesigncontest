@@ -27,6 +27,7 @@ class ContestSubmissionRequest extends FormRequest
         return [
             'description' => ['nullable', 'string'],
             'file' => ['required', 'file', 'image', 'max:1000'],
+            'title' => ['required', 'string'],
         ];
     }
 }

@@ -20,6 +20,7 @@ class Submission extends Model
         'order',
         'path',
         'rating',
+        'title',
         'user_id',
     ];
 

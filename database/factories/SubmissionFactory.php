@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Submission::class, function (Faker $faker) {
     return [
+        'title' => $faker->title,
         'description' => $faker->text,
         'path' => 'submissions/1/a6G50uLhxZbfadWjiBQZimG2evHtuF3esG40QuAY.png',
         'contest_id' => 1,

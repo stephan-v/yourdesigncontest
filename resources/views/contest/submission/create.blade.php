@@ -15,6 +15,21 @@
                               method="POST">
                             @csrf
 
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                       placeholder="Optionally provide the title for your design"
+                                       id="title"
+                                       name="title"
+                                       value="{{ old('title') }}">
+
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
                              <div class="form-group">
                                 <label for="description">Description</label>
                                 <textarea class="form-control @error('description') is-invalid @enderror"

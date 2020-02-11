@@ -13,9 +13,9 @@ class SubmissionObserver
      */
     public function creating(Submission $submission)
     {
-        $submission = $submission->contest->submissions->last();
+        $latestSubmission = $submission->contest->submissions->last();
 
-        $order = optional($submission)->order ?? 0;
+        $order = optional($latestSubmission)->order ?? 0;
 
         $submission->order = ++$order;
     }
