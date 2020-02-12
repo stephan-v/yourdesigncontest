@@ -1,24 +1,22 @@
 <template>
     <div class="comment">
         <div>
-            <div class="font-weight-bold small mb-2">
-                {{ comment.user.name }}
-                <span class="text-muted font-weight-normal">{{ diffForHumans }}</span>
-            </div>
+            <div class="font-weight-bold small mb-2">{{ comment.user.name }}</div>
 
             <input type="text"
-                   class="mb-3"
+                   class="mb-2"
                    v-model="comment.value"
                    ref="editable"
                    @blur="update"
                    @keyup.enter="update"
                    v-if="editing">
-            <div class="mb-3" v-else>{{ comment.value }}</div>
+            <div class="mb-2" v-else>{{ comment.value }}</div>
         </div>
 
-        <span v-if="authorized">
-            <button type="submit" class="btn btn-outline-primary btn-sm" @click="edit">edit</button>
-            <button type="submit" class="btn btn-outline-danger btn-sm" @click="destroy">delete</button>
+        <span class="text-muted">
+            <template>{{ diffForHumans }}</template>
+            <template @click="edit" v-if="authorized"> | edit</template>
+            <template @click="destroy" v-if="authorized" >delete</template>
         </span>
     </div>
 </template>
@@ -91,8 +89,6 @@
             },
 
             update() {
-                console.log(this.comment.value);
-
                 axios.patch(this.route, {
                     user_id: this.comment.user.id,
                     value: this.comment.value,
