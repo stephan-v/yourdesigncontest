@@ -2,7 +2,7 @@
     <div class="comments">
         <div class="mb-3 font-weight-bold">Comments</div>
 
-        <form @submit.prevent="submit" v-if="user">
+        <form @submit.prevent="submit" class="mb-3" v-if="user">
             <textarea rows="3"
                       class="form-control mb-3"
                       placeholder="Place a comment"
@@ -26,24 +26,29 @@
         data() {
             return {
                 comment: '',
-                comments: this.initialComments || [],
+                comments: [],
             };
         },
 
         props: {
-            initialComments: {
-                type: Array,
-            },
-
             submission: {
                 type: Object,
                 required: true,
             },
         },
 
+        created() {
+            // @TODO show loading animation.
+            this.fetch();
+        },
+
         computed: {
             user() {
                 return this.$store.getters['authentication/user'];
+            },
+
+            route() {
+                return `/submissions/${this.submission.id}/comments`;
             },
         },
 
@@ -52,8 +57,16 @@
                 this.comments.splice(this.comments.indexOf(comment), 1);
             },
 
+            fetch() {
+                axios.get(this.route).then((response) => {
+                    this.comments = response.data;
+                }).catch((error) => {
+                    console.log(error.response.data);
+                });
+            },
+
             submit() {
-                axios.post(`/submissions/${this.submission.id}/comments`, {
+                axios.post(this.route, {
                     user_id: this.user.id,
                     value: this.comment,
                 }).then((response) => {
@@ -71,5 +84,15 @@
     input:focus {
         box-shadow: none;
         border: 0;
+    }
+
+    /deep/ {
+        .comment {
+            margin-bottom: 1rem;
+
+            &:last-child {
+                margin: 0;
+            }
+        }
     }
 </style>

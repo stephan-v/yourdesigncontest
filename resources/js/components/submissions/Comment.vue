@@ -1,5 +1,5 @@
 <template>
-    <div class="comment mb-3">
+    <div class="comment">
         <div>
             <div class="font-weight-bold small mb-2">
                 {{ comment.user.name }}
