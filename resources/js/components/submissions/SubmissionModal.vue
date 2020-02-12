@@ -8,7 +8,7 @@
 
             <form class="text-center" @submit.prevent="submit">
                 <button type="submit" class="btn btn-dark">
-                    Select as winner <i class="fa fa-trophy ml-1" aria-hidden="true"></i>
+                    Select as winner <i class="fas fa-award ml-1"></i>
                 </button>
             </form>
         </div>
@@ -28,11 +28,11 @@
 
             <div class="metadata">
                 <span class="d-flex align-items-center mb-3">
-                    <i class="fa fa-calendar-o mr-3" aria-hidden="true"></i> {{ created }}
+                    <i class="far fa-calendar mr-3"></i> {{ created }}
                 </span>
 
                 <span class="d-flex align-items-center">
-                    <i class="fa fa-eyedropper mr-3" aria-hidden="true"></i> <palette/>
+                    <i class="fas fa-palette mr-3"></i> <palette/>
                 </span>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <template>
     <ul class="d-flex list-unstyled mb-0">
-        <li v-for="hex in hexes" :style="{ background: hex }" :key="hex"></li>
+        <li v-for="hex in hexes" :style="{ background: hex }" :title="hex" :key="hex"></li>
     </ul>
 </template>
 
@@ -33,6 +33,11 @@
     li {
         width: 20%;
         height: 18px;
+
+        &:hover {
+            transform: scale(1.5);
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
 
         &:first-child {
             border-radius: 3px 0 0 3px;

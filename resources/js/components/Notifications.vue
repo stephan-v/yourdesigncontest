@@ -1,6 +1,6 @@
 <template>
     <span class="position-relative">
-        <i class="fa fa-envelope fa-lg" aria-hidden="true" @click="toggle"></i>
+        <i class="fas fa-envelope" @click="toggle"></i>
 
         <span class="count position-absolute d-inline-block font-weight-bold text-center" v-if="count" @click="toggle">
             {{ count }}

@@ -8,7 +8,7 @@
 
                 @can('manage', $contest)
                     <a class="btn btn-primary" href="{{ route('zip', $contest) }}" role="button">
-                        <i class="fa fa-download" aria-hidden="true"></i> Download zip
+                        <i class="fas fa-file-archive"></i> Download zip
                     </a>
                 @endif;
             </div>

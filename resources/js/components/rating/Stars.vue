@@ -9,7 +9,7 @@
                        v-model="rating"
                        :key="`input-${value}`"
                        @change="submit"/>
-                <label class="fa fa-star" :for="value + id" :key="`label-${value}`"></label>
+                <label class="fas fa-star" :for="value + id" :key="`label-${value}`"></label>
             </template>
         </form>
     </div>

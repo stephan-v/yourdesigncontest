@@ -6,7 +6,7 @@
             <div class="row mb-3">
                 <div class="col-md-8 offset-md-2">
                     <h1 class="success font-weight-bold mb-3">
-                        <i class="fa fa-check-circle"></i>
+                        <i class="fas fa-check-circle"></i>
                         Payment confirmed
                     </h1>
 
