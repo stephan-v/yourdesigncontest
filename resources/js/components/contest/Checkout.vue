@@ -53,7 +53,6 @@
 
 <script>
     import Dinero from 'dinero.js';
-    import { mapGetters } from 'vuex';
 
     export default {
         data() {
@@ -91,9 +90,9 @@
         },
 
         computed: {
-            ...mapGetters('authentication', [
-                'user',
-            ]),
+            user() {
+                return this.$store.getters['authentication/user'];
+            },
 
             errors() {
                 return Object.values(this.rawErrors).flat();

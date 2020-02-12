@@ -26,7 +26,6 @@
 <script>
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
-    import { mapGetters } from 'vuex';
     import swal from 'sweetalert';
 
     export default {
@@ -48,9 +47,9 @@
         },
 
         computed: {
-            ...mapGetters('authentication', [
-                'user',
-            ]),
+            user() {
+                return this.$store.getters['authentication/user'];
+            },
 
             authorized() {
                 return this.comment.user.id === this.user.id;

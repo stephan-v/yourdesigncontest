@@ -14,7 +14,7 @@
         </div>
 
         <div class="d-flex align-content-center justify-content-center bg-white">
-            <submission-image :path="submission.path" class="img-fluid" @loaded="loaded"/>
+            <submission-image :path="submission.path" class="img-fluid"/>
         </div>
 
         <div class="submission-info p-4">
@@ -32,7 +32,7 @@
                 </span>
 
                 <span class="d-flex align-items-center">
-                    <i class="fa fa-eyedropper mr-3" aria-hidden="true"></i> <palette :colors="palette"/>
+                    <i class="fa fa-eyedropper mr-3" aria-hidden="true"></i> <palette/>
                 </span>
             </div>
         </div>
@@ -44,12 +44,6 @@
     import swal from 'sweetalert';
 
     export default {
-        data() {
-            return {
-                palette: [],
-            };
-        },
-
         props: {
             submission: {
                 required: true,
@@ -80,11 +74,6 @@
         },
 
         methods: {
-            loaded(palette) {
-                // @TODO move to vuex.
-                this.palette = palette;
-            },
-
             openModal() {
                 swal({
                     buttons: false,

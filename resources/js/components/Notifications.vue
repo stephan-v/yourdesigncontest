@@ -17,8 +17,6 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
-
     export default {
         data() {
             return {
@@ -47,9 +45,9 @@
         },
 
         computed: {
-            ...mapGetters('authentication', [
-                'user',
-            ]),
+            user() {
+                return this.$store.getters['authentication/user'];
+            },
 
             count() {
                 return this.notifications.length;

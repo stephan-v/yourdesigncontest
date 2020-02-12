@@ -14,22 +14,12 @@
         },
 
         mounted() {
-            this.setColorPalette();
-        },
+            const image = this.$el;
+            const colorThief = new ColorThief();
 
-        methods: {
-            setColorPalette() {
-                const image = this.$el;
-                const colorThief = new ColorThief();
-
-                image.addEventListener('load', () => {
-                    this.$emit('loaded', colorThief.getPalette(image, 5));
-                });
-            },
+            image.addEventListener('load', () => {
+                this.$store.commit('submission/palette', colorThief.getPalette(image, 5));
+            });
         },
     };
 </script>
-
-<style lang="scss" scoped>
-
-</style>

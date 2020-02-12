@@ -1,21 +1,18 @@
 <template>
     <ul class="d-flex list-unstyled mb-0">
-        <li v-for="hex in hexCodes" :style="{ background: hex }" :key="hex"></li>
+        <li v-for="hex in hexes" :style="{ background: hex }" :key="hex"></li>
     </ul>
 </template>
 
 <script>
     export default {
-        props: {
-            colors: {
-                required: true,
-                type: Array,
-            },
-        },
-
         computed: {
-            hexCodes() {
-                return this.colors.map((color) => this.rgbToHex(...color));
+            palette() {
+                return this.$store.getters['submission/palette'];
+            },
+
+            hexes() {
+                return this.palette.map((rgb) => this.rgbToHex(...rgb));
             },
         },
 
