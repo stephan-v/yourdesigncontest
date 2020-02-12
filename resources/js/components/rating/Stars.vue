@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex justify-content-center">
-        <form class="d-inline-flex flex-row-reverse p-3">
+        <form class="d-inline-flex flex-row-reverse p-2">
             <template v-for="value in [5, 4, 3, 2, 1]">
                 <input type="radio"
                        name="stars"
@@ -65,7 +65,7 @@
     label {
         width: $size;
         height: $size;
-        font-size: $size;
+        font-size: $size - 0.2rem;
         cursor: pointer;
         color: #d0d0d0;
         transition: color 0.1s ease-out;

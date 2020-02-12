@@ -100,7 +100,7 @@
                                 <div class="alert alert-warning text-center mb-0" role="alert">Winner!</div>
                             @endif
 
-                            <div class="p-3 d-flex justify-content-center align-items-center">
+                            <div class="p-2 d-flex justify-content-center align-items-center">
                                 <img src="{{ $submission->path }}" alt="" class="img-fluid">
                             </div>
                         </submission>
@@ -109,9 +109,9 @@
                                route="{{ route('contests.submissions.update', [$contest, $submission]) }}">
                         </stars>
 
-                        <div class="caption p-3 border-top">
+                        <div class="caption p-2 border-top">
                             <small class="text-muted">
-                                <span># {{ $submission->order }} Made by</span>
+                                <span>#{{ $submission->order }} by</span>
 
                                 <a href="{{ route('users.show', $contest->user) }}">
                                     {{ $contest->user->name }}
