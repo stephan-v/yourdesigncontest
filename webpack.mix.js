@@ -15,6 +15,12 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css', {
         implementation: require('node-sass'),
     })
+    .options({
+        hmrOptions: {
+            host: 'yourdesigncontest.test',
+            port: 8085,
+        },
+    })
     .disableNotifications();
 
 

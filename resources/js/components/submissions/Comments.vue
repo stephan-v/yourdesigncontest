@@ -1,13 +1,16 @@
 <template>
     <div class="comments">
-        <form @submit.prevent="submit">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Place a comment" v-model="comment" required>
+        <div class="mb-3 font-weight-bold">Comments</div>
 
-                <button class="btn btn-primary" type="submit">
-                    <i class="fa fa-reply"></i>
-                </button>
-            </div>
+        <form @submit.prevent="submit" v-if="user">
+            <textarea rows="3"
+                      class="form-control mb-3"
+                      placeholder="Place a comment"
+                      v-model="comment"
+                      required>
+            </textarea>
+
+            <button class="btn btn-primary btn-sm" type="submit">Post comment</button>
         </form>
 
         <Comment v-for="comment in comments"
@@ -67,10 +70,6 @@
 </script>
 
 <style lang="scss" scoped>
-    .btn {
-        border-radius: 0 0.25rem 0.25rem 0;
-    }
-
     input:focus {
         box-shadow: none;
         border: 0;

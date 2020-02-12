@@ -14,30 +14,42 @@
         </div>
 
         <div class="d-flex align-content-center justify-content-center bg-white">
-            <img :src="submission.path" alt="" class="img-fluid">
-        </div>
-
-        <div class="pt-4 pr-4 pl-4" v-if="submission.description">
-            {{ submission.description }}
+            <submission-image :path="submission.path" class="img-fluid" @loaded="loaded"/>
         </div>
 
         <div class="submission-info p-4">
             <div class="description">
-                <div class="mb-3 font-weight-bold">Comments</div>
+                <div class="mb-3" v-if="submission.description">
+                    {{ submission.description }}
+                </div>
+
                 <comments :submission="submission" class="p4"/>
             </div>
 
             <div class="metadata">
-                <p>Test</p>
+                <span class="d-flex align-items-center mb-3">
+                    <i class="fa fa-calendar-o mr-3" aria-hidden="true"></i> {{ created }}
+                </span>
+
+                <span class="d-flex align-items-center">
+                    <i class="fa fa-eyedropper mr-3" aria-hidden="true"></i> <palette :colors="palette"/>
+                </span>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import dayjs from 'dayjs';
     import swal from 'sweetalert';
 
     export default {
+        data() {
+            return {
+                palette: [],
+            };
+        },
+
         props: {
             submission: {
                 required: true,
@@ -46,16 +58,14 @@
         },
 
         mounted() {
-            swal({
-                buttons: false,
-                className: 'submission-modal',
-                content: this.$el,
-            }).then(() => {
-                this.$emit('close');
-            });
+            this.openModal();
         },
 
         computed: {
+            created() {
+                return dayjs(this.submission.created_at).format('MMM D, YYYY');
+            },
+
             contest() {
                 return this.submission.contest_id;
             },
@@ -70,6 +80,21 @@
         },
 
         methods: {
+            loaded(palette) {
+                // @TODO move to vuex.
+                this.palette = palette;
+            },
+
+            openModal() {
+                swal({
+                    buttons: false,
+                    className: 'submission-modal',
+                    content: this.$el,
+                }).then(() => {
+                    this.$emit('close');
+                });
+            },
+
             submit() {
                 // @TODO Add "are you sure" confirmation.
                 axios.post(this.route).then((response) => {
