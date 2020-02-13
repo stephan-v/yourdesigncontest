@@ -64,39 +64,22 @@
                 </div>
 
                 <div class="col-md-8">
-
+                    <h1 class="mt-3">{{ $contest->name }}</h1>
+                    <p>{{ $contest->description }}</p>
+                    <h4 class="font-weight-bold">{{ $contest->payment->formattedPayout }}</h4>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="container">
-        <div class="row mt-5 mb-5">
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header text-center">
-                        Briefing
-                    </div>
-
-                    <div class="card-body">
-                        <h1>{{ $contest->name }}</h1>
-                        <p>{{ $contest->description }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="card text-right mb-3">
-                    <div class="card-header">Payout</div>
-
-                    <div class="card-body">
-                        <p class="mb-0 payout">{{ $contest->payment->formattedPayout }}</p>
-                    </div>
-                </div>
+        <div class="row pt-5">
+            <div class="col-md-12">
+                <h5>{{ $submissions->total() }} {{ Str::plural('Submission', $submissions->total()) }} </h5>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row pt-3">
             @if ($contest->active)
 {{--                @can('submit', $contest)--}}
                     <div class="col-md-3">

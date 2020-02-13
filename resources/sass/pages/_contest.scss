@@ -41,12 +41,11 @@
     }
 }
 
-.payout {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
 .contest-header {
+    h1 {
+        font-size: 2rem;
+    }
+
     .winner-placeholder {
         min-height: 290px;
         outline-offset: -15px;
