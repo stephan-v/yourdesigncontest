@@ -7,9 +7,7 @@
             </div>
 
             <form class="text-center" @submit.prevent="submit">
-                <button type="submit" class="btn btn-dark">
-                    Select as winner <i class="fas fa-award ml-1"></i>
-                </button>
+                <button type="submit" class="btn btn-dark">Select as winner <i class="fas fa-award ml-1"></i></button>
             </form>
         </div>
 
@@ -109,6 +107,10 @@
                 margin: 0;
                 font-weight: bold;
                 font-size: 1.3rem;
+                width: 90%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             img {

@@ -6,10 +6,10 @@
                        name="stars"
                        :id="value + id"
                        :value="value"
-                       v-model="rating"
                        :key="`input-${value}`"
+                       v-model="rating"
                        @change="submit"/>
-                <label class="fas fa-star" :for="value + id" :key="`label-${value}`"></label>
+                <label :class="star(value)" :for="value + id" :key="`label-${value}`"/>
             </template>
         </form>
     </div>
@@ -37,6 +37,14 @@
         },
 
         methods: {
+            star(index) {
+                return {
+                    fas: index <= this.rating,
+                    far: index > this.rating,
+                    'fa-star': true,
+                };
+            },
+
             submit() {
                 axios.patch(this.route, {
                     rating: this.rating,
@@ -57,7 +65,7 @@
         display: none;
 
         &:checked ~ label {
-            color: #FFDB19;
+            color: #ffcf19;
             animation: wobble 0.8s ease-out;
         }
     }
@@ -65,7 +73,7 @@
     label {
         width: $size;
         height: $size;
-        font-size: $size - 0.2rem;
+        font-size: $size - 0.3rem;
         cursor: pointer;
         color: #d0d0d0;
         transition: color 0.1s ease-out;
