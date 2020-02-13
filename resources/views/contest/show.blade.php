@@ -74,16 +74,16 @@
         </div>
 
         <div class="row">
-            <div class="col-md-3">
-                <a href="{{ route('contests.submissions.create', $contest) }}" class="submission new-submission mb-3 d-flex align-items-center justify-content-center flex-column text-secondary text-center">
-                    @if ($contest->active)
-{{--                    @can('submit', $contest)--}}
-                            <div class="mb-2">Submit a design</div>
-                            <i class="fas fa-folder-plus"></i>
-{{--                    @endcan--}}
-                    @endif
-                </a>
-            </div>
+            @if ($contest->active)
+{{--                @can('submit', $contest)--}}
+                    <div class="col-md-3">
+                        <a href="{{ route('contests.submissions.create', $contest) }}" class="submission new-submission mb-3 d-flex align-items-center justify-content-center flex-column text-secondary text-center">
+                            <i class="far fa-images fa-2x mb-3"></i>
+                            <div>Submit a design</div>
+                        </a>
+                    </div>
+{{--                @endcan--}}
+            @endif
 
             @foreach ($submissions as $submission)
                 <div class="col-md-3">
