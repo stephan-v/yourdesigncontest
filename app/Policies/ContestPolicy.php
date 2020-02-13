@@ -65,7 +65,7 @@ class ContestPolicy
     public function viewAnySourceFiles(User $user, Contest $contest)
     {
         $owner = $user->contests->contains($contest->id);
-        $winner = $user->id === optional($contest->winner())->id;
+        $winner = $user->id === optional($contest->winner)->id;
 
         // Only contest owners or contest winners are allowed to see source files.
         return ($owner || $winner)

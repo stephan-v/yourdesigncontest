@@ -24,7 +24,7 @@ class WinnerController extends Controller
         $this->authorize('create', [$contest, $submission]);
 
         abort_if(
-            $contest->winner(),
+            $contest->winner,
             Response::HTTP_CONFLICT,
             'A contest winner has already been declared.'
         );

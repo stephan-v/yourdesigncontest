@@ -66,12 +66,4 @@ class Contest extends Model
     {
         return $this->hasMany(File::class);
     }
-
-    /**
-     * Get the winning submission of the contest.
-     */
-    public function winner()
-    {
-        return $this->submissions()->has('winner')->first();
-    }
 }

@@ -58,7 +58,7 @@
 
 <style lang="scss" scoped>
     .fas {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     .fas, .count {
@@ -66,13 +66,13 @@
     }
 
     .count {
-        top: -0.75rem;
-        right: -0.75rem;
+        top: -0.8rem;
+        right: -0.8rem;
         font-size: 0.5em;
-        background: #cc3937;
+        background: #ff3200;
         color: #fefefe;
-        min-width: 2.6em;
-        padding: 0.3em;
+        min-width: 2.5em;
+        padding: 0.25em;
         border-radius: 50%;
         border: 2px solid #333940
     }

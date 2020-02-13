@@ -35,7 +35,7 @@ class ContestPayoutController extends Controller
         );
 
         // Fetch the contest winner.
-        $winner = $contest->winner()->user;
+        $winner = $contest->winner->user;
 
         // Retrieve the account of the winner to fetch the default currency.
         $account = Account::retrieve($winner->stripe_connect_id);

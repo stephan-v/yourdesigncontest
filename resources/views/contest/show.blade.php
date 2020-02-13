@@ -38,33 +38,33 @@
 @endsection
 
 @section('content')
+    @can('manage', $contest)
+        @if ($contest->finished)
+            <div class="alert alert-warning p-3 m-0 text-center" role="alert">
+                The contest is finished.
+                Click <a href="{{ route('contests.files.index', $contest) }}">here</a> to review the final design files.
+            </div>
+        @endif
+    @endcan
+
     <div class="contest-header bg-white pt-5 pb-5">
         <div class="container">
-            @can('manage', $contest)
-                @if ($contest->finished)
-                    <div class="alert alert-warning mt-5" role="alert">
-                        The contest is finished.
-                        Click <a href="{{ route('contests.files.index', $contest) }}">here</a> to review the final design files.
-                    </div>
-                @endif
-            @endcan
-
             <div class="row winning-submission">
                 <div class="col-md-4">
-                    <div class="winner-placeholder d-flex align-items-center text-center p-5">
+                    <div class="winner-placeholder d-flex align-items-center text-center position-relative p-5">
                         <div class="text-muted">
                             <i class="fas fa-pencil-ruler fa-2x mb-3"></i>
                             <p class="m-0">Designers are working on this contest.</p>
                         </div>
 
                         @if ($contest->finished)
-                            <img src="{{ $contest->winner->path }}" alt="The design of the contest winner">
+                            <img src="{{ $contest->winner->path }}" class="img-fluid p-2" alt="The design of the contest winner">
                         @endif
                     </div>
                 </div>
 
                 <div class="col-md-8">
-                    <h1 class="mt-3">{{ $contest->name }}</h1>
+                    <h1>{{ $contest->name }}</h1>
                     <p>{{ $contest->description }}</p>
                     <h4 class="font-weight-bold">{{ $contest->payment->formattedPayout }}</h4>
                 </div>
@@ -96,7 +96,7 @@
                     <div class="submission mb-3 @if ($submission->winner) border border-warning @endif">
                         <submission :submission='@json($submission)'>
                             @if ($submission->winner)
-                                <div class="alert alert-warning text-center mb-0" role="alert">Winner!</div>
+                                <div class="alert alert-warning text-center mb-0 p-2" role="alert">Winner!</div>
                             @endif
 
                             <div class="p-2 d-flex justify-content-center align-items-center">

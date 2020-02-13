@@ -2,7 +2,6 @@
 
 namespace App\Presenters;
 
-use Carbon\Carbon;
 use Exception;
 
 trait ContestPresenter
@@ -45,7 +44,7 @@ trait ContestPresenter
      */
     public function getFinishedAttribute()
     {
-        return $this->expires_at->isPast() || $this->winner();
+        return $this->expires_at->isPast() || $this->winner;
     }
 
     /**
@@ -55,6 +54,14 @@ trait ContestPresenter
      */
     public function getActiveAttribute()
     {
-        return !$this->finished && !$this->winner();
+        return !$this->finished && !$this->winner;
+    }
+
+    /**
+     * Get the winning submission of the contest.
+     */
+    public function getWinnerAttribute()
+    {
+        return $this->submissions()->has('winner')->first();
     }
 }
