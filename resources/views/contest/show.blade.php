@@ -63,14 +63,6 @@
             </div>
 
             <div class="col-md-3">
-                @if ($contest->active)
-                    <div class="text-right mb-3">
-                        <a class="btn btn-info btn-lg w-100" href="{{ route('contests.submissions.create', $contest) }}" role="button">
-                            Submit a design
-                        </a>
-                    </div>
-                @endif
-
                 <div class="card text-right mb-3">
                     <div class="card-header">Payout</div>
 
@@ -81,17 +73,18 @@
             </div>
         </div>
 
-        @can('submit', $contest)
-            <div class="row mb-5">
-                <div class="col-md-12 text-center">
-                    <a href="{{ route('contests.submissions.create', $contest) }}" class="btn btn-primary">
-                        Add submission
-                    </a>
-                </div>
-            </div>
-        @endcan
-
         <div class="row">
+            <div class="col-md-3">
+                <a href="{{ route('contests.submissions.create', $contest) }}" class="submission new-submission mb-3 d-flex align-items-center justify-content-center flex-column text-secondary text-center">
+                    @if ($contest->active)
+{{--                    @can('submit', $contest)--}}
+                            <div class="mb-2">Submit a design</div>
+                            <i class="fas fa-folder-plus"></i>
+{{--                    @endcan--}}
+                    @endif
+                </a>
+            </div>
+
             @foreach ($submissions as $submission)
                 <div class="col-md-3">
                     <div class="submission mb-3 @if ($submission->winner) border border-warning @endif">

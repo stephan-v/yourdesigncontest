@@ -57,19 +57,24 @@
 </script>
 
 <style lang="scss" scoped>
-    .fa, .count {
+    .fas {
+        font-size: 1.2rem;
+    }
+
+    .fas, .count {
         cursor: pointer;
     }
 
     .count {
-        top: -0.6rem;
-        right: -0.6rem;
-        font-size: 0.6em;
-        background: #cc4b37;
+        top: -0.75rem;
+        right: -0.75rem;
+        font-size: 0.5em;
+        background: #cc3937;
         color: #fefefe;
-        min-width: 2.1em;
+        min-width: 2.6em;
         padding: 0.3em;
         border-radius: 50%;
+        border: 2px solid #333940
     }
 
     .list-group {
