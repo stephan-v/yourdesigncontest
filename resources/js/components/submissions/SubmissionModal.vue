@@ -12,7 +12,9 @@
         </div>
 
         <div class="d-flex align-content-center justify-content-center bg-white">
-            <submission-image :path="submission.path" class="img-fluid"/>
+            <picture class="intrinsic intrinsic--4x3">
+                <submission-image :path="submission.path" class="img-fluid"/>
+            </picture>
         </div>
 
         <div class="submission-info p-4">

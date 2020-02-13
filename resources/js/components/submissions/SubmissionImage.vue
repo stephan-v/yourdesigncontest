@@ -1,5 +1,5 @@
 <template>
-    <img :src="path">
+    <img :src="path" class="intrinsic-item">
 </template>
 
 <script>
