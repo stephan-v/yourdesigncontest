@@ -2,6 +2,7 @@
 
 namespace App\Presenters;
 
+use Carbon\CarbonInterface;
 use Exception;
 
 trait ContestPresenter
@@ -33,7 +34,9 @@ trait ContestPresenter
      */
     public function getEndsInAttribute()
     {
-        return $this->expires_at->isFuture() ? $this->expires_at->diffForHumans() : 'finished';
+        return $this->expires_at->isFuture()
+            ? $this->expires_at->diffForHumans(['syntax' => CarbonInterface::DIFF_ABSOLUTE])
+            : 'finished';
     }
 
     /**

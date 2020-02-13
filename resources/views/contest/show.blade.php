@@ -66,6 +66,7 @@
                 <div class="col-md-8">
                     <h1>{{ $contest->name }}</h1>
                     <p>{{ $contest->description }}</p>
+                    <p>Ends in {{ $contest->endsIn }}</p>
                     <h4 class="font-weight-bold">{{ $contest->payment->formattedPayout }}</h4>
                 </div>
             </div>
