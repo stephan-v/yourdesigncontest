@@ -4,18 +4,18 @@
     }
 
     to {
-        transform: scale(1.2);
+        transform: scale(1.1);
     }
 }
 
 .new-submission {
-    outline-offset: -5px;
+    outline-offset: -8px;
     outline: 1px dashed #d4d4d4;
 
     &:hover {
         text-decoration: none;
 
-        .fas {
+        .far {
             animation-duration: 0.3s;
             animation-name: scale;
             animation-iteration-count: infinite;
