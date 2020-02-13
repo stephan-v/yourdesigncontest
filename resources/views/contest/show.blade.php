@@ -38,16 +38,39 @@
 @endsection
 
 @section('content')
-    <div class="container">
-        @can('manage', $contest)
-            @if ($contest->finished)
-                <div class="alert alert-warning mt-5" role="alert">
-                    The contest is finished.
-                    Click <a href="{{ route('contests.files.index', $contest) }}">here</a> to review the final design files.
-                </div>
-            @endif
-        @endcan
+    <div class="contest-header bg-white pt-5 pb-5">
+        <div class="container">
+            @can('manage', $contest)
+                @if ($contest->finished)
+                    <div class="alert alert-warning mt-5" role="alert">
+                        The contest is finished.
+                        Click <a href="{{ route('contests.files.index', $contest) }}">here</a> to review the final design files.
+                    </div>
+                @endif
+            @endcan
 
+            <div class="row winning-submission">
+                <div class="col-md-4">
+                    <div class="winner-placeholder d-flex align-items-center text-center p-5">
+                        <div class="text-muted">
+                            <i class="fas fa-pencil-ruler fa-2x mb-3"></i>
+                            <p class="m-0">Designers are working on this contest.</p>
+                        </div>
+
+                        @if ($contest->finished)
+                            <img src="{{ $contest->winner->path }}" alt="The design of the contest winner">
+                        @endif
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
         <div class="row mt-5 mb-5">
             <div class="col-md-9">
                 <div class="card">

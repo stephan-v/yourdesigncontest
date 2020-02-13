@@ -24,6 +24,6 @@ class SubmissionsSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        factory(Submission::class, 50)->create();
+        factory(Submission::class, 25)->create();
     }
 }
