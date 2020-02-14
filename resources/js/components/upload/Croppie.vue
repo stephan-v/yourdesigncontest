@@ -29,9 +29,7 @@
         mounted() {
             this.initCroppie();
 
-            this.$refs.croppie.addEventListener('update', (e) => {
-                // console.log(e.detail);
-
+            this.$refs.croppie.addEventListener('update', () => {
                 this.croppie.result('canvas').then((blob) => {
                     console.log(blob);
                 });
@@ -70,17 +68,11 @@
                     this.croppie.bind({ url: e.target.result });
                     this.url = e.target.result;
                 };
-
-                const element = this.$refs.croppie.querySelector('.cr-image');
-
-                element.addEventListener('drag', () => {
-                    console.log('DRAGGED');
-                });
             },
 
             initCroppie() {
                 this.croppie = new Croppie(this.$refs.croppie, {
-                    // viewport: { width: 800, height: 600 },
+                    viewport: { width: '100%', height: '100%' },
                     showZoomer: false,
                     enableZoom: false,
                     enableExif: true,
