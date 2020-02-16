@@ -8,7 +8,10 @@ use App\Submission;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use Intervention\Image\Constraint;
+use Intervention\Image\Facades\Image;
 
 class ContestSubmissionController extends Controller
 {
@@ -32,12 +35,25 @@ class ContestSubmissionController extends Controller
      */
     public function store(Contest $contest, ContestSubmissionRequest $request)
     {
-        // @TODO Prevent a store if the contest is finished.
+        $file = $request->file('image');
 
-        $path = $request->file('file')->store(
-            "submissions/{$contest->id}",
-            ['disk' => 'public']
-        );
+        // @TODO move resize/crop to a service/repository layer.
+
+        // Crop and fit the image.
+        $image = Image::make($file);
+
+        $cropY = $request->crop[3] - $request->crop[1];
+        $cropX = $request->crop[2] - $request->crop[0];
+
+        $image->crop($cropX, $cropY, $request->crop[0], $request->crop[1]);
+
+        $image->fit(800, 600, function(Constraint $constraint) {
+            $constraint->upsize();
+        });
+
+        $path = "submissions/{$contest->id}/{$file->hashName()}";
+
+        Storage::disk('public')->put($path, $image->encode());
 
         $contest->submissions()->create([
             'title' => $request->title,

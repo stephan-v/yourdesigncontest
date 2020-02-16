@@ -1,6 +1,9 @@
 <template>
     <div class="upload-preview">
-        <input type="file" class="form-control-file" id="file" name="file" @change="getImage">
+        <label for="image">File</label>
+        <input type="file" class="form-control-file" id="image" name="image" @change="getImage">
+
+        <input type="hidden" name="crop" v-model="crop">
 
         <div class="intrinsic intrinsic--4x3">
             <div class="intrinsic-item"
@@ -20,6 +23,7 @@
         data() {
             return {
                 clicked: false,
+                crop: [],
                 croppie: null,
                 resizeTimer: null,
                 url: null,
@@ -29,11 +33,7 @@
         mounted() {
             this.initCroppie();
 
-            this.$refs.croppie.addEventListener('update', () => {
-                this.croppie.result('canvas').then((blob) => {
-                    console.log(blob);
-                });
-            });
+            this.$refs.croppie.addEventListener('update', this.updateHandler);
 
             window.addEventListener('resize', this.resizeHandler);
         },
@@ -53,7 +53,7 @@
 
             onMouseMove() {
                 if (this.clicked) {
-                    console.log('Moving');
+                    //
                 }
             },
 
@@ -72,11 +72,16 @@
 
             initCroppie() {
                 this.croppie = new Croppie(this.$refs.croppie, {
-                    viewport: { width: '100%', height: '100%' },
+                    initialZoom: 0,
+                    mouseWheelZoom: false,
                     showZoomer: false,
-                    enableZoom: false,
                     enableExif: true,
                     enableOrientation: true,
+                    viewport: {
+                        width: '100%',
+                        height: '100%',
+                    },
+                    maxZoom: 1,
                 });
 
                 if (this.url) {
@@ -97,11 +102,24 @@
                     this.initCroppie();
                 }
             },
+
+            updateHandler() {
+                this.croppie.result('canvas').then(() => {
+                    this.crop = this.croppie.get().points;
+                });
+            },
         },
     };
 </script>
 
 <style lang="scss" scoped>
+    /deep/ .croppie-container {
+        // On drag remove the overflow.
+        .cr-boundary[aria-dropeffect="move"] {
+            overflow: inherit;
+        }
+    }
+
     .upload-preview {
         max-width: 800px;
     }

@@ -100,8 +100,10 @@
                                 <div class="alert alert-warning text-center mb-0 p-2" role="alert">Winner!</div>
                             @endif
 
-                            <div class="p-2 d-flex justify-content-center align-items-center">
-                                <img src="{{ $submission->path }}" alt="" class="img-fluid">
+                            <div class="pt-2 pr-2 pl-2">
+                                <picture class="intrinsic intrinsic--4x3">
+                                    <img src="{{ $submission->path }}" alt="" class="intrinsic-item">
+                                </picture>
                             </div>
                         </submission>
 

@@ -18,6 +18,14 @@ class ContestSubmissionRequest extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     */
+    public function prepareForValidation()
+    {
+        $this->merge(['crop' => explode(',', $this->crop)]);
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -25,8 +33,9 @@ class ContestSubmissionRequest extends FormRequest
     public function rules()
     {
         return [
+            // 'crop' => ['required', 'array'],
             'description' => ['nullable', 'string'],
-            'file' => ['required', 'file', 'image', 'max:1000'],
+            'image' => ['required', 'file', 'image', 'max:1000'],
             'title' => ['required', 'string'],
         ];
     }

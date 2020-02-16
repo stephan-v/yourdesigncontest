@@ -2,16 +2,25 @@
 
 @section('content')
     <div class="container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('contests.submissions.store', $contest) }}" enctype="multipart/form-data" method="POST" class="row mt-5">
             @csrf
 
             <div class="col-md-8">
                 <div class="form-group position-relative">
-                    <label for="file">File</label>
-                    <croppie></croppie>
+                    <croppie class="@error('title') is-invalid @enderror"></croppie>
 
-                    @error('file')
-                    <span class="invalid-feedback" role="alert">
+                    @error('image')
+                        <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -20,8 +29,6 @@
 
             <div class="col-md-4">
                 <h1>Add a submission</h1>
-
-                <div class="alert alert-info" role="alert">Max filesize is 1MB</div>
 
                 <div class="form-group">
                     <label for="title">Title</label>
