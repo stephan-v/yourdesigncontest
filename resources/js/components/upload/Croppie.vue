@@ -1,11 +1,16 @@
 <template>
     <div class="upload-preview">
-        <label for="image">File</label>
-        <input type="file" class="form-control-file" id="image" name="image" @change="getImage">
-
         <input type="hidden" name="crop" v-model="crop">
 
         <div class="intrinsic intrinsic--4x3">
+            <input type="file" class="form-control-file" id="image" name="image" @change="getImage">
+
+            <label for="image" class="intrinsic-item" v-show="!url">
+                <i class="fas fa-upload mb-2"></i>
+                Select an image
+                <span class="small text-muted">800x600 or 1600x1200</span>
+            </label>
+
             <div class="intrinsic-item"
                  @mousemove="onMouseMove"
                  @mouseup="onMouseUp"
@@ -126,5 +131,27 @@
 
     .intrinsic {
         background: none;
+    }
+
+    // File input styling.
+    #image {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+
+        & + label {
+            font-size: 1.5rem;
+            font-weight: bold;
+
+            z-index: 10;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
     }
 </style>
