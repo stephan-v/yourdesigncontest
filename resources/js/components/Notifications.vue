@@ -57,10 +57,6 @@
 </script>
 
 <style lang="scss" scoped>
-    .fas {
-        font-size: 1.3rem;
-    }
-
     .fas, .count {
         cursor: pointer;
     }

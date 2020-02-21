@@ -41,8 +41,12 @@
                 <div class="col-md-12 text-center">
                     <img src="{{ asset('images/svg/041-folder.svg') }}" alt="Files folder" class="img-fluid mb-3">
                     <h1 class="mb-3">No source files have been added yet.</h1>
-                    <p>We have sent out a notification asking the winner to upload the source files.</p>
-                    <p>Once the first files are uploaded you will receive a message.</p>
+
+                    <div class="alert alert-warning" role="alert">
+                        <p class="mb-0">We have sent out a notification asking the winner to upload the source files.</p>
+                        <hr>
+                        <p class="m-0">Once the first files are uploaded you will receive a message.</p>
+                    </div>
                 </div>
             </div>
         </div>
