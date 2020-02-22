@@ -51,14 +51,14 @@
         <div class="container">
             <div class="row winning-submission">
                 <div class="col-md-4">
-                    <div class="winner-placeholder d-flex align-items-center text-center position-relative p-5">
-                        <div class="text-muted">
-                            <i class="fas fa-pencil-ruler fa-2x mb-3"></i>
-                            <p class="m-0">Designers are working on this contest.</p>
-                        </div>
-
+                    <div class="winner-placeholder intrinsic intrinsic--4x3">
                         @if ($contest->finished)
-                            <img src="{{ $contest->winner->path }}" class="img-fluid p-2" alt="The design of the contest winner">
+                            <img src="{{ $contest->winner->path }}" class="intrinsic-item" alt="The design of the contest winner">
+                        @else
+                            <div class="text-muted intrinsic-item d-flex justify-content-center align-items-center flex-column outline">
+                                <i class="fas fa-pencil-ruler fa-2x mb-3"></i>
+                                <p class="m-0">Designers are working on this contest.</p>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -66,8 +66,13 @@
                 <div class="col-md-8">
                     <h1>{{ $contest->name }}</h1>
                     <p>{{ $contest->description }}</p>
-                    <p>Ends in {{ $contest->endsIn }}</p>
-                    <h4 class="font-weight-bold">{{ $contest->payment->formattedPayout }}</h4>
+                    <span class="mb-4 alert alert-info small font-weight-bold">Ends in {{ $contest->endsIn }}</span>
+
+                    <h3 class="price-money position-relative text-center">
+                        <span class="font-weight-bold">{{ $contest->payment->formattedPayout }}</span>
+                        <span class="font-weight-bold fade">{{ $contest->payment->formattedPayout }}</span>
+                        <span class="text-muted">First price winner</span>
+                    </h3>
                 </div>
             </div>
         </div>
