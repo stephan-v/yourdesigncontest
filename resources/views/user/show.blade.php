@@ -14,7 +14,7 @@
                     <div class="card-header">Designers only</div>
 
                     <div class="card-body">
-                        <p>Click here to validation your account for payout</p>
+                        <p>Click here to verify your account for payouts.</p>
 
                         <a href="{{ route('connect.onboarding') }}">
                             <img src="{{ asset('images/light-on-light.png') }}" alt="">

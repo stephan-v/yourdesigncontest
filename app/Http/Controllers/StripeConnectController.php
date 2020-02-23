@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -52,6 +53,7 @@ class StripeConnectController extends Controller
      *
      * @param Request $request The incoming HTTP server request.
      * @return string The generated URI.
+     * @throws Exception Thrown if the Stripe connect uri has not been set.
      */
     public function onboarding(Request $request): string
     {
@@ -67,8 +69,12 @@ class StripeConnectController extends Controller
             'state' => 'test',
         ]);
 
-        $url = config('services.stripe.connect.uri') . $params;
+        $uri = config('services.stripe.connect.uri');
 
-        return redirect()->away($url);
+        if (is_null($uri)) {
+            throw new Exception('The stripe connect uri is not set.');
+        }
+
+        return redirect()->away($uri . $params);
     }
 }
