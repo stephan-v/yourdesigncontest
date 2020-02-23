@@ -113,7 +113,7 @@
                         </submission>
 
                         <stars :initial-rating="{{ $submission->rating ?? 0 }}"
-                               :locked="@json($user->cant('manage', $contest) || $contest->finished)"
+                               :locked="@json($locked)"
                                route="{{ route('contests.submissions.update', [$contest, $submission]) }}">
                         </stars>
 
