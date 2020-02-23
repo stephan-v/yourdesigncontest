@@ -86,7 +86,7 @@ class ContestSubmissionController extends Controller
      */
     public function update(Request $request, Contest $contest, Submission $submission)
     {
-        // @TODO Only the contest or submission owner can update. SubmissionPolicy
+        $request->user()->can('update', $submission);
 
         $submission->update([
             'rating' => $request->rating
