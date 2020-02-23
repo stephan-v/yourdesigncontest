@@ -55,7 +55,7 @@
                         @if ($contest->finished)
                             <img src="{{ $contest->winner->path }}" class="intrinsic-item" alt="The design of the contest winner">
                         @else
-                            <div class="text-muted intrinsic-item d-flex justify-content-center align-items-center flex-column outline">
+                            <div class="text-muted intrinsic-item d-flex justify-content-center align-items-center flex-column outline p-3 text-center">
                                 <i class="fas fa-pencil-ruler fa-2x mb-3"></i>
                                 <p class="m-0">Designers are working on this contest.</p>
                             </div>
@@ -113,6 +113,7 @@
                         </submission>
 
                         <stars :initial-rating="{{ $submission->rating ?? 0 }}"
+                               :locked="@json($user->cant('manage', $contest) || $contest->finished)"
                                route="{{ route('contests.submissions.update', [$contest, $submission]) }}">
                         </stars>
 

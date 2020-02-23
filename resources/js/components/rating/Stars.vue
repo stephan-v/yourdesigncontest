@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center" :class="{ locked }">
         <form class="d-inline-flex flex-row-reverse p-2">
             <template v-for="value in [5, 4, 3, 2, 1]">
                 <input type="radio"
@@ -7,6 +7,7 @@
                        :id="value + id"
                        :value="value"
                        :key="`input-${value}`"
+                       :disabled="locked"
                        v-model="rating"
                        @change="submit"/>
                 <label :class="star(value)" :for="value + id" :key="`label-${value}`"/>
@@ -25,14 +26,19 @@
         },
 
         props: {
-            initialRating: {
-                type: Number,
+            locked: {
                 required: true,
+                type: Boolean,
+            },
+
+            initialRating: {
+                required: true,
+                type: Number,
             },
 
             route: {
-                type: String,
                 required: true,
+                type: String,
             },
         },
 
@@ -46,9 +52,12 @@
             },
 
             submit() {
-                axios.patch(this.route, {
-                    rating: this.rating,
-                });
+                // Only allow if the contest does not have a winner yet.
+                if (!this.locked) {
+                    axios.patch(this.route, {
+                        rating: this.rating,
+                    });
+                }
             },
         },
     };
@@ -56,6 +65,12 @@
 
 <style lang="scss" scoped>
     $size: 1.5rem;
+
+    .locked {
+        label {
+            cursor: default;
+        }
+    }
 
     input, label {
         -webkit-tap-highlight-color: rgba(0,0,0,0);

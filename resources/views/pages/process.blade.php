@@ -44,16 +44,33 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div class="shadow-card bg-white pt-3 pr-3 pb-1 pl-3">
+                <div class="shadow-card bg-white pt-3 pr-3 pb-1 pl-3 text-center">
                     <h3 class="ml-3">Contest host</h3>
 
-                    <ul class="list-group list-group-flush mb-3">
-                        <li class="list-group-item">Determine your own price</li>
-                        <li class="list-group-item">Money back guarantee</li>
-                        <li class="list-group-item">Easy communication with designers</li>
-                        <li class="list-group-item">Choose from a wide range of designs</li>
-                        <li class="list-group-item">Get the design files and ownership agreement</li>
-                        <li class="list-group-item">No additional costs after the initial payment</li>
+                    <ul class="list-group list-group-flush mb-3 text-left">
+                        <li class="list-group-item">
+                            <i class="far fa-check-circle mr-1 success"></i> Determine your own price
+                        </li>
+
+                        <li class="list-group-item">
+                            <i class="far fa-check-circle mr-1 success"></i> Money back guarantee
+                        </li>
+
+                        <li class="list-group-item">
+                            <i class="far fa-check-circle mr-1 success"></i> Easy communication with designers
+                        </li>
+
+                        <li class="list-group-item">
+                            <i class="far fa-check-circle mr-1 success"></i> Choose from a wide range of designs
+                        </li>
+
+                        <li class="list-group-item">
+                            <i class="far fa-check-circle mr-1 success"></i> Get the design files and ownership agreement
+                        </li>
+
+                        <li class="list-group-item border-0">
+                            <i class="far fa-check-circle mr-1 success"></i> No additional costs after the initial payment
+                        </li>
                     </ul>
 
                     <a class="btn btn-primary mb-3" href="{{ route('contests.create') }}" role="button">Create a contest</a>
@@ -61,15 +78,29 @@
             </div>
 
             <div class="col-md-6">
-                <div class="shadow-card bg-white pt-3 pr-3 pb-1 pl-3">
+                <div class="shadow-card bg-white pt-3 pr-3 pb-1 pl-3 text-center">
                     <h3 class="ml-3">Designer</h3>
 
-                    <ul class="list-group list-group-flush mb-3">
-                        <li class="list-group-item">You design we handle the rest</li>
-                        <li class="list-group-item">Build a portfolio</li>
-                        <li class="list-group-item">Work from wherever you want</li>
-                        <li class="list-group-item">Communicate with real clients</li>
-                        <li class="list-group-item">Easy way to make some extra money</li>
+                    <ul class="list-group list-group-flush mb-3 text-left">
+                        <li class="list-group-item">
+                            <i class="far fa-check-circle mr-1 success"></i> You design we handle the rest
+                        </li>
+
+                        <li class="list-group-item">
+                            <i class="far fa-check-circle mr-1 success"></i> Build a portfolio
+                        </li>
+
+                        <li class="list-group-item">
+                            <i class="far fa-check-circle mr-1 success"></i> Work from wherever you want
+                        </li>
+
+                        <li class="list-group-item">
+                            <i class="far fa-check-circle mr-1 success"></i> Communicate with real clients
+                        </li>
+
+                        <li class="list-group-item border-0">
+                            <i class="far fa-check-circle mr-1 success"></i> Easy way to make some extra money
+                        </li>
                     </ul>
 
                     <a class="btn btn-primary mb-3" href="{{ route('contests.index')  }}" role="button">View all contests</a>

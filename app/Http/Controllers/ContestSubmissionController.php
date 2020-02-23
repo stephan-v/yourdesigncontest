@@ -37,16 +37,17 @@ class ContestSubmissionController extends Controller
     {
         $file = $request->file('image');
 
-        // @TODO move resize/crop to a service/repository layer.
-
         // Crop and fit the image.
         $image = Image::make($file);
 
+        // Get the croppie.js coordinates.
         $cropY = $request->crop[3] - $request->crop[1];
         $cropX = $request->crop[2] - $request->crop[0];
 
+        // Crop the image.
         $image->crop($cropX, $cropY, $request->crop[0], $request->crop[1]);
 
+        // Resize it to the correct dimensions.
         $image->fit(800, 600, function(Constraint $constraint) {
             $constraint->upsize();
         });
@@ -85,8 +86,8 @@ class ContestSubmissionController extends Controller
      */
     public function update(Request $request, Contest $contest, Submission $submission)
     {
-        // @TODO Only allow the contest owner to update the rating of submissions belonging to this contest.
-        // @TODO create an api route for the update.
+        // @TODO Only the contest or submission owner can update. SubmissionPolicy
+
         $submission->update([
             'rating' => $request->rating
         ]);
