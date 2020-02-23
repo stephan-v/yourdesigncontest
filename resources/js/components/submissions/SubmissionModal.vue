@@ -94,9 +94,20 @@
             },
 
             submit() {
-                // @TODO Add "are you sure" confirmation.
-                axios.post(this.route).then((response) => {
-                    window.location = response.data.redirect;
+                swal({
+                    icon: 'warning',
+                    title: 'Are you sure?',
+                    text: 'This submission will be assigned as the winner of your contest.',
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willAssignWinner) => {
+                    if (willAssignWinner) {
+                        axios.post(this.route).then((response) => {
+                            window.location = response.data.redirect;
+                        });
+                    }
+
+                    this.$emit('close');
                 });
             },
         },
@@ -118,7 +129,7 @@
                 margin: 0;
                 font-weight: bold;
                 font-size: 1.3rem;
-                width: 90%;
+                max-width: 90%;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
