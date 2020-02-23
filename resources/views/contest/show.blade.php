@@ -38,6 +38,8 @@
 @endsection
 
 @section('content')
+    <contest :locked="@json($locked)"></contest>
+
     @can('manage', $contest)
         @if ($contest->finished)
             <div class="alert alert-warning p-3 m-0 text-center" role="alert">
@@ -66,7 +68,14 @@
                 <div class="col-md-8">
                     <h1>{{ $contest->name }}</h1>
                     <p>{{ $contest->description }}</p>
-                    <span class="mb-4 alert alert-info small font-weight-bold">Ends in {{ $contest->endsIn }}</span>
+
+                    <span class="mb-4 alert alert-info small font-weight-bold">
+                        @if ($contest->finished)
+                            Contest finished
+                        @else
+                            Ends in {{ $contest->endsIn }}
+                        @endif
+                    </span>
 
                     <h3 class="price-money position-relative text-center">
                         <span class="font-weight-bold">{{ $contest->payment->formattedPayout }}</span>
@@ -112,9 +121,7 @@
                             </div>
                         </submission>
 
-                        <stars :initial-rating="{{ $submission->rating ?? 0 }}"
-                               :locked="@json($locked)"
-                               route="{{ route('contests.submissions.update', [$contest, $submission]) }}">
+                        <stars :initial-rating="{{ $submission->rating ?? 0 }}" route="{{ route('contests.submissions.update', [$contest, $submission]) }}">
                         </stars>
 
                         <div class="caption p-2 border-top">

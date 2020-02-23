@@ -26,11 +26,6 @@
         },
 
         props: {
-            locked: {
-                required: true,
-                type: Boolean,
-            },
-
             initialRating: {
                 required: true,
                 type: Number,
@@ -39,6 +34,12 @@
             route: {
                 required: true,
                 type: String,
+            },
+        },
+
+        computed: {
+            locked() {
+                return this.$store.getters['contest/locked'];
             },
         },
 

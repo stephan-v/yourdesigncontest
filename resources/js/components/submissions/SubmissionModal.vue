@@ -6,7 +6,7 @@
                 <div>By <a :href="profile">{{ submission.user.name }}</a></div>
             </div>
 
-            <form class="text-center" @submit.prevent="submit" v-if="owner">
+            <form class="text-center" @submit.prevent="submit" v-if="!locked">
                 <button type="submit" class="btn btn-dark">Select as winner <i class="fas fa-award ml-1"></i></button>
             </form>
         </div>
@@ -56,9 +56,8 @@
         },
 
         computed: {
-            owner() {
-                // @TODO also remove the option if there is already a winner.
-                return this.user.id === this.submission.contest.user_id;
+            locked() {
+                return this.$store.getters['contest/locked'];
             },
 
             user() {
