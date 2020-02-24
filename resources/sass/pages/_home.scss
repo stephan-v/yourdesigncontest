@@ -16,6 +16,10 @@
 
 .home-banner {
     background-image: url('/images/main_slider_svoy.jpg');
+
+    .btn {
+        background: #2aa1c2;
+    }
 }
 
 .main-banner {
@@ -24,6 +28,6 @@
 
     h1 {
         line-height: 1.5;
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 }

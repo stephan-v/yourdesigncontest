@@ -4,8 +4,8 @@
     <div class="main-banner home-banner w-100 mb-5">
         <div class="container d-flex align-items-center h-100">
             <h1 class="text-white">
-                <div>Quick and cheap creative services</div>
-                <a href="{{ route('process') }}" class="text-white "><u>check how it works</u></a>
+                <div class="mb-3">Quick and cheap creative services</div>
+                <a href="{{ route('process') }}" class="btn btn-primary">Get started.</a>
             </h1>
         </div>
     </div>
