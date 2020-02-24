@@ -3,7 +3,7 @@
 @section('content')
     <div class="h-100 d-flex align-items-center">
         <div class="container">
-            <div class="row mb-3">
+            <div class="row mb-3 mt-5">
                 <div class="col-md-8 offset-md-2">
                     <h1 class="success font-weight-bold mb-3">
                         <i class="fas fa-check-circle"></i>

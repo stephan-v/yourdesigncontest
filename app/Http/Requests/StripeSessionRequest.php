@@ -24,7 +24,7 @@ class StripeSessionRequest extends FormRequest
     public function rules()
     {
         return [
-            'amount' => ['required', 'numeric', 'min:50'],
+            'amount' => ['required', 'numeric', 'min:100'],
             'currency' => ['required', 'string'],
             'email' => ['required', 'email'],
             'name' => ['required', 'string'],
