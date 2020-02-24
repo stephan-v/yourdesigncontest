@@ -122,11 +122,14 @@ class ContestSubmissionController extends Controller
      * Restore the specified resource.
      *
      * @param Request $request The incoming HTTP client request.
-     * @param Submission $submission The submission to restore.
+     * @param Contest $contest The contest which owns the submission.
+     * @param int $submissionId The id of the submission to restore.
      * @return Response The server response.
      */
-    public function restore(Request $request, Submission $submission)
+    public function restore(Request $request, Contest $contest, int $submissionId)
     {
+        $submission = Submission::onlyTrashed()->findOrFail($submissionId);
+
         $request->user()->can('restore', $submission);
 
         $submission->restore();

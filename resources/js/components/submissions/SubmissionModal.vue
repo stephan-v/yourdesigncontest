@@ -36,12 +36,6 @@
                 </span>
 
                 <span class="d-flex align-items-center" v-if="owner">
-                    <form @submit.prevent="restore" v-if="restorable">
-                        <button type="submit" class="btn btn-dark btn-sm">
-                            <i class="fas fa-trash-restore mr-3"></i> Restore submission
-                        </button>
-                    </form>
-
                     <form @submit.prevent="del" v-if="deletable">
                         <button type="submit" class="btn btn-dark btn-sm">
                             <i class="fas fa-trash mr-3"></i> Withdraw submission
@@ -72,10 +66,6 @@
         computed: {
             deletable() {
                 return !this.submission.deleted_at && !this.submission.winner;
-            },
-
-            restorable() {
-                return this.submission.deleted_at;
             },
 
             owner() {
@@ -124,17 +114,6 @@
                     swal(
                         'Submission deleted.',
                         'You can always restore your submission',
-                        'success',
-                    ).then(() => {
-                        window.location.reload();
-                    });
-                });
-            },
-
-            restore() {
-                axios.post(`${this.route}/restore`).then(() => {
-                    swal(
-                        'Submission restored.',
                         'success',
                     ).then(() => {
                         window.location.reload();

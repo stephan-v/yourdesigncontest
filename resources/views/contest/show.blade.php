@@ -108,20 +108,33 @@
 
             @foreach ($submissions as $submission)
                 <div class="col-md-3">
-                    <div class="submission mb-3 @if ($submission->winner) border border-warning @endif @if ($submission->deleted_at) deleted @endif">
-                        <submission :submission='@json($submission)'>
-                            @if ($submission->winner)
-                                <div class="alert alert-warning text-center mb-0 p-2" role="alert">Winner!</div>
-                            @endif
-
-                            <div class="pt-2 pr-2 pl-2">
+                    <div class="submission position-relative mb-3 @if ($submission->winner) border border-warning @endif">
+                        @if ($submission->deleted_at)
+                            <div class="pt-2 pr-2 pl-2 deleted">
                                 <picture class="intrinsic intrinsic--4x3">
+                                    <div class="absolute-center font-weight-bold text-center small">Deleted by user</div>
                                     <img src="{{ $submission->path }}" alt="" class="intrinsic-item">
                                 </picture>
                             </div>
-                        </submission>
+                        @else
+                            <submission :submission='@json($submission)'>
+                                @if ($submission->winner)
+                                    <div class="alert alert-warning text-center mb-0 p-2" role="alert">Winner!</div>
+                                @endif
 
-                        <stars :initial-rating="{{ $submission->rating ?? 0 }}" route="{{ route('contests.submissions.update', [$contest, $submission]) }}"></stars>
+                                <div class="pt-2 pr-2 pl-2">
+                                    <picture class="intrinsic intrinsic--4x3">
+                                        <img src="{{ $submission->path }}" alt="" class="intrinsic-item">
+                                    </picture>
+                                </div>
+                            </submission>
+                        @endif
+
+                        <stars :initial-rating="{{ $submission->rating ?? 0 }}" :editable="@json(empty($submission->deleted_at))" route="{{ route('contests.submissions.update', [$contest, $submission]) }}"></stars>
+
+                        @if (Auth::check() && $submission->deleted_at)
+                            <restore route="{{ route('contests.submission.restore', [$contest, $submission]) }}"></restore>
+                        @endif
 
                         <div class="caption p-2 border-top">
                             <small class="text-muted">

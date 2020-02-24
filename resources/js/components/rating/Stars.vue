@@ -26,6 +26,11 @@
         },
 
         props: {
+            editable: {
+                required: true,
+                type: Boolean,
+            },
+
             initialRating: {
                 required: true,
                 type: Number,
@@ -39,7 +44,7 @@
 
         computed: {
             locked() {
-                return this.$store.getters['contest/locked'];
+                return !this.editable || this.$store.getters['contest/locked'];
             },
         },
 
