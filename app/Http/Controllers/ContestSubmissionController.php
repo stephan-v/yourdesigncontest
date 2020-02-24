@@ -53,14 +53,14 @@ class ContestSubmissionController extends Controller
             $constraint->upsize();
         });
 
-        $path = "submissions/{$contest->id}/{$file->hashName()}";
+        $path = "contests/{$contest->id}/submissions/";
 
         Storage::disk('public')->put($path, $image->encode());
 
         $contest->submissions()->create([
             'title' => $request->title,
             'description' => $request->description,
-            'path' => $path,
+            'filename' => $file->hashName(),
         ]);
 
         return redirect()->route('contests.show', $contest);
@@ -111,6 +111,22 @@ class ContestSubmissionController extends Controller
 
         $submission->delete();
 
-        return response('Deleted the submission');
+        return response('The submission has been deleted');
+    }
+
+    /**
+     * Restore the specified resource.
+     *
+     * @param Request $request The incoming HTTP client request.
+     * @param Submission $submission The submission to restore.
+     * @return Response The server response.
+     */
+    public function restore(Request $request, Submission $submission)
+    {
+        $request->user()->can('restore', $submission);
+
+        $submission->restore();
+
+        return response('The submission has been restored');
     }
 }

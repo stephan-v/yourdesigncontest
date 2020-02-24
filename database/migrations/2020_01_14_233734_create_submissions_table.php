@@ -18,7 +18,7 @@ class CreateSubmissionsTable extends Migration
 
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('path');
+            $table->string('filename');
             $table->float('rating', 9, 2)->nullable();
             $table->unsignedSmallInteger('order');
 

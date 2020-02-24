@@ -62,6 +62,7 @@ class ContestController extends Controller
 
         $submissions = $contest
             ->submissions()
+            ->withTrashed()
             ->latest('order')
             ->with(['user', 'contest'])
             ->paginate(12);

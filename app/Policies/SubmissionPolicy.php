@@ -35,4 +35,16 @@ class SubmissionPolicy
     {
         return $user->id === $submission->user->id;
     }
+
+    /**
+     * Determine whether the user can restore the submission.
+     *
+     * @param User $user The user that is currently logged in.
+     * @param Submission $submission The submission that the user wants to restore.
+     * @return bool Whether the user is authorized to restore the submission.
+     */
+    public function restore(User $user, Submission $submission)
+    {
+        return $user->id === $submission->user->id;
+    }
 }

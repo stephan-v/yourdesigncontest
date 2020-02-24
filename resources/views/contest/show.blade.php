@@ -108,7 +108,7 @@
 
             @foreach ($submissions as $submission)
                 <div class="col-md-3">
-                    <div class="submission mb-3 @if ($submission->winner) border border-warning @endif">
+                    <div class="submission mb-3 @if ($submission->winner) border border-warning @endif @if ($submission->deleted_at) deleted @endif">
                         <submission :submission='@json($submission)'>
                             @if ($submission->winner)
                                 <div class="alert alert-warning text-center mb-0 p-2" role="alert">Winner!</div>
