@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contest;
 use App\Http\Requests\ContestSubmissionRequest;
 use App\Submission;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -98,11 +99,18 @@ class ContestSubmissionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Request $request The incoming HTTP client request.
+     * @param Contest $contest The contest which owns the submission.
+     * @param Submission $submission The submission to delete.
+     * @return Response The server response.
+     * @throws Exception  Thrown if the submission could not be deleted.
      */
-    public function destroy($id)
+    public function destroy(Request $request, Contest $contest, Submission $submission)
     {
-        //
+        $request->user()->can('delete', $submission);
+
+        $submission->delete();
+
+        return response('Deleted the submission');
     }
 }

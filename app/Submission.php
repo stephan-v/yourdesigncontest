@@ -4,10 +4,12 @@ namespace App;
 
 use App\Presenters\SubmissionPresenter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
 class Submission extends Model
 {
+    use SoftDeletes;
     use SubmissionPresenter;
 
     /**
