@@ -36,13 +36,13 @@
                 </span>
 
                 <span class="d-flex align-items-center" v-if="owner">
-                    <form @submit.prevent="restore" v-if="softDelete">
+                    <form @submit.prevent="restore" v-if="restorable">
                         <button type="submit" class="btn btn-dark btn-sm">
                             <i class="fas fa-trash-restore mr-3"></i> Restore submission
                         </button>
                     </form>
 
-                    <form @submit.prevent="del" v-else>
+                    <form @submit.prevent="del" v-if="deletable">
                         <button type="submit" class="btn btn-dark btn-sm">
                             <i class="fas fa-trash mr-3"></i> Withdraw submission
                         </button>
@@ -70,7 +70,11 @@
         },
 
         computed: {
-            softDelete() {
+            deletable() {
+                return !this.submission.deleted_at && !this.submission.winner;
+            },
+
+            restorable() {
                 return this.submission.deleted_at;
             },
 
