@@ -11,11 +11,11 @@
         <div class="form-group mb-3">
             <label for="amount">Price money</label>
             <input type="number"
-                   class="form-control"
+                   class="form-control mb-3"
                    id="amount"
                    :placeholder="placeholder"
                    v-model.number="amount">
-            <small class="form-text text-muted">Select how much the winning designer will earn.</small>
+            <small class="alert alert-warning d-block">Select how much the winning designer will earn.</small>
         </div>
 
         <div class="card mb-3">
