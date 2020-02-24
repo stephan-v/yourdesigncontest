@@ -121,8 +121,7 @@
                             </div>
                         </submission>
 
-                        <stars :initial-rating="{{ $submission->rating ?? 0 }}" route="{{ route('contests.submissions.update', [$contest, $submission]) }}">
-                        </stars>
+                        <stars :initial-rating="{{ $submission->rating ?? 0 }}" route="{{ route('contests.submissions.update', [$contest, $submission]) }}"></stars>
 
                         <div class="caption p-2 border-top">
                             <small class="text-muted">

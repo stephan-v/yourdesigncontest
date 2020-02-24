@@ -109,6 +109,10 @@ class ContestSubmissionController extends Controller
     {
         $request->user()->can('delete', $submission);
 
+        if ($submission->winner) {
+            throw new Exception('You can not delete a winning submission');
+        }
+
         $submission->delete();
 
         return response('The submission has been deleted');
