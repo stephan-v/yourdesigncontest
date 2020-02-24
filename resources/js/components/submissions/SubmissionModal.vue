@@ -117,13 +117,24 @@
 
             del() {
                 axios.delete(this.route).then(() => {
-                    swal('Submission deleted.', 'You can always restore your submission', 'success');
+                    swal(
+                        'Submission deleted.',
+                        'You can always restore your submission',
+                        'success',
+                    ).then(() => {
+                        window.location.reload();
+                    });
                 });
             },
 
             restore() {
                 axios.post(`${this.route}/restore`).then(() => {
-                    swal('Submission restored.', 'success');
+                    swal(
+                        'Submission restored.',
+                        'success',
+                    ).then(() => {
+                        window.location.reload();
+                    });
                 });
             },
 

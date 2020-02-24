@@ -13,6 +13,13 @@ class Submission extends Model
     use SubmissionPresenter;
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array $appends
+     */
+    protected $appends = ['path'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array $fillable
