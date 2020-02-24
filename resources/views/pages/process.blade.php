@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container pros-list">
         <div class="row">
             <div class="col-md-6">
                 <div class="shadow-card bg-white pt-3 pr-3 pb-1 pl-3 text-center">
