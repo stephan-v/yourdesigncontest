@@ -5,13 +5,12 @@ namespace App\Presenters;
 trait SubmissionPresenter
 {
     /**
-     * Get the submission's path.
+     * Get the submission's full image path.
      *
-     * @param string $value The original value.
      * @return string The image path of the submission.
      */
-    public function getPathAttribute(string $value): string
+    public function getPathAttribute(): string
     {
-        return asset($value);
+        return asset("contests/{$this->contest->id}/submissions/{$this->filename}");
     }
 }

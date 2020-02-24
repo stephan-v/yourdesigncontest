@@ -108,7 +108,7 @@
 
             @foreach ($submissions as $submission)
                 <div class="col-md-3">
-                    <div class="submission mb-3 @if ($submission->winner) border border-warning @endif">
+                    <div class="submission mb-3 @if ($submission->winner) border border-warning @endif @if ($submission->deleted_at) deleted @endif">
                         <submission :submission='@json($submission)'>
                             @if ($submission->winner)
                                 <div class="alert alert-warning text-center mb-0 p-2" role="alert">Winner!</div>
@@ -121,8 +121,7 @@
                             </div>
                         </submission>
 
-                        <stars :initial-rating="{{ $submission->rating ?? 0 }}" route="{{ route('contests.submissions.update', [$contest, $submission]) }}">
-                        </stars>
+                        <stars :initial-rating="{{ $submission->rating ?? 0 }}" route="{{ route('contests.submissions.update', [$contest, $submission]) }}"></stars>
 
                         <div class="caption p-2 border-top">
                             <small class="text-muted">

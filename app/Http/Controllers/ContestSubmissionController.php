@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contest;
 use App\Http\Requests\ContestSubmissionRequest;
 use App\Submission;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -52,14 +53,14 @@ class ContestSubmissionController extends Controller
             $constraint->upsize();
         });
 
-        $path = "submissions/{$contest->id}/{$file->hashName()}";
+        $path = "contests/{$contest->id}/submissions/";
 
         Storage::disk('public')->put($path, $image->encode());
 
         $contest->submissions()->create([
             'title' => $request->title,
             'description' => $request->description,
-            'path' => $path,
+            'filename' => $file->hashName(),
         ]);
 
         return redirect()->route('contests.show', $contest);
@@ -98,11 +99,38 @@ class ContestSubmissionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Request $request The incoming HTTP client request.
+     * @param Contest $contest The contest which owns the submission.
+     * @param Submission $submission The submission to delete.
+     * @return Response The server response.
+     * @throws Exception  Thrown if the submission could not be deleted.
      */
-    public function destroy($id)
+    public function destroy(Request $request, Contest $contest, Submission $submission)
     {
-        //
+        $request->user()->can('delete', $submission);
+
+        if ($submission->winner) {
+            throw new Exception('You can not delete a winning submission');
+        }
+
+        $submission->delete();
+
+        return response('The submission has been deleted');
+    }
+
+    /**
+     * Restore the specified resource.
+     *
+     * @param Request $request The incoming HTTP client request.
+     * @param Submission $submission The submission to restore.
+     * @return Response The server response.
+     */
+    public function restore(Request $request, Submission $submission)
+    {
+        $request->user()->can('restore', $submission);
+
+        $submission->restore();
+
+        return response('The submission has been restored');
     }
 }

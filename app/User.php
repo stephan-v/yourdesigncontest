@@ -48,6 +48,14 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Get the submissions for the user.
+     */
+    public function submissions()
+    {
+        return $this->hasManyThrough(Submission::class, Contest::class);
+    }
+
+    /**
      * The channels the user receives notification broadcasts on.
      *
      * @return string

@@ -6,7 +6,7 @@
                 <div>By <a :href="profile">{{ submission.user.name }}</a></div>
             </div>
 
-            <form class="text-center" @submit.prevent="submit" v-if="!locked">
+            <form class="text-center" @submit.prevent="award" v-if="!locked">
                 <button type="submit" class="btn btn-dark">Select as winner <i class="fas fa-award ml-1"></i></button>
             </form>
         </div>
@@ -31,8 +31,22 @@
                     <i class="far fa-calendar mr-3"></i> {{ created }}
                 </span>
 
-                <span class="d-flex align-items-center">
+                <span class="d-flex align-items-center mb-3">
                     <i class="fas fa-palette mr-3"></i> <palette/>
+                </span>
+
+                <span class="d-flex align-items-center" v-if="owner">
+                    <form @submit.prevent="restore" v-if="restorable">
+                        <button type="submit" class="btn btn-dark btn-sm">
+                            <i class="fas fa-trash-restore mr-3"></i> Restore submission
+                        </button>
+                    </form>
+
+                    <form @submit.prevent="del" v-if="deletable">
+                        <button type="submit" class="btn btn-dark btn-sm">
+                            <i class="fas fa-trash mr-3"></i> Withdraw submission
+                        </button>
+                    </form>
                 </span>
             </div>
         </div>
@@ -56,6 +70,19 @@
         },
 
         computed: {
+            deletable() {
+                return !this.submission.deleted_at && !this.submission.winner;
+            },
+
+            restorable() {
+                return this.submission.deleted_at;
+            },
+
+            owner() {
+                // @TODO check this when logged out.
+                return this.user.id === this.submission.contest.user_id;
+            },
+
             locked() {
                 return this.$store.getters['contest/locked'];
             },
@@ -73,7 +100,7 @@
             },
 
             route() {
-                return `/contests/${this.contest}/submissions/${this.submission.id}/winner`;
+                return `/contests/${this.contest}/submissions/${this.submission.id}`;
             },
 
             profile() {
@@ -92,7 +119,30 @@
                 });
             },
 
-            submit() {
+            del() {
+                axios.delete(this.route).then(() => {
+                    swal(
+                        'Submission deleted.',
+                        'You can always restore your submission',
+                        'success',
+                    ).then(() => {
+                        window.location.reload();
+                    });
+                });
+            },
+
+            restore() {
+                axios.post(`${this.route}/restore`).then(() => {
+                    swal(
+                        'Submission restored.',
+                        'success',
+                    ).then(() => {
+                        window.location.reload();
+                    });
+                });
+            },
+
+            award() {
                 swal({
                     icon: 'warning',
                     title: 'Are you sure?',
@@ -101,7 +151,7 @@
                     dangerMode: true,
                 }).then((willAssignWinner) => {
                     if (willAssignWinner) {
-                        axios.post(this.route).then((response) => {
+                        axios.post(`${this.route}/award`).then((response) => {
                             window.location = response.data.redirect;
                         });
                     }
@@ -114,9 +164,13 @@
 </script>
 
 <style lang="scss">
-    .submission-modal {
-        width: 800px;
+    @media (min-width: 768px) {
+        .submission-modal {
+            width: 768px;
+        }
+    }
 
+    .submission-modal {
         .swal-content {
             margin: 0;
             padding: 0;

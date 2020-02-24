@@ -17,9 +17,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user->load('contests.submissions');
+        $submissions = $user->submissions()->paginate(12);
 
-        return view('user.show', compact('user'));
+        return view('user.show', compact('submissions', 'user'));
     }
 
     /**

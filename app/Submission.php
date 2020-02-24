@@ -4,11 +4,20 @@ namespace App;
 
 use App\Presenters\SubmissionPresenter;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
 class Submission extends Model
 {
+    use SoftDeletes;
     use SubmissionPresenter;
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array $appends
+     */
+    protected $appends = ['path'];
 
     /**
      * The attributes that are mass assignable.
@@ -17,8 +26,8 @@ class Submission extends Model
      */
     protected $fillable = [
         'description',
+        'filename',
         'order',
-        'path',
         'rating',
         'title',
         'user_id',

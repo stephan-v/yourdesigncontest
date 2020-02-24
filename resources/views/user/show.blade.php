@@ -37,7 +37,7 @@
         </div>
 
         <div class="row">
-            @foreach ($user->contests->flatMap->submissions as $submission)
+            @foreach ($submissions as $submission)
                 <div class="col-md-3">
                     <div class="submission mb-3">
                         <div class="d-flex align-content-center justify-content-center p-3">
@@ -62,6 +62,12 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 pt-4 pb-3 d-flex justify-content-center">
+                {{ $submissions->links() }}
+            </div>
         </div>
     </div>
 @endsection
