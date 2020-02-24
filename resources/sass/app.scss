@@ -38,6 +38,9 @@ footer {
     transform: translate(-50%, -50%);
 }
 
+// Base.
+@import 'base/typography';
+
 // Components.
 @import 'components/intrinsic';
 @import 'components/submission';
