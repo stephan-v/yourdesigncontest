@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Comment;
+use App\Submission;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
@@ -62,8 +63,24 @@ class ReceivedComment extends Notification implements ShouldQueue
     {
         return [
             'commentable' => $this->comment->commentable,
+            'route' => $this->resolveRoute(),
             'id' => $this->comment->id,
             'user' => $this->comment->user,
         ];
+    }
+
+    /**
+     * Resolve the notification route based on the model type.
+     *
+     * @return string The route belonging to the comment.
+     */
+    private function resolveRoute()
+    {
+        $commentable = $this->comment->commentable;
+
+        switch (get_class($commentable)) {
+            case Submission::class:
+                return route('contests.show', $this->comment->commentable, false);
+        }
     }
 }

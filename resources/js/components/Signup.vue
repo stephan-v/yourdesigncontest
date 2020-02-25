@@ -44,7 +44,6 @@
         top: 55%;
         left: 45%;
         transform: rotate(60deg) translate(-50%, 0%);
-        font-family: 'Roboto', sans-serif;
         width: 300px;
 
         label {

@@ -4,17 +4,17 @@
 
         <span class="count" v-if="count" @click="toggle">{{ count }}</span>
 
-        <div class="dropdown position-absolute bg-white z-index-1" v-if="visible" v-click-outside="toggle">
-            <div class="dropdown-header">
-                <div class="triangle"></div>
-                Notifications
-            </div>
+        <div class="notifications position-absolute z-index-1" v-if="visible" v-click-outside="toggle">
+            <div class="triangle"></div>
 
-            <div class="dropdown-body">
+            <div class="notifications-header text-center p-3 font-weight-bold">Notifications</div>
+
+            <div class="notifications-body">
                 <ul class="list-group" >
-                    <li v-for="notification in notifications" :key="notification.id">
-                        You have a new comment.
-                    </li>
+                    <notification v-for="notification in notifications"
+                                  :notification="notification"
+                                  :key="notification.id">
+                    </notification>
 
                     <li v-if="!notifications.length">No new messages</li>
                 </ul>
@@ -72,18 +72,32 @@
         cursor: pointer;
     }
 
-    .dropdown-header {
+    .notifications {
+        top: 0;
+        right: 50%;
+        width: 280px;
+        font-size: 0.875rem;
+        transform: translate(50%, 2rem);
+    }
+
+    .notifications-header {
+        background: #fff;
+        color: grey;
         border-radius: 10px 10px 0 0;
+    }
+
+    .notifications-body {
+        background: #e9f0f3;
     }
 
     .triangle {
         position: absolute;
-        top: 0;
-        left: 0;
         height: 1rem;
         width: 1rem;
         border-radius: 6px 0 0 0;
-        transform: rotate(45deg);
+        top: -5px;
+        transform: translateX(50%) rotate(45deg);
+        right: 50%;
         background: #FFF;
     }
 
@@ -99,6 +113,7 @@
         position: absolute;
         font-weight: bold;
         line-height: 1.4rem;
+        text-align: center;
     }
 
     .list-group {
@@ -110,9 +125,12 @@
         border-radius: 0.25rem;
 
         li {
-            padding: 0.6rem 1rem;
             border-bottom: 1px solid #e0e0e0;
             white-space: nowrap;
+
+            a {
+                //
+            }
 
             &:last-child {
                 border: 0;
