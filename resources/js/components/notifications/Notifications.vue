@@ -4,7 +4,7 @@
 
         <span class="count" v-if="count" @click="toggle">{{ count }}</span>
 
-        <div class="notifications position-absolute z-index-1" v-if="visible" v-click-outside="toggle">
+        <div class="notifications position-absolute" v-if="visible" v-click-outside="toggle">
             <div class="triangle"></div>
 
             <div class="notifications-header text-center p-3 font-weight-bold">Notifications</div>
@@ -16,7 +16,7 @@
                                   :key="notification.id">
                     </notification>
 
-                    <li v-if="!notifications.length">No new messages</li>
+                    <li class="p-3" v-if="!notifications.length">No new messages</li>
                 </ul>
             </div>
         </div>
@@ -75,7 +75,8 @@
     .notifications {
         top: 0;
         right: 50%;
-        width: 280px;
+        z-index: 1;
+        width: 300px;
         font-size: 0.875rem;
         transform: translate(50%, 2rem);
     }
@@ -84,10 +85,39 @@
         background: #fff;
         color: grey;
         border-radius: 10px 10px 0 0;
+        position: relative;
+
+        border: 0 solid;
+        border-bottom-width: 1px;
+        border-image: linear-gradient(to right, white 0%, #cedae0 40%, #cedae0 60%, white 100%) 1 20%;
+        box-shadow: 0 2px 10px -2px #cedae0;
     }
 
     .notifications-body {
         background: #e9f0f3;
+        max-height: 300px;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        &::-webkit-scrollbar-track {
+            webkit-box-shadow: inset 0 0 6px #e9f0f3;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            background: #e9f0f3;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            background: grey;
+            -webkit-box-shadow: none;
+        }
+        &::-webkit-scrollbar-thumb:window-inactive {
+            background: grey;
+        }
     }
 
     .triangle {
@@ -107,12 +137,12 @@
         font-size: 0.6em;
         background: #2ba1c3;
         color: #fefefe;
-        width: 1.3rem;
-        height: 1.3rem;
+        width: 1.2rem;
+        height: 1.2rem;
         border-radius: 50%;
         position: absolute;
         font-weight: bold;
-        line-height: 1.4rem;
+        line-height: 1.3rem;
         text-align: center;
     }
 
@@ -127,10 +157,6 @@
         li {
             border-bottom: 1px solid #e0e0e0;
             white-space: nowrap;
-
-            a {
-                //
-            }
 
             &:last-child {
                 border: 0;

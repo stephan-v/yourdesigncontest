@@ -37,11 +37,11 @@ trait UserPresenter
     /**
      * Get the users's full avatar path.
      *
-     * @param string $value The filename of the image.
-     * @return string The image path of the avatar.
+     * @param null|string $value The filename of the image.
+     * @return null|string The image path of the avatar.
      */
-    public function getAvatarAttribute(?string $value): string
+    public function getAvatarAttribute(?string $value): ?string
     {
-        return asset("avatars/{$value}");
+        return $value ? asset("avatars/{$value}") : null;
     }
 }

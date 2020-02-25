@@ -80,7 +80,7 @@ class ReceivedComment extends Notification implements ShouldQueue
 
         switch (get_class($commentable)) {
             case Submission::class:
-                return route('contests.show', $this->comment->commentable, false);
+                return route('contests.show', $this->comment->commentable->contest, false);
         }
     }
 }
