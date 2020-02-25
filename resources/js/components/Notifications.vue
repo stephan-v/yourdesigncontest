@@ -1,10 +1,8 @@
 <template>
-    <span class="position-relative">
+    <span class="position-relative mr-1">
         <i class="fas fa-envelope" @click="toggle"></i>
 
-        <span class="count position-absolute d-inline-block font-weight-bold text-center" v-if="count" @click="toggle">
-            {{ count }}
-        </span>
+        <span class="count" v-if="count" @click="toggle">{{ count }}</span>
 
         <ul class="list-group position-absolute bg-white z-index-1" v-if="count && visible" v-click-outside="toggle">
             <li v-for="notification in notifications" :key="notification.id" v-html="notification.data.message"/>
@@ -57,6 +55,10 @@
 </script>
 
 <style lang="scss" scoped>
+    .fas {
+        font-size: 1.375rem;
+    }
+
     .fas, .count {
         cursor: pointer;
     }
@@ -64,13 +66,15 @@
     .count {
         top: -0.8rem;
         right: -0.8rem;
-        font-size: 0.5em;
-        background: #ff3200;
+        font-size: 0.6em;
+        background: #2ba1c3;
         color: #fefefe;
-        min-width: 2.5em;
-        padding: 0.25em;
+        width: 1.3rem;
+        height: 1.3rem;
         border-radius: 50%;
-        border: 2px solid #333940
+        position: absolute;
+        font-weight: bold;
+        line-height: 1.4rem;
     }
 
     .list-group {
