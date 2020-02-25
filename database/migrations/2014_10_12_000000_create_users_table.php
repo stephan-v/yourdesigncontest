@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('email')->unique();
+            $table->string('avatar')->nullable();
             $table->enum('currency', ['EUR', 'USD']);
             $table->string('password')->nullable();
             $table->string('stripe_connect_id')->nullable();

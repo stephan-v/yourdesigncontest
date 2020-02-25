@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 
 class RegisterController extends Controller
 {
@@ -54,7 +55,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // @TODO move the user observer?
+        $avatar = request()->file('avatar');
+
+        $path = Storage::disk('public')->path('avatars');
+        $name = $avatar->hashName();
+
+        Image::make($avatar)->resize(64, 64)->save($path . '/' . $name);
+
         return User::create([
+            'avatar' => $name,
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

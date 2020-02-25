@@ -4,13 +4,22 @@
 
         <span class="count" v-if="count" @click="toggle">{{ count }}</span>
 
-        <ul class="list-group position-absolute bg-white z-index-1" v-if="count && visible" v-click-outside="toggle">
-            <li v-for="notification in notifications" :key="notification.id" v-html="notification.data.message"/>
-        </ul>
+        <div class="dropdown position-absolute bg-white z-index-1" v-if="visible" v-click-outside="toggle">
+            <div class="dropdown-header">
+                <div class="triangle"></div>
+                Notifications
+            </div>
 
-        <ul class="list-group position-absolute bg-white z-index-1" v-else-if="visible" v-click-outside="toggle">
-            <li>No new messages</li>
-        </ul>
+            <div class="dropdown-body">
+                <ul class="list-group" >
+                    <li v-for="notification in notifications"
+                        :key="notification.id"
+                        v-html="notification.data.message"/>
+
+                    <li v-if="!notifications.length">No new messages</li>
+                </ul>
+            </div>
+        </div>
     </span>
 </template>
 
@@ -61,6 +70,21 @@
 
     .fas, .count {
         cursor: pointer;
+    }
+
+    .dropdown-header {
+        border-radius: 10px 10px 0 0;
+    }
+
+    .triangle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1rem;
+        width: 1rem;
+        border-radius: 6px 0 0 0;
+        transform: rotate(45deg);
+        background: #FFF;
     }
 
     .count {

@@ -27,12 +27,10 @@ class TusServiceProvider extends ServiceProvider
         $this->app->singleton(Server::class, function () {
             $server = new Server('redis');
 
-            if (!Storage::disk('public')->exists($this->directory)) {
-                Storage::disk('public')->makeDirectory($this->directory);
-            }
+            $path = Storage::disk('public')->path($this->directory);
 
             $server->setApiPath('/tus');
-            $server->setUploadDir(storage_path("app/public/{$this->directory}"));
+            $server->setUploadDir($path);
             $server->setMaxUploadSize(10000000); // 10MB.
 
             // @TODO remove the static winner_id
