@@ -2,7 +2,7 @@
     <span class="position-relative mr-1">
         <i class="fas fa-envelope" @click="toggle"></i>
 
-        <span class="count" v-if="count" @click="toggle">{{ count }}</span>
+        <span class="count overlay" v-if="count" @click="toggle">{{ count }}</span>
 
         <div class="notifications position-absolute" v-if="visible" v-click-outside="toggle">
             <div class="triangle"></div>
@@ -141,17 +141,22 @@
     }
 
     .count {
-        top: -0.7rem;
-        right: -0.7rem;
+        &.overlay {
+            top: -0.7rem;
+            right: -0.7rem;
+            position: absolute;
+        }
+    }
+
+    .count {
         font-size: 0.6em;
         background: #2ba1c3;
         color: #fefefe;
         width: 1.1rem;
         height: 1.1rem;
         border-radius: 50%;
-        position: absolute;
         font-weight: bold;
-        line-height: 1.2rem;
+        line-height: 1.1rem;
         text-align: center;
     }
 

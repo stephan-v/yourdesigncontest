@@ -110,7 +110,7 @@
                 <div class="col-md-3">
                     <div class="submission position-relative mb-3 @if ($submission->winner) border border-warning @endif">
                         @if ($submission->deleted_at)
-                            <div class="pt-2 pr-2 pl-2 deleted">
+                            <div class="deleted">
                                 <picture class="intrinsic intrinsic--4x3">
                                     <div class="absolute-center font-weight-bold text-center small">Deleted by user</div>
                                     <img src="{{ $submission->path }}" alt="" class="intrinsic-item">
@@ -122,7 +122,7 @@
                                     <div class="alert alert-warning text-center mb-0 p-2" role="alert">Winner!</div>
                                 @endif
 
-                                <div class="pt-2 pr-2 pl-2">
+                                <div>
                                     <picture class="intrinsic intrinsic--4x3">
                                         <img src="{{ $submission->path }}" alt="" class="intrinsic-item">
                                     </picture>
