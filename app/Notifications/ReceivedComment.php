@@ -32,10 +32,9 @@ class ReceivedComment extends Notification implements ShouldQueue
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
      * @return array
      */
-    public function via($notifiable)
+    public function via()
     {
         return ['broadcast', 'database'];
     }
@@ -43,13 +42,12 @@ class ReceivedComment extends Notification implements ShouldQueue
     /**
      * Get the broadcastable representation of the notification.
      *
-     * @param  mixed  $notifiable
      * @return BroadcastMessage
      */
-    public function toBroadcast($notifiable)
+    public function toBroadcast()
     {
         return new BroadcastMessage([
-            'data' => $this->toArray($notifiable),
+            'data' => $this->toArray(),
             'created_at' => now(),
             'read_at' => null
         ]);
@@ -58,17 +56,14 @@ class ReceivedComment extends Notification implements ShouldQueue
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
-     * @return array
+     * @return array The formatted array.
      */
-    public function toArray($notifiable)
+    public function toArray()
     {
-        $route = route('contests.show', $this->comment->commentable, false);
-
         return [
+            'commentable' => $this->comment->commentable,
             'id' => $this->comment->id,
             'user' => $this->comment->user,
-            'message' => "You have a <a href='{$route}'>new comment</a>",
         ];
     }
 }

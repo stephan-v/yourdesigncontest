@@ -12,9 +12,9 @@
 
             <div class="dropdown-body">
                 <ul class="list-group" >
-                    <li v-for="notification in notifications"
-                        :key="notification.id"
-                        v-html="notification.data.message"/>
+                    <li v-for="notification in notifications" :key="notification.id">
+                        You have a new comment.
+                    </li>
 
                     <li v-if="!notifications.length">No new messages</li>
                 </ul>
