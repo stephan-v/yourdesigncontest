@@ -40,7 +40,7 @@ trait UserPresenter
      * @param string $value The filename of the image.
      * @return string The image path of the avatar.
      */
-    public function getAvatarAttribute(string $value): string
+    public function getAvatarAttribute(?string $value): string
     {
         return asset("avatars/{$value}");
     }
