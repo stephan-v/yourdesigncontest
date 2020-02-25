@@ -63,13 +63,11 @@ class ReceivedComment extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
-        $submission = $this->comment->commentable;
-
-        // @TODO update to show the modal instead.
-        $route = route('contests.show', $submission->contest, false);
+        $route = route('contests.show', $this->comment->commentable, false);
 
         return [
             'id' => $this->comment->id,
+            'user' => $this->comment->user,
             'message' => "You have a <a href='{$route}'>new comment</a>",
         ];
     }
