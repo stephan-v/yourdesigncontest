@@ -10,7 +10,7 @@
             <div class="notifications-header text-center p-3 font-weight-bold">Notifications</div>
 
             <div class="notifications-body">
-                <ul class="list-group" >
+                <ul class="list-group">
                     <notification v-for="notification in notifications"
                                   :notification="notification"
                                   :key="notification.id">
@@ -18,6 +18,10 @@
 
                     <li class="p-3" v-if="!notifications.length">No new messages</li>
                 </ul>
+            </div>
+
+            <div class="notifications-footer text-center bg-white">
+                <a href="/notifications" class="d-block p-2">See all notifications</a>
             </div>
         </div>
     </span>
@@ -79,11 +83,11 @@
         width: 300px;
         font-size: 0.875rem;
         transform: translate(50%, 2rem);
+        color: grey;
     }
 
     .notifications-header {
         background: #fff;
-        color: grey;
         border-radius: 10px 10px 0 0;
         position: relative;
 
@@ -118,6 +122,11 @@
         &::-webkit-scrollbar-thumb:window-inactive {
             background: grey;
         }
+    }
+
+    .notifications-footer {
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 2px 10px -2px #cedae0;
     }
 
     .triangle {

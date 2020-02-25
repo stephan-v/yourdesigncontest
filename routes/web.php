@@ -58,6 +58,9 @@ Route::resource('contests.files', 'ContestFileController');
 Route::resource('comments', 'CommentController')->only(['update', 'destroy']);
 Route::resource('submissions.comments', 'SubmissionCommentController');
 
+// Notifications.
+Route::resource('notifications', 'NotificationController');
+
 // Stripe webhooks.
 Route::post('stripe/webhook', 'StripeWebhookController@handleWebhook');
 
