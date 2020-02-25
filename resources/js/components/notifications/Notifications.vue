@@ -132,17 +132,17 @@
     }
 
     .count {
-        top: -0.8rem;
-        right: -0.8rem;
+        top: -0.7rem;
+        right: -0.7rem;
         font-size: 0.6em;
         background: #2ba1c3;
         color: #fefefe;
-        width: 1.2rem;
-        height: 1.2rem;
+        width: 1.1rem;
+        height: 1.1rem;
         border-radius: 50%;
         position: absolute;
         font-weight: bold;
-        line-height: 1.3rem;
+        line-height: 1.2rem;
         text-align: center;
     }
 
