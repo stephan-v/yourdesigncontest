@@ -8,7 +8,7 @@
 
                 <ul class="list-group list-unstyled">
                     @foreach ($user->notifications as $notification)
-                        <notification :notification='@json($notification)'></notification>
+                        <notification :notification='@json($notification)' class="bg-white mb-3 rounded"></notification>
                     @endforeach
                 </ul>
             </div>

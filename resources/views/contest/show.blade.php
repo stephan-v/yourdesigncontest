@@ -59,7 +59,7 @@
                         @else
                             <div class="text-muted intrinsic-item d-flex justify-content-center align-items-center flex-column outline p-3 text-center">
                                 <i class="fas fa-pencil-ruler fa-2x mb-3"></i>
-                                <p class="m-0">Designers are working on this contest.</p>
+                                <b>Designers are working on this contest.</b>
                             </div>
                         @endif
                     </div>
@@ -100,7 +100,7 @@
                     <div class="col-md-3">
                         <a href="{{ route('contests.submissions.create', $contest) }}" class="submission new-submission mb-3 d-flex align-items-center justify-content-center flex-column text-secondary text-center">
                             <i class="far fa-images fa-2x mb-3"></i>
-                            <div>Submit a design</div>
+                            <b>Submit a design</b>
                         </a>
                     </div>
 {{--                @endcan--}}
