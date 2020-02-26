@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Comment;
-use App\Notifications\ReceivedComment;
+use App\Notifications\Comment as CommentNotification;
 use App\User;
 use Illuminate\Notifications\DatabaseNotification;
 
@@ -26,7 +26,7 @@ class CommentObserver
             $user = $submission->contest->user;
         }
 
-        $user->notify(new ReceivedComment($comment));
+        $user->notify(new CommentNotification($comment));
     }
 
     /**
@@ -37,7 +37,7 @@ class CommentObserver
     public function deleted(Comment $comment)
     {
         // Deleted the notification about this comment.
-        DatabaseNotification::where('type', ReceivedComment::class)
+        DatabaseNotification::where('type', Comment::class)
             ->where('data->id', $comment->id)
             ->delete();
     }

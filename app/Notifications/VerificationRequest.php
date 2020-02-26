@@ -4,7 +4,7 @@ namespace App\Notifications;
 
 use Illuminate\Notifications\Notification;
 
-class VerifyStripeIdentityRequest extends Notification
+class VerificationRequest extends Notification
 {
     /**
      * Get the array representation of the notification.
@@ -15,7 +15,7 @@ class VerifyStripeIdentityRequest extends Notification
     {
         return [
             'avatar' => asset('/avatars/user.svg'),
-            'message' => 'Please your identity for payouts.',
+            'message' => 'Please verify your identity for payouts.',
             'route' => route('connect.onboarding'),
         ];
     }
