@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contest;
 use App\Notifications\Invitation;
 use App\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
@@ -30,7 +31,7 @@ class UserInvitationController extends Controller
      *
      * @param Request $request The incoming HTTP client request.
      * @param User $user The user which is being invited to join the contest.
-     * @return Response The server response.
+     * @return RedirectResponse Response to redirect back to the user profile.
      */
     public function store(Request $request, User $user)
     {
@@ -44,6 +45,8 @@ class UserInvitationController extends Controller
 
         $user->notify(new Invitation($contest, $message));
 
-        return response('Invitation has been sent.');
+        alert()->success('Success','Invitation has been sent.');
+
+        return redirect()->route('users.show', $user);
     }
 }
