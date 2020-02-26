@@ -4,23 +4,32 @@ namespace App\Notifications;
 
 use App\Contest;
 
-class InviteDesigner extends Notification
+class Invitation extends Notification
 {
     /**
      * The contests which the designer is invited to.
      *
-     * @var Contest
+     * @var Contest $contest
      */
     private $contest;
+
+    /**
+     * The optional custom invitation message.
+     *
+     * @var string $message
+     */
+    private $message;
 
     /**
      * Create a new notification instance.
      *
      * @param Contest $contest The contests which the designer is invited to.
+     * @param string $message The custom message.
      */
-    public function __construct(Contest $contest)
+    public function __construct(Contest $contest, ?string $message)
     {
         $this->contest = $contest;
+        $this->message = $message;
     }
 
     /**
@@ -42,7 +51,7 @@ class InviteDesigner extends Notification
     {
         return [
             'avatar' => $this->contest->user->avatar,
-            'message' => "<b>{$this->contest->user->name}</b> Invited you to join his contest.",
+            'message' => $this->message ?? "<b>{$this->contest->user->name}</b> Invited you to join his contest.",
             'route' => route('contests.show', $this->contest),
         ];
     }

@@ -30,6 +30,14 @@
             </div>
         </div>
 
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <a href="{{ route('user.invites.create', $user) }}" class="btn btn-primary">
+                    Invite user to contest
+                </a>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
                 <h2>Your submissions</h2>
