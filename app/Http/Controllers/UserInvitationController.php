@@ -34,7 +34,12 @@ class UserInvitationController extends Controller
      */
     public function store(Request $request, User $user)
     {
-        $contest = Contest::findOrFail($request->contest);
+        $request->validate([
+            'contest_id' => ['required', 'exists:contests,id'],
+            'message' => ['nullable', 'string'],
+        ]);
+
+        $contest = Contest::findOrFail($request->contest_id);
         $message = $request->message;
 
         $user->notify(new Invitation($contest, $message));

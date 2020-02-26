@@ -11,17 +11,17 @@
                         @csrf
 
                         <div class="form-group">
-                            <label for="contest">Contest</label>
+                            <label for="contest_id">Contest</label>
 
-                            <select name="contest" class="form-control @error('contest') is-invalid @enderror" id="contest">
+                            <select name="contest_id" class="form-control @error('contest') is-invalid @enderror" id="contest_id">
                                 @foreach ($contests as $contest)
-                                    <option value="{{ $contest->id }}" @if (old('contest') == $contest->id) selected @endif>
+                                    <option value="{{ $contest->id }}" @if (old('contest_id') == $contest->id) selected @endif>
                                         {{ $contest->name }}
                                     </option>
                                 @endforeach
                             </select>
 
-                            @error('contest')
+                            @error('contest_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
