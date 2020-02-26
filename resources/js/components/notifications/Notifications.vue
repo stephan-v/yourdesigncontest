@@ -10,14 +10,14 @@
             <div class="notifications-header text-center p-3 font-weight-bold">Notifications</div>
 
             <div class="notifications-body">
-                <ul class="list-group">
-                    <notification v-for="notification in notifications"
+                <transition-group enter-active-class="animated fadeInDown" tag="ul" class="list-group">
+                    <notification v-for="notification in latest"
                                   :notification="notification"
                                   :key="notification.id">
                     </notification>
 
                     <li class="p-3" v-if="!notifications.length">No new messages</li>
-                </ul>
+                </transition-group>
             </div>
 
             <div class="notifications-footer text-center bg-white">
@@ -62,6 +62,10 @@
 
             count() {
                 return this.notifications.length;
+            },
+
+            latest() {
+                return this.notifications.slice(0, 5);
             },
         },
     };

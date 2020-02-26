@@ -28,6 +28,7 @@
         "@uppy/core": "^1.7.1",
         "@uppy/dashboard": "^1.5.2",
         "@uppy/tus": "^1.5.2",
+        "animate.css": "^3.7.2",
         "axios": "^0.19",
         "bootstrap": "^4.4.1",
         "colorthief": "^2.3.0",
