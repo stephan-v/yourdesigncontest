@@ -32,7 +32,7 @@
 
         <div class="row mb-5">
             <div class="col-md-12">
-                <a href="{{ route('user.invites.create', $user) }}" class="btn btn-primary">
+                <a href="{{ route('users.invites.create', $user) }}" class="btn btn-primary">
                     Invite user to contest
                 </a>
             </div>

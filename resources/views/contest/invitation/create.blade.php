@@ -5,9 +5,9 @@
         <div class="row">
             <div class="col-md-12">
                 @if (count($contests))
-                    <h1>Invitation form</h1>
+                    <h1 class="mt-5">Send an invite</h1>
 
-                    <form action="{{ route('users.invites', $invitee) }}" method="POST">
+                    <form action="{{ route('users.invites.store', $invitee) }}" method="POST">
                         @csrf
 
                         <div class="form-group">

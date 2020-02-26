@@ -51,7 +51,7 @@ class Invitation extends Notification
     {
         return [
             'avatar' => $this->contest->user->avatar,
-            'message' => $this->message ?? "<b>{$this->contest->user->name}</b> Invited you to join his contest.",
+            'message' => $this->message ?? "<b>{$this->contest->user->name}</b> Invited you to join a contest.",
             'route' => route('contests.show', $this->contest),
         ];
     }
