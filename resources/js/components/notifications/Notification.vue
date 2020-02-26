@@ -1,10 +1,10 @@
 <template>
     <li>
         <a :href="route" class="d-flex align-items-center p-3">
-            <img :src="src" alt="The user avatar" class="mr-3" :class="{ default: !avatar }">
+            <img :src="data.avatar" alt="The user avatar" class="mr-3">
 
             <div class="text-wrap">
-                <b>{{ user }}</b> commented on your submission.
+                <span class="message" v-html="data.message"></span>
                 (<span class="text-muted">{{ diffForHumans }}</span>)
             </div>
         </a>
@@ -33,23 +33,11 @@
             },
 
             diffForHumans() {
-                return dayjs(this.data.commentable.created_at).fromNow();
-            },
-
-            user() {
-                return this.data.user.name;
+                return dayjs(this.notification.created_at).fromNow();
             },
 
             route() {
                 return this.data.route;
-            },
-
-            avatar() {
-                return this.data.user.avatar;
-            },
-
-            src() {
-                return this.avatar || '/avatars/user.svg';
             },
         },
     };
@@ -62,11 +50,6 @@
 
         border: 0 solid;
         border-image: linear-gradient(to right, white 0%, #cedae0 40%, #cedae0 60%, white 100%) 1 20%
-    }
-
-    .default {
-        padding: 2px;
-        border: 2px solid #939393;
     }
 
     img {

@@ -42,6 +42,6 @@ trait UserPresenter
      */
     public function getAvatarAttribute(?string $value): ?string
     {
-        return $value ? asset("avatars/{$value}") : null;
+        return $value ? asset("avatars/{$value}") : asset('/avatars/user.svg');
     }
 }
