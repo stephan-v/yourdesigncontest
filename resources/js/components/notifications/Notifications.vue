@@ -1,29 +1,37 @@
 <template>
-    <span class="position-relative mr-1">
+    <span class="position-relative mr-1 wrapper">
         <i class="fas fa-envelope" @click="toggle"></i>
 
-        <span class="count overlay" v-if="count" @click="toggle">{{ count }}</span>
+        <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+            <span class="count overlay" v-if="count && !visible" @click="toggle">{{ count }}</span>
+        </transition>
 
-        <div class="notifications position-absolute" v-if="visible" v-click-outside="toggle">
-            <div class="triangle"></div>
+        <transition enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
+            <div class="notifications position-absolute" v-if="visible" v-click-outside="toggle">
+                <div class="triangle"></div>
 
-            <div class="notifications-header text-center p-3 font-weight-bold">Notifications</div>
+                <div class="notifications-header d-flex align-items-center justify-content-center p-3 font-weight-bold">
+                    Notifications
+                    <span class="count d-inline-block ml-1">{{ count }}</span>
+                </div>
 
-            <div class="notifications-body">
-                <transition-group enter-active-class="animated fadeInDown" tag="ul" class="list-group">
-                    <notification v-for="notification in latest"
-                                  :notification="notification"
-                                  :key="notification.id">
-                    </notification>
+                <div class="notifications-body">
+                    <transition-group enter-active-class="animated fadeInDown"
+                                      move-class="notification-move"
+                                      class="list-group"
+                                      tag="ul" >
+                        <notification v-for="notification in latest"
+                                      :notification="notification"
+                                      :key="notification.id">
+                        </notification>
+                    </transition-group>
+                </div>
 
-                    <li class="p-3" v-if="!notifications.length">No new messages</li>
-                </transition-group>
+                <div class="notifications-footer text-center bg-white">
+                    <a href="/notifications" class="d-block p-2">See all notifications</a>
+                </div>
             </div>
-
-            <div class="notifications-footer text-center bg-white">
-                <a href="/notifications" class="d-block p-2">See all notifications</a>
-            </div>
-        </div>
+        </transition>
     </span>
 </template>
 
@@ -72,6 +80,10 @@
 </script>
 
 <style lang="scss" scoped>
+    .notification-move {
+        transition: transform 1s;
+    }
+
     .fas {
         font-size: 1.375rem;
     }
@@ -153,14 +165,16 @@
     }
 
     .count {
-        font-size: 0.6em;
+        $count: 18px;
+
+        font-size: 0.6rem;
         background: #2ba1c3;
         color: #fefefe;
-        width: 1.1rem;
-        height: 1.1rem;
+        width: $count;
+        height: $count;
+        line-height: $count;
         border-radius: 50%;
         font-weight: bold;
-        line-height: 1.1rem;
         text-align: center;
     }
 
@@ -179,6 +193,43 @@
             &:last-child {
                 border: 0;
             }
+        }
+    }
+
+    .wrapper > {
+        .animated {
+            animation-duration: 0.4s;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translate3d(0, -10%, 0) translate(50%, 2rem);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0) translate(50%, 2rem);
+            }
+        }
+
+        .fadeInDown {
+            animation-name: fadeInDown;
+        }
+
+        @keyframes fadeOutUp {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+                transform: translate3d(0, -10%, 0) translate(50%, 2rem);
+            }
+        }
+
+        .fadeOutUp {
+            animation-name: fadeOutUp;
         }
     }
 </style>

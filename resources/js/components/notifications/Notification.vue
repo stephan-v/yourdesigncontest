@@ -44,6 +44,14 @@
 </script>
 
 <style lang="scss" scoped>
+    .animated {
+        transition: background-color 0.4s linear;
+    }
+
+    .fadeInDown {
+        background: darken(#e9f0f3, 2%);
+    }
+
     a, a:hover {
         color: #747F8B;
         text-decoration: inherit;
