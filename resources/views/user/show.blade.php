@@ -8,8 +8,8 @@
             </div>
         </div>
 
-        <div class="row mb-5">
-            <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6 mb-3">
                 <div class="card">
                     <div class="card-header">Designers only</div>
 
@@ -28,14 +28,20 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row mb-5">
-            <div class="col-md-12">
-                <a href="{{ route('users.invites.create', $user) }}" class="btn btn-primary">
-                    Invite user to contest
-                </a>
-            </div>
+            @if (count(Auth::user()->contests))
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-header">Invite designers</div>
+
+                        <div class="card-body">
+                            <a href="{{ route('users.invites.create', $user) }}" class="btn btn-primary">
+                                Invite this user to your contest
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
 
         <div class="row">
