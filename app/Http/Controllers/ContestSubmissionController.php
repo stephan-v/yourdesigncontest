@@ -53,14 +53,16 @@ class ContestSubmissionController extends Controller
             $constraint->upsize();
         });
 
-        $path = "contests/{$contest->id}/submissions/";
+        $fileName = $file->hashName();
+
+        $path = "contests/{$contest->id}/submissions/{$fileName}";
 
         Storage::disk('public')->put($path, $image->encode());
 
         $contest->submissions()->create([
             'title' => $request->title,
             'description' => $request->description,
-            'filename' => $file->hashName(),
+            'filename' => $fileName,
         ]);
 
         return redirect()->route('contests.show', $contest);
