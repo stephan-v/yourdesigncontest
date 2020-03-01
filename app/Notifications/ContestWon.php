@@ -53,7 +53,7 @@ class ContestWon extends Notification
     {
         return [
             'avatar' => asset('/avatars/user.svg'),
-            'message' => 'You won a contest!.',
+            'message' => 'You won a contest!',
             'route' => route('contests.show', $this->contest),
         ];
     }
