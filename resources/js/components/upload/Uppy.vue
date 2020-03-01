@@ -8,10 +8,20 @@
     const Tus = require('@uppy/tus');
 
     export default {
+        props: {
+            contestId: {
+                required: true,
+                type: Number,
+            },
+        },
+
         mounted() {
             const uppy = Uppy({
                 debug: true,
                 limit: 10,
+                meta: {
+                    contest_id: this.contestId,
+                },
             }).use(Dashboard, {
                 inline: true,
                 target: this.$el,

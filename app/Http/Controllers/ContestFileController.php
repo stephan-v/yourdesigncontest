@@ -48,11 +48,12 @@ class ContestFileController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param int $contestId The id of the contest which files will be added to.
      * @return View The HTML server response.
      */
-    public function create()
+    public function create(int $contestId)
     {
-        return view('contest.files.create');
+        return view('contest.files.create', compact('contestId'));
     }
 
     /**

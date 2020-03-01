@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container">
-        <uppy></uppy>
+        <uppy :contest-id='@json($contestId)'></uppy>
     </div>
 @endsection

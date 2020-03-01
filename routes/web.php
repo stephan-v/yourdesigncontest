@@ -11,11 +11,7 @@
 |
 */
 
-Route::any('/tus/{any?}', function () {
-    $response = app(\TusPhp\Tus\Server::class)->serve();
-
-    return $response->send();
-})->where('any', '.*');
+Route::any('/tus/{any?}', 'TusController@store')->where('any', '.*');
 
 Route::get('/', 'HomeController@index');
 

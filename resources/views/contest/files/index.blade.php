@@ -10,7 +10,7 @@
                     <a class="btn btn-primary" href="{{ route('zip', $contest) }}" role="button">
                         <i class="fas fa-file-archive"></i> Download zip
                     </a>
-                @endif;
+                @endif
             </div>
 
             <div class="row">
