@@ -2,10 +2,9 @@
 
 namespace App\Observers;
 
-use App\Mail\ContestWinner;
+use App\Notifications\ContestWon;
 use App\Notifications\VerificationRequest;
 use App\Winner;
-use Illuminate\Support\Facades\Mail;
 
 class WinnerObserver
 {
@@ -19,7 +18,7 @@ class WinnerObserver
         $user = $winner->submission->user;
         $contest = $winner->submission->contest;
 
-        Mail::to($user)->send(new ContestWinner($contest));
+        $user->notify(new ContestWon($contest));
 
         if ($user->isNotStripeVerified) {
             $user->notify(new VerificationRequest());
