@@ -11,10 +11,14 @@
 |
 */
 
+// Route used for Tus protocol file upload, mainly used for Uppy.
 Route::any('/tus/{any?}', 'TusController@store')->where('any', '.*');
 
-Route::get('/', 'HomeController@index');
+// Individual pages.
+Route::get('/', 'PageController@home')->name('home');
+Route::get('how-it-works', 'PageController@process')->name('process');
 
+// Routes used for websocket verification.
 Auth::routes(['verify' => true]);
 
 // Contest/Checkout routes.
@@ -30,12 +34,11 @@ Route::get('contests/{contest}', 'ContestController@show')->middleware('payment.
 // Contest payout.
 Route::get('contests/{contest}/payout', 'ContestPayoutController@store');
 
+// Blog.
 Route::resource('blog', 'BlogController')->only(['index', 'show']);
 
 // Authentication routes.
 Auth::routes();
-
-Route::get('home', 'HomeController@index')->name('home');
 
 // User routes.
 Route::resource('users', 'UserController');
@@ -60,9 +63,6 @@ Route::resource('notifications', 'NotificationController');
 // Stripe webhooks.
 Route::post('stripe/webhook', 'StripeWebhookController@handleWebhook');
 
-// Individual static pages.
-Route::get('how-it-works', 'PageController@process')->name('process');
-
 // Contact page.
 Route::get('contact', 'ContactController@form')->name('contact.form');
 Route::post('contact', 'ContactController@email')->name('contact.mail');
@@ -73,6 +73,7 @@ Route::post('contests/{contest}/submissions/{submission}/award', 'WinnerControll
 // Designer invitations.
 Route::resource('users.invites', 'UserInvitationController')->only(['create', 'store']);
 
+// Stripe routes.
 Route::get('stripe/connect-complete', 'StripeConnectController@complete')->name('connect.complete');
 Route::get('stripe/connect-dashboard', 'StripeConnectController@dashboard')->name('connect.dashboard');
 Route::get('stripe/connect-onboarding', 'StripeConnectController@onboarding')->name('connect.onboarding');
