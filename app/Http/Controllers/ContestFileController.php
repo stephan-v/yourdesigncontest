@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Contest;
 use App\File;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 use STS\ZipStream\ZipStream;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -71,29 +70,6 @@ class ContestFileController extends Controller
         $path = storage_path("app/public/{$file->path}");
 
         return response()->download($path);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param File $sourceFile
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(File $sourceFile)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param File $sourceFile
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, File $sourceFile)
-    {
-        //
     }
 
     /**

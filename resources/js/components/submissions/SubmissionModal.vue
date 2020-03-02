@@ -23,7 +23,7 @@
                     {{ submission.description }}
                 </div>
 
-                <comments :submission="submission" class="p4"/>
+                <comments :route="commentRoute" class="p4"/>
             </div>
 
             <div class="metadata">
@@ -95,6 +95,10 @@
 
             profile() {
                 return `/users/${this.submission.user.id}`;
+            },
+
+            commentRoute() {
+                return `/submissions/${this.submission.id}/comments`;
             },
         },
 

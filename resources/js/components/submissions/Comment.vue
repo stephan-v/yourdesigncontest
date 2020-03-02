@@ -30,7 +30,6 @@
         data() {
             return {
                 editing: false,
-                comment: this.initialComment,
             };
         },
 
@@ -39,7 +38,7 @@
         },
 
         props: {
-            initialComment: {
+            comment: {
                 type: Object,
             },
         },

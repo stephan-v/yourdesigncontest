@@ -14,13 +14,22 @@ class Comment extends Notification
     private $comment;
 
     /**
+     * The route which the notification relates to.
+     *
+     * @var $route
+     */
+    private $route;
+
+    /**
      * Create a new notification instance.
      *
      * @param CommentModel $comment The comment which was received.
+     * @param string $route The route which the notification relates to.
      */
-    public function __construct(CommentModel $comment)
+    public function __construct(CommentModel $comment, string $route)
     {
         $this->comment = $comment;
+        $this->route = $route;
     }
 
     /**
@@ -33,7 +42,7 @@ class Comment extends Notification
         return [
             'avatar' => $this->comment->user->avatar,
             'message' => "<b>{$this->comment->user->name}</b> commented on your submission.",
-            'route' => route('contests.show', $this->comment->commentable->contest),
+            'route' => $this->route,
         ];
     }
 }

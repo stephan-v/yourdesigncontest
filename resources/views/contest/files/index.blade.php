@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="container mt-5">
+        <h1 class="mb-3">Handover</h1>
+
         @component('components.tabs')
             @slot('tabs')
                 <li class="nav-item">
@@ -17,7 +19,7 @@
                 @if (count($contest->files))
                     <div class="download-files">
                         <div class="d-flex justify-content-between align-items-center mt-3">
-                            <h1>Your design files</h1>
+                            <div class="font-weight-bold">Your design files</div>
 
                             @can('manage', $contest)
                                 <a class="btn btn-primary" href="{{ route('zip', $contest) }}" role="button">

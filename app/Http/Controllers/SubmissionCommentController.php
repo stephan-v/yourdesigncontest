@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentRequest;
+use App\Notifications\Comment as CommentNotification;
 use App\Submission;
 use Illuminate\Http\Response;
 
@@ -30,10 +31,22 @@ class SubmissionCommentController extends Controller
      */
     public function store(Submission $submission, CommentRequest $request)
     {
+        // @TODO add policy.
+
         $comment = $submission
             ->comments()
             ->create($request->validated())
             ->load('user');
+
+        $user = $request->user();
+
+        // Send out a notification to the submission or contest owner, depending on who comments.
+        if ($submission->user->id === $comment->user->id) {
+            $user = $submission->contest->user;
+        }
+
+        // Notify the other party.
+        $user->notify(new CommentNotification($comment, route('contests.show', $submission->contest)));
 
         return response($comment);
     }

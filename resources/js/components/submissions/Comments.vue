@@ -13,11 +13,7 @@
             <button class="btn btn-primary btn-sm" type="submit">Post comment</button>
         </form>
 
-        <Comment v-for="comment in comments"
-                 :key="comment.id"
-                 :initial-comment="comment"
-                 @del="del">
-        </Comment>
+        <Comment v-for="comment in comments" :comment="comment" :key="comment.id" @del="del"/>
     </div>
 </template>
 
@@ -31,8 +27,8 @@
         },
 
         props: {
-            submission: {
-                type: Object,
+            route: {
+                type: String,
                 required: true,
             },
         },
@@ -45,10 +41,6 @@
         computed: {
             user() {
                 return this.$store.getters['authentication/user'];
-            },
-
-            route() {
-                return `/submissions/${this.submission.id}/comments`;
             },
         },
 
