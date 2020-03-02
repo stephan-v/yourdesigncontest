@@ -49,7 +49,8 @@ Route::middleware('auth')->group(function () {
     Route::post('contests/{contest}/submissions/{submission}/restore', 'ContestSubmissionController@restore')->name('contests.submission.restore');
 });
 
-// Source files for the contest.
+// Contest handover section, comments and files.
+Route::resource('contests.comments', 'ContestCommentController');
 Route::get('contests/{contest}/files/zip', 'ContestFileController@zip')->name('zip');
 Route::resource('contests.files', 'ContestFileController');
 

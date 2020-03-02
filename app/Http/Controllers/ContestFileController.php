@@ -34,11 +34,11 @@ class ContestFileController extends Controller
      *
      * @param Contest $contest The contest which the submission belongs to.
      * @return View The HTML server response.
-     * @throws AuthorizationException Thrown if the user is not allowed to view winning source files.
+     * @throws AuthorizationException Thrown if the user is not allowed to view handover files.
      */
     public function index(Contest $contest)
     {
-        $this->authorize('viewAnySourceFiles', $contest);
+        $this->authorize('handover', $contest);
 
         $contest->load('files');
 
@@ -66,7 +66,7 @@ class ContestFileController extends Controller
      */
     public function show(Contest $contest, File $file)
     {
-        $this->authorize('viewAnySourceFiles', $contest);
+        $this->authorize('handover', $contest);
 
         $path = storage_path("app/public/{$file->path}");
 
@@ -104,6 +104,6 @@ class ContestFileController extends Controller
      */
     public function destroy(File $sourceFile)
     {
-        //
+        // @TODO implement the destroy.
     }
 }

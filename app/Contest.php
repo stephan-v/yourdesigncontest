@@ -66,4 +66,12 @@ class Contest extends Model
     {
         return $this->hasMany(File::class);
     }
+
+    /**
+     * Get all of the contest comments.
+     */
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')->latest();
+    }
 }

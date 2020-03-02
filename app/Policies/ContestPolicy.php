@@ -20,6 +20,7 @@ class ContestPolicy
      */
     public function submit(User $user, Contest $contest)
     {
+        // Owner of the contest can not make submissions to their own contest.
         return !$user->contests->contains($contest->id);
     }
 
@@ -60,16 +61,14 @@ class ContestPolicy
      *
      * @param User $user The user to test authorization against.
      * @param Contest $contest The contest which source files to display.
-     * @return Response Whether or not the user is allowed to view any contest source files.
+     * @return Bool Whether or not the user is allowed to view any contest source files.
      */
-    public function viewAnySourceFiles(User $user, Contest $contest)
+    public function handover(User $user, Contest $contest)
     {
         $owner = $user->contests->contains($contest->id);
         $winner = $user->id === optional($contest->winner)->id;
 
-        // Only contest owners or contest winners are allowed to see source files.
-        return ($owner || $winner)
-            ? Response::allow()
-            : Response::deny('You are not allowed to view the source files of the winning submission');
+        // Only contest owners or contest winners are allowed to participate in a handover.
+        return ($owner || $winner);
     }
 }
