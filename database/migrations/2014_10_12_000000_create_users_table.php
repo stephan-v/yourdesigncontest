@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->enum('currency', ['EUR', 'USD']);
             $table->string('password')->nullable();
+            $table->string('api_token', 80)->unique()->nullable()->default(null);
             $table->string('stripe_connect_id')->nullable();
             $table->string('stripe_customer_id')->nullable();
             $table->rememberToken();

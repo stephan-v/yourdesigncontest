@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        @if (auth()->check())
+        <meta name="api-token" content="{{ $user->api_token }}">
+        @endif
+
         @yield('meta')
 
         <title>YourDesignContest - @yield('title')</title>

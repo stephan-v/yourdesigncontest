@@ -19,7 +19,7 @@
                 <div class="download-files">
                     <div class="row">
                         <div class="col-md-12">
-                            <comments route="{{ route('contests.comments.index', $contest) }}"></comments>
+                            <comments route="{{ route('api.contests.comments.index', $contest) }}"></comments>
                         </div>
                     </div>
                 </div>

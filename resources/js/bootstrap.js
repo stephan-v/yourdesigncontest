@@ -27,12 +27,19 @@ components.keys().forEach((path) => {
 /**
  * Register the Axios instance globally.
  *
- * @type {AxiosStatic}
+ * Set the API token for Axios requests.
  */
 
 window.axios = Axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+const token = document.head.querySelector('meta[name="api-token"]');
+
+if (token) {
+    // eslint-disable-next-line
+    window.axios.defaults.headers.common['Authorization'] = `Bearer ${token.content}`;
+}
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
