@@ -17,7 +17,7 @@
 
             @slot('content')
                 @if (count($contest->files))
-                    <div class="download-files">
+                    <div class="contest-files">
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <div class="font-weight-bold">Your design files</div>
 

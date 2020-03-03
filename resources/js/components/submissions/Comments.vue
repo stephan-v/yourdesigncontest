@@ -13,7 +13,12 @@
             <button class="btn btn-primary btn-sm" type="submit">Post comment</button>
         </form>
 
-        <Comment v-for="comment in comments" :comment="comment" :key="comment.id" @del="del"/>
+        <transition-group enter-active-class="animated fadeIn"
+                          leave-active-class="comments-leave-active animated fadeOut"
+                          move-class="comments-list-move"
+                          v-if="comments.length">
+            <Comment v-for="comment in comments" :comment="comment" :key="comment.id" @del="del"/>
+        </transition-group>
     </div>
 </template>
 
@@ -76,6 +81,14 @@
     input:focus {
         box-shadow: none;
         border: 0;
+    }
+
+    .comments-list-move {
+        transition: transform 1s;
+    }
+
+    .comments-leave-active {
+        position: absolute
     }
 
     /deep/ {

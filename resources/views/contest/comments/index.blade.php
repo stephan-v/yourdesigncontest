@@ -16,7 +16,7 @@
            @endslot
 
             @slot('content')
-                <div class="download-files">
+                <div class="contest-comments">
                     <div class="row">
                         <div class="col-md-12">
                             <comments route="{{ route('api.contests.comments.index', $contest) }}"></comments>

@@ -1,4 +1,4 @@
-.download-files {
+.contest-files {
     h1 {
         font-size: 2rem;
     }
@@ -16,5 +16,11 @@
 
     img {
         max-width: 7rem;
+    }
+}
+
+.contest-comments {
+    .comment {
+        background: #f7f7f7;
     }
 }
