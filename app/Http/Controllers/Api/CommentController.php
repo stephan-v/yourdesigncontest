@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Comment;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
 use Exception;
 use Illuminate\Http\Response;

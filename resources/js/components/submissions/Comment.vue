@@ -57,7 +57,7 @@
             },
 
             route() {
-                return `/comments/${this.comment.id}`;
+                return `api/comments/${this.comment.id}`;
             },
         },
 

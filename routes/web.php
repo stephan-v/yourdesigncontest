@@ -54,10 +54,6 @@ Route::resource('contests.comments', 'ContestCommentController');
 Route::get('contests/{contest}/files/zip', 'ContestFileController@zip')->name('zip');
 Route::resource('contests.files', 'ContestFileController');
 
-// Comments.
-Route::resource('comments', 'CommentController')->only(['update', 'destroy']);
-Route::resource('submissions.comments', 'SubmissionCommentController');
-
 // Notifications.
 Route::resource('notifications', 'NotificationController');
 

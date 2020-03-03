@@ -98,7 +98,7 @@
             },
 
             commentRoute() {
-                return `/submissions/${this.submission.id}/comments`;
+                return `api/submissions/${this.submission.id}/comments`;
             },
         },
 

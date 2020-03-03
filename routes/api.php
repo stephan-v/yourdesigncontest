@@ -14,5 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->name('api.')->namespace('Api')->group(function () {
+    Route::resource('comments', 'CommentController')->only(['update', 'destroy']);
     Route::resource('contests.comments', 'ContestCommentController')->only(['index', 'store']);
+    Route::resource('submissions.comments', 'SubmissionCommentController')->only(['index', 'store']);
 });
