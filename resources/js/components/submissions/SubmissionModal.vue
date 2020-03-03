@@ -23,7 +23,7 @@
                     {{ submission.description }}
                 </div>
 
-                <comments :route="commentRoute" class="p4"/>
+                <comments :route="commentRoute" class="p4" v-if="user"/>
             </div>
 
             <div class="metadata">
@@ -52,15 +52,8 @@
     import swal from 'sweetalert';
 
     export default {
-        props: {
-            submission: {
-                required: true,
-                type: Object,
-            },
-        },
-
         mounted() {
-            this.openModal();
+            this.open();
         },
 
         computed: {
@@ -69,8 +62,7 @@
             },
 
             owner() {
-                // @TODO check this when logged out.
-                return this.user.id === this.submission.contest.user_id;
+                return this.user?.id === this.submission.contest.user_id;
             },
 
             locked() {
@@ -78,7 +70,7 @@
             },
 
             user() {
-                return this.$store.getters['authentication/user'] || {};
+                return this.$store.getters['authentication/user'];
             },
 
             created() {
@@ -98,19 +90,25 @@
             },
 
             commentRoute() {
-                return `api/submissions/${this.submission.id}/comments`;
+                return `/api/submissions/${this.submission.id}/comments`;
+            },
+
+            submission() {
+                return this.$store.getters['submission/submission'];
             },
         },
 
         methods: {
-            openModal() {
+            close() {
+                this.$store.commit('sweetalert/close');
+            },
+
+            open() {
                 swal({
                     buttons: false,
                     className: 'submission-modal',
                     content: this.$el,
-                }).then(() => {
-                    this.$emit('close');
-                });
+                }).then(this.close);
             },
 
             del() {
@@ -139,7 +137,7 @@
                         });
                     }
 
-                    this.$emit('close');
+                    this.close();
                 });
             },
         },

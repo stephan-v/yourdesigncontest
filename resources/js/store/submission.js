@@ -1,18 +1,20 @@
 const state = {
     palette: [],
+    submission: null,
 };
 
 const getters = {
     palette: (state) => state.palette,
-};
-
-const actions = {
-    //
+    submission: (state) => state.submission,
 };
 
 const mutations = {
     palette(state, palette) {
         state.palette = palette;
+    },
+
+    submission(state, submission) {
+        state.submission = submission;
     },
 };
 
@@ -21,5 +23,4 @@ export default {
     getters,
     mutations,
     state,
-    actions,
 };

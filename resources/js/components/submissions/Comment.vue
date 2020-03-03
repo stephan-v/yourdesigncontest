@@ -14,9 +14,9 @@
         </div>
 
         <span class="text-muted">
-            <template>{{ diffForHumans }}</template>
-            <template @click="edit" v-if="authorized"> | edit</template>
-            <template @click="destroy" v-if="authorized" >delete</template>
+            <span>{{ diffForHumans }}</span>
+            <span class="cursor-pointer" @click="edit" v-if="authorized"> | edit</span>
+            <span class="cursor-pointer" @click="destroy" v-if="authorized">delete</span>
         </span>
     </div>
 </template>
@@ -84,6 +84,8 @@
                         // @TODO move all Axios calls to the parent?
                         axios.delete(this.route).then(() => this.$emit('del', this.comment));
                     }
+
+                    this.$store.commit('sweetalert/close');
                 });
             },
 

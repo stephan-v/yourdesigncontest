@@ -1,18 +1,11 @@
 <template>
-    <div @click="open">
+    <div class="modal-wrapper" @click="open">
         <slot/>
-        <submission-modal :submission="submission" @close="close" v-if="visible"/>
     </div>
 </template>
 
 <script>
     export default {
-        data() {
-            return {
-                visible: false,
-            };
-        },
-
         props: {
             submission: {
                 required: true,
@@ -21,19 +14,16 @@
         },
 
         methods: {
-            close() {
-                this.visible = false;
-            },
-
             open() {
-                this.visible = true;
+                this.$store.commit('submission/submission', this.submission);
+                this.$store.commit('sweetalert/component', 'submission-modal');
             },
         },
     };
 </script>
 
 <style lang="scss" scoped>
-    div {
+    .modal-wrapper {
         &:hover {
             cursor: pointer;
         }

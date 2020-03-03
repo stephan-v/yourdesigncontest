@@ -1,6 +1,4 @@
-            @if (Session::has('flash'))
-                <flash-message :data="@json(Session::get('flash'))"></flash-message>
-            @endif
+            <sweet-alert :flash-modal='@json(session("flash-modal"))'></sweet-alert>
         </div><!-- /#app -->
 
         <footer class="footer mt-5">

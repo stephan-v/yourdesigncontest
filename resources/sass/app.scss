@@ -37,6 +37,9 @@ footer {
     position: absolute;
     transform: translate(-50%, -50%);
 }
+.cursor-pointer {
+    cursor: pointer;
+}
 
 // Base.
 @import 'base/typography';

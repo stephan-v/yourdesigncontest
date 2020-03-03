@@ -13,8 +13,9 @@ module.exports = {
     Echo: "readonly",
   },
   parserOptions: {
+    parser: "babel-eslint",
     ecmaVersion: 2018,
-    sourceType: 'module',
+    sourceType: "module",
   },
   plugins: [
     'vue',
