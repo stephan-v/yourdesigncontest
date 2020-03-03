@@ -14,7 +14,7 @@ class CreateExchangeRatesTable extends Migration
     public function up()
     {
         Schema::create('exchange_rates', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedDecimal('rate', 9, 2);
             $table->string('from');
             $table->string('to');

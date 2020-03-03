@@ -105,7 +105,7 @@ class ContestSubmissionController extends Controller
      * @param Contest $contest The contest which owns the submission.
      * @param Submission $submission The submission to delete.
      * @return Response The server response.
-     * @throws Exception  Thrown if the submission could not be deleted.
+     * @throws Exception Thrown if the submission could not be deleted.
      */
     public function destroy(Request $request, Contest $contest, Submission $submission)
     {

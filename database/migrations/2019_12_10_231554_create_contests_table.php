@@ -14,7 +14,7 @@ class CreateContestsTable extends Migration
     public function up()
     {
         Schema::create('contests', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->text('description');
             $table->enum('status', ['offline', 'online']);

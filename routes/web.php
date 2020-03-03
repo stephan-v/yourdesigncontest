@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,9 +39,6 @@ Route::get('contests/{contest}/payout', 'ContestPayoutController@store');
 
 // Blog.
 Route::resource('blog', 'BlogController')->only(['index', 'show']);
-
-// Authentication routes.
-Auth::routes();
 
 // User routes.
 Route::resource('users', 'UserController');

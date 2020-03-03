@@ -14,7 +14,7 @@ class CreateSubmissionsTable extends Migration
     public function up()
     {
         Schema::create('submissions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
 
             $table->string('title');
             $table->text('description')->nullable();

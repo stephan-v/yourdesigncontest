@@ -16,7 +16,7 @@ class CheckContestPayment
      */
     public function handle($request, Closure $next)
     {
-        $contest = Contest::findOrFail($request->route('contest'))->first();
+        $contest = $request->route('contest');
 
         if ($contest->isNotPaidFor()) {
            if ($request->user()->can('manage', $contest)) {

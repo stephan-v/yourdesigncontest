@@ -10,11 +10,14 @@ class NotificationController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request The incoming HTTP client request.
      * @return View The HTML server response.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('notification.index');
+        $notifications = $request->user()->notifications()->paginate(5);
+
+        return view('notification.index', compact('notifications'));
     }
 
     /**

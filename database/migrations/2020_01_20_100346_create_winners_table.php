@@ -14,7 +14,7 @@ class CreateWinnersTable extends Migration
     public function up()
     {
         Schema::create('winners', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
 
             $table->unsignedBigInteger('submission_id');
             $table->foreign('submission_id')->references('id')->on('submissions');

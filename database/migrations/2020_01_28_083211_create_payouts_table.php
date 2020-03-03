@@ -14,7 +14,7 @@ class CreatePayoutsTable extends Migration
     public function up()
     {
         Schema::create('payouts', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->unsignedBigInteger('amount');
             $table->enum('currency', ['EUR', 'USD']);
             $table->string('payment_id');
