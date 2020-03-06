@@ -56,6 +56,9 @@ footer {
 @import 'pages/home';
 @import 'pages/process';
 
+// User pages.
+@import 'pages/user/show';
+
 // Vendors.
 @import 'vendors/animate';
 @import 'vendors/croppie';

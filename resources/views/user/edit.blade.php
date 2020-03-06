@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.sidebar')
 
 @section('content')
     <div class="container">
@@ -6,9 +6,9 @@
             <div class="col-md-8 offset-md-2">
                 <div class="card">
                     <div class="card-body">
-                        <h1>Edit your profile</h1>
+                        <h1 class="font-weight-bold mb-3">Edit your profile</h1>
 
-                        <form action="{{ route('users.update', $user) }}" method="POST">
+                        <form action="{{ route('users.update', $user) }}" method="POST" class="d-flex flex-column">
                             @method('PATCH')
                             @csrf
 
@@ -43,12 +43,12 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-5">
                                 <label for="password-confirm">{{ __('Confirm Password') }}</label>
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Update profile</button>
+                            <button type="submit" class="btn btn btn-outline-secondary ml-auto">Update profile</button>
                         </form>
                     </div>
                 </div>

@@ -204,7 +204,7 @@
         @keyframes fadeInDown {
             from {
                 opacity: 0;
-                transform: translate3d(0, -10%, 0) translate(50%, 2rem);
+                transform: translate3d(0, -1rem, 0) translate(50%, 2rem);
             }
 
             to {
@@ -224,7 +224,7 @@
 
             to {
                 opacity: 0;
-                transform: translate3d(0, -10%, 0) translate(50%, 2rem);
+                transform: translate3d(0, -1rem, 0) translate(50%, 2rem);
             }
         }
 

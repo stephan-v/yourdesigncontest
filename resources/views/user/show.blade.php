@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.sidebar')
 
 @section('content')
     <div class="container">
@@ -32,11 +32,11 @@
             @if (count(Auth::user()->contests))
                 <div class="col-md-6 mb-3">
                     <div class="card">
-                        <div class="card-header">Invite designers</div>
+                        <div class="card-header">Invite designer</div>
 
                         <div class="card-body">
                             <a href="{{ route('users.invites.create', $user) }}" class="btn btn-primary">
-                                Invite this user to your contest
+                                Invite this user to join your contest
                             </a>
                         </div>
                     </div>
@@ -54,15 +54,11 @@
             @foreach ($submissions as $submission)
                 <div class="col-md-3">
                     <div class="submission mb-3">
-                        <div class="d-flex align-content-center justify-content-center p-3">
-                            <a href="{{ route('contests.show', $submission->contest) }}">
-                                <img src="{{ $submission->path }}" alt="" class="img-fluid">
-                            </a>
-                        </div>
-
-                        <div>
-                            {{ $submission->rating }}
-                        </div>
+                        <a href="{{ route('contests.show', $submission->contest) }}">
+                            <picture class="intrinsic intrinsic--4x3">
+                                <img src="{{ $submission->path }}" alt="" class="intrinsic-item">
+                            </picture>
+                        </a>
 
                         <div class="caption p-3 border-top">
                             <small class="text-muted">

@@ -1,0 +1,29 @@
+.user-profile {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    aside {
+        flex: 0 0 300px;
+        font-size: 0.9rem;
+        box-shadow: 2px 0 15px rgba(0, 0, 0, 0.05);
+
+        .avatar {
+            max-width: 75px;
+            margin: 0 auto;
+            border: 3px solid white;
+        }
+
+        a {
+            color: grey;
+
+            &.active {
+                color: #3288e9;
+            }
+        }
+    }
+
+    main {
+        flex: 1;
+    }
+}
