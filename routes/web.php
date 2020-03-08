@@ -42,6 +42,7 @@ Route::resource('blog', 'BlogController')->only(['index', 'show']);
 
 // User routes.
 Route::resource('users', 'UserController');
+Route::get('users/{user}/verify', 'UserController@verify')->name('users.verify');
 
 // User submissions for the contest.
 Route::middleware('auth')->group(function () {

@@ -48,4 +48,14 @@ class UserController extends Controller
 
         return redirect()->route('users.show', $user);
     }
+
+    /**
+     * Display the verification page.
+     *
+     * @return View The HTML server response.
+     */
+    public function verify()
+    {
+        return view('user.verify');
+    }
 }

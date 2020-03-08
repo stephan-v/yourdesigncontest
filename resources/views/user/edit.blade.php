@@ -5,9 +5,9 @@
         <div class="row pt-5">
             <div class="col-md-8 offset-md-2">
                 <div class="card">
-                    <div class="card-body">
-                        <h1 class="font-weight-bold mb-3">Edit your profile</h1>
+                    <div class="card-header">Edit your profile</div>
 
+                    <div class="card-body">
                         <form action="{{ route('users.update', $user) }}" method="POST" class="d-flex flex-column">
                             @method('PATCH')
                             @csrf

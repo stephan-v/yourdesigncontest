@@ -1,8 +1,4 @@
 .user-profile {
-    h1 {
-        font-size: 1.2rem;
-    }
-
     aside {
         flex: 0 0 300px;
         font-size: 0.9rem;
@@ -19,6 +15,10 @@
 
             &.active {
                 color: #3288e9;
+            }
+
+            &.hover {
+                text-decoration: none;
             }
         }
     }

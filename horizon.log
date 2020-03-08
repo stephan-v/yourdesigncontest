@@ -52,6 +52,196 @@
     79|                                 : 'Please make sure the PHP Redis extension is installed and enabled.'
     80|                 );
 
+   LogicException 
+
+  Please make sure the PHP Redis extension is installed and enabled.
+
+  at vendor/laravel/framework/src/Illuminate/Redis/Connectors/PhpRedisConnector.php:76
+    72|     protected function createClient(array $config)
+    73|     {
+    74|         return tap(new Redis, function ($client) use ($config) {
+    75|             if ($client instanceof RedisFacade) {
+  > 76|                 throw new LogicException(
+    77|                         extension_loaded('redis')
+    78|                                 ? 'Please remove or rename the Redis facade alias in your "app" configuration file in order to avoid collision with the PHP Redis extension.'
+    79|                                 : 'Please make sure the PHP Redis extension is installed and enabled.'
+    80|                 );
+
+      [2m+24 vendor frames [22m
+  25  artisan:37
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+      [2m+24 vendor frames [22m
+  25  artisan:37
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+   LogicException 
+
+  Please make sure the PHP Redis extension is installed and enabled.
+
+  at vendor/laravel/framework/src/Illuminate/Redis/Connectors/PhpRedisConnector.php:76
+
+   LogicException 
+
+    72|     protected function createClient(array $config)
+    73|     {
+    74|         return tap(new Redis, function ($client) use ($config) {
+    75|             if ($client instanceof RedisFacade) {
+  > 76|                 throw new LogicException(
+    77|                         extension_loaded('redis')
+    78|                                 ? 'Please remove or rename the Redis facade alias in your "app" configuration file in order to avoid collision with the PHP Redis extension.'
+    79|                                 : 'Please make sure the PHP Redis extension is installed and enabled.'
+    80|                 );
+  Please make sure the PHP Redis extension is installed and enabled.
+
+  at vendor/laravel/framework/src/Illuminate/Redis/Connectors/PhpRedisConnector.php:76
+    72|     protected function createClient(array $config)
+    73|     {
+    74|         return tap(new Redis, function ($client) use ($config) {
+    75|             if ($client instanceof RedisFacade) {
+  > 76|                 throw new LogicException(
+    77|                         extension_loaded('redis')
+    78|                                 ? 'Please remove or rename the Redis facade alias in your "app" configuration file in order to avoid collision with the PHP Redis extension.'
+    79|                                 : 'Please make sure the PHP Redis extension is installed and enabled.'
+    80|                 );
+
+      [2m+24 vendor frames [22m
+  25  artisan:37
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+      [2m+24 vendor frames [22m
+  25  artisan:37
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+   LogicException 
+
+  Please make sure the PHP Redis extension is installed and enabled.
+
+  at vendor/laravel/framework/src/Illuminate/Redis/Connectors/PhpRedisConnector.php:76
+    72|     protected function createClient(array $config)
+    73|     {
+    74|         return tap(new Redis, function ($client) use ($config) {
+    75|             if ($client instanceof RedisFacade) {
+  > 76|                 throw new LogicException(
+    77|                         extension_loaded('redis')
+    78|                                 ? 'Please remove or rename the Redis facade alias in your "app" configuration file in order to avoid collision with the PHP Redis extension.'
+    79|                                 : 'Please make sure the PHP Redis extension is installed and enabled.'
+    80|                 );
+
+   LogicException 
+
+  Please make sure the PHP Redis extension is installed and enabled.
+
+  at vendor/laravel/framework/src/Illuminate/Redis/Connectors/PhpRedisConnector.php:76
+    72|     protected function createClient(array $config)
+    73|     {
+    74|         return tap(new Redis, function ($client) use ($config) {
+    75|             if ($client instanceof RedisFacade) {
+  > 76|                 throw new LogicException(
+    77|                         extension_loaded('redis')
+    78|                                 ? 'Please remove or rename the Redis facade alias in your "app" configuration file in order to avoid collision with the PHP Redis extension.'
+    79|                                 : 'Please make sure the PHP Redis extension is installed and enabled.'
+    80|                 );
+
+      [2m+24 vendor frames [22m
+  25  artisan:37
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+      [2m+24 vendor frames [22m
+  25  artisan:37
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+   LogicException 
+
+  Please make sure the PHP Redis extension is installed and enabled.
+
+  at vendor/laravel/framework/src/Illuminate/Redis/Connectors/PhpRedisConnector.php:76
+    72|     protected function createClient(array $config)
+    73|     {
+    74|         return tap(new Redis, function ($client) use ($config) {
+    75|             if ($client instanceof RedisFacade) {
+  > 76|                 throw new LogicException(
+    77|                         extension_loaded('redis')
+    78|                                 ? 'Please remove or rename the Redis facade alias in your "app" configuration file in order to avoid collision with the PHP Redis extension.'
+    79|                                 : 'Please make sure the PHP Redis extension is installed and enabled.'
+    80|                 );
+
+      [2m+24 vendor frames [22m
+  25  artisan:37
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+   LogicException 
+
+  Please make sure the PHP Redis extension is installed and enabled.
+
+  at vendor/laravel/framework/src/Illuminate/Redis/Connectors/PhpRedisConnector.php:76
+    72|     protected function createClient(array $config)
+    73|     {
+    74|         return tap(new Redis, function ($client) use ($config) {
+    75|             if ($client instanceof RedisFacade) {
+  > 76|                 throw new LogicException(
+    77|                         extension_loaded('redis')
+    78|                                 ? 'Please remove or rename the Redis facade alias in your "app" configuration file in order to avoid collision with the PHP Redis extension.'
+    79|                                 : 'Please make sure the PHP Redis extension is installed and enabled.'
+    80|                 );
+
+      [2m+24 vendor frames [22m
+  25  artisan:37
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+   LogicException 
+
+  Please make sure the PHP Redis extension is installed and enabled.
+
+  at vendor/laravel/framework/src/Illuminate/Redis/Connectors/PhpRedisConnector.php:76
+    72|     protected function createClient(array $config)
+    73|     {
+    74|         return tap(new Redis, function ($client) use ($config) {
+    75|             if ($client instanceof RedisFacade) {
+  > 76|                 throw new LogicException(
+    77|                         extension_loaded('redis')
+    78|                                 ? 'Please remove or rename the Redis facade alias in your "app" configuration file in order to avoid collision with the PHP Redis extension.'
+    79|                                 : 'Please make sure the PHP Redis extension is installed and enabled.'
+    80|                 );
+
+      [2m+24 vendor frames [22m
+  25  artisan:37
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+   LogicException 
+
+  Please make sure the PHP Redis extension is installed and enabled.
+
+  at vendor/laravel/framework/src/Illuminate/Redis/Connectors/PhpRedisConnector.php:76
+    72|     protected function createClient(array $config)
+    73|     {
+    74|         return tap(new Redis, function ($client) use ($config) {
+    75|             if ($client instanceof RedisFacade) {
+  > 76|                 throw new LogicException(
+    77|                         extension_loaded('redis')
+    78|                                 ? 'Please remove or rename the Redis facade alias in your "app" configuration file in order to avoid collision with the PHP Redis extension.'
+    79|                                 : 'Please make sure the PHP Redis extension is installed and enabled.'
+    80|                 );
+
+      [2m+24 vendor frames [22m
+  25  artisan:37
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+   LogicException 
+
+  Please make sure the PHP Redis extension is installed and enabled.
+
+  at vendor/laravel/framework/src/Illuminate/Redis/Connectors/PhpRedisConnector.php:76
+    72|     protected function createClient(array $config)
+    73|     {
+    74|         return tap(new Redis, function ($client) use ($config) {
+    75|             if ($client instanceof RedisFacade) {
+  > 76|                 throw new LogicException(
+    77|                         extension_loaded('redis')
+    78|                                 ? 'Please remove or rename the Redis facade alias in your "app" configuration file in order to avoid collision with the PHP Redis extension.'
+    79|                                 : 'Please make sure the PHP Redis extension is installed and enabled.'
+    80|                 );
+
       [2m+24 vendor frames [22m
   25  artisan:37
       Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
