@@ -44,8 +44,8 @@ Route::resource('blog', 'BlogController')->only(['index', 'show']);
 Route::resource('users', 'UserController')->only(['show', 'update']);
 Route::get('users/{user}/settings', 'UserController@edit')->name('users.edit');
 
-Route::get('users/{user}/settings/password', 'UserPasswordController@password')->name('users.edit.password');
-Route::patch('users/{user}/settings/password', 'UserPasswordController@password')->name('users.update.password');
+Route::get('users/{user}/settings/password', 'UserPasswordController@edit')->name('users.edit.password');
+Route::patch('users/{user}/settings/password', 'UserPasswordController@update')->name('users.update.password');
 
 Route::get('users/{user}/verify', 'UserController@verify')->name('users.verify');
 

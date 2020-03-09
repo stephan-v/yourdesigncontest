@@ -86,9 +86,9 @@
                                         <template v-slot:header>{{ $user->name }}</template>
 
                                         <template v-slot:menu>
-                                            <a class="nav-link" href="{{ route('users.show', $user) }}">Profile</a>
-                                            <a class="nav-link" href="{{ route('users.edit', $user) }}">Settings</a>
-                                            <a class="nav-link" href="{{ route('logout') }}">Log out</a>
+                                            <a class="nav-link pl-3 pr-3" href="{{ route('users.show', $user) }}">Profile</a>
+                                            <a class="nav-link pl-3 pr-3" href="{{ route('users.edit', $user) }}">Settings</a>
+                                            <a class="nav-link pl-3 pr-3" href="{{ route('logout') }}">Log out</a>
                                         </template>
                                     </dropdown>
                                 </li>

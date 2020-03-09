@@ -1,7 +1,7 @@
 @extends('layouts.sidebar')
 
 @section('content')
-    <h1>Edit your profile</h1>
+    <h1>Update your password</h1>
 
     <form action="{{ route('users.update.password', $user) }}" method="POST" class="d-flex flex-column">
         @method('PATCH')
@@ -23,6 +23,6 @@
             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
         </div>
 
-        <button type="submit" class="btn btn btn-outline-secondary ml-auto">Update profile</button>
+        <button type="submit" class="btn btn btn-outline-secondary ml-auto">Update password</button>
     </form>
 @endsection
