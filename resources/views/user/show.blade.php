@@ -11,22 +11,16 @@
         <div class="row">
             @if (count(Auth::user()->contests))
                 <div class="col-md-6 mb-3">
-                    <div class="card">
-                        <div class="card-header">Invite designer</div>
-
-                        <div class="card-body">
-                            <a href="{{ route('users.invites.create', $user) }}" class="btn btn-primary">
-                                Invite this user to join your contest
-                            </a>
-                        </div>
-                    </div>
+                    <a href="{{ route('users.invites.create', $user) }}" class="btn btn-primary">
+                        Invite this user to join your contest
+                    </a>
                 </div>
             @endif
         </div>
 
         <div class="row">
             <div class="col-md-12">
-                <h2>Submissions</h2>
+                <h2 class="mb-3">Portfolio</h2>
             </div>
         </div>
 
