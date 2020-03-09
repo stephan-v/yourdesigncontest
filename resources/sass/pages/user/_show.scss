@@ -30,3 +30,13 @@
         border-left: 1px solid whitesmoke;
     }
 }
+
+.user-header {
+    margin-top: 75px;
+
+    img {
+        top: -75px;
+        max-height: 350px;
+        margin-bottom: -100px;
+    }
+}

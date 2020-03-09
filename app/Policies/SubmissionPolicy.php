@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Comment;
 use App\Submission;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;

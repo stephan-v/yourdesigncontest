@@ -3,7 +3,7 @@
 @section('content')
     <h1>Edit your profile</h1>
 
-    <form action="{{ route('users.update', $user) }}" method="POST" class="d-flex flex-column">
+    <form action="{{ route('users.update.password', $user) }}" method="POST" class="d-flex flex-column">
         @method('PATCH')
         @csrf
 

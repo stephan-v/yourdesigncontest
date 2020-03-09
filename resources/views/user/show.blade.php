@@ -1,21 +1,29 @@
-@extends('layouts.sidebar')
+@extends('layouts.master')
 
 @section('content')
     <div class="container">
-        <div class="row pt-3">
-            <div class="col-md-12">
-                <h1>{{ $user->name }}</h1>
-            </div>
-        </div>
+        <div class="user-header bg-white mb-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="p-5">
+                        <h1 class="lead">Hello {{ $user->name }}</h1>
 
-        <div class="row">
-            @if (count(Auth::user()->contests))
-                <div class="col-md-6 mb-3">
-                    <a href="{{ route('users.invites.create', $user) }}" class="btn btn-primary">
-                        Invite this user to join your contest
-                    </a>
+                        <p>This user has not written their own personal "about" story yet but we are sure if will be an amazing one.</p>
+
+                        @if (count(Auth::user()->contests))
+                            <a href="{{ route('users.invites.create', $user) }}" class="btn btn-primary mb-3">
+                                Invite this user to join your contest
+                            </a>
+                        @endif
+                    </div>
                 </div>
-            @endif
+
+                <div class="col-md-6">
+                    <div class="p-3">
+                        <img src="{{ asset('images/svg/designer.svg') }}" class="position-relative" alt="A designer at work behind a laptop.">
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="row">

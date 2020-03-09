@@ -10,6 +10,14 @@ use Illuminate\View\View;
 class UserController extends Controller
 {
     /**
+     * Initialize a new controller with an attached policy.
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(User::class, 'user');
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param User $user The user to display.
@@ -30,22 +38,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        // @TODO add a policy only the logged in user can view their own account.
-
         return view('user.settings', compact('user'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param User $user The user to display.
-     * @return View The HTML server response.
-     */
-    public function password(User $user)
-    {
-        // @TODO add a policy only the logged in user can view their own account.
-
-        return view('user.password', compact('user'));
     }
 
     /**
@@ -57,8 +50,6 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        // @TODO add a policy only the logged in user can update their own account.
-
         $user->update($request->validated());
 
         alert()->success('Success','Your user account has been updated.');

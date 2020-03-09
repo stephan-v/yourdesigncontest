@@ -43,7 +43,10 @@ Route::resource('blog', 'BlogController')->only(['index', 'show']);
 // User routes.
 Route::resource('users', 'UserController')->only(['show', 'update']);
 Route::get('users/{user}/settings', 'UserController@edit')->name('users.edit');
-Route::get('users/{user}/settings/password', 'UserController@password')->name('users.edit.password');
+
+Route::get('users/{user}/settings/password', 'UserPasswordController@password')->name('users.edit.password');
+Route::patch('users/{user}/settings/password', 'UserPasswordController@password')->name('users.update.password');
+
 Route::get('users/{user}/verify', 'UserController@verify')->name('users.verify');
 
 // User submissions for the contest.
