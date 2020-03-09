@@ -18,7 +18,11 @@ class WinnerObserver
         $user = $winner->submission->user;
         $contest = $winner->submission->contest;
 
+        // Notify the winner.
         $user->notify(new ContestWon($contest));
+
+        // @TODO
+        // Notify all participants that the contest has ended.
 
         if ($user->isNotStripeVerified) {
             $user->notify(new VerificationRequest());

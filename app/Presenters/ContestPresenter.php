@@ -2,6 +2,7 @@
 
 namespace App\Presenters;
 
+use App\Contest;
 use Carbon\CarbonInterface;
 use Exception;
 
@@ -66,5 +67,13 @@ trait ContestPresenter
     public function getWinnerAttribute()
     {
         return $this->submissions()->has('winner')->first();
+    }
+
+    /**
+     * Get the contestants of the contest.
+     */
+    public function getContestantsAttribute()
+    {
+        return $this->submissions->pluck('user')->unique();
     }
 }
