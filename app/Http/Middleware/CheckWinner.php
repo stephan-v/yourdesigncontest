@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Contest;
 use Closure;
 
 class CheckWinner
@@ -15,7 +16,7 @@ class CheckWinner
      */
     public function handle($request, Closure $next)
     {
-        $contest = $request->route('contest');
+        $contest = Contest::findOrFail($request->route('contest'));
 
         if (!$contest->winner) {
             return redirect()->route('contests.show', $contest);
