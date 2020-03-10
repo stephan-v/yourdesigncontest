@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Contest;
+use App\User;
 
 class ContestFinished extends Notification
 {
@@ -36,12 +37,13 @@ class ContestFinished extends Notification
     /**
      * Get the array representation of the notification.
      *
+     * @param User $user The user which is being notified.
      * @return array
      */
-    public function toArray()
+    public function toArray(User $user)
     {
         return [
-            'avatar' => asset('/avatars/user.svg'),
+            'avatar' => $user->avatar,
             'message' => 'The contest has ended.',
             'route' => route('contests.show', $this->contest),
         ];
