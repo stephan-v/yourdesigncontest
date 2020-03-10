@@ -42,6 +42,7 @@
         color: grey;
         font-weight: bold;
         box-shadow: 0 2px 10px -2px #cedae0;
+        z-index: 1;
 
         /deep/ a {
             // @TODO fix this.
