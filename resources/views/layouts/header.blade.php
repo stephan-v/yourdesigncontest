@@ -86,9 +86,18 @@
                                         <template v-slot:header>{{ $user->name }}</template>
 
                                         <template v-slot:menu>
-                                            <a class="nav-link pl-3 pr-3" href="{{ route('users.show', $user) }}">Profile</a>
-                                            <a class="nav-link pl-3 pr-3" href="{{ route('users.edit', $user) }}">Settings</a>
-                                            <a class="nav-link pl-3 pr-3" href="{{ route('logout') }}">Log out</a>
+                                            <a class="nav-link pl-5 pr-5" href="{{ route('users.show', $user) }}">Profile</a>
+                                            <a class="nav-link pl-5 pr-5" href="{{ route('users.edit', $user) }}">Settings</a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+
+                                            <a class="nav-link pl-5 pr-5"
+                                               href="{{ route('logout') }}"
+                                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
                                         </template>
                                     </dropdown>
                                 </li>

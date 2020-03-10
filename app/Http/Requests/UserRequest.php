@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
     {
         return [
             'currency' => ['required', 'string'],
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'min:3', 'max:255'],
         ];
     }
 }

@@ -22,8 +22,8 @@
                 <label for="currency">Currency</label>
 
                 <select name="currency" class="form-control" id="currency">
-                    <option value="eur" @if ($user->currency === old('currency', 'eur')) selected @endif>EUR</option>
-                    <option value="usd" @if ($user->currency === old('currency', 'usd')) selected @endif>USD</option>
+                    <option value="eur" @if ($user->currency === 'EUR') selected @endif>EUR</option>
+                    <option value="usd" @if ($user->currency === 'USD') selected @endif>USD</option>
                 </select>
             </div>
 

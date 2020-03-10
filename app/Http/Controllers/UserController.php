@@ -54,7 +54,7 @@ class UserController extends Controller
 
         alert()->success('Success','Your user account has been updated.');
 
-        return redirect()->route('users.show', $user);
+        return redirect()->back();
     }
 
     /**

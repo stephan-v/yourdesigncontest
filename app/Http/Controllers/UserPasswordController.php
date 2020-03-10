@@ -41,6 +41,6 @@ class UserPasswordController extends Controller
 
         alert()->success('Success','Your password has been updated.');
 
-        return redirect()->route('users.password', $user);
+        return redirect()->back();
     }
 }

@@ -46,6 +46,11 @@
         /deep/ a {
             // @TODO fix this.
             color: #424851 !important;
+            border-bottom: 1px solid #e4e4e4;
+
+            &:last-child {
+                border: 0;
+            }
         }
     }
 
