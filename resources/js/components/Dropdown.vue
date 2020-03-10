@@ -30,15 +30,18 @@
 </script>
 
 <style lang="scss" scoped>
+    $top-offset: 2.5rem;
+
     .user-menu {
         border-radius: 10px;
         min-width: 150px;
         top: 0;
         right: 50%;
-        transform: translate(50%, 2.5rem);
+        transform: translate(50%, $top-offset);
         font-size: 0.875rem;
         color: grey;
         font-weight: bold;
+        box-shadow: 0 2px 10px -2px #cedae0;
 
         /deep/ a {
             // @TODO fix this.
@@ -64,12 +67,12 @@
     @keyframes fadeInDown {
         from {
             opacity: 0;
-            transform: translate3d(0, -1rem, 0) translate(50%, 2.5rem);
+            transform: translate3d(0, -1rem, 0) translate(50%, $top-offset);
         }
 
         to {
             opacity: 1;
-            transform: translate3d(0, 0, 0) translate(50%, 2.5rem);
+            transform: translate3d(0, 0, 0) translate(50%, $top-offset);
         }
     }
 
@@ -84,7 +87,7 @@
 
         to {
             opacity: 0;
-            transform: translate3d(0, -1rem, 0) translate(50%, 2.5rem);
+            transform: translate3d(0, -1rem, 0) translate(50%, $top-offset);
         }
     }
 
