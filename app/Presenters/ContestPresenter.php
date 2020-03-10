@@ -2,7 +2,6 @@
 
 namespace App\Presenters;
 
-use App\Contest;
 use Carbon\CarbonInterface;
 use Exception;
 
@@ -48,7 +47,7 @@ trait ContestPresenter
      */
     public function getFinishedAttribute()
     {
-        return $this->expires_at->isPast() || $this->winner;
+        return $this->winner || $this->expires_at->isPast();
     }
 
     /**

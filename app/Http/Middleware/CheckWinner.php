@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Contest;
 use Closure;
 
 class CheckWinner
