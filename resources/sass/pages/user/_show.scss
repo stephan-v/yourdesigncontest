@@ -35,8 +35,16 @@
     margin-top: 75px;
 
     img {
-        top: -75px;
+        top: -50px;
         max-height: 350px;
         margin-bottom: -90px;
+    }
+}
+
+@media (min-width: 992px) {
+    .user-header {
+        img {
+            top: -75px;
+        }
     }
 }
