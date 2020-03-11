@@ -37,7 +37,7 @@ Route::get('contests/{contest}', 'ContestController@show')->middleware('payment.
 // Contest payout.
 Route::get('contests/{contest}/payout', 'ContestPayoutController@store');
 
-// Blog.
+// Wordpress Blog.
 Route::resource('blog', 'BlogController')->only(['index', 'show']);
 
 // User routes.
