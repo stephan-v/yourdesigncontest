@@ -1,16 +1,36 @@
+.navbar {
+    z-index: 1;
+
+    .nav-link {
+        color: #fff;
+    }
+}
+
 .home-header {
     .container {
         top: 0;
-        height: 90%;
+        left: 50%;
+        height: 100%;
+        transform: translateX(-50%);
     }
 
     .designers {
-        z-index: 1;
-        height: 90%;
-        bottom: 0;
-        position: absolute;
-        width: auto;
-        left: 10%;
+        bottom: -5%;
+    }
+
+    .slogan {
+        .orange {
+            color: #ff8d33;
+        }
+
+        .position-relative {
+            top: 50%;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-family: "Calistoga", cursive;
+        }
     }
 }
 

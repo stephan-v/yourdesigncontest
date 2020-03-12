@@ -44,7 +44,7 @@
     </head>
     <body>
         <div id="app" class="d-flex flex-column">
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <nav class="navbar navbar-expand-md position-absolute w-100 font-weight-bold">
                 <div class="container">
                     <button class="navbar-toggler ml-auto"
                             type="button"
@@ -111,11 +111,3 @@
                     </div>
                 </div>
             </nav>
-
-            <div class="branding">
-                <div class="container">
-                    <h1 class="mb-3 mb-sm-5 logo">
-                        YourDesignContest<span class="period">.</span>
-                    </h1>
-                </div>
-            </div>
