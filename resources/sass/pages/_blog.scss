@@ -1,12 +1,50 @@
 .blog-posts {
     display: grid;
-    grid-gap: 15px;
+    grid-gap: 2rem;
     grid-template-columns: 1fr 1fr 1fr;
+
+    .dot-bg {
+        // Colors
+        $bg-color: whitesmoke;
+        $dot-color: #bcbcbc;
+
+        // Dimensions
+        $dot-size: 3px;
+        $dot-space: 18px;
+
+        background:
+            linear-gradient(90deg, $bg-color ($dot-space - $dot-size), transparent 1%) center,
+            linear-gradient($bg-color ($dot-space - $dot-size), transparent 1%) center,
+            $dot-color;
+        background-size: $dot-space $dot-space;
+
+        width: 180px;
+        height: 180px;
+        top: 200px;
+        left: 0;
+        transform: translate(-50%, -50%);
+    }
+
+    h2 {
+        line-height: 1.5;
+        font-size: 1.3rem;
+    }
+
+    .author {
+        img {
+            width: 40px;
+            border: 2px solid white;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+    }
 }
 
 .post-card {
     a {
         height: 400px;
+        background-size: cover;
+        background-position: center;
 
         img {
             left: 50%;

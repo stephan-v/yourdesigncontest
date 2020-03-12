@@ -21,9 +21,9 @@ class BlogController extends Controller
         // Set the object keys as the array index.
         $lookup = array_column($categories, NULL, 'id');
 
-        // Set the category names on each post.
         foreach ($posts as $post) {
             $post->category = $lookup[$post->categories[0]]->name;
+            $post->image = $post->_embedded->{'wp:featuredmedia'}[0]->media_details->sizes->large->source_url;
         }
 
         return view('blog.index', compact('posts'));
