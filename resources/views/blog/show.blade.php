@@ -6,14 +6,16 @@
 
 @section('content')
     <div class="container">
-        <article class="blog-post">
+        <article class="blog-post mt-5 mb-5">
             <header class="hero-inner-blog mb-5">
                 <div class="blog-heading text-center">
-                    <h1>{!! $post->title->rendered !!}</h1>
+                    <h1 class="font-weight-bold">{!! $post->title->rendered !!}</h1>
 
-                    <div class="publish-date">
+                    <div class="publish-date mb-4">
                         {{ Carbon\Carbon::parse($post->date)->toFormattedDateString() }}
                     </div><!-- /.publish-date -->
+
+                    <img src="{{ $post->image }}" alt="">
                 </div><!-- /.heading -->
             </header><!-- /.hero-inner-blog -->
 
