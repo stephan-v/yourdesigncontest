@@ -37,6 +37,16 @@ class WordPress
     }
 
     /**
+     * Fetch all WordPress categories.
+     */
+    public function categories()
+    {
+        $url = $this->url . 'categories';
+
+        return $this->toJson($url);
+    }
+
+    /**
      * Fetch the content of the url and format it to JSON.
      *
      * @param string $url The url to retrieve for.

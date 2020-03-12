@@ -69,6 +69,10 @@
                             </li>
 
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('blog.index') }}">Blog</a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('contact.form') }}">Contact</a>
                             </li>
                         </ul>

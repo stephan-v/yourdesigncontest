@@ -1,6 +1,22 @@
-.blog-post {
-    h1 {
-        font-weight: 900;
-        font-family: 'Lato', sans-serif;
+.blog-posts {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.post-card {
+    a {
+        height: 400px;
+
+        img {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    .category {
+        bottom: 0;
+        color: #424851;
+        background: whitesmoke;
     }
 }
