@@ -45,4 +45,8 @@ return [
         'key' => env('FIXER_APP_KEY'),
         'url' => env('FIXER_URL'),
     ],
+
+    'wordpress' => [
+        'url' => env('WORDPRESS_URL'),
+    ],
 ];

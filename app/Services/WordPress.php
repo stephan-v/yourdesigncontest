@@ -9,7 +9,17 @@ class WordPress
      *
      * @var string $url
      */
-    private $url = 'https://wordpress.yourdesigncontest.com/wp-json/wp/v2/';
+    private $url;
+
+    /**
+     * Initialize a new Wordpress service class.
+     *
+     * @param string $url The WordPress API endpoint.
+     */
+    public function __construct(string $url)
+    {
+        $this->url = $url;
+    }
 
     /**
      * Fetch a single WordPress post.
@@ -55,8 +65,7 @@ class WordPress
     private function toJson(string $url)
     {
         $response = file_get_contents($url);
-        $json = json_decode($response);
 
-        return $json;
+        return json_decode($response);
     }
 }
