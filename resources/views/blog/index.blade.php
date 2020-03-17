@@ -10,22 +10,26 @@
             <div class="blog-posts position-relative">
                 <div class="dot-bg position-absolute"></div>
 
-                @foreach ($posts as $post)
-                    <article class="post-card">
-                        <a href="{{ route('blog.show', $post->id) }}" class="d-block position-relative overflow-hidden" style="background-image: url({{ $post->image }})">
-                            <div class="category position-absolute p-2">{{ $post->category }}</div>
-                        </a>
+                <div class="row">
+                    @foreach ($posts as $post)
+                        <div class="col-md-6 col-lg-4 mb-3">
+                            <article class="post-card">
+                                <a href="{{ route('blog.show', $post->id) }}" class="d-block position-relative overflow-hidden" style="background-image: url({{ $post->image }})">
+                                    <div class="category position-absolute p-2">{{ $post->category }}</div>
+                                </a>
 
-                        <div class="content pt-3">
-                            <h2 class="m-0 font-weight-bold">{!! $post->title->rendered !!}</h2>
+                                <div class="content pt-3">
+                                    <h2 class="m-0 font-weight-bold">{!! $post->title->rendered !!}</h2>
 
-                            <div class="author mt-3 d-flex align-items-center">
-                                <img src="{{ asset('/avatars/user.svg') }}" class="ml-1" alt="">
-                                <span class="author">YourDesignContest</span>
-                            </div>
+                                    <div class="author mt-3 d-flex align-items-center">
+                                        <img src="{{ asset('/avatars/user.svg') }}" class="ml-1" alt="">
+                                        <span class="author">YourDesignContest</span>
+                                    </div>
+                                </div>
+                            </article>
                         </div>
-                    </article>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
