@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Cache;
+
 class WordPress
 {
     /**
@@ -31,7 +33,9 @@ class WordPress
     {
         $url = $this->url . 'posts/' . $id . '?_embed';
 
-        return $this->toJson($url);
+        return Cache::rememberForever("wordpress.post.{$id}", function () use ($url) {
+            return $this->toJson($url);
+        });
     }
 
     /**
@@ -43,7 +47,9 @@ class WordPress
     {
         $url = $this->url . 'posts?_embed';
 
-        return $this->toJson($url);
+        return Cache::rememberForever("wordpress.post", function () use ($url) {
+            return $this->toJson($url);
+        });
     }
 
     /**

@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
         <article class="blog-post mt-5 mb-5">
-            <header class="hero-inner-blog mb-5">
+            <header class="hero-inner-blog mb-4">
                 <div class="blog-heading text-center">
                     <h1 class="font-weight-bold">{!! $post->title->rendered !!}</h1>
 
