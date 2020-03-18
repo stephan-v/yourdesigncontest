@@ -13,12 +13,13 @@
 
         <title>YourDesignContest - @yield('title')</title>
 
-        <script defer src="{{ mix('/js/app.js') }}"></script>
+        <script defer src="{{ mix('js/app.js') }}"></script>
 
         @stack('scripts')
 
-        <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <script src="https://kit.fontawesome.com/207a639368.js" crossorigin="anonymous"></script>
+
         @stack('stylesheets')
 
         @yield('styles')

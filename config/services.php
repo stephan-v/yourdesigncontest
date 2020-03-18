@@ -46,7 +46,4 @@ return [
         'url' => env('FIXER_URL'),
     ],
 
-    'wordpress' => [
-        'url' => env('WORDPRESS_URL'),
-    ],
 ];
