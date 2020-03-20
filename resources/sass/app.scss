@@ -41,6 +41,12 @@ footer {
     cursor: pointer;
 }
 
+.logo {
+    a {
+        color: white;
+    }
+}
+
 // Base.
 @import 'base/typography';
 

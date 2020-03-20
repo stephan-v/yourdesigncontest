@@ -45,82 +45,12 @@
     </head>
     <body>
         <div id="app" class="d-flex flex-column">
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-                <div class="container">
-                    <button class="navbar-toggler ml-auto"
-                            type="button"
-                            data-toggle="collapse"
-                            data-target="#navbarTogglerDemo01"
-                            aria-controls="navbarText"
-                            aria-expanded="false"
-                            aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">
-                                    Home <span class="sr-only">(current)</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('contests.index') }}">Contests</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('blog.index') }}">Blog</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('contact.form') }}">Contact</a>
-                            </li>
-                        </ul>
-
-                        <ul class="navbar-nav">
-                            @auth
-                                <li class="nav-item">
-                                    <span class="nav-link">
-                                        <notifications :initial-notifications='@json($user->notifications)'></notifications>
-                                    </span>
-                                </li>
-
-                                <li class="nav-item">
-                                    <dropdown>
-                                        <template v-slot:header>{{ $user->name }}</template>
-
-                                        <template v-slot:menu>
-                                            <a class="nav-link pl-5 pr-5" href="{{ route('users.show', $user) }}">Profile</a>
-                                            <a class="nav-link pl-5 pr-5" href="{{ route('users.edit', $user) }}">Settings</a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
-
-                                            <a class="nav-link pl-5 pr-5"
-                                               href="{{ route('logout') }}"
-                                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-                                        </template>
-                                    </dropdown>
-                                </li>
-                            @else
-                                <li class="nav-item">
-                                    <a class="nav-link d-inline-block" href="{{ route('register') }}">Register</a>
-                                    <a class="nav-link d-inline-block" href="{{ route('login') }}">Login</a>
-                                </li>
-                            @endauth
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
             <div class="branding">
                 <div class="container">
                     <h1 class="mb-3 mb-sm-5 logo">
-                        YourDesignContest<span class="period">.</span>
+                        <a href="{{ route('home') }}">
+                            YourDesignContest<span class="period">.</span>
+                        </a>
                     </h1>
                 </div>
             </div>
