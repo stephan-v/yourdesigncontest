@@ -71,7 +71,7 @@ class ContestController extends Controller
 
         // Prepend the winning submission if there is one, this way it will always be the first submission.
         if ($winner = $contest->winner) {
-            $submissions->prepend($contest->winner);
+            $submissions->prepend($winner->load('user'));
         }
 
         // Whether the rating and other components can still be edited.

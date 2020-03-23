@@ -108,7 +108,7 @@
 
             @foreach ($submissions as $submission)
                 <div class="col-md-3">
-                    <div class="submission position-relative mb-3 @if ($submission->winner) border border-warning @endif">
+                    <div class="submission position-relative overflow-hidden mb-3">
                         @if ($submission->deleted_at)
                             <div class="deleted">
                                 <picture class="intrinsic intrinsic--4x3">
@@ -119,7 +119,9 @@
                         @else
                             <submission :submission='@json($submission)'>
                                 @if ($submission->winner)
-                                    <div class="alert alert-warning text-center mb-0 p-2" role="alert">Winner!</div>
+                                    <div class="ribbon position-absolute">
+                                        <i class="fas fa-award text-white position-relative"></i>
+                                    </div>
                                 @endif
 
                                 <picture class="intrinsic intrinsic--4x3">

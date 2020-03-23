@@ -93,8 +93,8 @@ return [
 
         'wordpress' => [
             'driver' => 'mysql',
-            'host' => 'localhost',
-            'database' => 'wordpress',
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'database' => env('WORDPRESS_DB'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
