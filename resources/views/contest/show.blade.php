@@ -67,6 +67,7 @@
 
                 <div class="col-md-8">
                     <h1>{{ $contest->name }}</h1>
+                    <div class="text-muted mb-2">Started by {{ $contest->user->name }}</div>
                     <p>{{ $contest->description }}</p>
 
                     <span class="mb-4 alert alert-info small font-weight-bold">
