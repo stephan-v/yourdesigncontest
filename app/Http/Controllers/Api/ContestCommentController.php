@@ -48,7 +48,7 @@ class ContestCommentController extends Controller
 
         // Send out a notification to the winner or contest owner, depending on who comments.
         if ($contest->user->id === $comment->user->id) {
-            $user = $contest->winner->user;
+            $user = $contest->winner;
         }
 
         // Notify the other party.

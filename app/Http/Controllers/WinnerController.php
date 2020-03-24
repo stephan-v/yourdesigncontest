@@ -30,7 +30,7 @@ class WinnerController extends Controller
             throw new ContestAlreadyWonException('A contest winner has already been declared.');
         }
 
-        $submission->winner()->create();
+        $submission->update(['winner' => true]);
 
         event(new ContestWon($contest));
 

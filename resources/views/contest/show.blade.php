@@ -55,7 +55,7 @@
                 <div class="col-md-4">
                     <div class="winner-placeholder intrinsic intrinsic--4x3">
                         @if ($contest->finished)
-                            <img src="{{ $contest->winner->path }}" class="intrinsic-item" alt="The design of the contest winner">
+                            <img src="{{ $contest->submissions->firstWhere('winner', true)->path }}" class="intrinsic-item" alt="The design of the contest winner">
                         @else
                             <div class="text-muted intrinsic-item d-flex justify-content-center align-items-center flex-column outline p-3 text-center">
                                 <i class="fas fa-pencil-ruler fa-2x mb-3"></i>

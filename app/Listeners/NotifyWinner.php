@@ -16,8 +16,7 @@ class NotifyWinner implements ShouldQueue
      */
     public function handle(ContestWon $event)
     {
-        // @TODO change this since it is expected for a winner to be a user already.
-        $user = $event->contest->winner->user;
+        $user = $event->contest->winner;
 
         $user->notify(new ContestWonNotification($event->contest));
 

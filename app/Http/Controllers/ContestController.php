@@ -63,16 +63,11 @@ class ContestController extends Controller
         // Submissions without the winner.
         $submissions = $contest
             ->submissions()
-            ->doesntHave('winner')
             ->withTrashed()
+            ->orderByDesc('winner')
             ->latest('order')
             ->with(['user', 'contest'])
             ->paginate(12);
-
-        // Prepend the winning submission if there is one, this way it will always be the first submission.
-        if ($winner = $contest->winner) {
-            $submissions->prepend($winner->load('user'));
-        }
 
         // Whether the rating and other components can still be edited.
         $locked = optional(auth()->user())->cant('manage', $contest) || $contest->finished;

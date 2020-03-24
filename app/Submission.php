@@ -31,6 +31,7 @@ class Submission extends Model
         'rating',
         'title',
         'user_id',
+        'winner'
     ];
 
     /**
@@ -61,14 +62,6 @@ class Submission extends Model
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable')->latest();
-    }
-
-    /**
-     * Get the winner record associated with the submission.
-     */
-    public function winner()
-    {
-        return $this->hasOne(Winner::class);
     }
 
     /**

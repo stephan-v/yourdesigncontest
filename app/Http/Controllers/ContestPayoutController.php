@@ -34,11 +34,8 @@ class ContestPayoutController extends Controller
             'A payout has already been made for this contest.'
         );
 
-        // Fetch the contest winner.
-        $winner = $contest->winner->user;
-
         // Retrieve the account of the winner to fetch the default currency.
-        $account = Account::retrieve($winner->stripe_connect_id);
+        $account = Account::retrieve($contest->winner->stripe_connect_id);
 
         // Create the Stripe transfer.
         $transfer = Transfer::create([
@@ -52,7 +49,7 @@ class ContestPayoutController extends Controller
             'amount' => $transfer->amount,
             'currency' => $transfer->currency,
             'payment_id' => $transfer->id,
-            'user_id' => $winner->id,
+            'user_id' => $contest->winner->id,
         ]);
 
         return redirect()->route('contests.show', $contest);

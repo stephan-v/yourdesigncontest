@@ -61,14 +61,6 @@ trait ContestPresenter
     }
 
     /**
-     * Get the winning submission of the contest.
-     */
-    public function getWinnerAttribute()
-    {
-        return $this->submissions()->has('winner')->first();
-    }
-
-    /**
      * Get the contestants of the contest.
      */
     public function getContestantsAttribute()

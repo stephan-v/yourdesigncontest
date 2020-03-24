@@ -21,6 +21,7 @@ class CreateSubmissionsTable extends Migration
             $table->string('filename');
             $table->float('rating', 9, 2)->nullable();
             $table->unsignedSmallInteger('order');
+            $table->boolean('winner')->default(0);
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

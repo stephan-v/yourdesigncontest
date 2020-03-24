@@ -14,7 +14,7 @@
                     @foreach ($posts as $post)
                         <div class="col-md-6 col-lg-4 mb-3">
                             <article class="post-card">
-                                <a href="{{ route('blog.show', $post->ID) }}" class="d-block position-relative overflow-hidden" style="background-image: url({{ $post->thumbnail->size('large') }})">
+                                <a href="{{ route('blog.show', $post->ID) }}" class="d-block position-relative overflow-hidden" style="background-image: url({{ $post->thumbnail->size('large')['url'] }})">
                                     <div class="category position-absolute p-2">{{ $post->main_category }}</div>
                                 </a>
 

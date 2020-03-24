@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Presenters\ContestPresenter;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Contest extends Model
@@ -73,5 +74,15 @@ class Contest extends Model
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable')->latest();
+    }
+
+    /**
+     * Get the user that won the contest.
+     */
+    public function winner()
+    {
+        return $this
+            ->hasOneThrough(User::class, Submission::class, 'contest_id', 'id', 'id', 'user_id')
+            ->where('winner', true);
     }
 }
