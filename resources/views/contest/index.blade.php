@@ -63,5 +63,11 @@
                 </section>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12 pt-4 pb-3 d-flex justify-content-center">
+                {{ $contests->links() }}
+            </div>
+        </div>
     </div>
 @endsection

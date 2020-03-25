@@ -19,7 +19,7 @@ class ContestController extends Controller
      */
     public function index()
     {
-        $contests = Contest::has('payment')->with('submissions')->latest()->get();
+        $contests = Contest::has('payment')->with('submissions')->latest()->paginate(10);
 
         return view('contest.index', compact('contests'));
     }
