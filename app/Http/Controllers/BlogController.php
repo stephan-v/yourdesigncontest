@@ -22,12 +22,12 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id The id of the post to show.
+     * @param string $slug The slug of the post to show.
      * @return View The HTML server response.
      */
-    public function show(int $id)
+    public function show(string $slug)
     {
-        $post = Post::find($id);
+        $post = Post::slug($slug)->first();
 
         return view('blog.show', compact('post'));
     }
