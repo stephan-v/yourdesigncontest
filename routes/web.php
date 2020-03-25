@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Wordpress Blog.
-Route::get('/', 'BlogController@index')->name('home');
-Route::get('/{post}', 'BlogController@show')->name('show');
+Route::get('/', function() {
+    return redirect('/blog');
+});
+
+Route::get('/blog', 'BlogController@index')->name('home');
+Route::get('/blog/{post}', 'BlogController@show')->name('show');
 
