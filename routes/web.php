@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 // Route used for Tus protocol file upload, mainly used for Uppy.
 Route::any('/tus/{any?}', 'TusController@store')->where('any', '.*');
 
-// Individual pages.
+// Stand-alone pages.
 Route::get('/', 'PageController@home')->name('home');
 Route::get('how-it-works', 'PageController@process')->name('process');
 
@@ -43,10 +43,8 @@ Route::resource('blog', 'BlogController')->only(['index', 'show']);
 // User routes.
 Route::resource('users', 'UserController')->only(['show', 'update']);
 Route::get('users/{user}/settings', 'UserController@edit')->name('users.edit');
-
 Route::get('users/{user}/settings/password', 'UserPasswordController@edit')->name('users.edit.password');
 Route::patch('users/{user}/settings/password', 'UserPasswordController@update')->name('users.update.password');
-
 Route::get('users/{user}/verify', 'UserController@verify')->name('users.verify');
 
 // User submissions for the contest.
