@@ -6,7 +6,7 @@
             <div class="col-md-8 offset-md-2">
                 <div class="card">
                     <div class="card-body">
-                        <h1>Create a contest</h1>
+                        <h1>Start a design contest</h1>
 
                         <form action="{{ route('contests.store') }}" method="POST">
                             @csrf

@@ -1,7 +1,7 @@
             <sweet-alert :flash-modal='@json(session("flash-modal"))'></sweet-alert>
         </div><!-- /#app -->
 
-        <footer class="footer">
+        <footer class="footer mt-5">
             <div class="container">
                 <div class="row pt-5 pb-5">
                     <div class="col-md-3">
