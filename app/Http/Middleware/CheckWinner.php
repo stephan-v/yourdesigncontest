@@ -16,7 +16,7 @@ class CheckWinner
      */
     public function handle($request, Closure $next)
     {
-        $contest = Contest::findOrFail($request->route('contest'));
+        $contest = $request->route('contest');
 
         if (!$contest->winner) {
             return redirect()->route('contests.show', $contest);
