@@ -61,7 +61,6 @@ class StripeConnectController extends Controller
 
         $params = http_build_query([
             'client_id' => config('services.stripe.connect.client_id'),
-            'redirect_uri' => route('connect.complete'),
             'stripe_user[business_type]' => 'individual',
             'stripe_user[email]' => $request->user()->email,
             'stripe_user[url]' => Str::replaceFirst('.test', '.com', $route),

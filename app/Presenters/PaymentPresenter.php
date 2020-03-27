@@ -23,7 +23,7 @@ trait PaymentPresenter
      */
     public function getPayoutAttribute()
     {
-        return $this->money->divide(1.10);
+        return $this->money->divide(1.15);
     }
 
     /**

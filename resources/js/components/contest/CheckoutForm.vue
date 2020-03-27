@@ -29,8 +29,12 @@
                     </li>
 
                     <li class="d-flex justify-content-between">
-                        <span class="text-muted">Fee ({{ this.percentage }}%)</span>
+                        <span class="text-muted">Platform fee ({{ this.percentage }}%)</span>
                         <span>{{ this.fee.toFormat() }}</span>
+                    </li>
+
+                    <li class="small">
+                        <a href="/faq#platform-fee" target="_blank">Why is there a platform fee?</a>
                     </li>
 
                     <li class="total d-flex justify-content-between">
@@ -61,7 +65,7 @@
                 currency: 'eur',
                 rawErrors: [],
                 stripe: Stripe('pk_test_xS6i7CE8EvKafYNJijLGchad'),
-                percentage: 10,
+                percentage: 15,
             };
         },
 

@@ -45,6 +45,10 @@
                             <li class="mb-2">
                                 <a href="{{ route('process') }}" class="text-white">How it works</a>
                             </li>
+
+                            <li class="mb-2">
+                                <a href="{{ route('faq.index') }}" class="text-white">FAQ</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

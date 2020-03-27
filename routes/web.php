@@ -70,6 +70,9 @@ Route::post('stripe/webhook', 'StripeWebhookController@handleWebhook');
 Route::get('contact', 'ContactController@form')->name('contact.form');
 Route::post('contact', 'ContactController@email')->name('contact.mail');
 
+// Faq pages.
+Route::get('faq', 'FaqController@index')->name('faq.index');
+
 // Assign a winner.
 Route::post('contests/{contest}/submissions/{submission}/award', 'WinnerController@store')->name('award');
 
