@@ -65,7 +65,7 @@
                 currency: 'eur',
                 rawErrors: [],
                 stripe: Stripe('pk_test_xS6i7CE8EvKafYNJijLGchad'),
-                percentage: 15,
+                percentage: process.env.MIX_PLATFORM_FEE,
             };
         },
 

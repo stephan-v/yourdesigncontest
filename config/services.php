@@ -38,7 +38,8 @@ return [
         'key' => env('STRIPE_APP_KEY'),
         'webhook' => [
             'secret' => env('STRIPE_WEBHOOK_SECRET'),
-        ]
+        ],
+        'platform_fee' => env('MIX_PLATFORM_FEE')
     ],
 
     'fixer' => [

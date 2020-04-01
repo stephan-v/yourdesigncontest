@@ -23,7 +23,9 @@ trait PaymentPresenter
      */
     public function getPayoutAttribute()
     {
-        return $this->money->divide(1.15);
+        $fee = config('services.stripe.platform_fee');
+
+        return $this->money->divide(1 + ($fee / 100));
     }
 
     /**

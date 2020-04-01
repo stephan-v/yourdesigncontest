@@ -38,8 +38,9 @@ class PayoutToBankAccount implements ShouldQueue
     {
         $balanceTransaction = $this->retrieveTransactionId($contest);
 
-        // 15% platform fee.
-        $platformFee = $contest->payment->payout->multiply(15)->divide(100)->getAmount();
+        $fee = config('services.stripe.platform_fee');
+
+        $platformFee = $contest->payment->payout->multiply($fee)->divide(100)->getAmount();
 
         return $platformFee - $balanceTransaction->fee;
     }
@@ -62,6 +63,7 @@ class PayoutToBankAccount implements ShouldQueue
 
     /**
      * Create a Stripe payout to the platform connected bank account.
+     *
      * @param int $amount The amount to pay out.
      * @param Contest $contest The contest which payment is being paid out.
      * @throws ApiErrorException Thrown if the payout could not be created.
