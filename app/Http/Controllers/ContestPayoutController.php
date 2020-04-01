@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contest;
+use App\Events\ContestPayout;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -41,16 +42,18 @@ class ContestPayoutController extends Controller
         $transfer = Transfer::create([
             'amount' => $contest->payment->payout->getAmount(),
             'currency' => $account->default_currency,
-            'destination' => $account->id,
+            'destination' => 'acct_1GT2GoLH1cp7Kqmt',
         ]);
 
         // Create the local payout record.
         $contest->payout()->create([
             'amount' => $transfer->amount,
             'currency' => $transfer->currency,
-            'payment_id' => $transfer->id,
+            'transfer_id' => $transfer->id,
             'user_id' => $contest->winner->id,
         ]);
+
+        event(new ContestPayout($contest));
 
         return redirect()->route('contests.show', $contest);
     }

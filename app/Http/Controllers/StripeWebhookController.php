@@ -48,11 +48,13 @@ class StripeWebhookController extends Controller
     {
         // @TODO Send out email receipt.
 
-        $amount = $payload['data']['object']['amount'];
-        $contestId = $payload['data']['object']['metadata']['contest_id'];
-        $currency = $payload['data']['object']['currency'];
-        $customer = $payload['data']['object']['customer'];
-        $paymentId = $payload['data']['object']['id'];
+        $stripe = $payload['data']['object'];
+
+        $amount = $stripe['amount'];
+        $contestId = $stripe['metadata']['contest_id'];
+        $currency = $stripe['currency'];
+        $customer = $stripe['customer'];
+        $paymentId = $stripe['id'];
 
         // Fetch the contest.
         $contest = Contest::findOrFail($contestId);
