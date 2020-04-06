@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Presenters\ContestPresenter;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Contest extends Model
@@ -16,7 +15,7 @@ class Contest extends Model
      * @var array $fillable
      */
     protected $fillable = [
-        'description', 'expires_at', 'name'
+        'description', 'expires_at', 'name', 'status', 'category'
     ];
 
     /**
