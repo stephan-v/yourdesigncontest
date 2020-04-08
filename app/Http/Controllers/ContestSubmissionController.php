@@ -63,6 +63,7 @@ class ContestSubmissionController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'filename' => $fileName,
+            'user_id' => $request->user()->id,
         ]);
 
         return redirect()->route('contests.show', $contest);

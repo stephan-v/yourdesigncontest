@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Comment as CommentModel;
+use App\User;
 
 class Comment extends Notification
 {
@@ -35,9 +36,10 @@ class Comment extends Notification
     /**
      * Get the array representation of the notification.
      *
+     * @param User $user The user which is being notified.
      * @return array The formatted array.
      */
-    public function toArray()
+    public function toArray(User $user)
     {
         return [
             'avatar' => $this->comment->user->avatar,

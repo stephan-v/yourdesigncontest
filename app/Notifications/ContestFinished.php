@@ -38,7 +38,7 @@ class ContestFinished extends Notification
      * Get the array representation of the notification.
      *
      * @param User $user The user which is being notified.
-     * @return array
+     * @return array The formatted array.
      */
     public function toArray(User $user)
     {

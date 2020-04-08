@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Contest;
+use App\User;
 
 class Invitation extends Notification
 {
@@ -45,9 +46,10 @@ class Invitation extends Notification
     /**
      * Get the array representation of the notification.
      *
+     * @param User $user The user which is being notified.
      * @return array The formatted array.
      */
-    public function toArray()
+    public function toArray(User $user)
     {
         return [
             'avatar' => $this->contest->user->avatar,

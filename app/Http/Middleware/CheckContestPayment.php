@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Contest;
 use Closure;
 
 class CheckContestPayment
@@ -23,7 +22,7 @@ class CheckContestPayment
                $this->setUnpaidContestWarning();
             }
 
-            return redirect('home');
+            return redirect()->route('home');
         }
 
         return $next($request);

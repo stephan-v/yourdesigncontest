@@ -17,7 +17,6 @@ class CreateContestsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->enum('status', ['offline', 'online']);
             $table->enum('category', ['branding', 'webdesign', 'packaging']);
             $table->boolean('blind')->default(0);
 

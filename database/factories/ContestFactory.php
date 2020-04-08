@@ -8,8 +8,8 @@ use Faker\Generator as Faker;
 $factory->define(Contest::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
+        'category' => $faker->randomElement(['branding', 'webdesign', 'packaging']),
         'description' => $faker->text,
-        'status' => 'online',
         'user_id' => 1,
         'expires_at' => now()->addWeeks(1),
         'created_at' => now(),

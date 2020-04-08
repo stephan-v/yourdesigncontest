@@ -35,20 +35,6 @@ class Submission extends Model
     ];
 
     /**
-     * The "booting" method of the model.
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function (Submission $submission) {
-            $submission->user_id = Auth::id();
-        });
-    }
-
-    /**
      * Get the contest that owns the submission.
      */
     public function contest()
