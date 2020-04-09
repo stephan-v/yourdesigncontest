@@ -9,7 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class ViewContestListingTest extends TestCase
+class ViewContestTest extends TestCase
 {
     use DatabaseMigrations;
 
