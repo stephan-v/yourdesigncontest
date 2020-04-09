@@ -18,7 +18,7 @@ class CheckContestPayment
         $contest = $request->route('contest');
 
         if ($contest->isNotPaidFor()) {
-           if ($request->user()->can('manage', $contest)) {
+           if ($request->user() && $request->user()->can('manage', $contest)) {
                $this->setUnpaidContestWarning();
             }
 
