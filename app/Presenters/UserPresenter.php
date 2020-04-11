@@ -45,7 +45,12 @@ trait UserPresenter
         return $value ? asset("avatars/{$value}") : asset('/avatars/user.svg');
     }
 
-    public function getOnboardingUrlAttribute()
+    /**
+     * Generate a Stripe connect onboarding url with pre-filled data.
+     *
+     * @return string The Stripe connect onboarding url.
+     */
+    public function getOnboardingUrlAttribute(): string
     {
         $params = http_build_query([
             'client_id' => config('services.stripe.connect.client_id'),
