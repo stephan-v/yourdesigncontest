@@ -17,7 +17,7 @@ class VerificationRequest extends Notification
         return [
             'avatar' => $user->avatar,
             'message' => 'Please verify your identity for payouts.',
-            'route' => route('connect.onboarding'),
+            'route' => $user->onboardingUrl,
         ];
     }
 }

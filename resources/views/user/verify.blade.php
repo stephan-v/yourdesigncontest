@@ -5,7 +5,7 @@
 
     <p>Click here to verify your account for payouts.</p>
 
-    <a href="{{ route('connect.onboarding') }}">
+    <a href="{{ $user->onboardingUrl }}">
         <img src="{{ asset('images/light-on-light.png') }}" alt="">
     </a>
 

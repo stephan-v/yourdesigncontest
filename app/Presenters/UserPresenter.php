@@ -44,4 +44,18 @@ trait UserPresenter
     {
         return $value ? asset("avatars/{$value}") : asset('/avatars/user.svg');
     }
+
+    public function getOnboardingUrlAttribute()
+    {
+        $params = http_build_query([
+            'client_id' => config('services.stripe.connect.client_id'),
+            'stripe_user[business_type]' => 'individual',
+            'stripe_user[email]' => $this->email,
+            'stripe_user[url]' => route('users.show', $this),
+            'suggested_capabilities[]' => 'transfers',
+            'state' => 'test',
+        ]);
+
+        return config('services.stripe.connect.uri') . $params;
+    }
 }

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Stripe\Account;
 use Stripe\Exception\ApiErrorException;
 use Stripe\Exception\OAuth\OAuthErrorException;
@@ -46,34 +44,5 @@ class StripeConnectController extends Controller
         $dashboard = Account::createLoginLink($id);
 
         return redirect()->away($dashboard->url);
-    }
-
-    /**
-     * Generate the Stripe connect onboarding URI.
-     *
-     * @param Request $request The incoming HTTP server request.
-     * @return string The generated URI.
-     * @throws Exception Thrown if the Stripe connect uri has not been set.
-     */
-    public function onboarding(Request $request): string
-    {
-        $route = route('users.show', $request->user());
-
-        $params = http_build_query([
-            'client_id' => config('services.stripe.connect.client_id'),
-            'stripe_user[business_type]' => 'individual',
-            'stripe_user[email]' => $request->user()->email,
-            'stripe_user[url]' => Str::replaceFirst('.test', '.com', $route),
-            'suggested_capabilities[]' => 'transfers',
-            'state' => 'test',
-        ]);
-
-        $uri = config('services.stripe.connect.uri');
-
-        if (is_null($uri)) {
-            throw new Exception('The stripe connect uri is not set.');
-        }
-
-        return redirect()->away($uri . $params);
     }
 }

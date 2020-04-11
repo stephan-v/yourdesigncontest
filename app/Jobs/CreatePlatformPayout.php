@@ -1,48 +1,66 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Jobs;
 
 use App\Contest;
 use App\Events\ContestPayout;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Stripe\BalanceTransaction;
 use Stripe\Exception\ApiErrorException;
 use Stripe\PaymentIntent;
 use Stripe\Payout as StripePayout;
 
-class PayoutToBankAccount implements ShouldQueue
+class CreatePlatformPayout implements ShouldQueue
 {
-    /**
-     * Handle the event.
-     *
-     * @param ContestPayout $event
-     * @throws ApiErrorException If there is a Stripe API error.
-     */
-    public function handle(ContestPayout $event)
-    {
-        $amount = $this->calculatePayoutAmount($event->contest);
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-        $this->createPayout($amount, $event->contest);
+    /**
+     * The contest used to transfer funds from.
+     *
+     * @var Contest $contest
+     */
+    private $contest;
+
+    /**
+     * Create a new job instance.
+     *
+     * @param Contest $contest THe contest used to transfer funds from.
+     */
+    public function __construct(Contest $contest)
+    {
+        $this->contest = $contest;
     }
 
     /**
-     * Calculate the amount for the bank account.
+     * Handle the event.
      *
-     * This should be the platform fee percentage minus any incurred Stripe fees.
+     * @throws ApiErrorException If there is a Stripe API error.
+     */
+    public function handle()
+    {
+        $amount = $this->calculatePayout($this->contest);
+
+        $this->createContestPayout($this->contest, $amount);
+    }
+
+    /**
+     * Calculate the payout fee amount.
+     *
+     * Subtract any occurred Stripe fees from the payout to keep our balance intact.
      *
      * @param Contest $contest The contest to fetch the amount and fees for.
      * @return int The calculated amount that will be available for payout.
      * @throws ApiErrorException Thrown if the payment or balance could not be retrieved.
      */
-    private function calculatePayoutAmount(Contest $contest)
+    private function calculatePayout(Contest $contest)
     {
-        $balanceTransaction = $this->retrieveTransactionId($contest);
+        $transaction = $this->retrieveTransaction($contest);
 
-        $fee = config('services.stripe.platform_fee');
-
-        $platformFee = $contest->payment->payout->multiply($fee)->divide(100)->getAmount();
-
-        return $platformFee - $balanceTransaction->fee;
+        return $contest->payment->fee - $transaction->fee;
     }
 
     /**
@@ -52,7 +70,7 @@ class PayoutToBankAccount implements ShouldQueue
      * @return BalanceTransaction A Stripe BalanceTransaction containing info about Stripe fees.
      * @throws ApiErrorException Thrown if the payment or balance could not be retrieved.
      */
-    private function retrieveTransactionId(Contest $contest)
+    private function retrieveTransaction(Contest $contest)
     {
         $paymentIntent = PaymentIntent::retrieve($contest->payment->payment_id);
 
@@ -64,13 +82,13 @@ class PayoutToBankAccount implements ShouldQueue
     /**
      * Create a Stripe payout to the platform connected bank account.
      *
-     * @param int $amount The amount to pay out.
      * @param Contest $contest The contest which payment is being paid out.
+     * @param int $amount The amount to pay out.
      * @throws ApiErrorException Thrown if the payout could not be created.
      */
-    private function createPayout(int $amount, Contest $contest)
+    private function createContestPayout(Contest $contest, int $amount)
     {
-        StripePayout::create([
+        $data = [
             'amount' => $amount,
             'currency' => 'eur',
             'metadata' => [
@@ -78,6 +96,8 @@ class PayoutToBankAccount implements ShouldQueue
                 'payment_intent' => $contest->payment->payment_id,
             ],
             'statement_descriptor' => "contest_id_{$contest->id}",
-        ]);
+        ];
+
+        StripePayout::create($data);
     }
 }

@@ -5,6 +5,7 @@
 /public/storage
 /public/sitemap.xml
 /public/mix-manifest.json
+/public/vendor
 /storage/*.key
 /vendor
 /.idea

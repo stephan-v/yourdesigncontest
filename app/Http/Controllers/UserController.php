@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -60,11 +61,13 @@ class UserController extends Controller
     /**
      * Display the verification page.
      *
+     * @param User $user The user to verify.
      * @return View The HTML server response.
+     * @throws AuthorizationException If the user is not authorized to view the verification page.
      */
-    public function verify()
+    public function verify(User $user)
     {
-        // @TODO add a policy only the logged in user can verify their own account.
+        $this->authorize('verify', $user);
 
         return view('user.verify');
     }

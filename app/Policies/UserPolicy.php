@@ -30,4 +30,16 @@ class UserPolicy
     {
         return $user->id === $model->id;
     }
+
+    /**
+     * Determine whether the user can update the model.
+     *
+     * @param User $user The user that is currently logged in.
+     * @param User $model The user that the logged in user wants to verify.
+     * @return boolean Whether the user is allowed to verify the user model.
+     */
+    public function verify(User $user, User $model)
+    {
+        return $user->id === $model->id;
+    }
 }

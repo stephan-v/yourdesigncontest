@@ -54,11 +54,9 @@ Route::middleware('auth')->group(function () {
 });
 
 // Contest handover section, comments and files.
-Route::middleware('winner.check')->group(function () {
-    Route::resource('contests.comments', 'ContestCommentController');
-    Route::get('contests/{contest}/files/zip', 'ContestFileController@zip')->name('zip');
-    Route::resource('contests.files', 'ContestFileController');
-});
+Route::resource('contests.comments', 'ContestCommentController');
+Route::get('contests/{contest}/files/zip', 'ContestFileController@zip')->name('zip');
+Route::resource('contests.files', 'ContestFileController');
 
 // Notifications.
 Route::resource('notifications', 'NotificationController');
@@ -82,5 +80,4 @@ Route::resource('users.invites', 'UserInvitationController')->only(['create', 's
 // Stripe routes.
 Route::get('stripe/connect-complete', 'StripeConnectController@complete')->name('connect.complete');
 Route::get('stripe/connect-dashboard', 'StripeConnectController@dashboard')->name('connect.dashboard');
-Route::get('stripe/connect-onboarding', 'StripeConnectController@onboarding')->name('connect.onboarding');
 

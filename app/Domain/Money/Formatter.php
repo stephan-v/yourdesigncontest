@@ -4,10 +4,28 @@ namespace App\Domain\Money;
 
 use Money\Currencies\ISOCurrencies;
 use Money\Formatter\IntlMoneyFormatter;
+use Money\Money;
 use NumberFormatter;
 
-trait Formatter
+class Formatter
 {
+    /**
+     * The money object to format.
+     *
+     * @var Money
+     */
+    private $money;
+
+    /**
+     * Formatter constructor.
+     *
+     * @param Money $money The money object to format.
+     */
+    public function __construct(Money $money)
+    {
+        $this->money = $money;
+    }
+
     /**
      * Format the given amount using the currency set on the user record.
      *

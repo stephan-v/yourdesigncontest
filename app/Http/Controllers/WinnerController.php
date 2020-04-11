@@ -27,7 +27,7 @@ class WinnerController extends Controller
         $this->authorize('create', [$contest, $submission]);
 
         if ($contest->winner) {
-            throw new ContestAlreadyWonException('A contest winner has already been declared.');
+            throw new ContestAlreadyWonException();
         }
 
         $submission->update(['winner' => true]);
