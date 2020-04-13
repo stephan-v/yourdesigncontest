@@ -68,15 +68,27 @@ class CreatePlatformPayout implements ShouldQueue
      *
      * @param Contest $contest The contest to fetch the transaction id for.
      * @return BalanceTransaction A Stripe BalanceTransaction containing info about Stripe fees.
-     * @throws ApiErrorException Thrown if the payment or balance could not be retrieved.
+     * @throws ApiErrorException Thrown if the balance could not be retrieved.
      */
     private function retrieveTransaction(Contest $contest)
     {
-        $paymentIntent = PaymentIntent::retrieve($contest->payment->payment_id);
+        $paymentIntent = $this->retrievePaymentIntent($contest);
 
         $transaction = $paymentIntent->charges->data[0]->balance_transaction;
 
         return BalanceTransaction::retrieve($transaction);
+    }
+
+    /**
+     * Retrieve the Stripe payment intent.
+     *
+     * @param Contest $contest The contest to retrieve the original payment intent(charge) for.
+     * @return PaymentIntent The payment intent with all payment metadata like occurred transactional charges.
+     * @throws ApiErrorException Thrown if the payment intent could not be retrieved.
+     */
+    private function retrievePaymentIntent(Contest $contest)
+    {
+        return PaymentIntent::retrieve($contest->payment->payment_id);
     }
 
     /**
@@ -98,6 +110,7 @@ class CreatePlatformPayout implements ShouldQueue
             'statement_descriptor' => "contest_id_{$contest->id}",
         ];
 
+        // @TODO store a record locally?
         StripePayout::create($data);
     }
 }
