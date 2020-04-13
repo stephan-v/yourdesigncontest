@@ -27,7 +27,10 @@ class StripeConnectController extends Controller
 
         $request->user()->update(['stripe_connect_id' => $response->stripe_user_id]);
 
-        // @TODO add a flash message to indicate the connect process was a success.
+        // @TODO clear all notifications about validation.
+
+        alert()->success('Success','You are ready to receive payments.');
+
         return redirect()->route('users.show', $request->user());
     }
 

@@ -2,6 +2,9 @@
 
 namespace App\Presenters;
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Str;
+
 trait UserPresenter
 {
     /**
@@ -52,15 +55,30 @@ trait UserPresenter
      */
     public function getOnboardingUrlAttribute(): string
     {
-        $params = http_build_query([
+        $parameters = [
             'client_id' => config('services.stripe.connect.client_id'),
             'stripe_user[business_type]' => 'individual',
             'stripe_user[email]' => $this->email,
-            'stripe_user[url]' => route('users.show', $this),
+            'stripe_user[url]' => Str::replaceFirst('.test', '.com', route('users.show', $this)),
             'suggested_capabilities[]' => 'transfers',
-            'state' => 'test',
-        ]);
+        ];
 
-        return config('services.stripe.connect.uri') . $params;
+        if (App::environment('local')) {
+            $parameters = array_merge($parameters, [
+                'stripe_user[phone_number]' => '0000000000',
+                'stripe_user[first_name]' => 'John',
+                'stripe_user[last_name]' => 'Doe',
+                'stripe_user[dob_day]' => 1,
+                'stripe_user[dob_month]' => 1,
+                'stripe_user[dob_year]' => 1980,
+                'stripe_user[street_address]' => 'John Doe Lane',
+                'stripe_user[zip]' => '1020JD',
+                'stripe_user[city]' => 'John Doe City',
+            ]);
+        }
+
+        $parameters = http_build_query($parameters);
+
+        return config('services.stripe.connect.uri') . $parameters;
     }
 }
