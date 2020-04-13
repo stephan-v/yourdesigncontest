@@ -42,7 +42,7 @@ class TransferFunds implements ShouldQueue
     {
         // Transfer Stripe platform funds to the connect account of the winning designer.
         $transfer = Transfer::create([
-            'amount' => $this->contest->payment->payout->getAmount(),
+            'amount' => $this->contest->payment->winnings->getAmount(),
             'currency' => $this->contest->payment->currency,
             'destination' => $this->contest->winner->stripe_connect_id,
         ]);
