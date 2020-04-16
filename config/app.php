@@ -178,6 +178,7 @@ return [
 
         // Custom providers.
         App\Providers\StripeServiceProvider::class,
+        App\Providers\PaymentGatewayServiceProvider::class,
         App\Providers\TusServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
     ],

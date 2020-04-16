@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\Contest;
-use App\Events\ContestPayout;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

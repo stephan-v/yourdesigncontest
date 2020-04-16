@@ -3,13 +3,12 @@
 namespace App\Jobs;
 
 use App\Contest;
+use App\Domain\Payment\PaymentGateway;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Stripe\Exception\ApiErrorException;
-use Stripe\Transfer;
 
 class TransferFunds implements ShouldQueue
 {
@@ -35,17 +34,17 @@ class TransferFunds implements ShouldQueue
     /**
      * Execute the job.
      *
-     * @throws ApiErrorException Thrown if the request fails.
+     * @param PaymentGateway $paymentGateway The payment gateway used to transfer funds.
      * @return void
      */
-    public function handle()
+    public function handle(PaymentGateway $paymentGateway)
     {
         // Transfer Stripe platform funds to the connect account of the winning designer.
-        $transfer = Transfer::create([
-            'amount' => $this->contest->payment->payout->getAmount(),
-            'currency' => $this->contest->payment->currency,
-            'destination' => $this->contest->winner->stripe_connect_id,
-        ]);
+        $transfer = $paymentGateway->transfer(
+            $this->contest->winner,
+            $this->contest->payment->payout->getAmount(),
+            $this->contest->payment->currency
+        );
 
         // Create the local payout record.
         $this->contest->payout()->create([

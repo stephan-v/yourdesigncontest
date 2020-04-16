@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contest;
-use App\Exceptions\PayoutAlreadyMadeException;
-use App\Exceptions\StripeConnectNotFinished;
+use App\Exceptions\PayoutException;
 use App\Jobs\TransferFunds;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
@@ -18,20 +17,20 @@ class ContestPayoutController extends Controller
      * @param Request $request The incoming HTTP client request.
      * @param Contest $contest The contest with winner who should receive the contest payout.
      * @throws AuthorizationException If the user is not the contest owner.
-     * @throws StripeConnectNotFinished Thrown if the winner has not set up their connect account.
-     * @throws PayoutAlreadyMadeException Thrown if a payout has already been made.
+     * @throws PayoutException Thrown if payout fails.
      * @return RedirectResponse Redirects back to the contest page.
      */
     public function store(Request $request, Contest $contest)
     {
+        // Request a payout.
         $this->authorize('manage', $contest);
 
         if (!$contest->winner->stripe_connect_id) {
-            throw new StripeConnectNotFinished();
+            throw PayoutException::missingConnectAccount();
         }
 
         if ($contest->payout()->exists()) {
-            throw new PayoutAlreadyMadeException();
+            throw PayoutException::duplicatePayout();
         }
 
         TransferFunds::dispatch($contest);
