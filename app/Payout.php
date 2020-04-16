@@ -16,7 +16,7 @@ class Payout extends Model
     ];
 
     /**
-     * Get the contest that owns the payment.
+     * Get the contest that owns the payout.
      */
     public function contest()
     {

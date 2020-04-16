@@ -48,7 +48,7 @@ class PaymentPresenterTest extends TestCase
         $contest = $this->contest;
 
         // Act.
-        $payout = $contest->payment->payout->getAmount();
+        $payout = $contest->payment->winnings->getAmount();
 
         // Assert.
         $this->assertEquals($payout, 100000);

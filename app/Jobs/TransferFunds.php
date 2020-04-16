@@ -42,7 +42,7 @@ class TransferFunds implements ShouldQueue
         // Transfer Stripe platform funds to the connect account of the winning designer.
         $transfer = $paymentGateway->transfer(
             $this->contest->winner,
-            $this->contest->payment->payout->getAmount(),
+            $this->contest->payment->winnings->getAmount(),
             $this->contest->payment->currency
         );
 

@@ -18,11 +18,11 @@ trait PaymentPresenter
     }
 
     /**
-     * The payout amount for designers.
+     * The payout amount for winning designers.
      *
      * @return string The payout price in cents.
      */
-    public function getPayoutAttribute()
+    public function getWinningsAttribute()
     {
         $decimalPercentage = config('services.stripe.platform_fee') / 100;
 
@@ -38,7 +38,7 @@ trait PaymentPresenter
      */
     public function getFeeAttribute(): int
     {
-        return $this->money->subtract($this->payout)->getAmount();
+        return $this->money->subtract($this->winnings)->getAmount();
     }
 
     /**
