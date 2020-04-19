@@ -2,6 +2,7 @@
 
 namespace App\Domain\Payment;
 
+use App\Domain\Response\TransferResponse;
 use App\User;
 
 interface PaymentGateway
@@ -11,8 +12,8 @@ interface PaymentGateway
      *
      * @param User $user The user to transfer the given amount to.
      * @param int $amount The amount to transfer.
-     * @param string $currency The currency used to transfer.
-     * @return mixed
+     * @param string $currency The currency used for the transfer.
+     * @return TransferResponse The transfer data.
      */
-    public function transfer(User $user, int $amount, string $currency);
+    public function transfer(User $user, int $amount, string $currency): TransferResponse;
 }
