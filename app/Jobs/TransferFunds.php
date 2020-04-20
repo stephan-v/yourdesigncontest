@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Contest;
 use App\Domain\Payment\PaymentGateway;
 use App\Exceptions\PayoutException;
+use App\Payout;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -49,19 +50,14 @@ class TransferFunds implements ShouldQueue
         }
 
         // Transfer Stripe platform funds to the connect account of the winning designer.
-        $transfer = $paymentGateway->transfer(
+        $paymentGateway->transfer(
             $this->contest->winner,
             $this->contest->payment->winnings->getAmount(),
             $this->contest->payment->currency
         );
 
-        // Create the local payout record.
-        $this->contest->payout()->create([
-            'amount' => $transfer->amount,
-            'currency' => $transfer->currency,
-            'transfer_id' => $transfer->id,
-            'user_id' => $this->contest->winner->id,
-        ]);
+        // Update the local payout record.
+        $this->contest->payout()->update(['status' => Payout::TRANSFERRED]);
 
         CreatePlatformPayout::dispatch($this->contest);
     }

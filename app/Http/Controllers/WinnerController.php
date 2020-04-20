@@ -26,6 +26,8 @@ class WinnerController extends Controller
     {
         $this->authorize('create', [$contest, $submission]);
 
+        // @TODO Create business logic for this.
+
         if ($contest->winner) {
             throw new ContestAlreadyWonException();
         }
