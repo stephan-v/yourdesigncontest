@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Contest;
 use App\Domain\Payment\PaymentGateway;
+use App\Exceptions\PayoutException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -35,10 +36,18 @@ class TransferFunds implements ShouldQueue
      * Execute the job.
      *
      * @param PaymentGateway $paymentGateway The payment gateway used to transfer funds.
-     * @return void
+     * @throws PayoutException Thrown if payout fails.
      */
     public function handle(PaymentGateway $paymentGateway)
     {
+        if (!$this->contest->winner->stripe_connect_id) {
+            throw PayoutException::missingConnectAccount();
+        }
+
+        if ($this->contest->payout()->exists()) {
+            throw PayoutException::duplicatePayout();
+        }
+
         // Transfer Stripe platform funds to the connect account of the winning designer.
         $transfer = $paymentGateway->transfer(
             $this->contest->winner,
