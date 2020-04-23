@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Contest;
 use App\Domain\Payment\PaymentGateway;
+use App\Domain\Payout\PlatformPayout;
 use App\Exceptions\PayoutException;
 use App\Payout;
 use Illuminate\Bus\Queueable;
@@ -11,54 +11,58 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Stripe\Exception\ApiErrorException;
 
 class TransferFunds implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * The contest used to transfer funds from.
+     * The pending payout to process.
      *
-     * @var Contest $contest
+     * @var Payout $payout
      */
-    private $contest;
+    private $payout;
 
     /**
      * Create a new job instance.
      *
-     * @param Contest $contest THe contest used to transfer funds from.
+     * @param Payout $payout The pending payout to process.
      */
-    public function __construct(Contest $contest)
+    public function __construct(Payout $payout)
     {
-        $this->contest = $contest;
+        $this->payout = $payout;
     }
 
     /**
      * Execute the job.
      *
      * @param PaymentGateway $paymentGateway The payment gateway used to transfer funds.
+     * @param PlatformPayout $platformPayout The platform payout service.
      * @throws PayoutException Thrown if payout fails.
+     * @throws ApiErrorException Thrown if there is a payment gateway error.
      */
-    public function handle(PaymentGateway $paymentGateway)
+    public function handle(PaymentGateway $paymentGateway, PlatformPayout $platformPayout)
     {
-        if (!$this->contest->winner->stripe_connect_id) {
+        if (!$this->payout->user->isStripeVerified) {
             throw PayoutException::missingConnectAccount();
         }
 
-        if ($this->contest->payout()->exists()) {
+        if ($this->payout->succeeded) {
             throw PayoutException::duplicatePayout();
         }
 
         // Transfer Stripe platform funds to the connect account of the winning designer.
         $paymentGateway->transfer(
-            $this->contest->winner,
-            $this->contest->payment->winnings->getAmount(),
-            $this->contest->payment->currency
+            $this->payout->user,
+            $this->payout->money->getAmount(),
+            $this->payout->currency
         );
 
         // Update the local payout record.
-        $this->contest->payout()->update(['status' => Payout::TRANSFERRED]);
+        $this->payout->update(['status' => Payout::SUCCEEDED]);
 
-        CreatePlatformPayout::dispatch($this->contest);
+        // Create a platform payout from the payment gateway to the bank account.
+        $platformPayout->create($this->payout->contest);
     }
 }

@@ -1,53 +1,30 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Domain\Payout;
 
 use App\Contest;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 use Stripe\BalanceTransaction;
 use Stripe\Exception\ApiErrorException;
 use Stripe\PaymentIntent;
 use Stripe\Payout as StripePayout;
 
-class CreatePlatformPayout implements ShouldQueue
+class PlatformPayout
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
     /**
-     * The contest used to transfer funds from.
+     * Create the platform payout.
      *
-     * @var Contest $contest
-     */
-    private $contest;
-
-    /**
-     * Create a new job instance.
-     *
-     * @param Contest $contest THe contest used to transfer funds from.
-     */
-    public function __construct(Contest $contest)
-    {
-        $this->contest = $contest;
-    }
-
-    /**
-     * Handle the event.
-     *
+     * @param Contest $contest The contest used to transfer funds from.
      * @throws ApiErrorException If there is a Stripe API error.
      */
-    public function handle()
+    public function create(Contest $contest)
     {
-        $amount = $this->calculatePayout($this->contest);
+        $payoutAmount = $this->calculatePayoutAmount($contest);
 
-        $this->createContestPayout($this->contest, $amount);
+        $this->createContestPayout($contest, $payoutAmount);
     }
 
     /**
-     * Calculate the payout fee amount.
+     * Calculate the payout amount.
      *
      * Subtract any occurred Stripe fees from the payout to keep our balance intact.
      *
@@ -55,7 +32,7 @@ class CreatePlatformPayout implements ShouldQueue
      * @return int The calculated amount that will be available for payout.
      * @throws ApiErrorException Thrown if the payment or balance could not be retrieved.
      */
-    private function calculatePayout(Contest $contest)
+    private function calculatePayoutAmount(Contest $contest)
     {
         $transaction = $this->retrieveTransaction($contest);
 
@@ -109,7 +86,6 @@ class CreatePlatformPayout implements ShouldQueue
             'statement_descriptor' => "contest_id_{$contest->id}",
         ];
 
-        // @TODO store a record locally?
         StripePayout::create($data);
     }
 }

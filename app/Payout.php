@@ -2,12 +2,17 @@
 
 namespace App;
 
+use App\Presenters\PayoutPresenter;
+use App\QueryScopes\PayoutScopes;
 use Illuminate\Database\Eloquent\Model;
 
 class Payout extends Model
 {
+    use PayoutPresenter;
+    use PayoutScopes;
+
     /**
-     * The payout is pending awaiting a payout requets from the user.
+     * The payout is pending awaiting a payout request from the user.
      *
      * @const string PENDING
      */
@@ -16,9 +21,9 @@ class Payout extends Model
     /**
      * The payout has been transferred using the payment gateway.
      *
-     * @const string PENDING
+     * @const string SUCCEEDED
      */
-    public const TRANSFERRED = 'transferred';
+    public const SUCCEEDED = 'SUCCEEDED';
 
     /**
      * The attributes that are mass assignable.
@@ -35,5 +40,13 @@ class Payout extends Model
     public function contest()
     {
         return $this->belongsTo(Contest::class);
+    }
+
+    /**
+     * Get the user that belongs to the payout.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

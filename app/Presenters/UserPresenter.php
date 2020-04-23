@@ -2,8 +2,11 @@
 
 namespace App\Presenters;
 
+use App\Domain\Money\Formatter;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
+use Money\Currency;
+use Money\Money;
 
 trait UserPresenter
 {
@@ -49,6 +52,32 @@ trait UserPresenter
     }
 
     /**
+     * Get the total amount available for payout.
+     *
+     * @return Money The money object containing the available total for payout.
+     */
+    public function getTotalPayoutAmountAttribute(): Money
+    {
+        $payouts = $this->payouts()->pending()->get();
+
+        if (count($payouts)) {
+            return $payouts->shift()->money->add(...$payouts->map->money);
+        }
+
+        return new Money(0, resolve(Currency::class));
+    }
+
+    /**
+     * Get the total formatted amount available for payout in the user's preferred currency.
+     *
+     * @return string The formatted amount available for payout.
+     */
+    public function getFormattedTotalPayoutAmountAttribute(): string
+    {
+        return (new Formatter($this->totalPayoutAmount))->format();
+    }
+
+    /**
      * Generate a Stripe connect onboarding url with pre-filled data.
      *
      * @return string The Stripe connect onboarding url.
@@ -63,6 +92,7 @@ trait UserPresenter
             'suggested_capabilities[]' => 'transfers',
         ];
 
+        // Pre-fill data for easier local testing.
         if (App::environment('local')) {
             $parameters = array_merge($parameters, [
                 'stripe_user[phone_number]' => '0000000000',

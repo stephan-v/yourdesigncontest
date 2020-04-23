@@ -11,6 +11,7 @@ trait PaymentPresenter
     /**
      * The amount converted to a money object.
      *
+     * @return Money The money object.
      */
     public function getMoneyAttribute()
     {

@@ -46,6 +46,7 @@ Route::get('users/{user}/settings', 'UserController@edit')->name('users.edit');
 Route::get('users/{user}/settings/password', 'UserPasswordController@edit')->name('users.edit.password');
 Route::patch('users/{user}/settings/password', 'UserPasswordController@update')->name('users.update.password');
 Route::get('users/{user}/verify', 'UserController@verify')->name('users.verify');
+Route::get('users/{user}/payout', 'UserController@payout')->name('users.payout');
 
 // User submissions for the contest.
 Route::middleware('auth')->group(function () {

@@ -6,6 +6,7 @@ use App\Contest;
 use App\Payment;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Money\Currency;
 use Tests\TestCase;
 
 class PaymentPresenterTest extends TestCase
@@ -26,8 +27,8 @@ class PaymentPresenterTest extends TestCase
     {
         parent::setUp();
 
-        app()->singleton(\Money\Currency::class, function() {
-            return new \Money\Currency('USD');
+        app()->singleton(Currency::class, function() {
+            return new Currency('USD');
         });
 
         $user = factory(User::class)->create();

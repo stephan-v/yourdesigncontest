@@ -71,4 +71,20 @@ class UserController extends Controller
 
         return view('user.verify');
     }
+
+    /**
+     * Display the payour request page.
+     *
+     * @param User $user The user to create a payout for.
+     * @return View The HTML server response.
+     * @throws AuthorizationException If the user is not authorized to view the verification page.
+     */
+    public function payout(User $user)
+    {
+        $this->authorize('verify', $user);
+
+        $user->with('payouts');
+
+        return view('user.payout');
+    }
 }

@@ -4,6 +4,7 @@ namespace App;
 
 use App\Presenters\UserPresenter;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -52,7 +53,15 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function submissions()
     {
-        return $this->hasManyThrough(Submission::class, Contest::class);
+        return $this->hasMany(Submission::class);
+    }
+
+    /**
+     * Fetch the user payouts.
+     */
+    public function payouts()
+    {
+        return $this->hasMany(Payout::class);
     }
 
     /**
