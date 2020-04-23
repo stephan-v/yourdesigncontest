@@ -44,25 +44,23 @@ class TransferFunds implements ShouldQueue
      */
     public function handle(PaymentGateway $paymentGateway, PlatformPayout $platformPayout)
     {
-        if (!$this->payout->user->isStripeVerified) {
+        $payout = $this->payout;
+
+        if (!$payout->user->isStripeVerified) {
             throw PayoutException::missingConnectAccount();
         }
 
-        if ($this->payout->succeeded) {
+        if ($payout->succeeded) {
             throw PayoutException::duplicatePayout();
         }
 
         // Transfer Stripe platform funds to the connect account of the winning designer.
-        $paymentGateway->transfer(
-            $this->payout->user,
-            $this->payout->money->getAmount(),
-            $this->payout->currency
-        );
+        $paymentGateway->transfer($payout->user, $payout->amount, $payout->currency);
 
         // Update the local payout record.
-        $this->payout->update(['status' => Payout::SUCCEEDED]);
+        $payout->update(['status' => Payout::SUCCEEDED]);
 
         // Create a platform payout from the payment gateway to the bank account.
-        $platformPayout->create($this->payout->contest);
+        $platformPayout->create($payout->contest);
     }
 }
