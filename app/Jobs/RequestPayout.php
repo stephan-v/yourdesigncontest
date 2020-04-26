@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\PayoutException;
 use App\Payout;
 use App\User;
 use Illuminate\Bus\Queueable;
@@ -34,15 +35,18 @@ class RequestPayout implements ShouldQueue
     /**
      * Execute the job.
      *
-     * @return void
+     * @throws PayoutException Thrown if the user does not have any pending payouts available.
      */
     public function handle()
     {
         $payouts = $this->user->payouts()->pending()->get();
 
+        if (!count($payouts)) {
+            throw PayoutException::noPendingPayouts();
+        }
+
         /** @var Payout $payout */
         foreach ($payouts as $payout) {
-            // @TODO add a progressbar.
             TransferFunds::dispatch($payout->contest);
         }
     }

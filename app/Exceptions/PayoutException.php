@@ -7,6 +7,16 @@ use Exception;
 class PayoutException extends Exception
 {
     /**
+     * Thrown if a user does not have any pending payouts available.
+     *
+     * @return static
+     */
+    public static function noPendingPayouts()
+    {
+        return new static('User does not have any pending payouts.');
+    }
+
+    /**
      * Thrown if a payout has already been made.
      *
      * @return static

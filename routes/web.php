@@ -34,11 +34,11 @@ Route::get('contests', 'ContestController@index')->name('contests.index');
 Route::post('contests', 'ContestController@store')->name('contests.store');
 Route::get('contests/{contest}', 'ContestController@show')->middleware('payment.check')->name('contests.show');
 
-// Contest payout.
-Route::get('contests/{contest}/payout', 'ContestPayoutController@store');
-
 // Wordpress Blog.
 Route::resource('blog', 'BlogController')->only(['index', 'show']);
+
+// Contest payout.
+Route::get('user/payout', 'UserPayoutController@store')->middleware('auth');
 
 // User routes.
 Route::resource('users', 'UserController')->only(['show', 'update']);
