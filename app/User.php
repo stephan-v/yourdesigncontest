@@ -2,15 +2,16 @@
 
 namespace App;
 
+use App\Domain\Payout\Payoutable;
 use App\Presenters\UserPresenter;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
+    use Payoutable;
     use UserPresenter;
 
     /**
