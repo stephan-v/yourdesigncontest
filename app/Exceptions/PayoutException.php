@@ -33,6 +33,6 @@ class PayoutException extends Exception
      */
     public static function missingConnectAccount()
     {
-        return new static('Could not find a corresponding connect account.');
+        return new static('Missing connect account id.');
     }
 }

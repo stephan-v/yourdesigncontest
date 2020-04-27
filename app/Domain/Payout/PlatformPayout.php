@@ -18,15 +18,11 @@ class PlatformPayout
      */
     public function create(Contest $contest)
     {
-        $payoutAmount = $this->calculatePayoutAmount($contest);
-
-        $this->createContestPayout($contest, $payoutAmount);
+        $this->createContestPayout($contest, $this->calculatePayoutAmount($contest));
     }
 
     /**
      * Calculate the payout amount.
-     *
-     * Subtract any occurred Stripe fees from the payout to keep our balance intact.
      *
      * @param Contest $contest The contest to fetch the amount and fees for.
      * @return int The calculated amount that will be available for payout.
@@ -36,6 +32,7 @@ class PlatformPayout
     {
         $transaction = $this->retrieveTransaction($contest);
 
+        // Subtract any occurred Stripe fees from the available payout amount to keep our balance intact.
         return $contest->payment->fee - $transaction->fee;
     }
 
@@ -48,23 +45,11 @@ class PlatformPayout
      */
     private function retrieveTransaction(Contest $contest)
     {
-        $paymentIntent = $this->retrievePaymentIntent($contest);
+        $paymentIntent = PaymentIntent::retrieve($contest->payment->payment_id);
 
         $transaction = $paymentIntent->charges->data[0]->balance_transaction;
 
         return BalanceTransaction::retrieve($transaction);
-    }
-
-    /**
-     * Retrieve the Stripe payment intent.
-     *
-     * @param Contest $contest The contest to retrieve the original payment intent(charge) for.
-     * @return PaymentIntent The payment intent with all payment metadata like occurred transactional charges.
-     * @throws ApiErrorException Thrown if the payment intent could not be retrieved.
-     */
-    private function retrievePaymentIntent(Contest $contest)
-    {
-        return PaymentIntent::retrieve($contest->payment->payment_id);
     }
 
     /**

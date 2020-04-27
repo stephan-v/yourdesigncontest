@@ -14,12 +14,15 @@ class PayoutTest extends TestCase
 {
     use DatabaseMigrations;
 
-    public function test_can_initiate_user_payout()
+    public function test_can_initiate_a_user_payout()
     {
         Bus::fake();
 
         // Arrange.
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create([
+            'stripe_connect_id' => 'test'
+        ]);
+
         $contest = $user->contests()->save(factory(Contest::class)->make());
 
         // Act.

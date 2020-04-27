@@ -17,6 +17,10 @@ trait Payoutable
     {
         $payouts = $this->payouts()->pending()->get();
 
+        if (!$this->isStripeVerified) {
+            throw PayoutException::missingConnectAccount();
+        }
+
         if (!count($payouts)) {
             throw PayoutException::noPendingPayouts();
         }
