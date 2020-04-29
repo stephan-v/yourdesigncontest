@@ -29,7 +29,7 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->state(User::class, 'test', [
+$factory->state(User::class, 'main-test-user', [
     'name' => 'TestAccount',
     'email' => 'ydc-testing@gmail.com',
 ]);

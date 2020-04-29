@@ -22,7 +22,7 @@ class ContestCheckoutController extends Controller
      */
     public function create(Request $request)
     {
-        // @TODO Add a redirect with a message if the contest has alread been paid for $request->contest->payment.
+        // @TODO Add a redirect with a message if the contest has already been paid for $request->contest->payment.
 
         // Redirect back to the contest creation when that step has not been completed.
         if (!$request->session()->has('contest')) {

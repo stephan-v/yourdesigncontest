@@ -13,8 +13,9 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        // Create the main test user and log in with that user.
-        Auth::login(factory(User::class)->states('test')->create());
+        Auth::login(
+            factory(User::class)->states('main-test-user')->create()
+        );
 
         factory(User::class, 5)->create();
     }
