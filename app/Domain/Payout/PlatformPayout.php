@@ -47,9 +47,9 @@ class PlatformPayout
     {
         $paymentIntent = PaymentIntent::retrieve($contest->payment->payment_id);
 
-        $transaction = $paymentIntent->charges->data[0]->balance_transaction;
+        $charge = $paymentIntent->charges->data[0];
 
-        return BalanceTransaction::retrieve($transaction);
+        return BalanceTransaction::retrieve($charge->balance_transaction);
     }
 
     /**
