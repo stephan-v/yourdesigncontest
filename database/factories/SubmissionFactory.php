@@ -3,6 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Submission;
+use App\User;
 use Faker\Generator as Faker;
 
 $factory->define(Submission::class, function (Faker $faker) {
@@ -10,7 +11,7 @@ $factory->define(Submission::class, function (Faker $faker) {
         'title' => $faker->sentence,
         'description' => $faker->text,
         'filename' => 'a6G50uLhxZbfadWjiBQZimG2evHtuF3esG40QuAY.png',
-        'user_id' => 1,
+        'user_id' => User::where('id', '<>', 1)->get()->random()->id,
         'contest_id' => 1,
         'created_at' => now(),
         'updated_at' => now(),

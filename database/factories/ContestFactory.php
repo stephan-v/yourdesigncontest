@@ -11,7 +11,7 @@ $factory->define(Contest::class, function (Faker $faker) {
         'category' => $faker->randomElement(['branding', 'webdesign', 'packaging']),
         'description' => $faker->text,
         'user_id' => 1,
-        'expires_at' => now()->addWeeks(1),
+        'expires_at' => now()->addWeeks($faker->numberBetween(1, 4)),
         'created_at' => now(),
         'updated_at' => now(),
     ];

@@ -19,7 +19,10 @@ class ContestController extends Controller
      */
     public function index()
     {
-        $contests = Contest::has('payment')->with('submissions')->latest()->paginate(10);
+        $contests = Contest::has('payment')
+            ->with('submissions')
+            ->orderBy('expires_at')
+            ->paginate(10);
 
         return view('contest.index', compact('contests'));
     }
@@ -67,7 +70,7 @@ class ContestController extends Controller
             ->orderByDesc('winner')
             ->latest('order')
             ->with(['user', 'contest'])
-            ->paginate(12);
+            ->paginate(11);
 
         // Whether the rating and other components can still be edited.
         $locked = optional(auth()->user())->cant('manage', $contest) || $contest->finished;

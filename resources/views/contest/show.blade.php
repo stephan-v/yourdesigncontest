@@ -141,8 +141,8 @@
                             <small class="text-muted">
                                 <span>#{{ $submission->order }} by</span>
 
-                                <a href="{{ route('users.show', $contest->user) }}">
-                                    {{ $contest->user->name }}
+                                <a href="{{ route('users.show', $submission->user) }}">
+                                    {{ $submission->user->name }}
                                 </a>
                             </small>
                         </div>
