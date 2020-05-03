@@ -23,7 +23,7 @@ class StripeTestableSeeder extends Seeder
         $contest = factory(Contest::class)->create([
             'name' => 'Stripe testable',
             'expires_at'=> now()->addDays(3),
-            'user_id' => 5,
+            'user_id' => 1,
         ]);
 
         $customer = Customer::create([
