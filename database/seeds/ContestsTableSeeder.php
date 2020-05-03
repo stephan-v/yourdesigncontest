@@ -13,10 +13,12 @@ class ContestsTableSeeder extends Seeder
      */
     public function run()
     {
+        // Default contests.
         factory(Contest::class, 20)->create()->each(function (Contest $contest) {
             $contest->payment()->save(factory(Payment::class)->make());
         });
 
+        // Finished contest.
         factory(Contest::class, 1)->states('finished')->create()->each(function (Contest $contest) {
             $contest->payment()->save(factory(Payment::class)->make());
         });

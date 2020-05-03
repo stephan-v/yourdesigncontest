@@ -73,7 +73,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the payour request page.
+     * Display the payout request page.
      *
      * @param User $user The user to create a payout for.
      * @return View The HTML server response.
