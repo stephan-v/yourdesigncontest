@@ -17,7 +17,7 @@ class UserPayoutController extends Controller
     {
         $user = $request->user();
 
-        $user->payout();
+        $user->createPayout();
 
         return redirect()->route('contests.show', $user);
     }
