@@ -5,6 +5,7 @@ use App\Payment;
 use App\Payout;
 use App\Submission;
 use Illuminate\Database\Seeder;
+use Money\Currency;
 use Stripe\Customer;
 use Stripe\Exception\ApiErrorException;
 use Stripe\PaymentIntent;
@@ -19,6 +20,10 @@ class StripeTestableSeeder extends Seeder
      */
     public function run()
     {
+        app()->singleton(Currency::class, function() {
+            return new Currency('EUR');
+        });
+
         // Contest which has an actual Stripe payment to test.
         $contest = factory(Contest::class)->create([
             'name' => 'Stripe testable',
@@ -42,6 +47,7 @@ class StripeTestableSeeder extends Seeder
         ]);
 
         $contest->payment()->save(factory(Payment::class)->make([
+            'amount' => $paymentIntent['amount'],
             'payment_id' => $paymentIntent->id,
         ]));
 
@@ -53,6 +59,7 @@ class StripeTestableSeeder extends Seeder
 
         // Create the pending payout.
         factory(Payout::class)->create([
+            'amount' => $contest->payment->winnings->getAmount(),
             'contest_id' => $contest->id,
             'user_id' => $contest->user->id,
         ]);
