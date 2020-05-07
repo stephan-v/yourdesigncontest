@@ -58,7 +58,7 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                        <ul class="navbar-nav mr-auto">
+                        <ul class="navbar-nav mr-auto text-capitalize">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home') }}">
                                     Home <span class="sr-only">(current)</span>
@@ -66,7 +66,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('contests.index') }}">Contests</a>
+                                <a class="nav-link" href="{{ route('contests.index') }}">{{ __('common.contests') }}</a>
                             </li>
 
                             <li class="nav-item">
@@ -86,13 +86,13 @@
                                     </span>
                                 </li>
 
-                                <li class="nav-item">
+                                <li class="nav-item text-capitalize">
                                     <dropdown>
                                         <template v-slot:header>{{ $user->name }}</template>
 
                                         <template v-slot:menu>
-                                            <a class="nav-link pl-5 pr-5" href="{{ route('users.show', $user) }}">Profile</a>
-                                            <a class="nav-link pl-5 pr-5" href="{{ route('users.edit', $user) }}">Settings</a>
+                                            <a class="nav-link pl-5 pr-5" href="{{ route('users.show', $user) }}">{{ __('common.profile') }}</a>
+                                            <a class="nav-link pl-5 pr-5" href="{{ route('users.edit', $user) }}">{{ __('common.settings') }}</a>
 
                                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 @csrf
@@ -101,15 +101,15 @@
                                             <a class="nav-link pl-5 pr-5"
                                                href="{{ route('logout') }}"
                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
+                                                {{ __('common.logout') }}
                                             </a>
                                         </template>
                                     </dropdown>
                                 </li>
                             @else
                                 <li class="nav-item">
-                                    <a class="nav-link d-inline-block" href="{{ route('register') }}">Register</a>
-                                    <a class="nav-link d-inline-block" href="{{ route('login') }}">Login</a>
+                                    <a class="nav-link d-inline-block" href="{{ route('register') }}">{{ __('common.register') }}</a>
+                                    <a class="nav-link d-inline-block" href="{{ route('login') }}">{{ __('common.login') }}</a>
                                 </li>
                             @endauth
                         </ul>
