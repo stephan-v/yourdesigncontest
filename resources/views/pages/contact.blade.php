@@ -6,7 +6,7 @@
             <div class="col-md-6 offset-md-3">
                 <div class="card">
                     <div class="card-header">
-                        <h1 class="mb-0 text-center">Contact us</h1>
+                        <h1 class="mb-0 text-center">{{ __('messages.contact.banner') }}</h1>
                     </div>
 
                     <div class="card-body">
@@ -20,8 +20,8 @@
                             @csrf
 
                             <div class="form-group">
-                                <label for="inputAddress">Name</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="inputAddress" placeholder="Enter name" name="name" value="{{ old('name') }}">
+                                <label for="inputAddress">{{ __('common.name') }}</label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="inputAddress" placeholder="{{ __('common.enter_name') }}" name="name" value="{{ old('name') }}">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -31,9 +31,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="email">Email address</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="{{ old('email') }}">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                <label for="email">{{ __('common.email') }}</label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="emailHelp" placeholder="{{ __('common.enter_email') }}" name="email" value="{{ old('email') }}">
+                                <small id="emailHelp" class="form-text text-muted">{{ __('messages.contact.privacy') }}.</small>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="message">Message</label>
+                                <label for="message">{{ __('common.message') }}</label>
                                 <textarea class="form-control @error('message') is-invalid @enderror" id="message" rows="3" name="message">{{ old('message') }}</textarea>
 
                                 @error('message')
@@ -53,7 +53,7 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Send message</button>
+                            <button type="submit" class="btn btn-primary">{{ __('common.send_message') }}</button>
                         </form>
                     </div>
                 </div>

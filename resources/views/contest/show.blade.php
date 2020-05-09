@@ -59,7 +59,7 @@
                         @else
                             <div class="text-muted intrinsic-item d-flex justify-content-center align-items-center flex-column outline p-3 text-center">
                                 <i class="fas fa-pencil-ruler fa-2x mb-3"></i>
-                                <b>Designers are working on this contest.</b>
+                                <b>{{ __('messages.contest.in_progress') }}</b>
                             </div>
                         @endif
                     </div>
@@ -67,14 +67,14 @@
 
                 <div class="col-md-8">
                     <h1>{{ $contest->name }}</h1>
-                    <div class="text-muted mb-2">Started by {{ $contest->user->name }}</div>
+                    <div class="text-muted mb-2">{{ __('common.started_by') }} {{ $contest->user->name }}</div>
                     <p>{{ $contest->description }}</p>
 
                     <span class="mb-4 alert alert-info small font-weight-bold">
                         @if ($contest->finished)
                             Contest finished
                         @else
-                            Ends in {{ $contest->endsIn }}
+                            {{ __('common.ends_in') }} {{ $contest->endsIn }}
                         @endif
                     </span>
 

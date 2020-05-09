@@ -16,5 +16,12 @@ return [
             terwijl je geld verdiend.',
             'paragraph-3' => 'GraphicDesignContests is de plek om jezelf neer zetten als professioneel grafisch ontwerper.'
         ]
+    ],
+    'contact' => [
+        'banner' => 'Neem contact op',
+        'privacy' => 'Je email zal niet gedeeld worden met derde partijen.'
+    ],
+    'contest' => [
+        'in_progress' => 'Ontwerpers werken aan deze wedstrijd.'
     ]
 ];

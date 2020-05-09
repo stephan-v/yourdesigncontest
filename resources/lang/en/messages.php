@@ -15,5 +15,12 @@ return [
             work on your portfolio and expand your network all while earning cash.',
             'paragraph-3' => 'GraphicDesignContests is the place to brand yourself as a creative specialist.'
         ]
+    ],
+    'contact' => [
+        'banner' => 'Contact us',
+        'privacy' => 'We\'ll never share your email with anyone else.'
+    ],
+    'contest' => [
+        'in_progress' => 'Designers are working on this contest.'
     ]
 ];
