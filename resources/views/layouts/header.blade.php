@@ -86,7 +86,7 @@
                                     </span>
                                 </li>
 
-                                <li class="nav-item text-capitalize">
+                                <li class="nav-item">
                                     <dropdown>
                                         <template v-slot:header>{{ $user->name }}</template>
 

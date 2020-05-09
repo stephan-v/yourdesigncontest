@@ -31,12 +31,12 @@
         <div class="row">
             <div class="col-md-12">
                 <section class="contests">
-                    <h1>Contests</h1>
+                    <h1>{{ __('common.contests') }}</h1>
 
                     <table class="contest-table table table-bordered">
                         <thead>
                             <tr>
-                                <td>Contest name</td>
+                                <td>{{ __('common.contests') }}/td>
                                 <td>Category</td>
                                 <td>Submissions</td>
                                 <td>Price</td>

@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'contests' => 'wedstrijden',
-    'profile' => 'profiel',
-    'settings' => 'instellingen',
-    'logout' => 'uitloggen',
+    'contests' => 'Wedstrijden',
+    'profile' => 'Profiel',
+    'settings' => 'Instellingen',
+    'logout' => 'Uitloggen',
     'register' => 'Registeren',
     'login' => 'Inloggen',
 ];

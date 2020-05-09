@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'contests' => 'contests',
-    'profile' => 'profile',
-    'settings' => 'settings',
-    'logout' => 'logout',
-    'register' => 'register',
-    'login' => 'login',
+    'contests' => 'Contests',
+    'profile' => 'Profile',
+    'settings' => 'Settings',
+    'logout' => 'Logout',
+    'register' => 'Register',
+    'login' => 'Login',
 ];
