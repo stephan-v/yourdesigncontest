@@ -22,6 +22,7 @@ return [
         'privacy' => 'Je email zal niet gedeeld worden met derde partijen.'
     ],
     'contest' => [
-        'in_progress' => 'Ontwerpers werken aan deze wedstrijd.'
+        'in_progress' => 'Ontwerpers werken aan deze wedstrijd.',
+        'submit' => 'Stuur ontwerp in',
     ]
 ];

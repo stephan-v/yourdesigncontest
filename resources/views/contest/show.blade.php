@@ -101,7 +101,7 @@
                     <div class="col-md-3">
                         <a href="{{ route('contests.submissions.create', $contest) }}" class="submission new-submission mb-3 d-flex align-items-center justify-content-center flex-column text-secondary text-center">
                             <i class="far fa-images fa-2x mb-3"></i>
-                            <b>Submit a design</b>
+                            <b>{{ __('messages.contest.submit') }}</b>
                         </a>
                     </div>
 {{--                @endcan--}}

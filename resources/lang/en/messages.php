@@ -21,6 +21,7 @@ return [
         'privacy' => 'We\'ll never share your email with anyone else.'
     ],
     'contest' => [
-        'in_progress' => 'Designers are working on this contest.'
+        'in_progress' => 'Designers are working on this contest.',
+        'submit' => 'Submit a design',
     ]
 ];
