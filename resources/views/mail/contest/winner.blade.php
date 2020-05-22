@@ -22,14 +22,6 @@ In order for the completion of your payout we require you to upload your design 
 Upload source files
 @endcomponent
 
-## Verification
-
-In order for the completion of your payout we require to verify your identification.
-
-@component('mail::button', ['url' => route('connect.dashboard')])
-Verify your identification
-@endcomponent
-
 Thanks,<br>
 {{ config('app.name') }}
 @endcomponent

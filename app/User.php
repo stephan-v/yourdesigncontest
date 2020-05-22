@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Domain\Payout\Payoutable;
 use App\Presenters\UserPresenter;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +10,6 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
-    use Payoutable;
     use UserPresenter;
 
     /**
@@ -20,7 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'avatar', 'currency', 'email', 'name', 'password', 'stripe_connect_id', 'stripe_customer_id', 'api_token',
+        'avatar', 'currency', 'email', 'name', 'password', 'stripe_customer_id', 'api_token',
     ];
 
     /**

@@ -45,7 +45,6 @@ Route::resource('users', 'UserController')->only(['show', 'update']);
 Route::get('users/{user}/settings', 'UserController@edit')->name('users.edit');
 Route::get('users/{user}/settings/password', 'UserPasswordController@edit')->name('users.edit.password');
 Route::patch('users/{user}/settings/password', 'UserPasswordController@update')->name('users.update.password');
-Route::get('users/{user}/verify', 'UserController@verify')->name('users.verify');
 Route::get('users/{user}/payout', 'UserController@payout')->name('users.payout');
 
 // User submissions for the contest.
@@ -77,8 +76,4 @@ Route::post('contests/{contest}/submissions/{submission}/award', 'WinnerControll
 
 // Designer invitations.
 Route::resource('users.invites', 'UserInvitationController')->only(['create', 'store']);
-
-// Stripe routes.
-Route::get('stripe/connect-complete', 'StripeConnectController@complete')->name('connect.complete');
-Route::get('stripe/connect-dashboard', 'StripeConnectController@dashboard')->name('connect.dashboard');
 

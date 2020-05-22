@@ -21,26 +21,6 @@ trait UserPresenter
     }
 
     /**
-     * Whether the user is Stripe connect verified or not.
-     *
-     * @return bool Whether the user has gone through the connect onboarding or not.
-     */
-    public function getIsStripeVerifiedAttribute(): bool
-    {
-        return isset($this->stripe_connect_id);
-    }
-
-    /**
-     * Whether the user is Stripe connect verified or not.
-     *
-     * @return bool Whether the user has gone through the connect onboarding or not.
-     */
-    public function getIsNotStripeVerifiedAttribute(): bool
-    {
-        return !$this->isStripeVerified;
-    }
-
-    /**
      * Get the users's full avatar path.
      *
      * @param null|string $value The filename of the image.
@@ -75,40 +55,5 @@ trait UserPresenter
     public function getFormattedTotalPayoutAmountAttribute(): string
     {
         return (new Formatter($this->totalPayoutAmount))->format();
-    }
-
-    /**
-     * Generate a Stripe connect onboarding url with pre-filled data.
-     *
-     * @return string The Stripe connect onboarding url.
-     */
-    public function getOnboardingUrlAttribute(): string
-    {
-        $parameters = [
-            'client_id' => config('services.stripe.connect.client_id'),
-            'stripe_user[business_type]' => 'individual',
-            'stripe_user[email]' => $this->email,
-            'stripe_user[url]' => Str::replaceFirst('.test', '.com', route('users.show', $this)),
-            'suggested_capabilities[]' => 'transfers',
-        ];
-
-        // Pre-fill data for easier local testing.
-        if (App::environment('local')) {
-            $parameters = array_merge($parameters, [
-                'stripe_user[phone_number]' => '0000000000',
-                'stripe_user[first_name]' => 'John',
-                'stripe_user[last_name]' => 'Doe',
-                'stripe_user[dob_day]' => 1,
-                'stripe_user[dob_month]' => 1,
-                'stripe_user[dob_year]' => 1980,
-                'stripe_user[street_address]' => 'John Doe Lane',
-                'stripe_user[zip]' => '1020JD',
-                'stripe_user[city]' => 'John Doe City',
-            ]);
-        }
-
-        $parameters = http_build_query($parameters);
-
-        return config('services.stripe.connect.uri') . $parameters;
     }
 }
