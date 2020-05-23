@@ -43,4 +43,8 @@ return [
         'url' => env('FIXER_URL'),
     ],
 
+
+    'transferwise' => [
+        'key' => env('TRANSFERWISE_APP_KEY'),
+    ]
 ];

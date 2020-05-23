@@ -18,7 +18,7 @@
 
                 <li class="p-3 pl-4 @if (Route::is('users.payout')) active @endif">
                     <a href="{{ route('users.payout', $user) }}" class="d-block">
-                        <i class="fab fa-cc-stripe mr-3"></i> Payout request
+                        <i class="fab fa-cc-stripe mr-3"></i> Payout
                     </a>
                 </li>
             </ul>
