@@ -46,5 +46,6 @@ return [
 
     'transferwise' => [
         'key' => env('TRANSFERWISE_APP_KEY'),
+        'uri' => env('TRANSFERWISE_APP_URI'),
     ]
 ];

@@ -18,7 +18,7 @@ class TransferwiseServiceProvider extends ServiceProvider
         $this->app->singleton(TransferWise::class, function () {
             $client = new Client(
                 [
-                    'base_uri' => 'https://api.sandbox.transferwise.tech/v1/',
+                    'base_uri' => config('services.transferwise.uri'),
                     'headers' => [
                         'Authorization' => 'Bearer ' . config('services.transferwise.key'),
                     ],
