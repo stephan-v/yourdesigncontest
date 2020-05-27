@@ -43,6 +43,18 @@ class TransferWise
      */
     public function accounts()
     {
+        $response = $this->client->get('accounts');
+
+        return $this->response($response);
+    }
+
+    /**
+     * Send an email for account creation.
+     *
+     * @return mixed
+     */
+    public function createEmailRecipient()
+    {
         $response = $this->client->post('accounts', [
             'json' => [
                 'profile' => 20233,
@@ -50,10 +62,43 @@ class TransferWise
                 'currency' => 'EUR',
                 'type' => 'email',
                 'details' => [
-                    'email' => 'stephan-v@hotmail.com',
+                    'email' => 'stephandevrieschristiaan@gmail.com',
                 ]
             ]
         ]);
+
+        return $this->response($response);
+    }
+
+    /**
+     * Create a TransferWise quote.
+     *
+     * @return mixed
+     */
+    public function createQuote()
+    {
+        $response = $this->client->post('quotes', [
+            'json' => [
+                'profile' => 20233,
+                'source' => 'EUR',
+                'target' => 'GBP',
+                'rateType' => 'FIXED',
+                'targetAmount' => 600,
+                'type' => 'BALANCE_PAYOUT',
+            ]
+        ]);
+
+        return $this->response($response);
+    }
+
+    /**
+     * Fetch the requirements for the transfer.
+     *
+     * @return mixed
+     */
+    public function requirements()
+    {
+        $response = $this->client->get('account-requirements?source=EUR&target=USD&sourceAmount=1000');
 
         return $this->response($response);
     }
