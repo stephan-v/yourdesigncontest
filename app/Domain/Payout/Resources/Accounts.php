@@ -6,9 +6,21 @@ use App\Domain\Payout\AbstractClient;
 
 class Accounts extends AbstractClient
 {
+    /**
+     * The targeted API resource.
+     *
+     * @var string $resource
+     */
+    private $resource = 'accounts';
+
+    /**
+     * Get all accounts.
+     *
+     * @return mixed
+     */
     public function get()
     {
-        $response = $this->client->get('accounts');
+        $response = $this->client->get($this->resource);
 
         return $this->decode($response);
     }
@@ -20,14 +32,14 @@ class Accounts extends AbstractClient
      */
     public function create()
     {
-        $response = $this->client->post('accounts', [
+        $response = $this->client->post($this->resource, [
             'json' => [
-                'profile' => 20233,
-                'accountHolderName' => 'Stephan de Vries',
-                'currency' => 'EUR',
+                'profile' => config('services.transferwise.profile'),
+                'accountHolderName' => 'Testing',
+                'currency' => 'GBP',
                 'type' => 'email',
                 'details' => [
-                    'email' => 'stephandevrieschristiaan@gmail.com',
+                    'email' => 'testmaster@hotmail.com',
                 ]
             ]
         ]);

@@ -6,8 +6,7 @@ use App\Domain\Payout\Resources\AccountRequirements;
 use App\Domain\Payout\Resources\Accounts;
 use App\Domain\Payout\Resources\Profiles;
 use App\Domain\Payout\Resources\Quotes;
-use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Uri;
+use App\Domain\Payout\Resources\Transfers;
 
 class TransferWise extends AbstractClient
 {
@@ -18,21 +17,17 @@ class TransferWise extends AbstractClient
      */
     public function profiles()
     {
-        return new Profiles(
-            $this->clone('profiles')
-        );
+        return new Profiles($this->client);
     }
 
     /**
      * Returns new account client.
      *
-     * @return mixed
+     * @return Accounts
      */
     public function accounts()
     {
-        return new Accounts(
-            $this->clone('accounts')
-        );
+        return new Accounts($this->client);
     }
 
     /**
@@ -42,9 +37,17 @@ class TransferWise extends AbstractClient
      */
     public function quotes()
     {
-        return new Quotes(
-            $this->clone('quotes')
-        );
+        return new Quotes($this->client);
+    }
+
+    /**
+     * Returns a new transfers client.
+     *
+     * @return Transfers
+     */
+    public function transfers()
+    {
+        return new Transfers($this->client);
     }
 
     /**
@@ -54,26 +57,6 @@ class TransferWise extends AbstractClient
      */
     public function accountRequirements()
     {
-        return new AccountRequirements(
-            $this->clone('account-requirements')
-        );
-    }
-
-    /**
-     * Clone the immutable Guzzle client and append the base uri with a resource parameter.
-     *
-     * @param string $resource The restful resource to target.
-     * @return Client A new Guzzle client specific to the given resource.
-     */
-    private function clone(string $resource)
-    {
-        $config = $this->client->getConfig();
-
-        $uri = (string) $config['base_uri'] . $resource;
-
-        // Update the base uri.
-        $config['base_uri'] = new Uri($uri);
-
-        return new Client($config);
+        return new AccountRequirements($this->client);
     }
 }

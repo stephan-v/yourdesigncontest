@@ -7,19 +7,26 @@ use App\Domain\Payout\AbstractClient;
 class Quotes extends AbstractClient
 {
     /**
+     * The targeted API resource.
+     *
+     * @var $resource
+     */
+    private $resource = 'quotes';
+
+    /**
      * Create a quote.
      *
      * @return mixed
      */
     public function create()
     {
-        $response = $this->client->post('quotes', [
+        $response = $this->client->post($this->resource, [
             'json' => [
-                'profile' => 20233,
+                'profile' => config('services.transferwise.profile'),
                 'source' => 'EUR',
                 'target' => 'GBP',
                 'rateType' => 'FIXED',
-                'targetAmount' => 600,
+                'targetAmount' => 1337,
                 'type' => 'BALANCE_PAYOUT',
             ]
         ]);

@@ -3,12 +3,11 @@
 namespace App\Domain\Payout\Resources;
 
 use App\Domain\Payout\AbstractClient;
-use GuzzleHttp\Client;
 
 class Profiles extends AbstractClient
 {
     /**
-     * The resource this client targets.
+     * The targeted API resource.
      *
      * @var string $resource
      */
@@ -21,7 +20,7 @@ class Profiles extends AbstractClient
      */
     public function get()
     {
-        $response = $this->client->get('profiles');
+        $response = $this->client->get($this->resource);
 
         return $this->decode($response);
     }
