@@ -55,18 +55,6 @@ class PaymentPresenterTest extends TestCase
         $this->assertEquals($payout, 100000);
     }
 
-    public function test_can_get_correct_fee_attribute()
-    {
-        // Arrange.
-        $contest = $this->contest;
-
-        // Act.
-        $fee = $contest->payment->fee;
-
-        // Assert.
-        $this->assertEquals($fee, 15000);
-    }
-
     public function test_can_get_correct_formatted_payout_attribute()
     {
         // Arrange.

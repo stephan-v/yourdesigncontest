@@ -6,6 +6,8 @@ use App\Contest;
 use App\Http\Middleware\VerifyWebhookSignature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Stripe\BalanceTransaction;
+use Stripe\Exception\ApiErrorException;
 use Symfony\Component\HttpFoundation\Response;
 
 class StripeWebhookController extends Controller
@@ -43,6 +45,7 @@ class StripeWebhookController extends Controller
      *
      * @param array $payload The Stripe payload.
      * @return Response The server response.
+     * @throws ApiErrorException Thrown if the balance transaction could not be retrieved.
      */
     public function handlePaymentIntentSucceeded(array $payload)
     {
@@ -62,8 +65,13 @@ class StripeWebhookController extends Controller
         // Update the stripe_customer_id so consecutive payments are linked to the same Stripe user.
         $contest->user->update(['stripe_customer_id' => $customer]);
 
+        // Fetch the Stripe incurred fees.
+        $transactionId = $stripe['charges']['data'][0]['balance_transaction'];
+        $transaction = BalanceTransaction::retrieve($transactionId);
+
         $contest->payment()->create([
             'amount' => $amount,
+            'fee' => $transaction->fee,
             'currency' => $currency,
             'payment_id' => $paymentId,
             'user_id' => $contest->user->id,

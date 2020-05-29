@@ -31,18 +31,6 @@ trait PaymentPresenter
     }
 
     /**
-     * Subtract the designers payout from the contest payment leaving us with our fee.
-     *
-     * The initial payment includes the designers payout and the platform fee.
-     *
-     * @return int The platform fee in the smallest denominator.
-     */
-    public function getFeeAttribute(): int
-    {
-        return $this->money->subtract($this->winnings)->getAmount();
-    }
-
-    /**
      * The formatted payout amount for designers.
      *
      * @return string The currency formatted payout price.

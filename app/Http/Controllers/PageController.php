@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\Payout\Transferwise;
 use Illuminate\View\View;
 
 class PageController extends Controller
@@ -11,8 +12,10 @@ class PageController extends Controller
      *
      * @return View The HTML server response.
      */
-    public function home()
+    public function home(TransferWise $client)
     {
+        dd($client->accounts()->get());
+
         return view('home');
     }
 

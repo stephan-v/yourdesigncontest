@@ -2,115 +2,78 @@
 
 namespace App\Domain\Payout;
 
+use App\Domain\Payout\Resources\AccountRequirements;
+use App\Domain\Payout\Resources\Accounts;
+use App\Domain\Payout\Resources\Profiles;
+use App\Domain\Payout\Resources\Quotes;
 use GuzzleHttp\Client;
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Psr7\Uri;
 
-class TransferWise
+class TransferWise extends AbstractClient
 {
     /**
-     * The pre-configured Guzzle client which has the base uri and auth token.
+     * Returns a new profiles client.
      *
-     * @var Client
-     */
-    private $client;
-
-    /**
-     * TransferWise constructor.
-     *
-     * @param Client $client The pre-configured Guzzle client.
-     */
-    public function __construct(Client $client)
-    {
-        $this->client = $client;
-    }
-
-    /**
-     * Get the TransferWise profile id.
-     *
-     * @return mixed
+     * @return Profiles
      */
     public function profiles()
     {
-        $response = $this->client->get('profiles');
-
-        return $this->response($response);
+        return new Profiles(
+            $this->clone('profiles')
+        );
     }
 
     /**
-     * Send an email for account creation.
+     * Returns new account client.
      *
      * @return mixed
      */
     public function accounts()
     {
-        $response = $this->client->get('accounts');
-
-        return $this->response($response);
+        return new Accounts(
+            $this->clone('accounts')
+        );
     }
 
     /**
-     * Send an email for account creation.
+     * Returns a new quotes client.
      *
-     * @return mixed
+     * @return Quotes
      */
-    public function createEmailRecipient()
+    public function quotes()
     {
-        $response = $this->client->post('accounts', [
-            'json' => [
-                'profile' => 20233,
-                'accountHolderName' => 'Stephan de Vries',
-                'currency' => 'EUR',
-                'type' => 'email',
-                'details' => [
-                    'email' => 'stephandevrieschristiaan@gmail.com',
-                ]
-            ]
-        ]);
-
-        return $this->response($response);
+        return new Quotes(
+            $this->clone('quotes')
+        );
     }
 
     /**
-     * Create a TransferWise quote.
+     * Returns a new quotes client.
      *
-     * @return mixed
+     * @return AccountRequirements
      */
-    public function createQuote()
+    public function accountRequirements()
     {
-        $response = $this->client->post('quotes', [
-            'json' => [
-                'profile' => 20233,
-                'source' => 'EUR',
-                'target' => 'GBP',
-                'rateType' => 'FIXED',
-                'targetAmount' => 600,
-                'type' => 'BALANCE_PAYOUT',
-            ]
-        ]);
-
-        return $this->response($response);
+        return new AccountRequirements(
+            $this->clone('account-requirements')
+        );
     }
 
     /**
-     * Fetch the requirements for the transfer.
+     * Clone the immutable Guzzle client and append the base uri with a resource parameter.
      *
-     * @return mixed
+     * @param string $resource The restful resource to target.
+     * @return Client A new Guzzle client specific to the given resource.
      */
-    public function requirements()
+    private function clone(string $resource)
     {
-        $response = $this->client->get('account-requirements?source=EUR&target=USD&sourceAmount=1000');
+        $config = $this->client->getConfig();
 
-        return $this->response($response);
-    }
+        $uri = (string) $config['base_uri'] . $resource;
 
-    /**
-     * Convert the response to a json decoded associative PHP array.
-     *
-     * @param ResponseInterface $response The server response.
-     * @return mixed The JSON decoded response.
-     */
-    private function response(ResponseInterface $response)
-    {
-        return json_decode($response->getBody(), true);
+        // Update the base uri.
+        $config['base_uri'] = new Uri($uri);
+
+        return new Client($config);
     }
 }
