@@ -3,8 +3,6 @@
 namespace App\Presenters;
 
 use App\Domain\Money\Formatter;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Str;
 use Money\Currency;
 use Money\Money;
 

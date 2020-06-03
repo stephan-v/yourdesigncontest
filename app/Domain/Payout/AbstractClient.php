@@ -30,7 +30,7 @@ abstract class AbstractClient
      * @param ResponseInterface $response The server response.
      * @return mixed The JSON decoded response.
      */
-    protected function decode(ResponseInterface $response)
+    protected function json(ResponseInterface $response)
     {
         return json_decode($response->getBody(), true);
     }

@@ -15,7 +15,7 @@ class TransferWise extends AbstractClient
      *
      * @return Profiles
      */
-    public function profiles()
+    public function profiles(): Profiles
     {
         return new Profiles($this->client);
     }
@@ -25,7 +25,7 @@ class TransferWise extends AbstractClient
      *
      * @return Accounts
      */
-    public function accounts()
+    public function accounts(): Accounts
     {
         return new Accounts($this->client);
     }
@@ -35,7 +35,7 @@ class TransferWise extends AbstractClient
      *
      * @return Quotes
      */
-    public function quotes()
+    public function quotes(): Quotes
     {
         return new Quotes($this->client);
     }
@@ -45,7 +45,7 @@ class TransferWise extends AbstractClient
      *
      * @return Transfers
      */
-    public function transfers()
+    public function transfers(): Transfers
     {
         return new Transfers($this->client);
     }
@@ -55,7 +55,7 @@ class TransferWise extends AbstractClient
      *
      * @return AccountRequirements
      */
-    public function accountRequirements()
+    public function accountRequirements(): AccountRequirements
     {
         return new AccountRequirements($this->client);
     }

@@ -36,7 +36,7 @@ class Transfers extends AbstractClient
             ]
         ]);
 
-        return $this->decode($response);
+        return $this->json($response);
     }
 
     /**
@@ -48,25 +48,26 @@ class Transfers extends AbstractClient
     {
         $response = $this->client->get($this->resource);
 
-        return $this->decode($response);
+        return $this->json($response);
     }
 
     /**
      * Fund a transfer.
      *
-     * @param int $transferId
+     * @param int $transferId The id of the transfer that we want to fund.
      * @return mixed
      */
     public function fund(int $transferId)
     {
         $profileId = config('services.transferwise.profile');
 
+        // Since TransferWise have mixed API versioning for some reason we include the URI here.
         $response = $this->client->post("https://api.sandbox.transferwise.tech/v3/profiles/{$profileId}/transfers/{$transferId}/payments", [
             'json' => [
                 'type' => 'BALANCE'
             ]
         ]);
 
-        return $this->decode($response);
+        return $this->json($response);
     }
 }

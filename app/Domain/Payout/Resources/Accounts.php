@@ -22,7 +22,7 @@ class Accounts extends AbstractClient
     {
         $response = $this->client->get($this->resource);
 
-        return $this->decode($response);
+        return $this->json($response);
     }
 
     /**
@@ -35,7 +35,7 @@ class Accounts extends AbstractClient
         $response = $this->client->post($this->resource, [
             'json' => [
                 'profile' => config('services.transferwise.profile'),
-                'accountHolderName' => 'Testing',
+                'accountHolderName' => 'Testing', // Recipient full name.
                 'currency' => 'GBP',
                 'type' => 'email',
                 'details' => [
@@ -44,6 +44,6 @@ class Accounts extends AbstractClient
             ]
         ]);
 
-        return $this->decode($response);
+        return $this->json($response);
     }
 }

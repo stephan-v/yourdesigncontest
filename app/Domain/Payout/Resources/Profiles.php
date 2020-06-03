@@ -22,6 +22,6 @@ class Profiles extends AbstractClient
     {
         $response = $this->client->get($this->resource);
 
-        return $this->decode($response);
+        return $this->json($response);
     }
 }

@@ -17,13 +17,13 @@ class UserPayoutController extends Controller
      */
     public function store(Request $request, TransferWise $client)
     {
-        $user = $request->user();
-
         // Step 1: Create a quote.
         $quote = $client->quotes()->create();
 
         // Step 2: Create a recipient account.
         $account = $client->accounts()->create();
+
+        dd($account);
 
         // Step 3: Create a transfer.
         $transfer = $client->transfers()->create($account['id'], $quote['id']);
@@ -31,6 +31,6 @@ class UserPayoutController extends Controller
         // Step 4: Fund a transfer.
         $client->transfers()->fund($transfer['id']);
 
-        return redirect()->route('contests.show', $user);
+        return redirect()->route('contests.show', $request->user());
     }
 }

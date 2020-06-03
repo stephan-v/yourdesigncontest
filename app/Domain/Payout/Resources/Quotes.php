@@ -31,6 +31,6 @@ class Quotes extends AbstractClient
             ]
         ]);
 
-        return $this->decode($response);
+        return $this->json($response);
     }
 }
