@@ -6,20 +6,11 @@ use App\Domain\Payout\Resources\AccountRequirements;
 use App\Domain\Payout\Resources\Accounts;
 use App\Domain\Payout\Resources\Profiles;
 use App\Domain\Payout\Resources\Quotes;
+use App\Domain\Payout\Resources\Rates;
 use App\Domain\Payout\Resources\Transfers;
 
 class TransferWise extends AbstractClient
 {
-    /**
-     * Returns a new profiles client.
-     *
-     * @return Profiles
-     */
-    public function profiles(): Profiles
-    {
-        return new Profiles($this->client);
-    }
-
     /**
      * Returns new account client.
      *
@@ -33,11 +24,41 @@ class TransferWise extends AbstractClient
     /**
      * Returns a new quotes client.
      *
+     * @return AccountRequirements
+     */
+    public function accountRequirements(): AccountRequirements
+    {
+        return new AccountRequirements($this->client);
+    }
+
+    /**
+     * Returns a new profiles client.
+     *
+     * @return Profiles
+     */
+    public function profiles(): Profiles
+    {
+        return new Profiles($this->client);
+    }
+
+    /**
+     * Returns a new quotes client.
+     *
      * @return Quotes
      */
     public function quotes(): Quotes
     {
         return new Quotes($this->client);
+    }
+
+    /**
+     * Returns a new rates client.
+     *
+     * @return Rates
+     */
+    public function rates(): Rates
+    {
+        return new Rates($this->client);
     }
 
     /**
@@ -48,15 +69,5 @@ class TransferWise extends AbstractClient
     public function transfers(): Transfers
     {
         return new Transfers($this->client);
-    }
-
-    /**
-     * Returns a new quotes client.
-     *
-     * @return AccountRequirements
-     */
-    public function accountRequirements(): AccountRequirements
-    {
-        return new AccountRequirements($this->client);
     }
 }

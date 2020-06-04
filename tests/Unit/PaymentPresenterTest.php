@@ -61,7 +61,7 @@ class PaymentPresenterTest extends TestCase
         $contest = $this->contest;
 
         // Act.
-        $formattedPayout = $contest->payment->formattedPayout;
+        $formattedPayout = $contest->payment->format;
 
         // Assert.
         $this->assertEquals($formattedPayout, '$1,150.00');

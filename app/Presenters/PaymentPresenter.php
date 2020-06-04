@@ -35,7 +35,7 @@ trait PaymentPresenter
      *
      * @return string The currency formatted payout price.
      */
-    public function getFormattedPayoutAttribute()
+    public function getFormatAttribute()
     {
         return (new Formatter($this->money))->format();
     }

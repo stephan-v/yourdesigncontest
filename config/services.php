@@ -38,12 +38,6 @@ return [
         'platform_fee' => env('MIX_PLATFORM_FEE')
     ],
 
-    'fixer' => [
-        'key' => env('FIXER_APP_KEY'),
-        'url' => env('FIXER_URL'),
-    ],
-
-
     'transferwise' => [
         'key' => env('TRANSFERWISE_APP_KEY'),
         'uri' => env('TRANSFERWISE_APP_URI'),

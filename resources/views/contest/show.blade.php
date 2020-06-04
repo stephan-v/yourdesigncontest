@@ -79,8 +79,8 @@
                     </span>
 
                     <h3 class="price-money position-relative text-center">
-                        <span class="font-weight-bold">{{ $contest->payment->formattedPayout }}</span>
-                        <span class="font-weight-bold fade">{{ $contest->payment->formattedPayout }}</span>
+                        <span class="font-weight-bold">{{ $contest->payment->format }}</span>
+                        <span class="font-weight-bold fade">{{ $contest->payment->format }}</span>
                         <span class="text-muted">First price winner</span>
                     </h3>
                 </div>

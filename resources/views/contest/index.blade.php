@@ -54,7 +54,7 @@
                                     </td>
                                     <td>{{ $contest->category }}</td>
                                     <td>{{ $contest->submissions->count() }}</td>
-                                    <td>{{ $contest->payment->formattedPayout }}</td>
+                                    <td>{{ $contest->payment->format }}</td>
                                     <td>{{ $contest->ends_in }}</td>
                                 </tr>
                             @endforeach

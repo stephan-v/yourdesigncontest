@@ -23,8 +23,6 @@ class UserPayoutController extends Controller
         // Step 2: Create a recipient account.
         $account = $client->accounts()->create();
 
-        dd($account);
-
         // Step 3: Create a transfer.
         $transfer = $client->transfers()->create($account['id'], $quote['id']);
 
