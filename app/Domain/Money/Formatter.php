@@ -5,7 +5,6 @@ namespace App\Domain\Money;
 use Money\Currencies\ISOCurrencies;
 use Money\Formatter\IntlMoneyFormatter;
 use Money\Money;
-use NumberFormatter;
 
 class Formatter
 {
@@ -44,7 +43,7 @@ class Formatter
      */
     private function formatter(string $locale = 'en_US'): IntlMoneyFormatter
     {
-        $numberFormatter = new NumberFormatter($locale, NumberFormatter::CURRENCY);
+        $numberFormatter = new \NumberFormatter($locale, \NumberFormatter::CURRENCY);
         $currencies = new ISOCurrencies();
 
         return new IntlMoneyFormatter($numberFormatter, $currencies);

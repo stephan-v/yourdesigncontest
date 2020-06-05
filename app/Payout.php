@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Casts\Money;
 use App\Presenters\PayoutPresenter;
 use App\QueryScopes\PayoutScopes;
 use Illuminate\Database\Eloquent\Model;
@@ -26,9 +27,18 @@ class Payout extends Model
     public const SUCCEEDED = 'SUCCEEDED';
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array $casts
+     */
+    protected $casts = [
+        'amount' => Money::class,
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array $fillable
      */
     protected $fillable = [
         'amount', 'currency', 'contest_id', 'transfer_id', 'user_id', 'status'

@@ -39,7 +39,7 @@ trait UserPresenter
         $payouts = $this->payouts()->pending()->get();
 
         if (count($payouts)) {
-            return $payouts->shift()->money->add(...$payouts->map->money);
+            return $payouts->shift()->amount->add(...$payouts->map->amount);
         }
 
         return new Money(0, resolve(Currency::class));

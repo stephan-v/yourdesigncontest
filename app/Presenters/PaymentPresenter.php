@@ -3,23 +3,13 @@
 namespace App\Presenters;
 
 use App\Domain\Money\Formatter;
-use Money\Money;
-use Money\Currency;
 
 trait PaymentPresenter
 {
     /**
-     * The amount converted to a money object.
-     *
-     * @return Money The money object.
-     */
-    public function getMoneyAttribute()
-    {
-        return new Money($this->amount, resolve(Currency::class));
-    }
-
-    /**
      * The payout amount for winning designers.
+     *
+     * The calculation for this is the paid contest amount minus the percentage platform fee.
      *
      * @return string The payout price in cents.
      */
@@ -27,7 +17,7 @@ trait PaymentPresenter
     {
         $decimalPercentage = config('services.stripe.platform_fee') / 100;
 
-        return $this->money->divide(1 + $decimalPercentage);
+        return $this->amount->divide(1 + $decimalPercentage);
     }
 
     /**
@@ -37,7 +27,7 @@ trait PaymentPresenter
      */
     public function getFormatAttribute()
     {
-        return (new Formatter($this->money))->format();
+        return (new Formatter($this->winnings))->format();
     }
 
     /**
