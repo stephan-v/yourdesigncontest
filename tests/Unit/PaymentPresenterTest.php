@@ -37,7 +37,10 @@ class PaymentPresenterTest extends TestCase
         $contest = $user->contests()->save($contest);
 
         $contest->payment()->save(
-            factory(Payment::class)->make(['amount' => 115000])
+            factory(Payment::class)->make([
+                'amount' => 115000,
+                'currency' => 'USD',
+            ])
         );
 
         $this->contest = $contest;
@@ -64,6 +67,6 @@ class PaymentPresenterTest extends TestCase
         $formattedPayout = $contest->payment->format;
 
         // Assert.
-        $this->assertEquals($formattedPayout, '$1,150.00');
+        $this->assertEquals($formattedPayout, '$1,000.00');
     }
 }
