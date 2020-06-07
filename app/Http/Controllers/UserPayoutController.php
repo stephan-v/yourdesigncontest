@@ -17,6 +17,9 @@ class UserPayoutController extends Controller
      */
     public function store(Request $request, TransferWise $client)
     {
+        // @TODO Fetch all the contest that the user won.
+        dd($request->user()->winnings());
+
         // Step 1: Create a quote.
         $quote = $client->quotes()->create();
 

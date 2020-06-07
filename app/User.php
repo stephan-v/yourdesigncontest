@@ -6,6 +6,7 @@ use App\Presenters\UserPresenter;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -53,6 +54,20 @@ class User extends Authenticatable implements MustVerifyEmail
     public function submissions()
     {
         return $this->hasMany(Submission::class);
+    }
+
+    /**
+     * Get the winnings for the user.
+     *
+     * @return mixed
+     */
+    public function winnings()
+    {
+        $this->submissions()->where('winner', true)->with(['contest.payment' => function($q) use (&$payments){
+            $payments = $q->get()->unique();
+        }])->first();
+
+        return $payments;
     }
 
     /**
