@@ -27,8 +27,16 @@ class UserPresenterTest extends TestCase
         $amountB = 500000;
 
         $contest->payout()->saveMany([
-            factory(Payout::class)->make(['amount' => $amountA, 'user_id' => $user->id]),
-            factory(Payout::class)->make(['amount' => $amountB, 'user_id' => $user->id]),
+            factory(Payout::class)->make([
+                'amount' => $amountA,
+                'currency' => 'USD',
+                'user_id' => $user->id,
+            ]),
+            factory(Payout::class)->make([
+                'amount' => $amountB,
+                'currency' => 'USD',
+                'user_id' => $user->id,
+            ]),
         ]);
 
         // Act.
