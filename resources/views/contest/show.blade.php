@@ -78,10 +78,10 @@
                         @endif
                     </span>
 
-                    <h3 class="price-money position-relative text-center">
+                    <h3 class="prize-money position-relative text-center">
                         <span class="font-weight-bold">{{ $contest->payment->format }}</span>
                         <span class="font-weight-bold fade">{{ $contest->payment->format }}</span>
-                        <span class="text-muted">First price winner</span>
+                        <span class="text-muted">First prize winner</span>
                     </h3>
                 </div>
             </div>

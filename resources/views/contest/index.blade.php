@@ -7,7 +7,7 @@
                 <div class="company">
                     <a href="{{ route('register') }}" class="d-block">
                         <p class="absolute-center text-center text-white">
-                            I'm a designer who wants to join in design contests for prices.
+                            I'm a designer who wants to join in design contests for prizes.
                         </p>
 
                         <img src="/images/company.jpg" alt="" class="img-fluid w-100">
@@ -39,7 +39,7 @@
                                 <td>Contest name</td>
                                 <td>Category</td>
                                 <td>Submissions</td>
-                                <td>Price</td>
+                                <td>Prize</td>
                                 <td>Ends in</td>
                             </tr>
                         </thead>
