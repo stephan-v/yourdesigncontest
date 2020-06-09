@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\Payout;
+use App\Jobs\CreatePayout;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -16,10 +16,12 @@ class UserPayoutController extends Controller
      */
     public function store(Request $request)
     {
-        // @TODO Fetch all the contest that the user won.
-        dd($request->user()->winnings());
+        // Create a payout per contest that the user won.
 
-        Payout::dispatch($request->user());
+        // @TODO only create the payout if the contest has not payout.
+        foreach ($request->user()->winnings() as $payment) {
+            CreatePayout::dispatch($request->user(), $payment);
+        }
 
         return redirect()->route('contests.show', $request->user());
     }

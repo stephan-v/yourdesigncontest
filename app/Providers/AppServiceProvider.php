@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Comment;
 use App\Observers\CommentObserver;
+use App\Observers\PayoutObserver;
 use App\Observers\SubmissionObserver;
+use App\Payout;
 use App\Submission;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
     private function setObservers()
     {
         Comment::observe(CommentObserver::class);
+        Payout::observe(PayoutObserver::class);
         Submission::observe(SubmissionObserver::class);
     }
 

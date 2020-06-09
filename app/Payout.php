@@ -13,6 +13,13 @@ class Payout extends Model
     use PayoutScopes;
 
     /**
+     * The payout failed.
+     *
+     * @const string FAILED
+     */
+    public const FAILED = 'failed';
+
+    /**
      * The payout is pending awaiting a payout request from the user.
      *
      * @const string PENDING
@@ -24,7 +31,7 @@ class Payout extends Model
      *
      * @const string SUCCEEDED
      */
-    public const SUCCEEDED = 'SUCCEEDED';
+    public const SUCCEEDED = 'succeeded';
 
     /**
      * The attributes that should be cast.
