@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use App\Contest;
-use App\Payout;
+use App\Payment;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Money\Currency;
@@ -21,28 +21,42 @@ class UserPresenterTest extends TestCase
         });
 
         $user = factory(User::class)->create();
-        $contest = factory(Contest::class)->create();
+        $contestA = factory(Contest::class)->create();
+        $contestB = factory(Contest::class)->create();
 
         $amountA = 300000;
         $amountB = 500000;
 
-        $contest->payout()->saveMany([
-            factory(Payout::class)->make([
-                'amount' => $amountA,
-                'currency' => 'USD',
-                'user_id' => $user->id,
-            ]),
-            factory(Payout::class)->make([
-                'amount' => $amountB,
-                'currency' => 'USD',
-                'user_id' => $user->id,
-            ]),
-        ]);
+        // Create 2 contest with winning submissions.
+        $contestA->payment()->save(factory(Payment::class)->make([
+            'amount' => $amountA,
+            'currency' => 'USD',
+        ]));
+
+        $contestB->payment()->save(factory(Payment::class)->make([
+            'amount' => $amountB,
+            'currency' => 'USD',
+        ]));
+
+        $this->createWinningContestSubmission($contestA, $user);
+        $this->createWinningContestSubmission($contestB, $user);
 
         // Act.
         $total = $user->totalPayoutAmount->getAmount();
 
         // Assert.
-        $this->assertEquals($total, ($amountA + $amountB));
+        $paymentA = new Payment([
+            'amount' => $amountA,
+            'currency' => 'USD',
+        ]);
+
+        $paymentB = new Payment([
+            'amount' => $amountB,
+            'currency' => 'USD',
+        ]);
+
+        $expected = $paymentA->winnings->getAmount() + $paymentB->winnings->getAmount();
+
+        $this->assertEquals($expected, $total);
     }
 }

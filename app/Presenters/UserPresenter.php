@@ -36,10 +36,10 @@ trait UserPresenter
      */
     public function getTotalPayoutAmountAttribute(): Money
     {
-        $payouts = $this->payouts()->pending()->get();
+        $payouts = $this->winnings();
 
         if (count($payouts)) {
-            return $payouts->shift()->amount->add(...$payouts->map->amount);
+            return $payouts->shift()->winnings->add(...$payouts->map->winnings);
         }
 
         return new Money(0, resolve(Currency::class));

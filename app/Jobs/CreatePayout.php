@@ -64,6 +64,8 @@ class CreatePayout implements ShouldQueue
             'contest_id' => $this->payment->contest_id,
         ]);
 
+        dd('test');
+
         // Step 1: Create a quote.
         $quote = $client->quotes()->create();
 

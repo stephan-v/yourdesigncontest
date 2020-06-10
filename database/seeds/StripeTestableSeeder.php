@@ -43,7 +43,7 @@ class StripeTestableSeeder extends Seeder
 
         // Create a payment intent to mimic a paid contest.
         $paymentIntent = PaymentIntent::create([
-            'amount' => 2000,
+            'amount' => 20000,
             'currency' => 'eur',
             'payment_method' => 'pm_card_bypassPending',
             'confirm' => true,
@@ -61,6 +61,7 @@ class StripeTestableSeeder extends Seeder
 
         // Create a winning submission for the stripe testable.
         factory(Submission::class)->create([
+            'user_id' => 1,
             'contest_id' => $contest->id,
             'winner' => true,
         ]);

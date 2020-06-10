@@ -69,8 +69,6 @@ class UserController extends Controller
     {
         $this->authorize('verify', $user);
 
-        $user->with('payouts');
-
         return view('user.payout');
     }
 }

@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Contest;
 use App\Payment;
-use App\Submission;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -82,23 +81,5 @@ class ViewHandoverTest extends TestCase
         );
 
         return $contest;
-    }
-
-    /**
-     * Create a contest submission.
-     *
-     * @param Contest $contest The contest to create a submission for.
-     * @param User $user The user that creates a submission.
-     * @return false|Submission The created submission.
-     */
-    private function createWinningContestSubmission(Contest $contest, User $user): Submission
-    {
-        $submission = $contest->submissions()->save(
-            factory(Submission::class)->make(['user_id' => $user->id])
-        );
-
-        $submission->update(['winner' => true]);
-
-        return $submission;
     }
 }

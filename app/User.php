@@ -62,9 +62,11 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function winnings()
     {
+        $payments = collect([]);
+
         $this->submissions()->where('winner', true)->with(['contest.payment' => function($q) use (&$payments){
             $payments = $q->get()->unique();
-        }])->first();
+        }])->get();
 
         return $payments;
     }
