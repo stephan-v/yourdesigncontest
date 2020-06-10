@@ -58,13 +58,11 @@ class CreatePayout implements ShouldQueue
     public function handle(TransferWise $client)
     {
         $this->payout = $this->user->payouts()->create([
-            'amount' => $this->payment->winnings,
+            'amount' => $this->payment->winnings->getAmount(),
             'currency' => $this->payment->currency,
             'status' => Payout::PENDING,
             'contest_id' => $this->payment->contest_id,
         ]);
-
-        dd('test');
 
         // Step 1: Create a quote.
         $quote = $client->quotes()->create();
@@ -88,7 +86,7 @@ class CreatePayout implements ShouldQueue
      */
     public function failed()
     {
-        $this->payout->update([
+        optional($this->payout)->update([
             'status' => Payout::FAILED
         ]);
     }
