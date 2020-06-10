@@ -57,6 +57,8 @@ class CreatePayout implements ShouldQueue
      */
     public function handle(TransferWise $client)
     {
+        // @TODO fetch the currency from the request.
+
         $this->payout = $this->user->payouts()->create([
             'amount' => $this->payment->winnings->getAmount(),
             'currency' => $this->payment->currency,
@@ -65,10 +67,14 @@ class CreatePayout implements ShouldQueue
         ]);
 
         // Step 1: Create a quote.
-        $quote = $client->quotes()->create();
+        $quote = $client->quotes()->create(
+            $this->payment->winnings->getAmount(),
+            $this->payment->currency,
+            $this->payout->currency
+        );
 
         // Step 2: Create a recipient account.
-        $account = $client->accounts()->create();
+        $account = $client->accounts()->create($this->user);
 
         // Step 3: Create a transfer.
         $transfer = $client->transfers()->create($account['id'], $quote['id']);

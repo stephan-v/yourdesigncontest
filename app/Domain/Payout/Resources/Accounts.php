@@ -3,6 +3,7 @@
 namespace App\Domain\Payout\Resources;
 
 use App\Domain\Payout\AbstractClient;
+use App\User;
 
 class Accounts extends AbstractClient
 {
@@ -28,18 +29,19 @@ class Accounts extends AbstractClient
     /**
      * Create an account.
      *
+     * @param User $user The user to create an account for.
      * @return mixed
      */
-    public function create()
+    public function create(User $user)
     {
         $response = $this->client->post($this->resource, [
             'json' => [
                 'profile' => config('services.transferwise.profile'),
-                'accountHolderName' => 'Testing', // Recipient full name.
+                'accountHolderName' => $user->name, // Recipient full name.
                 'currency' => 'GBP',
                 'type' => 'email',
                 'details' => [
-                    'email' => 'testmaster@hotmail.com',
+                    'email' => $user->email,
                 ]
             ]
         ]);
