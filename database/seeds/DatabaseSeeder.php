@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ContestsTableSeeder::class);
         $this->call(SubmissionsSeeder::class);
         $this->call(StripeTestableSeeder::class);
+        $this->call(CurrencySeeder::class);
     }
 }

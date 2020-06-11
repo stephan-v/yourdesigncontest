@@ -19,7 +19,7 @@
             </div>
 
             <div class="form-group mb-5">
-                <label for="currency">Currency</label>
+                <label for="currency">Preferred display currency</label>
 
                 <select name="currency" class="form-control" id="currency">
                     <option value="eur" @if ($user->currency === 'EUR') selected @endif>EUR</option>

@@ -16,9 +16,12 @@ class UserPayoutController extends Controller
      */
     public function store(Request $request)
     {
+        // @TODO get the preferred payout currency.
+        // @TODO store the payout currency default + account holder name.
+
         // @TODO only create the payout if the contest has not payout.
         foreach ($request->user()->winnings() as $payment) {
-            CreatePayout::dispatch($request->user(), $payment);
+            CreatePayout::dispatch($request, $payment);
         }
 
         return redirect()->route('contests.show', $request->user());

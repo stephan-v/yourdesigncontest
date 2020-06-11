@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Http\Request;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
@@ -40,12 +41,12 @@ class CreatePayout implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @param User $user The user to create a payout for.
+     * @param Request $request The request made by the user.
      * @param Payment $payment The payment attached to the won contest.
      */
-    public function __construct(User $user, Payment $payment)
+    public function __construct(Request $request, Payment $payment)
     {
-        $this->user = $user;
+        $this->user = $request->user();
         $this->payment = $payment;
     }
 

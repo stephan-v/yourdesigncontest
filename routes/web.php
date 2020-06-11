@@ -38,7 +38,7 @@ Route::get('contests/{contest}', 'ContestController@show')->middleware('payment.
 Route::resource('blog', 'BlogController')->only(['index', 'show']);
 
 // Contest payout.
-Route::get('user/payout', 'UserPayoutController@store')->middleware('auth');
+Route::post('user/payout', 'UserPayoutController@store')->middleware('auth')->name('request.payout');
 
 // User routes.
 Route::resource('users', 'UserController')->only(['show', 'update']);

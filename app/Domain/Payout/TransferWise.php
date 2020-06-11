@@ -4,6 +4,7 @@ namespace App\Domain\Payout;
 
 use App\Domain\Payout\Resources\AccountRequirements;
 use App\Domain\Payout\Resources\Accounts;
+use App\Domain\Payout\Resources\CurrencyPairs;
 use App\Domain\Payout\Resources\Profiles;
 use App\Domain\Payout\Resources\Quotes;
 use App\Domain\Payout\Resources\Rates;
@@ -29,6 +30,16 @@ class TransferWise extends AbstractClient
     public function accountRequirements(): AccountRequirements
     {
         return new AccountRequirements($this->client);
+    }
+
+    /**
+     * Returns a new currency pairs client.
+     *
+     * @return CurrencyPairs
+     */
+    public function currencyPairs(): CurrencyPairs
+    {
+        return new CurrencyPairs($this->client);
     }
 
     /**

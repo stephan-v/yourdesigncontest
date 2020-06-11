@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Currency;
 use App\Http\Requests\UserRequest;
 use App\User;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -69,6 +70,8 @@ class UserController extends Controller
     {
         $this->authorize('verify', $user);
 
-        return view('user.payout');
+        $currencies = Currency::orderBy('code')->get();
+
+        return view('user.payout', compact('currencies'));
     }
 }
