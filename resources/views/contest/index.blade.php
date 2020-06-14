@@ -10,7 +10,7 @@
                             I'm a designer who wants to join in design contests for prizes.
                         </p>
 
-                        <img src="{{ asset('images/company.jpg') }}'" alt="" class="img-fluid w-100">
+                        <img src="{{ asset('images/company.jpg') }}" alt="" class="img-fluid w-100">
                     </a>
                 </div>
             </div>

@@ -28,38 +28,40 @@
     </div>
 
     @if (count($user->winnings()))
-        <div class="alert alert-warning" role="alert">
-            <b>Make sure the below credentials are correct.</b>
-            <hr>
-            You will receive an email prompting to fill out the rest of
-            your payout credentials.
+        <div class="card">
+            <div class="card-body">
+                <div class="alert alert-warning" role="alert">
+                    <b>Make sure the below credentials are correct.</b>
+                    <hr>
+                    You will receive an email prompting to fill out the rest of
+                    your payout credentials.
+                </div>
+
+                <form method="POST" action="{{ route('request.payout') }}">
+                    @csrf
+
+                    <div class="form-group">
+                        <label for="currency">Payout currency</label>
+
+                        <select name="currency" class="form-control" id="currency">
+                            @foreach ($currencies as $currency)
+                                <option value="{{ $currency->code }}" @if (old('currency') == $currency->code) selected @endif>
+                                    {{ $currency->code }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="name">Account holder name</label>
+                        <input id="holder" type="text" class="form-control @error('holder') is-invalid @enderror" name="holder" value="{{ old('holder') }}" placeholder="This should match your bank account name." required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Request a payout</button>
+                </form>
+            </div>
         </div>
-
-        <form method="POST" action="{{ route('request.payout') }}">
-            @csrf
-
-            <div class="form-group">
-                <label for="currency">Payout currency</label>
-
-                <select name="currency" class="form-control" id="currency">
-                    @foreach ($currencies as $currency)
-                        <option value="{{ $currency->code }}" @if (old('currency') == $currency->code) selected @endif>
-                            {{ $currency->code }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="form-group mb-4">
-                <label for="name">Account holder name</label>
-                <input id="holder" type="text" class="form-control @error('holder') is-invalid @enderror" name="holder" value="{{ old('holder') }}" placeholder="This should match your bank account name." required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Request a payout</button>
-        </form>
     @else
-        <button type="submit" class="btn btn-secondary mb-3" disabled>Request a payout</button>
-
         <div class="alert alert-warning" role="alert">
             You can request a payout as soon as you win your first contest.
         </div>
