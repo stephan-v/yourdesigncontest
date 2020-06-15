@@ -18,6 +18,13 @@ class CreatePayout implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
+     * The requested payout currency.
+     *
+     * @var string $currency
+     */
+    protected $currency;
+
+    /**
      * The payment attached to the won contest.
      *
      * @var Payment $payment
@@ -43,11 +50,13 @@ class CreatePayout implements ShouldQueue
      *
      * @param Request $request The request made by the user.
      * @param Payment $payment The payment attached to the won contest.
+     * @param string $currency The currency used for the payout.
      */
-    public function __construct(Request $request, Payment $payment)
+    public function __construct(Request $request, Payment $payment, string $currency)
     {
         $this->user = $request->user();
         $this->payment = $payment;
+        $this->currency = $currency;
     }
 
     /**
@@ -58,11 +67,9 @@ class CreatePayout implements ShouldQueue
      */
     public function handle(TransferWise $client)
     {
-        // @TODO fetch the currency from the request.
-
         $this->payout = $this->user->payouts()->create([
             'amount' => $this->payment->winnings->getAmount(),
-            'currency' => $this->payment->currency,
+            'currency' => $this->currency,
             'status' => Payout::PENDING,
             'contest_id' => $this->payment->contest_id,
         ]);
@@ -71,17 +78,19 @@ class CreatePayout implements ShouldQueue
         $quote = $client->quotes()->create(
             $this->payment->winnings->getAmount(),
             $this->payment->currency,
-            $this->payout->currency
+            $this->currency
         );
 
         // Step 2: Create a recipient account.
-        $account = $client->accounts()->create($this->user);
+        // @TODO THIS should be a bank account model most likely.
+        $account = $client->accounts()->create($this->user, $this->currency);
 
         // Step 3: Create a transfer.
         $transfer = $client->transfers()->create($account['id'], $quote['id']);
 
         // Step 4: Fund a transfer.
         $client->transfers()->fund($transfer['id']);
+
 
         $this->payout->update([
             'status' => Payout::SUCCEEDED

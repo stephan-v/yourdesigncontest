@@ -16,7 +16,7 @@ class CreatePayoutsTable extends Migration
         Schema::create('payouts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('amount');
-            $table->enum('currency', ['EUR', 'USD']);
+            $table->string('currency');
             $table->enum('status', ['pending', 'succeeded']);
 
             $table->unsignedBigInteger('contest_id');

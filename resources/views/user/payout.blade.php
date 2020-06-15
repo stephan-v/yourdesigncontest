@@ -54,7 +54,7 @@
 
                     <div class="form-group mb-4">
                         <label for="name">Account holder name</label>
-                        <input id="holder" type="text" class="form-control @error('holder') is-invalid @enderror" name="holder" value="{{ old('holder') }}" placeholder="This should match your bank account name." required>
+                        <input id="holder" type="text" class="form-control @error('holder') is-invalid @enderror" name="holder" value="{{ old('holder') }}" placeholder="Your name as stated on your bank account." required>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Request a payout</button>
