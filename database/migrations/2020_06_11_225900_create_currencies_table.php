@@ -16,6 +16,8 @@ class CreateCurrenciesTable extends Migration
         Schema::create('currencies', function (Blueprint $table) {
             $table->id();
             $table->string('code', 3);
+            $table->boolean('payment');
+            $table->boolean('payout');
             $table->timestamps();
         });
     }

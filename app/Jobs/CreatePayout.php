@@ -67,19 +67,21 @@ class CreatePayout implements ShouldQueue
      */
     public function handle(TransferWise $client)
     {
+        // The payout amount.
+        $amount = $this->payment->winnings->getAmount();
+
+        // Do transferwise conversion of the amount.
+
+        // The local payout record.
         $this->payout = $this->user->payouts()->create([
-            'amount' => $this->payment->winnings->getAmount(),
+            'amount' => $amount,
             'currency' => $this->currency,
             'status' => Payout::PENDING,
             'contest_id' => $this->payment->contest_id,
         ]);
 
-        // Step 1: Create a quote.
-        $quote = $client->quotes()->create(
-            $this->payment->winnings->getAmount(),
-            $this->payment->currency,
-            $this->currency
-        );
+        // Step 1: Create a quote. (Set to 'EUR' because USD to another currency is not possible with email accounts)
+        $quote = $client->quotes()->create($amount, 'EUR', $this->currency);
 
         // Step 2: Create a recipient account.
         // @TODO THIS should be a bank account model most likely.
@@ -91,7 +93,7 @@ class CreatePayout implements ShouldQueue
         // Step 4: Fund a transfer.
         $client->transfers()->fund($transfer['id']);
 
-
+        // Payout was a success.
         $this->payout->update([
             'status' => Payout::SUCCEEDED
         ]);
