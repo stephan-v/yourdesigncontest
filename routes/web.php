@@ -42,13 +42,13 @@ Route::post('user/payout', 'UserPayoutController@store')->middleware('auth')->na
 
 // User routes.
 Route::resource('users', 'UserController')->only(['show', 'update']);
-Route::get('users/{user}/settings', 'UserController@edit')->name('users.edit');
-Route::get('users/{user}/settings/password', 'UserPasswordController@edit')->name('users.edit.password');
-Route::patch('users/{user}/settings/password', 'UserPasswordController@update')->name('users.update.password');
-Route::get('users/{user}/payout', 'UserController@payout')->name('users.payout');
 
-// User submissions for the contest.
 Route::middleware('auth')->group(function () {
+    Route::get('users/{user}/settings', 'UserController@edit')->name('users.edit');
+    Route::get('users/{user}/settings/password', 'UserPasswordController@edit')->name('users.edit.password');
+    Route::patch('users/{user}/settings/password', 'UserPasswordController@update')->name('users.update.password');
+    Route::get('users/{user}/payout', 'UserController@payout')->name('users.payout');
+
     Route::resource('contests.submissions', 'ContestSubmissionController')->except('show');
     Route::post('contests/{contest}/submissions/{submission}/restore', 'ContestSubmissionController@restore')->name('contests.submission.restore');
 });
