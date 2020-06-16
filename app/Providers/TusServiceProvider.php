@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
 use TusPhp\Tus\Server;
 
-class TusServiceProvider extends ServiceProvider
+class TusServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
      * Register services.
@@ -26,5 +27,15 @@ class TusServiceProvider extends ServiceProvider
 
             return $server;
         });
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [Server::class];
     }
 }

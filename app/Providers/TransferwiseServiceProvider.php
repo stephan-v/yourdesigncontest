@@ -4,10 +4,10 @@ namespace App\Providers;
 
 use App\Domain\Payout\TransferWise;
 use GuzzleHttp\Client;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
-use RuntimeException;
 
-class TransferwiseServiceProvider extends ServiceProvider
+class TransferwiseServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
      * Register services.
@@ -16,10 +16,6 @@ class TransferwiseServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (is_null(config('services.transferwise.profile'))) {
-            throw new RuntimeException('Environment variable failed assertion: TRANSFERWISE_PROFILE_ID is missing');
-        }
-
         $this->app->singleton(TransferWise::class, function () {
             $client = new Client(
                 [
@@ -32,5 +28,15 @@ class TransferwiseServiceProvider extends ServiceProvider
 
             return new TransferWise($client);
         });
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [TransferWise::class];
     }
 }
