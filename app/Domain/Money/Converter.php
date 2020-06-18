@@ -35,16 +35,19 @@ class Converter
      */
     public function convert(Money $money): Money
     {
-        // @TODO possibly move the caching to a job.
-        $rate = Cache::remember('EUR/USD', 3600, function () {
-            return $this->client->rates()->get('EUR', 'USD')[0]['rate'];
+        // @TODO move the caching to a job.
+        $rates = Cache::remember('rates', 3600, function () {
+            return collect($this->client->rates()->get());
         });
 
-        $exchange = new ReversedCurrenciesExchange(new FixedExchange([
-            'EUR' => [
-                'USD' => $rate,
-            ]
-        ]));
+        // Map into the correct structure for the FixedExchange class.
+        $rates = $rates->reduce(function($carry, $item) {
+            $carry[$item['source']][$item['target']] = $item['rate'];
+
+            return $carry;
+        }, []);
+
+        $exchange = new ReversedCurrenciesExchange(new FixedExchange($rates));
 
         $converter = new \Money\Converter(new ISOCurrencies(), $exchange);
 
