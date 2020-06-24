@@ -148,7 +148,6 @@ class CurrencySeeder extends Seeder
             'MMK',
             'MNT',
             'MOP',
-            'MRO',
             'MUR',
             'MVR',
             'MWK',
@@ -182,7 +181,6 @@ class CurrencySeeder extends Seeder
             'SLL',
             'SOS',
             'SRD',
-            'STD',
             'SZL',
             'THB',
             'TJS',
@@ -208,9 +206,13 @@ class CurrencySeeder extends Seeder
             'ZMW',
         ];
 
+        // Transform currency codes to long names.
+        $iso4217 = new Alcohol\ISO4217();
+
         foreach ($paymentCurrencies as $currency) {
             Currency::create([
                 'code' => $currency,
+                'name' => $iso4217->getByCode($currency)['name'],
                 'payment' => 1,
                 'payout' => in_array($currency, $payoutCurrencies),
             ]);

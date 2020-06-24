@@ -46,7 +46,7 @@
                         <select name="currency" class="form-control" id="currency">
                             @foreach ($currencies as $currency)
                                 <option value="{{ $currency->code }}" @if (old('currency') == $currency->code) selected @endif>
-                                    {{ $currency->code }}
+                                    {{ $currency->code }} ({{ $currency->name }})
                                 </option>
                             @endforeach
                         </select>
