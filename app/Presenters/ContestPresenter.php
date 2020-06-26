@@ -40,14 +40,14 @@ trait ContestPresenter
     }
 
     /**
-     * Get the contest's finished state.
+     * Get the contest's expired state.
      *
      * @return boolean Whether the contest is finished or not.
      * @throws Exception Emits Exception in case of an error.
      */
-    public function getFinishedAttribute()
+    public function getExpiredAttribute()
     {
-        return $this->winner || $this->expires_at->isPast();
+        return $this->expires_at->isPast();
     }
 
     /**
@@ -57,7 +57,7 @@ trait ContestPresenter
      */
     public function getActiveAttribute()
     {
-        return !$this->finished && !$this->winner;
+        return !$this->expired && !$this->winner;
     }
 
     /**

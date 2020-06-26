@@ -73,7 +73,7 @@ class ContestController extends Controller
             ->paginate(11);
 
         // Whether the rating and other components can still be edited.
-        $locked = optional(auth()->user())->cant('manage', $contest) || $contest->finished;
+        $locked = optional(auth()->user())->cant('manage', $contest) || $contest->expired;
 
         return view('contest.show', compact('contest', 'locked', 'submissions'));
     }

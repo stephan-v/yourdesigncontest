@@ -41,7 +41,7 @@
     <contest :locked="@json($locked)"></contest>
 
     @can('manage', $contest)
-        @if ($contest->finished)
+        @if ($contest->winner)
             <div class="alert alert-warning p-3 m-0 text-center" role="alert">
                 The contest is finished.
                 Click <a href="{{ route('contests.files.index', $contest) }}">here</a> to review the final design files.
@@ -49,12 +49,18 @@
         @endif
     @endcan
 
+    @if ($contest->expired && !$contest->winner)
+        <div class="alert alert-warning p-3 m-0 text-center" role="alert">
+            The contest finished without the host selecting a winner, we will contact the host.
+        </div>
+    @endif
+
     <div class="contest-header bg-white pt-5 pb-5">
         <div class="container">
             <div class="row winning-submission">
                 <div class="col-md-4">
                     <div class="winner-placeholder intrinsic intrinsic--4x3">
-                        @if ($contest->finished)
+                        @if ($contest->winner)
                             <img src="{{ $contest->submissions->firstWhere('winner', true)->path }}" class="intrinsic-item" alt="The design of the contest winner">
                         @else
                             <div class="text-muted intrinsic-item d-flex justify-content-center align-items-center flex-column outline p-3 text-center">
@@ -71,7 +77,7 @@
                     <p>{{ $contest->description }}</p>
 
                     <span class="mb-4 alert alert-info small font-weight-bold">
-                        @if ($contest->finished)
+                        @if ($contest->winner)
                             Contest finished
                         @else
                             Ends in {{ $contest->endsIn }}
