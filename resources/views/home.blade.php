@@ -3,10 +3,13 @@
 @section('content')
     <div class="main-banner home-banner w-100 mb-5">
         <div class="container d-flex align-items-center h-100">
-            <h1 class="text-white">
-                <div class="mb-3">Quick and cheap creative services</div>
+            <div class="wrapper text-white">
+                <h1>Creative services on demand</h1>
+
+                <p class="col-6 p-0">Start a new brand or improve and expand upon your existing one. From logo designs to fully fledged websites at YourDesignContest we got you covered.</p>
+
                 <a href="{{ route('process') }}" class="btn btn-primary">Get started.</a>
-            </h1>
+            </div>
         </div>
     </div>
 

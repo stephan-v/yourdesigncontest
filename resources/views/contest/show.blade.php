@@ -50,7 +50,7 @@
     @endcan
 
     @if ($contest->expired && !$contest->winner)
-        <div class="alert alert-warning p-3 m-0 text-center" role="alert">
+        <div class="alert alert-danger p-3 m-0 text-center" role="alert">
             The contest finished without the host selecting a winner, we will contact the host.
         </div>
     @endif
