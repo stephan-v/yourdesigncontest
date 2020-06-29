@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\CheckContestExpiration;
+use App\Console\Commands\ClearTusCache;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,8 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('conversions:get')->daily();
-        $schedule->command('tus:clear')->daily();
+        $schedule->command(ClearTusCache::class)->daily();
+        $schedule->command(CheckContestExpiration::class)->everyMinute();
     }
 
     /**
