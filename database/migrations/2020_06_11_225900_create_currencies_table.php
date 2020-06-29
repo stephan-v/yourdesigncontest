@@ -17,8 +17,6 @@ class CreateCurrenciesTable extends Migration
             $table->id();
             $table->string('code', 3);
             $table->string('name');
-            $table->boolean('payment');
-            $table->boolean('payout');
             $table->timestamps();
         });
     }
