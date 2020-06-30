@@ -59,7 +59,7 @@ class SourceFilesAdded extends Notification
     {
         return [
             'avatar' => $user->avatar,
-            'message' => 'Designer source files have been added to your contest.',
+            'message' => 'Source files have been added to your contest.',
             'route' => route('contests.files.index', $this->contest),
         ];
     }

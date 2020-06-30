@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Contest;
 use App\File;
+use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
 use STS\ZipStream\ZipStream;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -58,7 +61,7 @@ class ContestFileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Contest $contest The contest which the submission belongs to.
+     * @param Contest $contest The contest which the file belongs to.
      * @param File $file The file to download.
      * @return BinaryFileResponse The download response.
      * @throws AuthorizationException Thrown if the user is not allowed to view winning source files.
@@ -75,11 +78,15 @@ class ContestFileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param File $sourceFile
-     * @return \Illuminate\Http\Response
+     * @param Contest $contest The contest which the file belongs to.
+     * @param File $file The file to destroy.
+     * @return RedirectResponse Redirect back to the previous page.
+     * @throws Exception Thrown if no primary key is defined on the model.
      */
-    public function destroy(File $sourceFile)
+    public function destroy(Contest $contest, File $file)
     {
-        // @TODO implement the destroy.
+        $file->delete();
+
+        return back();
     }
 }

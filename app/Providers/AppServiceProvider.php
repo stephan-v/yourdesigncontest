@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Comment;
+use App\File;
 use App\Observers\CommentObserver;
+use App\Observers\FileObserver;
 use App\Observers\PayoutObserver;
 use App\Observers\SubmissionObserver;
 use App\Payout;
@@ -42,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
     private function setObservers()
     {
         Comment::observe(CommentObserver::class);
+        File::observe(FileObserver::class);
         Payout::observe(PayoutObserver::class);
         Submission::observe(SubmissionObserver::class);
     }

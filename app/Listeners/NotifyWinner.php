@@ -4,7 +4,6 @@ namespace App\Listeners;
 
 use App\Events\ContestWon;
 use App\Notifications\ContestWon as ContestWonNotification;
-use App\Notifications\VerificationRequest;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class NotifyWinner implements ShouldQueue
@@ -19,10 +18,5 @@ class NotifyWinner implements ShouldQueue
         $user = $event->contest->winner;
 
         $user->notify(new ContestWonNotification($event->contest));
-
-        // Send out a verification request if the user is not verified yet.
-        if ($user->isNotStripeVerified) {
-            $user->notify(new VerificationRequest());
-        }
     }
 }

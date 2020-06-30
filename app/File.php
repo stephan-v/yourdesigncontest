@@ -19,4 +19,12 @@ class File extends Model
         'path',
         'size',
     ];
+
+    /**
+     * Get the contest that owns the file.
+     */
+    public function contest()
+    {
+        return $this->belongsTo(Contest::class);
+    }
 }

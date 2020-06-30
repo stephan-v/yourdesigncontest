@@ -19,11 +19,11 @@
                 @if (count($contest->files))
                     <div class="contest-files">
                         <div class="d-flex justify-content-between align-items-center mt-3">
-                            <div class="font-weight-bold">Your design files</div>
+                            <div class="font-weight-bold">Source design files</div>
 
                             @can('manage', $contest)
                                 <a class="btn btn-primary" href="{{ route('zip', $contest) }}" role="button">
-                                    <i class="fas fa-file-archive"></i> Download zip
+                                    <i class="fas fa-file-archive mr-2"></i> Download all as ZIP file
                                 </a>
                             @endif
                         </div>
@@ -40,6 +40,17 @@
                                                 <div>uploaded: {{ $file->created_at->diffForHumans() }}</div>
                                                 <div>size: {{ $file->size }}</div>
                                             </div>
+
+                                            @can('delete', $file)
+                                                <form method="POST" action="{{ route('contests.files.destroy', [$contest, $file]) }}">
+                                                    @method('DELETE')
+                                                    @csrf
+
+                                                    <button type="submit" class="btn btn-danger mr-3" role="button">
+                                                        Delete
+                                                    </button>
+                                                </form>
+                                            @endcan
 
                                             <a class="btn btn-secondary" href="{{ route('contests.files.show', [$contest, $file]) }}" role="button">
                                                 Download
