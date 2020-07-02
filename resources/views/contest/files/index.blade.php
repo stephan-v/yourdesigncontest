@@ -65,14 +65,12 @@
                     <div class="flex-grow-1 d-flex align-items-center justify-content-center no-files">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <img src="{{ asset('images/svg/041-folder.svg') }}" alt="Files folder" class="img-fluid mb-3">
+                                <img src="{{ asset('images/svg/041-folder.svg') }}" alt="Files folder" class="img-fluid mb-3 mt-3">
                                 <h1 class="mb-3">No source files have been added yet.</h1>
 
-                                <div class="alert alert-warning" role="alert">
-                                    <p class="mb-0">We have sent out a notification asking the winner to upload the source files.</p>
-                                    <hr>
-                                    <p class="m-0">Once the first files are uploaded you will receive a message.</p>
-                                </div>
+                                <p class="mb-0">We have sent out a notification asking {{ $contest->winner->name }} to upload the final source files.</p>
+                                <hr>
+                                <p>Once the first files are uploaded you will receive a message.</p>
                             </div>
                         </div>
                     </div>
