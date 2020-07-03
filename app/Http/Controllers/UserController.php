@@ -56,7 +56,7 @@ class UserController extends Controller
 
         alert()->success('Success','Your user account has been updated.');
 
-        return redirect()->back();
+        return back();
     }
 
     /**

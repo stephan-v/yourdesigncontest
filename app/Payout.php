@@ -13,6 +13,13 @@ class Payout extends Model
     use PayoutScopes;
 
     /**
+     * The initial payout state.
+     *
+     * @const string TEST
+     */
+    public const APPROVED = 'APPROVED';
+
+    /**
      * The payout failed.
      *
      * @const string FAILED

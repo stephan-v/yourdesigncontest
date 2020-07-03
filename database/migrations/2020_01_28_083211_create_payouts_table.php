@@ -17,7 +17,7 @@ class CreatePayoutsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('amount');
             $table->string('currency');
-            $table->enum('status', ['pending', 'succeeded']);
+            $table->enum('status', ['approved', 'failed', 'pending', 'succeeded']);
 
             $table->unsignedBigInteger('contest_id');
             $table->foreign('contest_id')->references('id')->on('contests');

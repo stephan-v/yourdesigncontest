@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Events\ContestWon;
-use App\Listeners\CreatePendingPayout;
 use App\Listeners\NotifyContestants;
 use App\Listeners\NotifyWinner;
 use Illuminate\Auth\Events\Registered;
@@ -19,7 +18,6 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         ContestWon::class => [
-            CreatePendingPayout::class,
             NotifyWinner::class,
             NotifyContestants::class,
         ],

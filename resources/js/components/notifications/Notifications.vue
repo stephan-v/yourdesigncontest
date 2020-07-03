@@ -10,9 +10,13 @@
             <div class="notifications position-absolute" v-if="visible" v-click-outside="toggle">
                 <div class="triangle"></div>
 
-                <div class="notifications-header d-flex align-items-center justify-content-center p-3 font-weight-bold">
-                    Notifications
-                    <span class="count d-inline-block ml-1">{{ count }}</span>
+                <div class="notifications-header d-flex align-items-center justify-content-between p-3">
+                    <div class="d-flex align-items-center">
+                        Notifications
+                        <span class="count d-inline-block ml-1">{{ count }}</span>
+                    </div>
+
+                    <button type="button" class="btn btn-link p-0" @click="clear">Clear all</button>
                 </div>
 
                 <div class="notifications-body">
@@ -28,7 +32,7 @@
                 </div>
 
                 <div class="notifications-footer text-center bg-white">
-                    <a href="/notifications" class="d-block p-2">See all notifications</a>
+                    <a href="/notifications" class="d-block p-2">View all</a>
                 </div>
             </div>
         </transition>
@@ -58,6 +62,13 @@
         },
 
         methods: {
+            clear() {
+                axios.post('/notifications/mark-as-read').then(() => {
+                    this.notifications = [];
+                    this.toggle();
+                });
+            },
+
             toggle() {
                 this.visible = !this.visible;
             },
@@ -92,6 +103,10 @@
         cursor: pointer;
     }
 
+    button {
+        font-size: 0.875rem;
+    }
+
     .notifications {
         top: 0;
         right: 50%;
@@ -106,6 +121,7 @@
         background: #fff;
         border-radius: 10px 10px 0 0;
         position: relative;
+        font-weight: bold;
 
         border: 0 solid;
         border-bottom-width: 1px;

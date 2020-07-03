@@ -41,6 +41,6 @@ class UserPasswordController extends Controller
 
         alert()->success('Success','Your password has been updated.');
 
-        return redirect()->back();
+        return back();
     }
 }

@@ -82,7 +82,7 @@
                             @auth
                                 <li class="nav-item">
                                     <span class="nav-link">
-                                        <notifications :initial-notifications='@json($user->notifications)'></notifications>
+                                        <notifications :initial-notifications='@json($user->unreadNotifications)'></notifications>
                                     </span>
                                 </li>
 

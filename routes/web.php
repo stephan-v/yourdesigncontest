@@ -34,10 +34,13 @@ Route::get('contests', 'ContestController@index')->name('contests.index');
 Route::post('contests', 'ContestController@store')->name('contests.store');
 Route::get('contests/{contest}', 'ContestController@show')->middleware('payment.check')->name('contests.show');
 
+// Contest payout.
+Route::post('contests/{contest}/payout', 'ContestPayoutController@store')->middleware('auth')->name('contests.payout');
+
 // Wordpress Blog.
 Route::resource('blog', 'BlogController')->only(['index', 'show']);
 
-// Contest payout.
+// User payout.
 Route::post('user/payout', 'UserPayoutController@store')->middleware('auth')->name('request.payout');
 
 // User routes.
@@ -59,7 +62,8 @@ Route::get('contests/{contest}/files/zip', 'ContestFileController@zip')->name('z
 Route::resource('contests.files', 'ContestFileController');
 
 // Notifications.
-Route::resource('notifications', 'NotificationController');
+Route::get('notifications', 'NotificationController@index');
+Route::post('notifications/mark-as-read', 'NotificationController@markAsRead');
 
 // Stripe webhooks.
 Route::post('stripe/webhook', 'StripeWebhookController@handleWebhook');

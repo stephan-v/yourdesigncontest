@@ -60,17 +60,39 @@
                                 </ul>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                @if (!$contest->payout)
+                                    <form method="POST" action="{{ route('contests.payout', $contest) }}">
+                                        @csrf
+
+                                        <button class="btn btn-success" type="submit">
+                                            Approve files and release payment.
+                                        </button>
+                                    </form>
+                                @else
+                                    <div class="alert alert-success" role="alert">
+                                        Files have been approved!
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 @else
                     <div class="flex-grow-1 d-flex align-items-center justify-content-center no-files">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <img src="{{ asset('images/svg/041-folder.svg') }}" alt="Files folder" class="img-fluid mb-3 mt-3">
-                                <h1 class="mb-3">No source files have been added yet.</h1>
+                                @if($user->id === $contest->user->id)
+                                    <img src="{{ asset('images/svg/041-folder.svg') }}" alt="Files folder" class="img-fluid mb-3 mt-3">
+                                    <h1 class="mb-3">No source files have been added yet.</h1>
 
-                                <p class="mb-0">We have sent out a notification asking {{ $contest->winner->name }} to upload the final source files.</p>
-                                <hr>
-                                <p>Once the first files are uploaded you will receive a message.</p>
+                                    <p class="mb-0">We have sent out a notification asking {{ $contest->winner->name }} to upload the final source files.</p>
+                                    <hr>
+                                    <p>Once the first files are uploaded you will receive a message.</p>
+                                @else
+                                    <a href="{{ route('contests.files.create', $contest) }}" class="btn btn-primary">Upload files</a>
+                                @endif
                             </div>
                         </div>
                     </div>
