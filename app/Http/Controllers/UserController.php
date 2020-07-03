@@ -70,7 +70,7 @@ class UserController extends Controller
     {
         $this->authorize('verify', $user);
 
-        $currencies = Currency::orderBy('code')->where('payout', true)->get();
+        $currencies = Currency::orderBy('code')->get();
 
         return view('user.payout', compact('currencies'));
     }

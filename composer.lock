@@ -2956,16 +2956,16 @@
         },
         {
             "name": "realrashid/sweet-alert",
-            "version": "v3.1.3",
+            "version": "v3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/realrashid/sweet-alert.git",
-                "reference": "6846837c3861ee733de5ee2d67e3bcda9c9e9ce2"
+                "reference": "b72e2b41b5295be5bae5c54dbab851696fef196a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/6846837c3861ee733de5ee2d67e3bcda9c9e9ce2",
-                "reference": "6846837c3861ee733de5ee2d67e3bcda9c9e9ce2",
+                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/b72e2b41b5295be5bae5c54dbab851696fef196a",
+                "reference": "b72e2b41b5295be5bae5c54dbab851696fef196a",
                 "shasum": ""
             },
             "require": {
@@ -3018,7 +3018,7 @@
                 "sweet-alert2",
                 "toast"
             ],
-            "time": "2020-02-22T16:58:20+00:00"
+            "time": "2020-06-11T19:38:31+00:00"
         },
         {
             "name": "spatie/browsershot",
