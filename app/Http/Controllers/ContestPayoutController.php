@@ -23,7 +23,6 @@ class ContestPayoutController extends Controller
             'status' => Payout::APPROVED,
         ]);
 
-        // @TODO Find out why this is not working.
         alert()->success('Approved','Payment is underway to your designer.');
 
         return back();
