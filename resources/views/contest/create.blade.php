@@ -43,17 +43,6 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">Blind contest</label>
-                                </div>
-
-                                <div class="alert alert-info small">
-                                    In a blind contest, designers are only able to view their own entries. They will still be able to see the star rating of each design, but they won’t be able to see any designs that aren’t theirs.
-                                </div>
-                            </div>
-
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul class="mb-0">
