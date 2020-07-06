@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
+use Laravel\Telescope\TelescopeServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->setObservers();
         $this->setViewComposer();
+        $this->registerTelescope();
     }
 
     /**
@@ -59,4 +61,16 @@ class AppServiceProvider extends ServiceProvider
             $view->with('production', App::environment('production'));
         });
     }
+
+    /**
+     * Register the Laravel Telescope debugger locally.
+     */
+    private function registerTelescope()
+    {
+        if ($this->app->isLocal()) {
+            $this->app->register(TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+        }
+    }
 }
+
