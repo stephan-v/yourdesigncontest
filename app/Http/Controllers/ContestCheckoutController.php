@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Contest;
+use App\Domain\Stripe\LineItems\ContestLineItem;
+use App\Domain\Stripe\Session\SessionData;
 use App\Http\Requests\StripeSessionRequest;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
@@ -22,8 +24,6 @@ class ContestCheckoutController extends Controller
      */
     public function create(Request $request)
     {
-        // @TODO Add a redirect with a message if the contest has already been paid for $request->contest->payment.
-
         // Redirect back to the contest creation when that step has not been completed.
         if (!$request->session()->has('contest')) {
             return redirect('contests');
@@ -47,41 +47,12 @@ class ContestCheckoutController extends Controller
     {
         $this->authorize('checkout', $contest);
 
-        abort_if(
-            $contest->payment,
-            Response::HTTP_CONFLICT,
-            'The contest has already been paid for.'
+        abort_if($contest->payment, Response::HTTP_CONFLICT, 'The contest has already been paid for.');
+
+        // The Stripe checkout session.
+        $session = Session::create(
+            (new SessionData($request, $contest))->toArray()
         );
-
-        $data = collect([
-            'payment_method_types' => ['card'],
-            'payment_intent_data' => [
-                'metadata' => [
-                    'contest_id' => $contest->id,
-                ]
-            ],
-            'line_items' => [
-                [
-                    'name' => $request->name,
-                    'description' => 'Design contest',
-                    'images' => null,
-                    'amount' => $request->amount,
-                    'currency' => $request->currency,
-                    'quantity' => 1,
-                ]
-            ],
-            'success_url' => config('app.url') . '/success?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => config('app.url') . '/cancel',
-        ]);
-
-        // If present use the Stripe customer id, otherwise default to an email for reference.
-        if ($stripe_customer_id = $request->user()->stripe_customer_id) {
-            $data->put('customer', $stripe_customer_id);
-        } else {
-            $data->put('customer_email', $request->email);
-        }
-
-        $session = Session::create($data->toArray());
 
         return $session['id'];
     }
@@ -95,15 +66,13 @@ class ContestCheckoutController extends Controller
      */
     public function success(Request $request)
     {
+        // The Stripe checkout session.
         $session = Session::retrieve($request->session_id);
 
         $amount = reset($session->display_items)->amount / 100;
         $email = $session->customer_email;
 
         $contest = $request->session()->get('contest');
-
-        // Remove the contest from the session.
-        $request->session()->forget('contest');
 
         return view('checkout.success', compact('amount', 'contest', 'email'));
     }

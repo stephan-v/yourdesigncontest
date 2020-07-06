@@ -15,10 +15,13 @@ class ContestController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request The incoming HTTP request.
      * @return View The HTML server response.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $request->session()->forget('contest');
+
         $contests = Contest::has('payment')
             ->with('submissions')
             ->orderBy('expires_at')

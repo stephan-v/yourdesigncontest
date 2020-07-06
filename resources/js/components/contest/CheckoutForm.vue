@@ -15,7 +15,7 @@
                    id="amount"
                    :placeholder="placeholder"
                    v-model.number="amount">
-            <small class="alert alert-warning d-block">Select how much the winning designer will earn.</small>
+            <div class="alert alert-warning d-block">Select how much the winning designer will earn.</div>
         </div>
 
         <div class="card mb-3">
