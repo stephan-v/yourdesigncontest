@@ -35,4 +35,12 @@ class Payment extends Model
     {
         return $this->belongsTo(Contest::class);
     }
+
+    /**
+     * Get the user that owns the phone.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

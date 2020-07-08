@@ -6,8 +6,10 @@ use App\Comment;
 use App\File;
 use App\Observers\CommentObserver;
 use App\Observers\FileObserver;
+use App\Observers\PaymentObserver;
 use App\Observers\PayoutObserver;
 use App\Observers\SubmissionObserver;
+use App\Payment;
 use App\Payout;
 use App\Submission;
 use Illuminate\Support\Facades\App;
@@ -47,6 +49,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Comment::observe(CommentObserver::class);
         File::observe(FileObserver::class);
+        Payment::observe(PaymentObserver::class);
         Payout::observe(PayoutObserver::class);
         Submission::observe(SubmissionObserver::class);
     }

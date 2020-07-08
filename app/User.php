@@ -82,7 +82,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * The channels the user receives notification broadcasts on.
      *
-     * @return string
+     * @return string The private channel.
      */
     public function receivesBroadcastNotificationsOn()
     {

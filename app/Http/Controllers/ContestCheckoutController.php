@@ -73,6 +73,7 @@ class ContestCheckoutController extends Controller
         $email = $session->customer_email;
 
         $contest = $request->session()->get('contest');
+        $contest->load('payment');
 
         return view('checkout.success', compact('amount', 'contest', 'email'));
     }

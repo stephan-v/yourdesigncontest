@@ -34,16 +34,6 @@ class Invitation extends Notification
     }
 
     /**
-     * Get the notification's delivery channels.
-     *
-     * @return array
-     */
-    public function via()
-    {
-        return ['broadcast', 'database'];
-    }
-
-    /**
      * Get the array representation of the notification.
      *
      * @param User $user The user which is being notified.

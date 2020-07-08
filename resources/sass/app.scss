@@ -22,6 +22,10 @@ html {
     flex: 1;
 }
 
+[v-cloak] {
+    display: none;
+}
+
 footer {
     background: #343a40;
 }
