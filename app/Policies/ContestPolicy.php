@@ -11,19 +11,6 @@ class ContestPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can create a submission to the contest.
-     *
-     * @param User $user The user that is currently logged in.
-     * @param Contest $contest The contest the user wants to enter a submission for.
-     * @return boolean Whether the user is allowed to enter a submission for this contest or not.
-     */
-    public function submit(User $user, Contest $contest)
-    {
-        // Owner of the contest can not make submissions to their own contest.
-        return !$user->contests->contains($contest->id);
-    }
-
-    /**
      * Determine whether the user can create a contest.
      */
     public function create()

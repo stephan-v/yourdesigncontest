@@ -103,14 +103,12 @@
 
         <div class="row pt-3">
             @if ($contest->active)
-{{--                @can('submit', $contest)--}}
-                    <div class="col-md-3">
-                        <a href="{{ route('contests.submissions.create', $contest) }}" class="submission new-submission mb-3 d-flex align-items-center justify-content-center flex-column text-secondary text-center">
-                            <i class="far fa-images fa-2x mb-3"></i>
-                            <b>Submit a design</b>
-                        </a>
-                    </div>
-{{--                @endcan--}}
+                <div class="col-md-3">
+                    <a href="{{ route('contests.submissions.create', $contest) }}" class="submission new-submission mb-3 d-flex align-items-center justify-content-center flex-column text-secondary text-center">
+                        <i class="far fa-images fa-2x mb-3"></i>
+                        <b>Submit a design</b>
+                    </a>
+                </div>
             @endif
 
             @foreach ($submissions as $submission)

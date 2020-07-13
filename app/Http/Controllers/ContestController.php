@@ -82,26 +82,15 @@ class ContestController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Contest $contest
-     * @return Response
-     */
-    public function edit(Contest $contest)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param Contest $contest
-     * @return Response
+     * @param Request $request The incoming HTTP client request.
+     * @param Contest $contest The contest to update.
+     * @return Response The server response.
      */
     public function update(Request $request, Contest $contest)
     {
-        //
+        return response($contest);
     }
 
     /**
