@@ -50,6 +50,24 @@
                     @enderror
                 </div>
 
+                <ul class="pl-3">
+                    <li>This is my own work.</li>
+                    <li>I did not use clip or stock art.</li>
+                </ul>
+
+                <div class="form-group form-check">
+                    <input class="form-check-input @error('terms') is-invalid @enderror" type="checkbox" id="terms" name="terms" value="1" @if(old('terms')) checked @endif>
+                    <label class="form-check-label" for="terms">
+                        I agree to the terms.
+                    </label>
+
+                    @error('terms')
+                        <span class="invalid-feedback" role="alert">
+                            You must agree before submitting.
+                        </span>
+                    @enderror
+                </div>
+
                 <button type="submit" class="btn btn-primary">Upload submission</button>
             </div>
         </form>

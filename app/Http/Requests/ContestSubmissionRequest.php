@@ -33,9 +33,10 @@ class ContestSubmissionRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'crop' => ['required', 'array'],
+            'crop' => ['required', 'array'],
             'description' => ['nullable', 'string'],
             'image' => ['required', 'file', 'image', 'max:1000'],
+            'terms' => ['required', 'accepted'],
             'title' => ['required', 'string'],
         ];
     }
