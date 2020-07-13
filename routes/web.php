@@ -21,7 +21,6 @@ Route::any('/tus/{any?}', 'TusController@store')->where('any', '.*');
 Route::get('/', 'PageController@home')->name('home');
 Route::get('how-it-works', 'PageController@process')->name('process');
 
-// Routes used for websocket verification.
 Auth::routes(['verify' => true]);
 
 // Contest/Checkout routes.
