@@ -5,10 +5,14 @@
         <div class="intrinsic intrinsic--4x3">
             <input type="file" class="form-control-file" id="image" name="image" @change="getImage">
 
-            <label for="image" class="intrinsic-item" v-show="!url">
+            <label for="image" class="intrinsic-item text-center" v-show="!url">
                 <i class="fas fa-upload mb-2"></i>
+
                 Select an image
-                <span class="small text-muted">800x600 or 1600x1200</span>
+
+                <span class="small text-muted">
+                    800x600 or 1600x1200 <br> (Drag to crop the image if it does not fit)
+                </span>
             </label>
 
             <div class="intrinsic-item"
