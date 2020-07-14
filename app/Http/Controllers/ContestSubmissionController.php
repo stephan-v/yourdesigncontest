@@ -6,6 +6,7 @@ use App\Contest;
 use App\Http\Requests\ContestSubmissionRequest;
 use App\Submission;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -87,10 +88,11 @@ class ContestSubmissionController extends Controller
      * @param Contest $contest The contest which owns the submission.
      * @param Submission $submission The submission to display.
      * @return Response The server response.
+     * @throws AuthorizationException If the user is not authorized to perform the current action.
      */
     public function update(Request $request, Contest $contest, Submission $submission)
     {
-        $request->user()->can('update', $submission);
+        $this->authorize('update', $submission);
 
         $submission->update([
             'rating' => $request->rating
@@ -110,7 +112,7 @@ class ContestSubmissionController extends Controller
      */
     public function destroy(Request $request, Contest $contest, Submission $submission)
     {
-        $request->user()->can('delete', $submission);
+        $this->authorize('delete', $submission);
 
         if ($submission->winner) {
             throw new Exception('You can not delete a winning submission');
@@ -128,12 +130,13 @@ class ContestSubmissionController extends Controller
      * @param Contest $contest The contest which owns the submission.
      * @param int $submissionId The id of the submission to restore.
      * @return Response The server response.
+     * @throws AuthorizationException If the user is not authorized to perform the current action.
      */
     public function restore(Request $request, Contest $contest, int $submissionId)
     {
         $submission = Submission::onlyTrashed()->findOrFail($submissionId);
 
-        $request->user()->can('restore', $submission);
+        $this->authorize('restore', $submission);
 
         $submission->restore();
 

@@ -97,7 +97,7 @@
     <div class="container">
         <div class="row pt-5">
             <div class="col-md-12">
-                <h5>{{ $submissions->total() }} {{ Str::plural('Submission', $submissions->total()) }} </h5>
+                <h5>{{ $submissions->where('deleted_at', null)->count() }} {{ Str::plural('Submission', $submissions->where('deleted_at', null)->count()) }} </h5>
             </div>
         </div>
 
@@ -135,11 +135,16 @@
                             </submission>
                         @endif
 
-                        <stars :initial-rating="{{ $submission->rating ?? 0 }}" :editable="@json(empty($submission->deleted_at))" route="{{ route('contests.submissions.update', [$contest, $submission]) }}"></stars>
+                        <stars :initial-rating="{{ $submission->rating ?? 0 }}"
+                               :editable="@json(optional($user)->can('manage', $contest) && empty($submission->deleted_at))"
+                               route="{{ route('contests.submissions.update', [$contest, $submission]) }}">
+                        </stars>
 
-                        @if (Auth::check() && $submission->deleted_at)
-                            <restore route="{{ route('contests.submission.restore', [$contest, $submission]) }}"></restore>
-                        @endif
+                        @can('restore', $submission)
+                            @if ($submission->deleted_at)
+                                <restore route="{{ route('contests.submission.restore', [$contest, $submission]) }}"></restore>
+                            @endif
+                        @endcan
 
                         <div class="caption p-2 border-top">
                             <small class="text-muted">

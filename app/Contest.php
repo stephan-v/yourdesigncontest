@@ -44,7 +44,7 @@ class Contest extends Model
     }
 
     /**
-     * Get the user that owns the phone.
+     * Get the user that owns the contest.
      */
     public function user()
     {
