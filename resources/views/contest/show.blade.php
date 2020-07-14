@@ -97,7 +97,7 @@
     <div class="container">
         <div class="row pt-5">
             <div class="col-md-12">
-                <h5>{{ $submissions->where('deleted_at', null)->count() }} {{ Str::plural('Submission', $submissions->where('deleted_at', null)->count()) }} </h5>
+                <h5>{{ $submissions->where('deleted_at', null)->count() }} {{ Str::plural('Submission', $submissions->where('deleted_at', null)->count()) }}</h5>
             </div>
         </div>
 
