@@ -2,7 +2,7 @@
     <div class="comments">
         <div class="mb-3 font-weight-bold">Comments</div>
 
-        <form @submit.prevent="submit" class="mb-3" v-if="user">
+        <form @submit.prevent="submit" class="mb-3">
             <textarea rows="3"
                       class="form-control mb-3"
                       placeholder="Place a comment"
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
         data() {
             return {

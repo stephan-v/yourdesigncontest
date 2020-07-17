@@ -8,7 +8,6 @@ module.exports = {
     'airbnb-base',
   ],
   globals: {
-    axios: "readonly",
     Stripe: "readonly",
     Echo: "readonly",
   },

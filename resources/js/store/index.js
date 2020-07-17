@@ -33,7 +33,6 @@ files.keys().forEach((key) => {
 
 const store = new Vuex.Store({
     modules,
-
     strict: process.env.NODE_ENV !== 'production',
 });
 

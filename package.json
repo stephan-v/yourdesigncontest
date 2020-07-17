@@ -11,8 +11,13 @@
         "storybook": "start-storybook"
     },
     "devDependencies": {
+        "@babel/core": "^7.10.5",
         "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+        "@storybook/preset-scss": "^1.0.2",
+        "@storybook/vue": "^5.3.19",
         "babel-eslint": "^10.1.0",
+        "babel-loader": "^8.1.0",
+        "babel-preset-vue": "^2.0.2",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
         "eslint": "^6.8.0",
@@ -21,10 +26,11 @@
         "eslint-plugin-import": "^2.19.1",
         "eslint-plugin-vue": "^6.0.1",
         "laravel-mix": "^4.0.7",
+        "node-sass": "^4.14.1",
         "resolve-url-loader": "^2.3.1",
-        "sass-loader": "7.*",
-        "vue": "^2.5.17",
-        "vue-template-compiler": "^2.6.10"
+        "sass-loader": "^7.3.1",
+        "vue-loader": "^15.9.3",
+        "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
         "@uppy/core": "^1.7.1",
@@ -38,11 +44,10 @@
         "dayjs": "^1.8.20",
         "dinero.js": "^1.6.0",
         "laravel-echo": "^1.6.1",
-        "node-sass": "^4.13.1",
         "pusher-js": "^5.1.1",
         "sweetalert": "^2.1.2",
         "v-click-outside": "^3.0.1",
-        "vue": "^2.6.10",
+        "vue": "^2.6.11",
         "vuex": "^3.1.2"
     }
 }

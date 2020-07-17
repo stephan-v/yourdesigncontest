@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import axios from 'axios';
 import Echo from 'laravel-echo';
 import Vue from 'vue';
 import vClickOutside from 'v-click-outside';
@@ -30,15 +30,12 @@ components.keys().forEach((path) => {
  * Set the API token for Axios requests.
  */
 
-window.axios = Axios;
-
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 const token = document.head.querySelector('meta[name="api-token"]');
 
 if (token) {
-    // eslint-disable-next-line
-    window.axios.defaults.headers.common['Authorization'] = `Bearer ${token.content}`;
+    axios.defaults.headers.common.Authorization = `Bearer ${token.content}`;
 }
 
 /**

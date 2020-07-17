@@ -56,6 +56,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     import Dinero from 'dinero.js';
 
     export default {

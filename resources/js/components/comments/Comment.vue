@@ -22,6 +22,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     import dayjs from 'dayjs';
     import relativeTime from 'dayjs/plugin/relativeTime';
     import swal from 'sweetalert';
