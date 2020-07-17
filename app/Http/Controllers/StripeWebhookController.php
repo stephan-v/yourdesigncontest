@@ -50,30 +50,24 @@ class StripeWebhookController extends Controller
     public function handlePaymentIntentSucceeded(array $payload)
     {
         // @TODO Send out email receipt.
-
         $stripe = $payload['data']['object'];
 
-        $amount = $stripe['amount'];
-        $contestId = $stripe['metadata']['contest_id'];
-        $currency = $stripe['currency'];
-        $customer = $stripe['customer'];
-        $paymentId = $stripe['id'];
-
         // Fetch the contest.
-        $contest = Contest::findOrFail($contestId);
+        $contest = Contest::findOrFail($stripe['metadata']['contest_id']);
 
         // Update the stripe_customer_id so consecutive payments are linked to the same Stripe user.
-        $contest->user->update(['stripe_customer_id' => $customer]);
+        $contest->user->update(['stripe_customer_id' => $stripe['customer']]);
 
         // Fetch the Stripe incurred fees.
-        $transactionId = $stripe['charges']['data'][0]['balance_transaction'];
-        $transaction = BalanceTransaction::retrieve($transactionId);
+        $transaction = BalanceTransaction::retrieve(
+            $stripe['charges']['data'][0]['balance_transaction']
+        );
 
         $contest->payment()->create([
-            'amount' => $amount,
+            'amount' => $stripe['amount'],
             'fee' => $transaction->fee,
-            'currency' => $currency,
-            'payment_id' => $paymentId,
+            'currency' => $stripe['currency'],
+            'payment_id' => $stripe['id'],
             'user_id' => $contest->user->id,
         ]);
 
