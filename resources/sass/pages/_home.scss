@@ -1,21 +1,27 @@
 .logo {
+    color: inherit;
     font-size: 1.5rem;
     font-family: "Calistoga", cursive;
+    text-decoration: none;
+
+    &:hover {
+        color: #2a2a2a;
+        text-decoration: none;
+    }
 
     .period {
         color: orange;
     }
 }
 
-.branding {
-    background: url(/images/background.png) #2daacd;
-    color: #FFF;
-    padding: 1.5rem 0;
-    height: 5rem;
-}
-
-.home-banner {
-    background-image: url('/images/main_slider_svoy.jpg');
+.image-test {
+    background: url('https://images.unsplash.com/photo-1449247613801-ab06418e2861?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2702&q=80') 65% center;
+    height: 700px;
+    width: 50%;
+    margin-left: 50%;
+    position: absolute;
+    z-index: -1;
+    transform: scaleX(-1);
 
     .btn {
         background: #2aa1c2;
@@ -23,10 +29,102 @@
 }
 
 .main-banner {
+    margin-bottom: 6rem;
     background-size: cover;
-    height: 450px;
+    height: 700px;
 
     h1 {
-        line-height: 1.5;
+        line-height: 1.3;
+    }
+
+    p {
+        line-height: 2;
+    }
+}
+
+.categories {
+    .dot-pattern {
+        height: 72px;
+        width: 72px;
+        left: -30px;
+        top: -20px;
+    }
+
+    h2 {
+        line-height: 1.3;
+    }
+
+    .graphic-design {
+        color: #4cb5ff;
+    }
+
+    .website-design {
+        color: #ffc356;
+    }
+
+    .app-design {
+        color: #ff9445;
+    }
+
+    .product-design {
+        color: #7445ff;
+    }
+
+    .fa-stack {
+        font-size: 1.1rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+}
+
+.collage {
+    .border-circle {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 15px solid #ffe5b6;
+        top: 0;
+        left: 20%;
+    }
+
+    .circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: #cae9ff;
+        top: 50%;
+        left: 15px;
+    }
+
+    img {
+        position: absolute;
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+    }
+
+    .img-1 {
+        top: 15%;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 60%;
+    }
+
+    .img-2 {
+        left: 15px;
+        max-width: 25%;
+    }
+
+    .img-3 {
+        top: calc(70% - 150px);
+        right: 50px;
+        max-width: 20%;
+    }
+
+    .img-4 {
+        top: 60%;
+        left: 10%;
+        max-width: 25%;
     }
 }

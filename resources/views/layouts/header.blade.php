@@ -45,7 +45,7 @@
     </head>
     <body>
         <div id="app" class="d-flex flex-column">
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <nav class="navbar navbar-expand-md @yield('nav-classes')">
                 <div class="container">
                     <button class="navbar-toggler ml-auto"
                             type="button"
@@ -57,8 +57,10 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                        <ul class="navbar-nav mr-auto">
+                    <div class="collapse navbar-collapse d-flex justify-content-between align-items-center">
+                        <a href="{{ route('home') }}" class="logo mb-0">YourDesignContest<span class="period">.</span></a>
+
+                        <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home') }}">
                                     Home <span class="sr-only">(current)</span>
@@ -116,11 +118,3 @@
                     </div>
                 </div>
             </nav>
-
-            <div class="branding">
-                <div class="container">
-                    <h1 class="mb-3 mb-sm-5 logo">
-                        YourDesignContest<span class="period">.</span>
-                    </h1>
-                </div>
-            </div>

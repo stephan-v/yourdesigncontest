@@ -45,12 +45,35 @@ footer {
     cursor: pointer;
 }
 
+// @TODO move to header scss file.
+.navbar-expand-md {
+    .navbar-nav {
+        .nav-link {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+}
+
+.navbar {
+    background: rgba(245, 245, 245, 0.7);
+}
+
+.navbar-nav {
+    .nav-link {
+        color: #424850;
+        font-weight: bold;
+        text-shadow: 1px 0 10px rgba(0, 0, 0, 0.15);
+    }
+}
+
 // Base.
 @import 'base/typography';
 
 // Components.
 @import 'components/buttons';
 @import 'components/intrinsic';
+@import 'components/patterns';
 @import 'components/submission';
 
 // Pages.

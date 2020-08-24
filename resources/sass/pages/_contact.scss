@@ -1,5 +1,13 @@
 .contact-page {
+    .dot-pattern {
+        height: 72px;
+        width: 72px;
+        left: -35px;
+        top: -25px;
+    }
+
     h1 {
-        font-size: 1.5rem;
+        font-size: 2rem;
+        font-weight: bold;
     }
 }

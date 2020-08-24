@@ -1,0 +1,15 @@
+.dot-pattern {
+    z-index: -1;
+    position: absolute;
+
+    // Colors
+    $bg-color: whitesmoke;
+    $dot-color: #cacaca;
+
+    // Dimensions
+    $dot-size: 3px;
+    $dot-space: 12px;
+
+    background: linear-gradient(90deg, $bg-color ($dot-space - $dot-size), transparent 1%) center, linear-gradient($bg-color ($dot-space - $dot-size), transparent 1%) center, $dot-color;
+    background-size: $dot-space $dot-space;
+}
