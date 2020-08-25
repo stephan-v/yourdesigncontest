@@ -51,7 +51,7 @@
             </ul>
         </div>
 
-        <button type="submit" class="btn btn-primary" @click="submit">Continue to checkout</button>
+        <button type="submit" class="btn btn-primary w-100" @click="submit">Continue to checkout</button>
     </form>
 </template>
 
