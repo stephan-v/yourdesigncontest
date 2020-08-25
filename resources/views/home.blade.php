@@ -14,7 +14,14 @@
 
                 <p class="p-0 col-8">Get quality design ideas and say goodbye to time consuming offline meetings.</p>
 
-                <a href="{{ route('process') }}" class="btn btn-primary font-weight-bold">Get started <i class="fas fa-arrow-right fa-fw"></i></a>
+                <a href="{{ route('process') }}" class="btn btn-primary font-weight-bold mb-5">Get started <i class="fas fa-arrow-right fa-fw"></i></a>
+
+                <div class="companies">
+                    <p class="font-weight-bold position-relative">Trusted by</p>
+                    <img src="{{ asset('images/svg/vivid_health.svg') }}" alt="Vivid Health" class="vivid-health">
+                    <img src="{{ asset('images/svg/truvisory.svg') }}" alt="Truvisory" class="truvisory">
+                    <img src="{{ asset('images/svg/wripple.svg') }}" alt="Wripple" class="wripple">
+                </div>
             </div>
         </div>
     </div>

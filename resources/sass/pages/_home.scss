@@ -42,6 +42,39 @@
     }
 }
 
+.companies {
+    .vivid-health {
+        max-width: 75px;
+    }
+
+    .truvisory {
+        max-width: 130px;
+    }
+
+    .wripple {
+        max-width: 50px;
+    }
+
+    img  {
+        margin-right: 2rem;
+    }
+
+    p {
+        color: #4cb5ff;
+
+        &:after {
+            content: "";
+            width: 100px;
+            height: 1px;
+            background: #4cb5ff;
+            position: absolute;
+            top: 50%;
+            left: 85px;
+            transform: translateY(50%);
+        }
+    }
+}
+
 .categories {
     .dot-pattern {
         height: 72px;
