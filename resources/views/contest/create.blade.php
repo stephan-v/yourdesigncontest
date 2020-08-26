@@ -1,14 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container contact-page d-flex justify-content-center flex-grow-1 flex-column">
+    <div class="container d-flex justify-content-center flex-grow-1 flex-column">
         <div class="row pt-5">
             <div class="col-md-5 order-md-1 order-first mb-5">
                 <img src="{{ asset('images/contest.png') }}" alt="" class="img-fluid d-flex m-auto">
             </div>
 
             <div class="col-md-7 order-md-0 order-last">
-                <div class="position-relative">
+                <div class="page-header position-relative">
                     <div class="dot-pattern"></div>
                     <h1>Start a contest</h1>
                 </div>

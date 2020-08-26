@@ -5,10 +5,10 @@
 @endpush
 
 @section('content')
-    <div class="container contact-page d-flex justify-content-center flex-grow-1 flex-column">
+    <div class="container d-flex justify-content-center flex-grow-1 flex-column">
         <div class="row pt-5">
             <div class="col-md-7 mb-5">
-                <div class="position-relative">
+                <div class="position-relative page-header">
                     <div class="dot-pattern"></div>
                     <h1>Checkout</h1>
                 </div>

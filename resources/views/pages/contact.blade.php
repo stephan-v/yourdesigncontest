@@ -4,7 +4,7 @@
     <div class="container contact-page d-flex justify-content-center flex-grow-1 flex-column">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <div class="position-relative">
+                <div class="page-header position-relative">
                     <div class="dot-pattern"></div>
                     <h1 class="mb-3">Contact us</h1>
                 </div>
@@ -24,7 +24,7 @@
 
                     <div class="form-group">
                         <label for="inputAddress">Name</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="inputAddress" name="name" value="{{ old('name') }}">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="inputAddress" name="name" value="{{ old('name') }}" autocomplete="name">
 
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -35,7 +35,7 @@
 
                     <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="emailHelp" name="email" value="{{ old('email') }}">
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="emailHelp" name="email" value="{{ old('email') }}" autocomplete="email">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 
                         @error('email')

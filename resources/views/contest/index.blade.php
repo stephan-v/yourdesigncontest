@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row mt-5">
+        <div class="row mt-5 mb-3">
             <div class="col-md-6 mb-5">
                 <div class="company">
                     <a href="{{ route('register') }}" class="d-block">
@@ -31,35 +31,28 @@
         <div class="row">
             <div class="col-md-12">
                 <section class="contests">
-                    <h1>Contests</h1>
+                    <div class="page-header position-relative">
+                        <div class="dot-pattern"></div>
+                        <h1 class="mb-4">Contests</h1>
+                    </div>
 
-                    <table class="contest-table table table-bordered">
-                        <thead>
-                            <tr>
-                                <td>Contest name</td>
-                                <td>Category</td>
-                                <td>Submissions</td>
-                                <td>Prize</td>
-                                <td>Ends in</td>
-                            </tr>
-                        </thead>
+                    <div class="d-flex font-weight-bold mb-2 contest-attributes">
+                        <span class="col">Name</span>
+                        <span class="col-2">Category</span>
+                        <span class="col-2">Submissions</span>
+                        <span class="col-2">Prize</span>
+                        <span class="col-2">Ends in</span>
+                    </div>
 
-                        <tbody>
-                            @foreach ($contests as $contest)
-                                <tr>
-                                    <td>
-                                        <a href="{{ route('contests.show', $contest) }}">
-                                            {{ $contest->name }}
-                                        </a>
-                                    </td>
-                                    <td>{{ $contest->category }}</td>
-                                    <td>{{ $contest->submissions->count() }}</td>
-                                    <td>{{ $contest->payment->format }}</td>
-                                    <td>{{ $contest->active ? $contest->ends_in : 'finished' }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    @foreach ($contests as $contest)
+                        <a href="{{ route('contests.show', $contest) }}" class="w-100 bg-white pt-4 pb-4 mb-2 rounded d-flex unlink">
+                            <span class="col">{{ $contest->name }}</span>
+                            <span class="col-2">{{ $contest->category }}</span>
+                            <span class="col-2">{{ $contest->submissions->count() }}</span>
+                            <span class="col-2">{{ $contest->payment->format }}</span>
+                            <span class="col-2">{{ $contest->active ? $contest->ends_in : 'finished' }}</span>
+                        </a>
+                    @endforeach
                 </section>
             </div>
         </div>

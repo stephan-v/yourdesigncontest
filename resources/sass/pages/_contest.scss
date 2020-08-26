@@ -21,22 +21,17 @@
     }
 }
 
-.contest-table {
-    text-align: right;
-
-    thead {
-        color: white;
-        font-size: 0.8rem;
-        font-weight: bold;
-
-        td {
-            background: #F95A60;
-        }
+.contests {
+    .contest-attributes {
+        color: gray;
     }
 
-    tbody {
-        tr {
-            background: white;
+    a {
+        color: grey;
+        box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.03);
+
+        span:first-child {
+            color: #424851;
         }
     }
 }
