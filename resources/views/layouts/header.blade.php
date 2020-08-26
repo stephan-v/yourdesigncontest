@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="Description" content="Get quality design ideas and say goodbye to time consuming offline meetings.">
 
         @if (auth()->check())
         <meta name="api-token" content="{{ $user->api_token }}">
@@ -27,10 +28,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
         <link href="https://fonts.googleapis.com/css?family=Calistoga|Lato:400,700&display=swap" rel="stylesheet">
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
         @if ($production)
             <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-67055393-6"></script>
@@ -47,74 +44,6 @@
         <div id="app" class="d-flex flex-column">
             <nav class="navbar navbar-expand-md @yield('nav-classes')">
                 <div class="container">
-                    <button class="navbar-toggler ml-auto"
-                            type="button"
-                            data-toggle="collapse"
-                            data-target="#navbarTogglerDemo01"
-                            aria-controls="navbarText"
-                            aria-expanded="false"
-                            aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse d-flex justify-content-between align-items-center">
-                        <a href="{{ route('home') }}" class="logo mb-0">YourDesignContest<span class="period">.</span></a>
-
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">
-                                    Home <span class="sr-only">(current)</span>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('contests.index') }}">Contests</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('blog.index') }}">Blog</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('contact.form') }}">Contact</a>
-                            </li>
-                        </ul>
-
-                        <ul class="navbar-nav">
-                            @auth
-                                <li class="nav-item">
-                                    <span class="nav-link">
-                                        <notifications :initial-notifications='@json($user->unreadNotifications)'></notifications>
-                                    </span>
-                                </li>
-
-                                <li class="nav-item">
-                                    <dropdown>
-                                        <template v-slot:header>{{ $user->name }}</template>
-
-                                        <template v-slot:menu>
-                                            <a class="nav-link pl-5 pr-5" href="{{ route('users.show', $user) }}">Profile</a>
-                                            <a class="nav-link pl-5 pr-5" href="{{ route('users.edit', $user) }}">Settings</a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
-
-                                            <a class="nav-link pl-5 pr-5"
-                                               href="{{ route('logout') }}"
-                                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-                                        </template>
-                                    </dropdown>
-                                </li>
-                            @else
-                                <li class="nav-item">
-                                    <a class="nav-link d-inline-block" href="{{ route('register') }}">Register</a>
-                                    <a class="nav-link d-inline-block" href="{{ route('login') }}">Login</a>
-                                </li>
-                            @endauth
-                        </ul>
-                    </div>
+                    @include('layouts.navigation')
                 </div>
             </nav>

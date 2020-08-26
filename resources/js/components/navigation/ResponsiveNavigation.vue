@@ -3,7 +3,7 @@
         <transition enter-active-class="animated slideInRight" leave-active-class="animated slideOutRight">
             <nav class="main-navigation" v-if="visible">
                 <slot></slot>
-            </nav><!-- /.main-navigation -->
+            </nav>
         </transition>
 
         <div class="hamburger d-flex align-items-center">
@@ -22,8 +22,8 @@
                       d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200">
                 </path>
             </svg>
-        </div><!--/.hamburger -->
-    </div><!-- /.responsive-navigation -->
+        </div>
+    </div>
 </template>
 
 <script>
@@ -45,7 +45,9 @@
 
             toggleBodyScroll(visible) {
                 // eslint-disable-next-line
-                visible ? html.add('no-scroll') : html.remove('no-scroll');
+                visible
+                    ? document.querySelector('html').classList.add('no-scroll')
+                    : document.querySelector('html').classList.remove('no-scroll');
             },
         },
 

@@ -33,10 +33,10 @@
                     <div class="border-circle position-absolute"></div>
                     <div class="circle position-absolute"></div>
 
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" class="img-fluid img-1">
-                    <img src="https://images.unsplash.com/photo-1558401549-29b4893f4d9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1942&q=80" alt="" class="img-fluid img-2">
-                    <img src="https://images.unsplash.com/photo-1488751045188-3c55bbf9a3fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="" class="img-fluid img-3">
-                    <img src="https://images.unsplash.com/photo-1531537571171-a707bf2683da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80" alt="" class="img-fluid img-4">
+                    <img src="{{ asset('images/collage-1.jpg') }}" alt="" class="img-fluid img-1">
+                    <img src="{{ asset('images/collage-2.jpg') }}" alt="" class="img-fluid img-2">
+                    <img src="{{ asset('images/collage-3.jpg') }}" alt="" class="img-fluid img-3">
+                    <img src="{{ asset('images/collage-4.jpg') }}" alt="" class="img-fluid img-4">
                 </div>
             </div>
 
