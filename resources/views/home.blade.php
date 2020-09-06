@@ -41,13 +41,13 @@
             </div>
 
             <div class="col-lg-6 categories">
-                <div class="mb-5 position-relative">
+                <div class="mb-3 mb-md-5 position-relative">
                     <div class="dot-pattern"></div>
                     <h2 class="font-weight-bold">Explore your <br> category</h2>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6 mb-5">
+                    <div class="col-md-6 mb-1 mb-md-5">
                         <span class="fa-stack fa-2x mb-2 graphic-design">
                             <i class="fas fa-square fa-stack-2x"></i>
                             <i class="fas fa-pencil-ruler fa-stack-1x fa-inverse"></i>
@@ -57,7 +57,7 @@
                         <p>Logo design, style guides, illustrations and much more. Explore our vast pool of creative talent.</p>
                     </div>
 
-                    <div class="col-md-6 mb-5">
+                    <div class="col-md-6 mb-1 mb-md-5">
                         <span class="fa-stack fa-2x mb-2 website-design">
                             <i class="fas fa-square fa-stack-2x"></i>
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
@@ -67,7 +67,7 @@
                         <p>Streamline your designs from mobile UI apps to landing pages all the way to full blown platforms.</p>
                     </div>
 
-                    <div class="col-md-6 mb-5">
+                    <div class="col-md-6 mb-1 mb-md-5">
                         <span class="fa-stack fa-2x mb-2 app-design">
                             <i class="fas fa-square fa-stack-2x"></i>
                             <i class="fas fa-mobile-alt fa-stack-1x fa-inverse"></i>
@@ -77,7 +77,7 @@
                         <p>Outsource your app UI design project and get it done quickly and delivered remotely online.</p>
                     </div>
 
-                    <div class="col-md-6 mb-5">
+                    <div class="col-md-6 mb-1 mb-md-5">
                         <span class="fa-stack fa-2x mb-2 product-design">
                             <i class="fas fa-square fa-stack-2x"></i>
                             <i class="fas fa-box-open fa-stack-1x fa-inverse"></i>

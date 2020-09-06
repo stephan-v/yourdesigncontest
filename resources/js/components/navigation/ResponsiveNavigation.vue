@@ -7,8 +7,6 @@
         </transition>
 
         <div class="hamburger d-flex align-items-center">
-            <h3 v-if="!visible" @click="toggle">menu</h3>
-
             <div class="clickable-area" @click="toggle"></div>
 
             <svg width="100px" height="100px" viewBox="0 0 1000 1000">
@@ -76,6 +74,43 @@
 </script>
 
 <style lang="scss" scoped>
+    $color: #424851;
+
+    .main-navigation {
+        z-index: 3;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 1.1rem;
+        background: whitesmoke;
+
+        .logo svg {
+            max-width: 100px;
+        }
+
+        .container {
+            padding: 1rem 15px;
+            flex-direction: column;
+            align-items: center;
+            top: 50%;
+            position: relative;
+            transform: translateY(-50%);
+
+            a {
+                color: white;
+                font-family: 'Signika', sans-serif;
+                font-size: 1.6rem;
+                margin: 0 0 0.5rem 0;
+            }
+
+            button {
+                background: #879e4d;
+            }
+        }
+    }
+
     .animated {
         animation-duration: .4s;
     }
@@ -89,7 +124,7 @@
             z-index: 5;
 
             path {
-                stroke: white !important;
+                stroke: $color !important;
             }
 
             #pathA { stroke-dasharray: 2901.57, 5258.15, 240; }
@@ -112,14 +147,14 @@
 
     .hamburger {
         position: absolute;
-        top: 20px;
+        top: 10px;
         right: 0;
         transform: translateY(calc(-50% + 1rem));
         z-index: 3;
         overflow: hidden;
 
         h3 {
-            color: white;
+            color: $color;
             font-size: 1.5rem;
             margin: 0 -1.5rem 0 0;
             cursor: pointer;
@@ -136,7 +171,7 @@
         }
 
         path {
-            stroke: #fff;
+            stroke: $color;
             stroke-width: 40px;
             stroke-linecap: round;
             stroke-linejoin: round;

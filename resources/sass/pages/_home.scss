@@ -29,9 +29,13 @@
 }
 
 .main-banner {
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
     background-size: cover;
     height: 700px;
+
+    @media (min-width: 768px) {
+        margin-bottom: 6rem;
+    }
 
     h1 {
         line-height: 1.3;
@@ -104,6 +108,7 @@
     }
 
     .fa-stack {
+        width: 1.9em;
         font-size: 1.1rem;
     }
 

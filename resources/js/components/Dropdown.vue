@@ -1,6 +1,6 @@
 <template>
     <div class="user-profile-dropdown position-relative">
-        <span class="nav-link cursor-pointer" @click="toggle">
+        <span @click="toggle">
             <slot name="header"/>
         </span>
 

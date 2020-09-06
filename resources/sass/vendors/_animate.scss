@@ -1,9 +1,12 @@
 // Base.
 @import '~animate.css/source/base';
 
-// Animations.
+// Fades.
 @import '~animate.css/source/fading_entrances/fadeIn';
 @import '~animate.css/source/fading_entrances/fadeInDown';
-
 @import '~animate.css/source/fading_exits/fadeOut';
 @import '~animate.css/source/fading_exits/fadeOutUp';
+
+// Slides.
+@import '~animate.css/source/sliding_entrances/slideInRight.css';
+@import '~animate.css/source/sliding_exits/slideOutRight.css';
