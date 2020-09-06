@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="Description" content="Get quality design ideas and say goodbye to time consuming offline meetings.">
+        <meta name="Description" content="Get quality design ideas from an ocean of designers for your next graphic design project.">
 
         @if (auth()->check())
         <meta name="api-token" content="{{ $user->api_token }}">
