@@ -1,11 +1,17 @@
             <sweet-alert :flash-modal='@json(session("flash-modal"))'></sweet-alert>
         </div><!-- /#app -->
 
-        <footer class="footer mt-5">
+        <footer class="footer mt-5 text-center text-md-left">
             <div class="container">
-                <div class="row pt-5 pb-5">
-                    <div class="col-md-3">
-                        <div class="text-white font-weight-bold mb-3">Company</div>
+                <div class="row pt-5 pb-4">
+                    <div class="col">
+                        <a href="{{ route('home') }}" class="logo">YourDesignContest<span class="period">.</span></a>
+                    </div>
+                </div>
+
+                <div class="row pb-3">
+                    <div class="col-md-3 pb-3">
+                        <div class="text-white font-weight-bold mb-2">Company</div>
 
                         <ul class="list-unstyled">
                             <li class="mb-2">
@@ -18,8 +24,8 @@
                         </ul>
                     </div>
 
-                    <div class="col-md-3">
-                        <div class="text-white font-weight-bold mb-3">Designers</div>
+                    <div class="col-md-3 pb-3">
+                        <div class="text-white font-weight-bold mb-2">Designers</div>
 
                         <ul class="list-unstyled">
                             <li class="mb-2">
@@ -28,8 +34,8 @@
                         </ul>
                     </div>
 
-                    <div class="col-md-3">
-                        <div class="text-white font-weight-bold mb-3">Contest holders</div>
+                    <div class="col-md-3 pb-3">
+                        <div class="text-white font-weight-bold mb-2">Contest holders</div>
 
                         <ul class="list-unstyled">
                             <li class="mb-2">
@@ -38,8 +44,8 @@
                         </ul>
                     </div>
 
-                    <div class="col-md-3">
-                        <div class="text-white font-weight-bold mb-3">Info</div>
+                    <div class="col-md-3 pb-3">
+                        <div class="text-white font-weight-bold mb-2">Info</div>
 
                         <ul class="list-unstyled">
                             <li class="mb-2">

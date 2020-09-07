@@ -44,6 +44,14 @@ html {
 
 footer {
     background: #343a40;
+
+    .logo  {
+        color: #FFF;
+
+        &:hover {
+            color: #FFF;
+        }
+    }
 }
 
 // Successful payment page.

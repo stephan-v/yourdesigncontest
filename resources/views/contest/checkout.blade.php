@@ -20,7 +20,7 @@
 
             <div class="col-md-5">
                 <ul class="list-unstyled">
-                    <li class="d-flex align-items-center mb-3 bg-white pt-2 pr-3 pb-2 pl-3">
+                    <li class="d-flex align-items-center mb-3 bg-white py-2 pr-3 pl-3">
                         <i class="fas fa-shield-alt fa-lg mr-4"></i>
 
                         <div>
@@ -29,7 +29,7 @@
                         </div>
                     </li>
 
-                    <li class="d-flex align-items-center mb-3 bg-white pt-2 pr-3 pb-2 pl-3">
+                    <li class="d-flex align-items-center mb-3 bg-white py-2 pr-3 pl-3">
                         <i class="fas fa-hand-holding-usd fa-lg mr-4"></i>
 
                         <div>

@@ -55,11 +55,11 @@
         </div>
     @endif
 
-    <div class="contest-header bg-white pt-5 pb-5">
+    <div class="contest-header bg-white py-5">
         <div class="container">
             <div class="row winning-submission">
                 <div class="col-md-4">
-                    <div class="winner-placeholder intrinsic intrinsic--4x3">
+                    <div class="winner-placeholder intrinsic intrinsic--4x3 mb-4">
                         @if ($contest->winner)
                             <img src="{{ $contest->submissions->firstWhere('winner', true)->path }}" class="intrinsic-item" alt="The design of the contest winner">
                         @else

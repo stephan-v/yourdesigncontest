@@ -161,6 +161,10 @@
     .notifications-footer {
         border-radius: 0 0 10px 10px;
         box-shadow: 0 2px 10px -2px #cedae0;
+
+        a {
+            color: grey;
+        }
     }
 
     .triangle {
@@ -186,7 +190,7 @@
         $count: 18px;
 
         font-size: 0.6rem;
-        background: #2ba1c3;
+        background: #4cb5ff;
         color: #fefefe;
         width: $count;
         height: $count;

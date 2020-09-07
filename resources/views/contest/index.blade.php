@@ -7,7 +7,7 @@
                 <div class="company">
                     <a href="{{ route('register') }}" class="d-block">
                         <p class="absolute-center text-center text-white">
-                            I'm a designer who wants to join in design contests for prizes.
+                            I'm a designer wanting to compete for prizes.
                         </p>
 
                         <img src="{{ asset('images/company.jpg') }}" alt="" class="img-fluid w-100">

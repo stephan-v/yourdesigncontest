@@ -44,7 +44,7 @@
     <div class="container pros-list">
         <div class="row">
             <div class="col-md-6">
-                <div class="shadow-card bg-white pt-3 pr-3 pb-1 pl-3 text-center">
+                <div class="shadow-card bg-white pt-3 px-3 pb-1 text-center">
                     <h3 class="ml-3">Contest host</h3>
 
                     <ul class="list-group list-group-flush mb-3 text-left">
@@ -78,7 +78,7 @@
             </div>
 
             <div class="col-md-6">
-                <div class="shadow-card bg-white pt-3 pr-3 pb-1 pl-3 text-center">
+                <div class="shadow-card bg-white pt-3 px-3 pb-1 text-center">
                     <h3 class="ml-3">Designer</h3>
 
                     <ul class="list-group list-group-flush mb-3 text-left">
