@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Submission;
+use App\Models\Submission;
 
 class SubmissionObserver
 {

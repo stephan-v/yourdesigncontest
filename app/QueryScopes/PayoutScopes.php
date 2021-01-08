@@ -2,7 +2,7 @@
 
 namespace App\QueryScopes;
 
-use App\Payout;
+use App\Models\Payout;
 use Illuminate\Database\Eloquent\Builder;
 
 trait PayoutScopes

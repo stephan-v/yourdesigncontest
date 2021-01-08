@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Contest;
+use App\Models\Contest;
 use App\Http\Requests\ContestSubmissionRequest;
-use App\Submission;
+use App\Models\Submission;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;

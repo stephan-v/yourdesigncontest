@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contest;
+use App\Models\Contest;
 use App\File;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;

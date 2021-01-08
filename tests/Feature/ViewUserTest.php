@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -13,7 +13,7 @@ class ViewUserTest extends TestCase
     public function test_owner_can_view_user_settings()
     {
         // Arrange.
-        $owner = factory(User::class)->create();
+        $owner = User::factory()->create();
 
         // Act.
         $this->actingAs($owner);
@@ -26,8 +26,8 @@ class ViewUserTest extends TestCase
     public function test_outsider_cannot_view_user_settings()
     {
         // Arrange.
-        $owner = factory(User::class)->create();
-        $user = factory(User::class)->create();
+        $owner = User::factory()->create();
+        $user = User::factory()->create();
 
         // Act.
         $this->actingAs($user);

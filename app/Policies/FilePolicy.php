@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\File;
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class FilePolicy

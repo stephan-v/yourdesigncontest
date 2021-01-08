@@ -2,21 +2,20 @@
 
 namespace App\Providers;
 
-use App\Comment;
-use App\File;
+use App\Models\Comment;
+use App\Models\File;
 use App\Observers\CommentObserver;
 use App\Observers\FileObserver;
 use App\Observers\PaymentObserver;
 use App\Observers\PayoutObserver;
 use App\Observers\SubmissionObserver;
-use App\Payment;
-use App\Payout;
-use App\Submission;
+use App\Models\Payment;
+use App\Models\Payout;
+use App\Models\Submission;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
-use Laravel\Telescope\TelescopeServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,7 +38,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->setObservers();
         $this->setViewComposer();
-        $this->registerTelescope();
     }
 
     /**
@@ -63,17 +61,6 @@ class AppServiceProvider extends ServiceProvider
             $view->with('user', Auth::user());
             $view->with('production', App::environment('production'));
         });
-    }
-
-    /**
-     * Register the Laravel Telescope debugger locally.
-     */
-    private function registerTelescope()
-    {
-        if ($this->app->isLocal()) {
-            $this->app->register(TelescopeServiceProvider::class);
-            $this->app->register(TelescopeServiceProvider::class);
-        }
     }
 }
 

@@ -3,7 +3,7 @@
 namespace App\Notifications;
 
 use App\Comment as CommentModel;
-use App\User;
+use App\Models\User;
 
 class Comment extends Notification
 {

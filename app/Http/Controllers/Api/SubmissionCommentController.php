@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
 use App\Notifications\Comment as CommentNotification;
-use App\Submission;
+use App\Models\Submission;
 use Illuminate\Http\Response;
 
 class SubmissionCommentController extends Controller

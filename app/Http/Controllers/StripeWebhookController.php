@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contest;
+use App\Models\Contest;
 use App\Http\Middleware\VerifyWebhookSignature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;

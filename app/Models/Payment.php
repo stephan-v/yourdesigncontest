@@ -1,14 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Casts\Money;
 use App\Presenters\PaymentPresenter;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-    use PaymentPresenter;
+    use HasFactory, PaymentPresenter;
 
     /**
      * The attributes that should be cast.

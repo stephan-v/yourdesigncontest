@@ -2,13 +2,13 @@
 
 namespace Tests\Unit;
 
-use App\Contest;
+use App\Models\Contest;
 use App\Events\ContestWon;
 use App\Notifications\ContestFinished;
 use App\Notifications\ContestWon as ContestWonNotification;
-use App\Payment;
-use App\Submission;
-use App\User;
+use App\Models\Payment;
+use App\Models\Submission;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
@@ -34,23 +34,23 @@ class ContestWonTest extends TestCase
         Notification::fake();
 
         // Arrange.
-        $owner = factory(User::class)->create();
-        $designer = factory(User::class)->create();
-        $contestants = factory(User::class, 2)->create();
+        $owner = User::factory()->create();
+        $designer = User::factory()->create();
+        $contestants = User::factory()->count(2)->create();
 
-        $contest = $owner->contests()->save(factory(Contest::class)->make());
+        $contest = $owner->contests()->save(Contest::factory()->make());
 
         $contest->payment()->save(
-            factory(Payment::class)->make(['amount' => 115000])
+            Payment::factory()->make(['amount' => 115000])
         );
 
         $submission = $contest->submissions()->save(
-            factory(Submission::class)->make(['user_id' => $designer->id])
+            Submission::factory()->make(['user_id' => $designer->id])
         );
 
         foreach ($contestants as $contestant) {
             $contest->submissions()->save(
-                factory(Submission::class)->make(['user_id' => $contestant->id])
+                Submission::factory()->make(['user_id' => $contestant->id])
             );
         }
 

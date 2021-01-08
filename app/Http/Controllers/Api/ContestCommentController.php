@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Contest;
+use App\Models\Contest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
 use App\Notifications\Comment as CommentNotification;

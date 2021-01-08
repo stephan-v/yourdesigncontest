@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Currency;
 use App\Http\Requests\UserRequest;
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;

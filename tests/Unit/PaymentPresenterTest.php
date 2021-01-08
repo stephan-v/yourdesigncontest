@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use App\Contest;
-use App\Payment;
-use App\User;
+use App\Models\Contest;
+use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Money\Currency;
 use Tests\TestCase;
@@ -31,13 +31,13 @@ class PaymentPresenterTest extends TestCase
             return new Currency('USD');
         });
 
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
-        $contest = factory(Contest::class)->make();
+        $contest = Contest::factory()->make();
         $contest = $user->contests()->save($contest);
 
         $contest->payment()->save(
-            factory(Payment::class)->make([
+            Payment::factory()->make([
                 'amount' => 115000,
                 'currency' => 'USD',
             ])

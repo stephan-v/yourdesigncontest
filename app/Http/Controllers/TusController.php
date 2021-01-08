@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contest;
+use App\Models\Contest;
 use App\Notifications\SourceFilesAdded;
 use Symfony\Component\HttpFoundation\Response;
 use TusPhp\Events\TusEvent;

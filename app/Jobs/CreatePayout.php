@@ -3,9 +3,9 @@
 namespace App\Jobs;
 
 use App\Domain\Payout\TransferWise;
-use App\Payment;
-use App\Payout;
-use App\User;
+use App\Models\Payment;
+use App\Models\Payout;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

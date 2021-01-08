@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Contest;
+use App\Models\Contest;
 use App\Notifications\Invitation;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

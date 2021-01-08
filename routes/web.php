@@ -1,5 +1,23 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContestCheckoutController;
+use App\Http\Controllers\ContestCommentController;
+use App\Http\Controllers\ContestController;
+use App\Http\Controllers\ContestFileController;
+use App\Http\Controllers\ContestPayoutController;
+use App\Http\Controllers\ContestSubmissionController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\StripeWebhookController;
+use App\Http\Controllers\TusController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserInvitationController;
+use App\Http\Controllers\UserPasswordController;
+use App\Http\Controllers\UserPayoutController;
+use App\Http\Controllers\WinnerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,68 +33,68 @@ use Illuminate\Support\Facades\Auth;
 */
 
 // Route used for Tus protocol file upload, mainly used for Uppy.
-Route::any('/tus/{any?}', 'TusController@store')->where('any', '.*');
+Route::any('/tus/{any?}', [TusController::class, 'store'])->where('any', '.*');
 
 // Stand-alone pages.
-Route::get('/', 'PageController@home')->name('home');
-Route::get('how-it-works', 'PageController@process')->name('process');
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('how-it-works', [PageController::class, 'process'])->name('process');
 
 Auth::routes(['verify' => true]);
 
 // Contest/Checkout routes.
-Route::get('contests/create', 'ContestController@create')->middleware('auth')->name('contests.create');
-Route::get('contests/{contest}/checkout/create', 'ContestCheckoutController@create')->middleware('auth')->name('checkout.create');
-Route::post('contests/{contest}/checkout', 'ContestCheckoutController@store');
-Route::get('success', 'ContestCheckoutController@success');
+Route::get('contests/create', [ContestController::class, 'create'])->middleware('auth')->name('contests.create');
+Route::get('contests', [ContestController::class, 'index'])->name('contests.index');
+Route::post('contests', [ContestController::class, 'store'])->name('contests.store');
+Route::get('contests/{contest}', [ContestController::class, 'show'])->middleware('payment.check')->name('contests.show');
 
-Route::get('contests', 'ContestController@index')->name('contests.index');
-Route::post('contests', 'ContestController@store')->name('contests.store');
-Route::get('contests/{contest}', 'ContestController@show')->middleware('payment.check')->name('contests.show');
+Route::get('contests/{contest}/checkout/create', [ContestCheckoutController::class, 'create'])->middleware('auth')->name('checkout.create');
+Route::post('contests/{contest}/checkout', [ContestCheckoutController::class, 'store']);
+Route::get('success', [ContestCheckoutController::class, 'success']);
 
 // Contest payout.
-Route::post('contests/{contest}/payout', 'ContestPayoutController@store')->middleware('auth')->name('contests.payout');
+Route::post('contests/{contest}/payout', [ContestPayoutController::class, 'store'])->middleware('auth')->name('contests.payout');
 
 // Wordpress Blog.
-Route::resource('blog', 'BlogController')->only(['index', 'show']);
+Route::resource('blog', BlogController::class)->only(['index', 'show']);
 
 // User payout.
-Route::post('user/payout', 'UserPayoutController@store')->middleware('auth')->name('request.payout');
+Route::post('user/payout', [UserPayoutController::class, 'store'])->middleware('auth')->name('request.payout');
 
 // User routes.
-Route::resource('users', 'UserController')->only(['show', 'update']);
+Route::resource('users', UserController::class)->only(['show', 'update']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('users/{user}/settings', 'UserController@edit')->name('users.edit');
-    Route::get('users/{user}/settings/password', 'UserPasswordController@edit')->name('users.edit.password');
-    Route::patch('users/{user}/settings/password', 'UserPasswordController@update')->name('users.update.password');
-    Route::get('users/{user}/payout', 'UserController@payout')->name('users.payout');
+    Route::get('users/{user}/settings', [UserController::class, 'edit'])->name('users.edit');
+    Route::get('users/{user}/settings/password', [UserPasswordController::class, 'edit'])->name('users.edit.password');
+    Route::patch('users/{user}/settings/password', [UserPasswordController::class, 'update'])->name('users.update.password');
+    Route::get('users/{user}/payout', [UserController::class, 'payout'])->name('users.payout');
 
-    Route::resource('contests.submissions', 'ContestSubmissionController')->except('show');
-    Route::post('contests/{contest}/submissions/{submission}/restore', 'ContestSubmissionController@restore')->name('contests.submission.restore');
+    Route::resource('contests.submissions', ContestSubmissionController::class)->except('show');
+    Route::post('contests/{contest}/submissions/{submission}/restore', [ContestSubmissionController::class, 'restore'])->name('contests.submission.restore');
 });
 
 // Contest handover section, comments and files.
-Route::resource('contests.comments', 'ContestCommentController');
-Route::get('contests/{contest}/files/zip', 'ContestFileController@zip')->name('zip');
-Route::resource('contests.files', 'ContestFileController');
+Route::resource('contests.comments', ContestCommentController::class);
+Route::get('contests/{contest}/files/zip', [ContestFileController::class, 'zip'])->name('zip');
+Route::resource('contests.files', ContestFileController::class);
 
 // Notifications.
-Route::get('notifications', 'NotificationController@index');
-Route::post('notifications/mark-as-read', 'NotificationController@markAsRead');
+Route::get('notifications', [NotificationController::class, 'index']);
+Route::post('notifications/mark-as-read', [NotificationController::class, 'markAsRead']);
 
 // Stripe webhooks.
-Route::post('stripe/webhook', 'StripeWebhookController@handleWebhook');
+Route::post('stripe/webhook', [StripeWebhookController::class, 'handleWebhook']);
 
 // Contact page.
-Route::get('contact', 'ContactController@form')->name('contact.form');
-Route::post('contact', 'ContactController@email')->name('contact.mail');
+Route::get('contact', [ContactController::class, 'form'])->name('contact.form');
+Route::post('contact', [ContactController::class, 'email'])->name('contact.mail');
 
 // Faq pages.
-Route::get('faq', 'FaqController@index')->name('faq.index');
+Route::get('faq', [FaqController::class, 'index'])->name('faq.index');
 
 // Assign a winner.
-Route::post('contests/{contest}/submissions/{submission}/award', 'WinnerController@store')->name('award');
+Route::post('contests/{contest}/submissions/{submission}/award', [WinnerController::class, 'store'])->name('award');
 
 // Designer invitations.
-Route::resource('users.invites', 'UserInvitationController')->only(['create', 'store']);
+Route::resource('users.invites', UserInvitationController::class)->only(['create', 'store']);
 

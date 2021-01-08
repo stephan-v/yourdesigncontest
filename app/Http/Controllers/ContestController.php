@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contest;
+use App\Models\Contest;
 use App\Http\Requests\ContestRequest;
 use Exception;
 use Illuminate\Http\RedirectResponse;

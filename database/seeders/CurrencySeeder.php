@@ -1,6 +1,9 @@
 <?php
 
-use App\Currency;
+namespace Database\Seeders;
+
+use Alcohol\ISO4217;
+use App\Models\Currency;
 use Illuminate\Database\Seeder;
 
 class CurrencySeeder extends Seeder
@@ -72,7 +75,7 @@ class CurrencySeeder extends Seeder
         ];
 
         // Transform currency codes to long names.
-        $iso4217 = new Alcohol\ISO4217();
+        $iso4217 = new ISO4217();
 
         foreach ($currencies as $currency) {
             Currency::create([

@@ -1,6 +1,8 @@
 <?php
 
-use App\User;
+namespace Database\Seeders;
+
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,9 +16,9 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         Auth::login(
-            factory(User::class)->states('main-test-user')->create()
+            User::factory()->create()
         );
 
-        factory(User::class, 5)->create();
+        User::factory()->count(5)->create();
     }
 }

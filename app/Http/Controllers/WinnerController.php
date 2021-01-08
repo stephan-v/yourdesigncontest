@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Contest;
+use App\Models\Contest;
 use App\Events\ContestWon;
 use App\Exceptions\ContestAlreadyWonException;
-use App\Submission;
+use App\Models\Submission;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

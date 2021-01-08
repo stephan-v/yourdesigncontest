@@ -4,7 +4,7 @@ namespace App\Observers;
 
 use App\Events\PayoutStatusUpdated;
 use App\Exceptions\DuplicatePayoutException;
-use App\Payout;
+use App\Models\Payout;
 
 class PayoutObserver
 {

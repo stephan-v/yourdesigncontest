@@ -1,16 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Casts\Money;
 use App\Presenters\PayoutPresenter;
 use App\QueryScopes\PayoutScopes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Payout extends Model
 {
-    use PayoutPresenter;
-    use PayoutScopes;
+    use HasFactory, PayoutPresenter, PayoutScopes;
 
     /**
      * The initial payout state.

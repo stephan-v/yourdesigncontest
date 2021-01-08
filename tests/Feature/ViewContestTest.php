@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Contest;
-use App\Payment;
-use App\User;
+use App\Models\Contest;
+use App\Models\Payment;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -16,7 +16,7 @@ class ViewContestTest extends TestCase
     public function test_user_can_view_a_contest()
     {
         // Arrange
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $contest = $user->contests()->create([
             'category' => 'branding',
@@ -26,7 +26,7 @@ class ViewContestTest extends TestCase
         ]);
 
         $contest->payment()->save(
-            factory(Payment::class)->make()
+            Payment::factory()->make()
         );
 
         // Act.
@@ -39,13 +39,13 @@ class ViewContestTest extends TestCase
 
     public function test_user_cannot_view_an_unpaid_contest()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAs($user);
 
         // Arrange
         $contest = $user->contests()->save(
-            factory(Contest::class)->make()
+            Contest::factory()->make()
         );
 
         // Act.

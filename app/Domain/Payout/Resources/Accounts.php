@@ -3,7 +3,7 @@
 namespace App\Domain\Payout\Resources;
 
 use App\Domain\Payout\AbstractClient;
-use App\User;
+use App\Models\User;
 
 class Accounts extends AbstractClient
 {

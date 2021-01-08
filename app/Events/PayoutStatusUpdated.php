@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Payout;
+use App\Models\Payout;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;

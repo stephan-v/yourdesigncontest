@@ -2,7 +2,7 @@
 
 namespace App\Presenters;
 
-use App\Payout;
+use App\Models\Payout;
 
 trait PayoutPresenter
 {

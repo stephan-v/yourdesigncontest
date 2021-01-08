@@ -2,9 +2,9 @@
 
 namespace App\Policies;
 
-use App\Contest;
-use App\Submission;
-use App\User;
+use App\Models\Contest;
+use App\Models\Submission;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class WinnerPolicy

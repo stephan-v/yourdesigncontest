@@ -2,8 +2,8 @@
 
 namespace App\Notifications;
 
-use App\Contest;
-use App\User;
+use App\Models\Contest;
+use App\Models\User;
 use Illuminate\Notifications\Messages\MailMessage;
 
 class SourceFilesAdded extends Notification

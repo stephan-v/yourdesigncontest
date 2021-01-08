@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Contest;
+use App\Models\Contest;
 use Illuminate\Queue\SerializesModels;
 
 class ContestWon

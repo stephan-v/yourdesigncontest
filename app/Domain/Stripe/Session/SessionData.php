@@ -2,7 +2,7 @@
 
 namespace App\Domain\Stripe\Session;
 
-use App\Contest;
+use App\Models\Contest;
 use App\Domain\Stripe\LineItems\ContestLineItem;
 use Illuminate\Http\Request;
 use Tightenco\Collect\Contracts\Support\Arrayable;

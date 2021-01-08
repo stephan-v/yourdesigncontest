@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Contest;
-use App\Payout;
+use App\Models\Contest;
+use App\Models\Payout;
 use Illuminate\Http\RedirectResponse;
 
 class ContestPayoutController extends Controller

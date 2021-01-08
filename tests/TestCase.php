@@ -2,9 +2,9 @@
 
 namespace Tests;
 
-use App\Contest;
-use App\Submission;
-use App\User;
+use App\Models\Contest;
+use App\Models\Submission;
+use App\Models\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -21,7 +21,7 @@ abstract class TestCase extends BaseTestCase
     protected function createWinningContestSubmission(Contest $contest, User $user): Submission
     {
         return $contest->submissions()->save(
-            factory(Submission::class)->make([
+            Submission::factory()->make([
                 'user_id' => $user->id,
                 'winner' => true,
             ])

@@ -1,13 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Presenters\FilePresenter;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class File extends Model
 {
-    use FilePresenter;
+    use HasFactory, FilePresenter;
 
     /**
      * The attributes that are mass assignable.

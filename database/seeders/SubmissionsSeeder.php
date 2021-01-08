@@ -1,6 +1,8 @@
 <?php
 
-use App\Submission;
+namespace Database\Seeders;
+
+use App\Models\Submission;
 use Illuminate\Database\Seeder;
 
 class SubmissionsSeeder extends Seeder
@@ -12,6 +14,6 @@ class SubmissionsSeeder extends Seeder
      */
     public function run()
     {
-        factory(Submission::class, 15)->create();
+        Submission::factory()->count(15)->create();
     }
 }

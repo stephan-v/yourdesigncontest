@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contest;
+use App\Models\Contest;
 use App\Domain\Stripe\Session\SessionData;
 use App\Http\Requests\StripeSessionRequest;
 use Illuminate\Auth\Access\AuthorizationException;

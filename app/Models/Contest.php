@@ -1,13 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Presenters\ContestPresenter;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Contest extends Model
 {
-    use ContestPresenter;
+    use ContestPresenter, HasFactory;
 
     /**
      * The attributes that are mass assignable.

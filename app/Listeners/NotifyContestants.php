@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Events\ContestWon;
 use App\Notifications\ContestFinished;
-use App\User;
+use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Notification;
 
