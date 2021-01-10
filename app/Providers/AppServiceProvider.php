@@ -12,6 +12,7 @@ use App\Observers\SubmissionObserver;
 use App\Models\Payment;
 use App\Models\Payout;
 use App\Models\Submission;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
@@ -37,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setObservers();
+        $this->setPaginator();
         $this->setViewComposer();
     }
 
@@ -61,6 +63,14 @@ class AppServiceProvider extends ServiceProvider
             $view->with('user', Auth::user());
             $view->with('production', App::environment('production'));
         });
+    }
+
+    /**
+     * Set the paginator options.
+     */
+    private function setPaginator()
+    {
+        Paginator::useBootstrap();
     }
 }
 
