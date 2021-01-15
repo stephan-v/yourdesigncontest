@@ -6,10 +6,10 @@ use App\Models\Contest;
 use App\Domain\Stripe\Session\SessionData;
 use App\Http\Requests\StripeSessionRequest;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
-use Illuminate\View\View;
 use Stripe\Checkout\Session;
 use Stripe\Exception\ApiErrorException;
 

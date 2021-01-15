@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contest;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Response;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 
 class ContestCommentController extends Controller
 {

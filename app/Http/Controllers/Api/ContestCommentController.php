@@ -8,7 +8,7 @@ use App\Http\Requests\CommentRequest;
 use App\Notifications\Comment as CommentNotification;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Response;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 
 class ContestCommentController extends Controller
 {
