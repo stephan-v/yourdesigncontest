@@ -33,4 +33,18 @@ class UserFactory extends Factory
             'updated_at' => now(),
         ];
     }
+
+    /**
+     * Indicate that the user is a test user.
+     *
+     * @return Factory
+     */
+    public function tester()
+    {
+        return $this->state(function () {
+            return [
+                'email' => 'account@yourdesigncontes.test',
+            ];
+        });
+    }
 }

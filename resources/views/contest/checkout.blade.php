@@ -34,7 +34,7 @@
 
                         <div>
                             <b>Money back guarantee</b>
-                            <p class="m-0">We offer a 100% money-back guarantee within 60 days of payment.</p>
+                            <p class="m-0">We offer a 100% money-back guarantee within 30 days of payment.</p>
                         </div>
                     </li>
 

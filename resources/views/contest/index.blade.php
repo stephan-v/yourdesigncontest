@@ -36,7 +36,7 @@
                         <h1 class="mb-4">Contests</h1>
                     </div>
 
-                    <div class="d-flex font-weight-bold mb-2 contest-attributes">
+                    <div class="d-flex font-weight-bold mb-3 contest-attributes">
                         <span class="col">Name</span>
                         <span class="col-2">Category</span>
                         <span class="col-2">Submissions</span>
@@ -45,7 +45,7 @@
                     </div>
 
                     @foreach ($contests as $contest)
-                        <a href="{{ route('contests.show', $contest) }}" class="w-100 bg-white pt-4 pb-4 mb-2 rounded d-flex unlink">
+                        <a href="{{ route('contests.show', $contest) }}" class="w-100 bg-white py-4 mb-3 rounded d-flex unlink">
                             <span class="col">{{ $contest->name }}</span>
                             <span class="col-2">{{ $contest->category }}</span>
                             <span class="col-2">{{ $contest->submissions->count() }}</span>

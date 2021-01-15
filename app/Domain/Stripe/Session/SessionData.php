@@ -4,8 +4,8 @@ namespace App\Domain\Stripe\Session;
 
 use App\Models\Contest;
 use App\Domain\Stripe\LineItems\ContestLineItem;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
-use Tightenco\Collect\Contracts\Support\Arrayable;
 
 class SessionData implements Arrayable
 {

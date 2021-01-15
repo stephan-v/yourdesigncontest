@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Contest;
 use App\Domain\Stripe\Session\SessionData;
 use App\Http\Requests\StripeSessionRequest;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -40,12 +39,9 @@ class ContestCheckoutController extends Controller
      * @param Contest $contest The contest used for the checkout process.
      * @return string The session ID which is used to redirect the customer to Stripe.
      * @throws ApiErrorException Thrown if the request fails.
-     * @throws AuthorizationException If the user is not allowed to enter the checkout process.
      */
     public function store(StripeSessionRequest $request, Contest $contest)
     {
-        $this->authorize('checkout', $contest);
-
         abort_if($contest->payment, Response::HTTP_CONFLICT, 'The contest has already been paid for.');
 
         // The Stripe checkout session.

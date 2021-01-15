@@ -38,7 +38,7 @@ class PaymentPresenterTest extends TestCase
 
         $contest->payment()->save(
             Payment::factory()->make([
-                'amount' => 115000,
+                'amount' => 110000,
                 'currency' => 'USD',
             ])
         );

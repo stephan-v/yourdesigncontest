@@ -16,7 +16,7 @@
                         <span class="count d-inline-block ml-1">{{ count }}</span>
                     </div>
 
-                    <button type="button" class="btn btn-link p-0" @click="clear">Clear all</button>
+                    <button type="button" class="btn btn-link p-0 font-weight-bold" @click="clear">Clear all</button>
                 </div>
 
                 <div class="notifications-body">
@@ -98,7 +98,8 @@
     }
 
     .fas {
-        font-size: 1.375rem;
+        font-size: 1.3rem;
+        vertical-align: middle;
     }
 
     .fas, .count {

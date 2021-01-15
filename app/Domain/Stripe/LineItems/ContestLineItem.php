@@ -2,8 +2,8 @@
 
 namespace App\Domain\Stripe\LineItems;
 
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
-use Tightenco\Collect\Contracts\Support\Arrayable;
 
 class ContestLineItem implements Arrayable
 {
