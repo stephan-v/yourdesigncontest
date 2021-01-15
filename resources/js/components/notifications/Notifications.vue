@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="notifications-footer text-center bg-white">
-                    <a href="/notifications" class="d-block p-2">View all</a>
+                    <a href="/notifications" class="d-block p-3">View all</a>
                 </div>
             </div>
         </transition>
@@ -126,14 +126,11 @@
         position: relative;
         font-weight: bold;
 
-        border: 0 solid;
-        border-bottom-width: 1px;
-        border-image: linear-gradient(to right, white 0%, #cedae0 40%, #cedae0 60%, white 100%) 1 20%;
-        box-shadow: 0 2px 10px -2px #cedae0;
+        border-bottom: 1px solid lightgrey;
     }
 
     .notifications-body {
-        background: #e9f0f3;
+        background: white;
         max-height: 300px;
         overflow-y: auto;
 
@@ -161,7 +158,6 @@
 
     .notifications-footer {
         border-radius: 0 0 10px 10px;
-        box-shadow: 0 2px 10px -2px #cedae0;
 
         a {
             color: grey;

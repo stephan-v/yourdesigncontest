@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SubmissionsSeeder::class);
         $this->call(StripeTestableSeeder::class);
         $this->call(CurrencySeeder::class);
+        $this->call(NotificationSeeder::class);
     }
 }
