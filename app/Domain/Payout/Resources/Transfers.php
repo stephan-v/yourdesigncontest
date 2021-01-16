@@ -3,6 +3,7 @@
 namespace App\Domain\Payout\Resources;
 
 use App\Domain\Payout\AbstractClient;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Str;
 
 class Transfers extends AbstractClient
@@ -19,9 +20,10 @@ class Transfers extends AbstractClient
      *
      * @param int $accountId The target account id.
      * @param int $quoteId The quote id.
-     * @return mixed
+     * @return array The data.
+     * @throws GuzzleException Thrown if the Guzzle request fails.
      */
-    public function create(int $accountId, int $quoteId)
+    public function create(int $accountId, int $quoteId): array
     {
         $response = $this->client->post($this->resource, [
             'json' => [
@@ -42,9 +44,10 @@ class Transfers extends AbstractClient
     /**
      * Get all transfers.
      *
-     * @return mixed
+     * @return array The data.
+     * @throws GuzzleException Thrown if the Guzzle request fails.
      */
-    public function get()
+    public function get(): array
     {
         $response = $this->client->get($this->resource);
 
@@ -55,9 +58,10 @@ class Transfers extends AbstractClient
      * Fund a transfer.
      *
      * @param int $transferId The id of the transfer that we want to fund.
-     * @return mixed
+     * @return array The data.
+     * @throws GuzzleException Thrown if the Guzzle request fails.
      */
-    public function fund(int $transferId)
+    public function fund(int $transferId): array
     {
         $profileId = config('services.transferwise.profile');
 

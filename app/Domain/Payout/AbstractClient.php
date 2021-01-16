@@ -28,9 +28,9 @@ abstract class AbstractClient
      * Convert the response to a json decoded associative PHP array.
      *
      * @param ResponseInterface $response The server response.
-     * @return mixed The JSON decoded response.
+     * @return array The JSON decoded response.
      */
-    protected function json(ResponseInterface $response)
+    protected function json(ResponseInterface $response): array
     {
         return json_decode($response->getBody(), true);
     }

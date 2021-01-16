@@ -3,6 +3,7 @@
 namespace App\Domain\Payout\Resources;
 
 use App\Domain\Payout\AbstractClient;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Rates extends AbstractClient
 {
@@ -18,9 +19,10 @@ class Rates extends AbstractClient
      *
      * @param string|null $source The source to convert from.
      * @param string|null $target The target to convert to.
-     * @return mixed
+     * @return array The data.
+     * @throws GuzzleException Thrown if the Guzzle request fails.
      */
-    public function get(string $source = null, string $target = null)
+    public function get(string $source = null, string $target = null): array
     {
         $response = $this->client->get($this->resource, [
             'query' => [

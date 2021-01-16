@@ -3,6 +3,7 @@
 namespace App\Domain\Payout\Resources;
 
 use App\Domain\Payout\AbstractClient;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Profiles extends AbstractClient
 {
@@ -16,9 +17,10 @@ class Profiles extends AbstractClient
     /**
      * Get all profiles.
      *
-     * @return mixed
+     * @return array The data.
+     * @throws GuzzleException Thrown if the Guzzle request fails.
      */
-    public function get()
+    public function get(): array
     {
         $response = $this->client->get($this->resource);
 
