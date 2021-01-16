@@ -55,7 +55,12 @@ class Payout extends Model
      * @var array $fillable
      */
     protected $fillable = [
-        'amount', 'currency', 'contest_id', 'transfer_id', 'user_id', 'status'
+        'amount',
+        'currency',
+        'contest_id',
+        'transfer_id',
+        'user_id',
+        'status',
     ];
 
     /**

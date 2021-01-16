@@ -43,7 +43,7 @@ class UserFactory extends Factory
     {
         return $this->state(function () {
             return [
-                'email' => 'account@yourdesigncontes.test',
+                'email' => 'account@yourdesigncontest.test',
             ];
         });
     }
