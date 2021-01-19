@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex justify-content-center" :class="{ locked }">
-        <form class="d-inline-flex flex-row-reverse p-2">
+        <form class="d-inline-flex flex-row-reverse">
             <template v-for="value in [5, 4, 3, 2, 1]">
                 <input type="radio"
                        name="stars"
@@ -72,7 +72,7 @@
 </script>
 
 <style lang="scss" scoped>
-    $size: 1.5rem;
+    $size: 1.3rem;
 
     .locked {
         label {
@@ -88,7 +88,7 @@
         display: none;
 
         &:checked ~ label {
-            color: #ffcf19;
+            color: #ffa500;
             animation: wobble 0.8s ease-out;
         }
     }

@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contest extends Model
 {
-    use ContestPresenter, HasFactory;
+    use ContestPresenter;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.

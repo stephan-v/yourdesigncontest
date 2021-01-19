@@ -15,6 +15,7 @@ trait PaymentPresenter
      */
     public function getWinningsAttribute()
     {
+        // @TODO Remove the Stripe key because this is not related to Stripe.
         $decimalPercentage = config('services.stripe.platform_fee') / 100;
 
         return $this->amount->divide(1 + $decimalPercentage);

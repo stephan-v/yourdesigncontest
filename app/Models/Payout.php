@@ -10,7 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payout extends Model
 {
-    use HasFactory, PayoutPresenter, PayoutScopes;
+    use HasFactory;
+    use PayoutPresenter;
+    use PayoutScopes;
 
     /**
      * The initial payout state.

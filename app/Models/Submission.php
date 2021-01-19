@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Submission extends Model
 {
-    use HasFactory, SoftDeletes, SubmissionPresenter;
+    use HasFactory;
+    use SoftDeletes;
+    use SubmissionPresenter;
 
     /**
      * The accessors to append to the model's array form.

@@ -13,10 +13,13 @@
             <div class="mb-2" v-else>{{ comment.value }}</div>
         </div>
 
-        <span class="text-muted">
-            <span>{{ diffForHumans }}</span>
-            <span class="cursor-pointer" @click="edit" v-if="authorized"> | edit</span>
-            <span class="cursor-pointer" @click="destroy" v-if="authorized">delete</span>
+        <span class="text-muted d-flex justify-content-between">
+            <span>{{ time }}</span>
+
+            <div>
+                <span class="cursor-pointer" @click="edit" v-if="authorized">edit | </span>
+                <span class="cursor-pointer" @click="destroy" v-if="authorized">delete</span>
+            </div>
         </span>
     </div>
 </template>
@@ -31,11 +34,14 @@
         data() {
             return {
                 editing: false,
+                time: null,
             };
         },
 
         created() {
             dayjs.extend(relativeTime);
+
+            this.setHumanReadableCreationTime();
         },
 
         props: {
@@ -51,10 +57,6 @@
 
             authorized() {
                 return this.comment.user.id === this.user.id;
-            },
-
-            diffForHumans() {
-                return dayjs(this.comment.created_at).fromNow();
             },
 
             route() {
@@ -99,6 +101,14 @@
                 }).catch((error) => {
                     console.log(error.response.data);
                 });
+            },
+
+            setHumanReadableCreationTime() {
+                this.time = dayjs(this.comment.created_at).fromNow();
+
+                setInterval(() => {
+                    this.time = dayjs(this.comment.created_at).fromNow();
+                }, 5000);
             },
         },
     };

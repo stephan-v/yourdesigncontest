@@ -129,16 +129,11 @@
                                     </div>
                                 @endif
 
-                                <picture class="intrinsic intrinsic--4x3">
+                                <picture class="intrinsic intrinsic--4x3 overflow-hidden rounded">
                                     <img src="{{ $submission->path }}" alt="" class="intrinsic-item">
                                 </picture>
                             </submission>
                         @endif
-
-                        <stars :initial-rating="{{ $submission->rating ?? 0 }}"
-                               :editable="@json(optional($user)->can('manage', $contest) && empty($submission->deleted_at))"
-                               route="{{ route('contests.submissions.update', [$contest, $submission]) }}">
-                        </stars>
 
                         @can('restore', $submission)
                             @if ($submission->deleted_at)
@@ -146,14 +141,19 @@
                             @endif
                         @endcan
 
-                        <div class="caption p-2 border-top">
+                        <div class="d-flex justify-content-between py-2">
                             <small class="text-muted">
-                                <span>#{{ $submission->order }} by</span>
+                                <span class="mr-1">#{{ $submission->order }}</span>
 
-                                <a href="{{ route('users.show', $submission->user) }}">
+                                <a href="{{ route('users.show', $submission->user) }}" class="font-weight-bold">
                                     {{ $submission->user->name }}
                                 </a>
                             </small>
+
+                            <stars :initial-rating="{{ $submission->rating ?? 0 }}"
+                                   :editable="@json(optional($user)->can('manage', $contest) && empty($submission->deleted_at))"
+                                   route="{{ route('contests.submissions.update', [$contest, $submission]) }}">
+                            </stars>
                         </div>
                     </div>
                 </div>

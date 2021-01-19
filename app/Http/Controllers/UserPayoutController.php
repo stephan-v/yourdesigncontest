@@ -16,7 +16,7 @@ class UserPayoutController extends Controller
      */
     public function store(PayoutRequest $request)
     {
-        // @TODO only create the payout if the contest has not payout.
+        // @TODO only create the payout if the contest has no payout.
         foreach ($request->user()->winnings() as $payment) {
             CreatePayout::dispatch($request, $payment, $request->currency);
         }

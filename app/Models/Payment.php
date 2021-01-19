@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-    use HasFactory, PaymentPresenter;
+    use HasFactory;
+    use PaymentPresenter;
 
     /**
      * The attributes that should be cast.
