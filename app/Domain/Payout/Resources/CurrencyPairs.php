@@ -11,7 +11,7 @@ class CurrencyPairs extends AbstractClient
      *
      * @var string $resource
      */
-    private $resource = 'currency-pairs';
+    private $resource = 'v1/currency-pairs';
 
     /**
      * Get the currency pairs that can be used to setup transfers.

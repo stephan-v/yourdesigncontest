@@ -11,7 +11,7 @@ class Rates extends AbstractClient
      *
      * @var $resource
      */
-    private $resource = 'rates';
+    private $resource = 'v1/rates';
 
     /**
      * Fetch latest exchange rates of all currencies.

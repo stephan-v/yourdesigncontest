@@ -14,7 +14,7 @@
 
                 <p class="p-0 col-8">Get quality design ideas from an ocean of designers for your next graphic design project.</p>
 
-                <a href="{{ route('process') }}" class="btn btn-primary font-weight-bold mb-5">Get started <i class="fas fa-arrow-right fa-fw"></i></a>
+                <a href="{{ route('contests.create') }}" class="btn btn-primary font-weight-bold mb-5">Start a contest <i class="fas fa-arrow-right fa-fw"></i></a>
 
                 <div class="companies">
                     <p class="font-weight-bold position-relative">Trusted by</p>

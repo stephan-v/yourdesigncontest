@@ -11,7 +11,7 @@ class AccountRequirements extends AbstractClient
      *
      * @var string $resource
      */
-    private $resource = 'account-requirements';
+    private $resource = 'v1/account-requirements';
 
     /**
      * Get the account requirements.

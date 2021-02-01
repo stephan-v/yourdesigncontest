@@ -12,7 +12,7 @@ class Accounts extends AbstractClient
      *
      * @var string $resource
      */
-    private $resource = 'accounts';
+    private $resource = 'v1/accounts';
 
     /**
      * Get all accounts.

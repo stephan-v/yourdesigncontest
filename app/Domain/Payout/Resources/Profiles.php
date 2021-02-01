@@ -11,7 +11,7 @@ class Profiles extends AbstractClient
      *
      * @var string $resource
      */
-    private $resource = 'profiles';
+    private $resource = 'v1/profiles';
 
     /**
      * Get all profiles.

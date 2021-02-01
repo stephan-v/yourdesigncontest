@@ -9,7 +9,6 @@ use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Http\Request;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
@@ -48,13 +47,13 @@ class CreatePayout implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @param Request $request The request made by the user.
+     * @param User $user The user to make the payout to.
      * @param Payment $payment The payment attached to the won contest.
      * @param string $currency The currency used for the payout.
      */
-    public function __construct(Request $request, Payment $payment, string $currency)
+    public function __construct(User $user, Payment $payment, string $currency)
     {
-        $this->user = $request->user();
+        $this->user = $user;
         $this->payment = $payment;
         $this->currency = $currency;
     }
@@ -64,6 +63,7 @@ class CreatePayout implements ShouldQueue
      *
      * @param TransferWise $client The TransferWise API client.
      * @return void
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function handle(TransferWise $client)
     {
@@ -91,7 +91,9 @@ class CreatePayout implements ShouldQueue
         $transfer = $client->transfers()->create($account['id'], $quote['id']);
 
         // Step 4: Fund a transfer.
-        $client->transfers()->fund($transfer['id']);
+        $fund = $client->transfers()->fund($transfer['id']);
+
+        dd($fund);
 
         // Payout was a success.
         $this->payout->update([

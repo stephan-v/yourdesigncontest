@@ -11,7 +11,7 @@ class Quotes extends AbstractClient
      *
      * @var $resource
      */
-    private $resource = 'quotes';
+    private $resource = 'v1/quotes';
 
     /**
      * Create a quote.

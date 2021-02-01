@@ -103,7 +103,7 @@
 
         <div class="row pt-3">
             @if ($contest->active)
-                <div class="col-md-3">
+                <div class="col-lg-3 col-md-6">
                     <a href="{{ route('contests.submissions.create', $contest) }}" class="submission new-submission mb-3 d-flex align-items-center justify-content-center flex-column text-secondary text-center">
                         <i class="far fa-images fa-2x mb-3"></i>
                         <b>Submit a design</b>
@@ -112,7 +112,7 @@
             @endif
 
             @foreach ($submissions as $submission)
-                <div class="col-md-3">
+                <div class="col-lg-3 col-md-6">
                     <div class="submission position-relative overflow-hidden mb-3">
                         @if ($submission->deleted_at)
                             <div class="deleted">

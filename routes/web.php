@@ -41,13 +41,11 @@ Route::get('how-it-works', [PageController::class, 'process'])->name('process');
 
 Auth::routes(['verify' => true]);
 
-// Contest/Checkout routes.
-Route::get('contests/create', [ContestController::class, 'create'])->middleware('auth')->name('contests.create');
-Route::get('contests', [ContestController::class, 'index'])->name('contests.index');
-Route::post('contests', [ContestController::class, 'store'])->name('contests.store');
-Route::get('contests/{contest}', [ContestController::class, 'show'])->middleware('payment.check')->name('contests.show');
+// Contest routes.
+Route::resource('contests', ContestController::class)->only(['create', 'index', 'store', 'show']);
 
-Route::get('contests/{contest}/checkout/create', [ContestCheckoutController::class, 'create'])->middleware('auth')->name('checkout.create');
+// Checkout routes.
+Route::get('contests/checkout/create', [ContestCheckoutController::class, 'create'])->name('checkout.create');
 Route::post('contests/{contest}/checkout', [ContestCheckoutController::class, 'store']);
 Route::get('success', [ContestCheckoutController::class, 'success']);
 

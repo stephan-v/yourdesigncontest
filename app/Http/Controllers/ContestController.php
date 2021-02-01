@@ -7,8 +7,7 @@ use App\Http\Requests\ContestRequest;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 
 class ContestController extends Controller
 {
@@ -49,21 +48,31 @@ class ContestController extends Controller
      */
     public function store(ContestRequest $request)
     {
-        $contest = $request->user()->contests()->create($request->validated());
+        $request->session()->put('contest', $request->validated());
 
-        $request->session()->put('contest', $contest);
-
-        return redirect()->route('checkout.create', $contest);
+        return redirect()->route('checkout.create');
     }
 
     /**
      * Display the specified resource.
      *
+     * @param Request $request The incoming HTTP client request.
      * @param Contest $contest The contest to display.
      * @return RedirectResponse|View The HTML server response.
      */
-    public function show(Contest $contest)
+    public function show(Request $request, Contest $contest)
     {
+        if ($contest->isNotPaidFor()) {
+            if ($request->user() && $request->user()->can('manage', $contest)) {
+                $title = 'Your contest has not been paid for yet.';
+                $code = 'In case if this is incorrect please contact us <a href="' . route('contact.form') . '">here.</a>';
+
+                alert()->html($title, $code, 'warning')->autoClose(false);
+            }
+
+            return redirect()->route('home');
+        }
+
         $contest->with('submissions');
 
         // Submissions without the winner.
@@ -71,36 +80,14 @@ class ContestController extends Controller
             ->submissions()
             ->withTrashed()
             ->orderByDesc('winner')
+            ->orderByDesc('rating')
             ->latest('order')
             ->with(['user', 'contest'])
-            ->paginate(11);
+            ->paginate(15);
 
         // Whether the rating and other components can still be edited.
         $locked = optional(auth()->user())->cant('manage', $contest) || $contest->expired;
 
         return view('contest.show', compact('contest', 'locked', 'submissions'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request The incoming HTTP client request.
-     * @param Contest $contest The contest to update.
-     * @return Response The server response.
-     */
-    public function update(Request $request, Contest $contest)
-    {
-        return response($contest);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Contest $contest
-     * @return Response
-     */
-    public function destroy(Contest $contest)
-    {
-        //
     }
 }

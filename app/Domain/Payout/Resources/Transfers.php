@@ -12,7 +12,7 @@ class Transfers extends AbstractClient
      *
      * @var string $resource
      */
-    private $resource = 'transfers';
+    private $resource = 'v3/profiles/{profileId}/transfers/{transferId}/payments';
 
     /**
      * Create a transfer.
@@ -61,8 +61,13 @@ class Transfers extends AbstractClient
     {
         $profileId = config('services.transferwise.profile');
 
+        $uri = strtr($this->resource, [
+            '{profileId}' => $profileId,
+            '{transferId}' => $transferId,
+        ]);
+
         // Since TransferWise have mixed API versioning for some reason we include the URI here.
-        $response = $this->client->post("https://api.sandbox.transferwise.tech/v3/profiles/{$profileId}/transfers/{$transferId}/payments", [
+        $response = $this->client->post($uri, [
             'json' => [
                 'type' => 'BALANCE'
             ]

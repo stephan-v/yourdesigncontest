@@ -18,7 +18,7 @@ class UserPayoutController extends Controller
     {
         // @TODO only create the payout if the contest has not payout.
         foreach ($request->user()->winnings() as $payment) {
-            CreatePayout::dispatch($request, $payment, $request->currency);
+            CreatePayout::dispatch($request->user(), $payment, $request->currency);
         }
 
         return redirect()->route('users.payout', $request->user());

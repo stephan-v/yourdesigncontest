@@ -22,7 +22,7 @@
             <div class="card-body">
                 <h5 class="card-title">Order details</h5>
 
-                <ul class="total-price list-unstyled">
+                <ul class="total-price list-unstyled mb-0">
                     <li class="d-flex justify-content-between">
                         <span class="text-muted">Amount</span>
                         <span>{{ this.price.toFormat() }}</span>
@@ -107,7 +107,7 @@
                 return {
                     amount: this.total.getAmount(),
                     currency: this.currency,
-                    email: this.user.email,
+                    email: this.user.email, // @TODO SET EMAIL.
                     name: this.contest.name,
                 };
             },
