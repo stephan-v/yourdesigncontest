@@ -62,8 +62,6 @@ class CreatePayout implements ShouldQueue
      * Execute the job.
      *
      * @param TransferWise $client The TransferWise API client.
-     * @return void
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function handle(TransferWise $client)
     {
@@ -91,9 +89,7 @@ class CreatePayout implements ShouldQueue
         $transfer = $client->transfers()->create($account['id'], $quote['id']);
 
         // Step 4: Fund a transfer.
-        $fund = $client->transfers()->fund($transfer['id']);
-
-        dd($fund);
+        $client->transfers()->fund($transfer['id']);
 
         // Payout was a success.
         $this->payout->update([

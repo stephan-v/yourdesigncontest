@@ -7,7 +7,7 @@ use App\File;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 use STS\ZipStream\ZipStream;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 

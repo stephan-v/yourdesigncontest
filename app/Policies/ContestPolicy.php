@@ -31,18 +31,6 @@ class ContestPolicy
     }
 
     /**
-     * Determine whether the user can continue to the checkout for a given contest.
-     *
-     * @param User $user The currently logged in user.
-     * @param Contest $contest The contest which the user wants to enter a checkout for.
-     * @return bool Whether the user is authorized to enter the checkout process.
-     */
-    public function checkout(User $user, Contest $contest)
-    {
-        return $user->id === $contest->user->id;
-    }
-
-    /**
      * Determine whether the user can view any files.
      *
      * @param User $user The user to test authorization against.

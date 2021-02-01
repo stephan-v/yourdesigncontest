@@ -15,7 +15,7 @@
 
                 <p>You can select any amount of price money for your contest. A higher price will usually result in more contest submissions and higher quality submissions.</p>
 
-                <checkout-form :contest='@json($contest)'></checkout-form>
+                <checkout-form contest-name="{{ session()->get('contest.name') }}"></checkout-form>
             </div>
 
             <div class="col-md-5">

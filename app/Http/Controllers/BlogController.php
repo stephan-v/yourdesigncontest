@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Corcel\Model\Post;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 
 class BlogController extends Controller
 {

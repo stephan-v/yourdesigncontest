@@ -16,9 +16,9 @@ class PayoutObserver
      */
     public function creating(Payout $payout)
     {
-//        if ($payout->contest->payout) {
-//            Throw new DuplicatePayoutException('Payout already exists for this contest.');
-//        }
+        if ($payout->contest->payout) {
+            Throw new DuplicatePayoutException('Payout already exists for this contest.');
+        }
     }
 
     /**

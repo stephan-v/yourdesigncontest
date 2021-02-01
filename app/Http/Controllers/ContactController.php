@@ -6,7 +6,7 @@ use App\Http\Requests\ContactRequest;
 use App\Mail\ContactMail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\View;
 
 class ContactController extends Controller
 {

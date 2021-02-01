@@ -46,7 +46,7 @@ Route::resource('contests', ContestController::class)->only(['create', 'index', 
 
 // Checkout routes.
 Route::get('contests/checkout/create', [ContestCheckoutController::class, 'create'])->name('checkout.create');
-Route::post('contests/{contest}/checkout', [ContestCheckoutController::class, 'store']);
+Route::post('contests/checkout', [ContestCheckoutController::class, 'store']);
 Route::get('success', [ContestCheckoutController::class, 'success']);
 
 // Contest payout.

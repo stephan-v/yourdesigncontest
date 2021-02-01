@@ -71,9 +71,9 @@
         },
 
         props: {
-            contest: {
+            contestName: {
                 required: true,
-                type: Object,
+                type: String,
             },
         },
 
@@ -84,7 +84,7 @@
 
         methods: {
             submit() {
-                axios.post(`/contests/${this.contest.id}/checkout`, this.data).then((response) => {
+                axios.post('/contests/checkout', this.data).then((response) => {
                     this.stripe.redirectToCheckout({ sessionId: response.data }).then((result) => {
                         console.log(result.error);
                     });
@@ -108,7 +108,7 @@
                     amount: this.total.getAmount(),
                     currency: this.currency,
                     email: this.user.email, // @TODO SET EMAIL.
-                    name: this.contest.name,
+                    name: this.contestName,
                 };
             },
 

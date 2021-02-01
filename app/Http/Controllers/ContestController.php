@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\CheckContestPayment;
 use App\Models\Contest;
 use App\Http\Requests\ContestRequest;
 use Exception;
@@ -11,6 +12,13 @@ use Illuminate\Contracts\View\View;
 
 class ContestController extends Controller
 {
+    /**
+     * ContestController constructor.
+     */
+    public function __construct() {
+        $this->middleware(CheckContestPayment::class)->only('show');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -56,23 +64,11 @@ class ContestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Request $request The incoming HTTP client request.
      * @param Contest $contest The contest to display.
      * @return RedirectResponse|View The HTML server response.
      */
-    public function show(Request $request, Contest $contest)
+    public function show(Contest $contest)
     {
-        if ($contest->isNotPaidFor()) {
-            if ($request->user() && $request->user()->can('manage', $contest)) {
-                $title = 'Your contest has not been paid for yet.';
-                $code = 'In case if this is incorrect please contact us <a href="' . route('contact.form') . '">here.</a>';
-
-                alert()->html($title, $code, 'warning')->autoClose(false);
-            }
-
-            return redirect()->route('home');
-        }
-
         $contest->with('submissions');
 
         // Submissions without the winner.
