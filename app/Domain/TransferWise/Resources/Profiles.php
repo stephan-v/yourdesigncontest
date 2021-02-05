@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Payout\Resources;
+namespace App\Domain\TransferWise\Resources;
 
-use App\Domain\Payout\AbstractClient;
+use App\Domain\TransferWise\AbstractClient;
 
 class Profiles extends AbstractClient
 {

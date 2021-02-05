@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Payout\Resources;
+namespace App\Domain\TransferWise\Resources;
 
-use App\Domain\Payout\AbstractClient;
+use App\Domain\TransferWise\AbstractClient;
 
 class Quotes extends AbstractClient
 {
@@ -25,7 +25,7 @@ class Quotes extends AbstractClient
     {
         $response = $this->client->post($this->resource, [
             'json' => [
-                'profile' => config('services.transferwise.profile'),
+                'profile' => $this->profileId,
                 'source' => $source,
                 'target' => $target,
                 'rateType' => 'FIXED',

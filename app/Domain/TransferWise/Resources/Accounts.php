@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Payout\Resources;
+namespace App\Domain\TransferWise\Resources;
 
-use App\Domain\Payout\AbstractClient;
+use App\Domain\TransferWise\AbstractClient;
 use App\Models\User;
 
 class Accounts extends AbstractClient
@@ -37,7 +37,7 @@ class Accounts extends AbstractClient
     {
         $response = $this->client->post($this->resource, [
             'json' => [
-                'profile' => config('services.transferwise.profile'),
+                'profile' => $this->profileId,
                 'accountHolderName' => $user->name, // Recipient full name.
                 'currency' => $currency,
                 'type' => 'email',

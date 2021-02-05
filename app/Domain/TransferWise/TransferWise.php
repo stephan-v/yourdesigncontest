@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Domain\Payout;
+namespace App\Domain\TransferWise;
 
-use App\Domain\Payout\Resources\AccountRequirements;
-use App\Domain\Payout\Resources\Accounts;
-use App\Domain\Payout\Resources\CurrencyPairs;
-use App\Domain\Payout\Resources\Profiles;
-use App\Domain\Payout\Resources\Quotes;
-use App\Domain\Payout\Resources\Rates;
-use App\Domain\Payout\Resources\Transfers;
+use App\Domain\TransferWise\Resources\AccountRequirements;
+use App\Domain\TransferWise\Resources\Accounts;
+use App\Domain\TransferWise\Resources\CurrencyPairs;
+use App\Domain\TransferWise\Resources\Profiles;
+use App\Domain\TransferWise\Resources\Quotes;
+use App\Domain\TransferWise\Resources\Rates;
+use App\Domain\TransferWise\Resources\Transfers;
 
 class TransferWise extends AbstractClient
 {
@@ -19,7 +19,7 @@ class TransferWise extends AbstractClient
      */
     public function accounts(): Accounts
     {
-        return new Accounts($this->client);
+        return new Accounts($this->client, $this->profileId);
     }
 
     /**
@@ -29,7 +29,7 @@ class TransferWise extends AbstractClient
      */
     public function accountRequirements(): AccountRequirements
     {
-        return new AccountRequirements($this->client);
+        return new AccountRequirements($this->client, $this->profileId);
     }
 
     /**
@@ -39,7 +39,7 @@ class TransferWise extends AbstractClient
      */
     public function currencyPairs(): CurrencyPairs
     {
-        return new CurrencyPairs($this->client);
+        return new CurrencyPairs($this->client, $this->profileId);
     }
 
     /**
@@ -49,7 +49,7 @@ class TransferWise extends AbstractClient
      */
     public function profiles(): Profiles
     {
-        return new Profiles($this->client);
+        return new Profiles($this->client, $this->profileId);
     }
 
     /**
@@ -59,7 +59,7 @@ class TransferWise extends AbstractClient
      */
     public function quotes(): Quotes
     {
-        return new Quotes($this->client);
+        return new Quotes($this->client, $this->profileId);
     }
 
     /**
@@ -69,7 +69,7 @@ class TransferWise extends AbstractClient
      */
     public function rates(): Rates
     {
-        return new Rates($this->client);
+        return new Rates($this->client, $this->profileId);
     }
 
     /**
@@ -79,6 +79,6 @@ class TransferWise extends AbstractClient
      */
     public function transfers(): Transfers
     {
-        return new Transfers($this->client);
+        return new Transfers($this->client, $this->profileId);
     }
 }

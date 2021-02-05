@@ -2,7 +2,7 @@
 
 namespace App\Domain\Money;
 
-use App\Domain\Payout\TransferWise;
+use App\Domain\TransferWise\TransferWise;
 use Illuminate\Support\Facades\Cache;
 use Money\Currencies\ISOCurrencies;
 use Money\Currency;

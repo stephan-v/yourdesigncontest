@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Payout\Resources;
+namespace App\Domain\TransferWise\Resources;
 
-use App\Domain\Payout\AbstractClient;
+use App\Domain\TransferWise\AbstractClient;
 use Illuminate\Support\Str;
 
 class Transfers extends AbstractClient
@@ -59,14 +59,11 @@ class Transfers extends AbstractClient
      */
     public function fund(int $transferId)
     {
-        $profileId = config('services.transferwise.profile');
-
         $uri = strtr($this->resource, [
-            '{profileId}' => $profileId,
+            '{profileId}' => $this->profileId,
             '{transferId}' => $transferId,
         ]);
 
-        // Since TransferWise have mixed API versioning for some reason we include the URI here.
         $response = $this->client->post($uri, [
             'json' => [
                 'type' => 'BALANCE'

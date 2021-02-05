@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Domain\Payout\TransferWise;
+use App\Domain\TransferWise\TransferWise;
 use App\Models\Payment;
 use App\Models\Payout;
 use App\Models\User;
@@ -68,7 +68,7 @@ class CreatePayout implements ShouldQueue
         // The payout amount.
         $amount = $this->payment->winnings->getAmount();
 
-        // Do transferwise conversion of the amount.
+        // @TODO Do transferwise conversion of the amount.
 
         // The local payout record.
         $this->payout = $this->user->payouts()->create([

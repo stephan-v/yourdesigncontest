@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Payout;
+namespace App\Domain\TransferWise;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
@@ -15,13 +15,22 @@ abstract class AbstractClient
     protected $client;
 
     /**
+     * The TransferWise profile id.
+     *
+     * @var string $profileId
+     */
+    protected $profileId;
+
+    /**
      * TransferWise constructor.
      *
      * @param Client $client The pre-configured Guzzle client.
+     * @param int $profileId The TransferWise profile id.
      */
-    public function __construct(Client $client)
+    public function __construct(Client $client, int $profileId)
     {
         $this->client = $client;
+        $this->profileId = $profileId;
     }
 
     /**

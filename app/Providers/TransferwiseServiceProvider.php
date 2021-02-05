@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Domain\Payout\TransferWise;
+use App\Domain\TransferWise\TransferWise;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
@@ -26,7 +26,7 @@ class TransferwiseServiceProvider extends ServiceProvider implements DeferrableP
                 ]
             );
 
-            return new TransferWise($client);
+            return new TransferWise($client, config('services.transferwise.profile'));
         });
     }
 
