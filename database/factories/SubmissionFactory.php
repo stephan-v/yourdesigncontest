@@ -25,7 +25,7 @@ class SubmissionFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'description' => $this->faker->text,
-            'filename' => 'a6G50uLhxZbfadWjiBQZimG2evHtuF3esG40QuAY.png',
+            'filename' => 'oBUJukXdsHVcXYE9xysLulgnLkdwJ7ihEU1giD5Z.jpg',
             'user_id' => User::all()->random()->id,
             'contest_id' => 1,
             'created_at' => now(),

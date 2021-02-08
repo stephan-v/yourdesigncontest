@@ -3,7 +3,7 @@
 namespace App\Domain\TransferWise\Resources;
 
 use App\Domain\TransferWise\AbstractClient;
-use Illuminate\Support\Str;
+use GuzzleHttp\Exception\ClientException;
 
 class Transfers extends AbstractClient
 {
@@ -12,22 +12,24 @@ class Transfers extends AbstractClient
      *
      * @var string $resource
      */
-    private $resource = 'v3/profiles/{profileId}/transfers/{transferId}/payments';
+    private $resource = 'v1/transfers';
 
     /**
      * Create a transfer.
      *
      * @param int $accountId The target account id.
      * @param int $quoteId The quote id.
+     * @param string $transactionId
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function create(int $accountId, int $quoteId)
+    public function create(int $accountId, int $quoteId, string $transactionId)
     {
         $response = $this->client->post($this->resource, [
             'json' => [
                 'targetAccount' => $accountId,
                 'quote' => $quoteId,
-                'customerTransactionId' => Str::uuid(),
+                'customerTransactionId' => $transactionId,
                 'details' => [
                     'reference' => 'YourDesignContest',
                     'transferPurpose' => 'Payment',
@@ -47,28 +49,6 @@ class Transfers extends AbstractClient
     public function get()
     {
         $response = $this->client->get($this->resource);
-
-        return $this->json($response);
-    }
-
-    /**
-     * Fund a transfer.
-     *
-     * @param int $transferId The id of the transfer that we want to fund.
-     * @return mixed
-     */
-    public function fund(int $transferId)
-    {
-        $uri = strtr($this->resource, [
-            '{profileId}' => $this->profileId,
-            '{transferId}' => $transferId,
-        ]);
-
-        $response = $this->client->post($uri, [
-            'json' => [
-                'type' => 'BALANCE'
-            ]
-        ]);
 
         return $this->json($response);
     }

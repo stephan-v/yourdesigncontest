@@ -16,7 +16,7 @@ class Quotes extends AbstractClient
     /**
      * Create a quote.
      *
-     * @param int $amount The amount to get a quote for.
+     * @param int $amount The amount in cents to get a quote for.
      * @param string $source The source currency.
      * @param string $target The target currency.
      * @return mixed
@@ -29,7 +29,7 @@ class Quotes extends AbstractClient
                 'source' => $source,
                 'target' => $target,
                 'rateType' => 'FIXED',
-                'targetAmount' => $amount,
+                'targetAmount' => $amount / 100,
                 'type' => 'BALANCE_PAYOUT',
             ]
         ]);

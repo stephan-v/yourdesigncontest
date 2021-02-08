@@ -19,6 +19,9 @@ class CreatePayoutsTable extends Migration
             $table->string('currency');
             $table->enum('status', ['approved', 'failed', 'pending', 'succeeded']);
 
+            $table->bigInteger('transferwise_transfer_id')->nullable();
+            $table->string('transferwise_customer_transaction_id')->nullable();
+
             $table->unsignedBigInteger('contest_id');
             $table->foreign('contest_id')->references('id')->on('contests');
 

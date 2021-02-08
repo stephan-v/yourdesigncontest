@@ -5,6 +5,7 @@ namespace App\Domain\TransferWise;
 use App\Domain\TransferWise\Resources\AccountRequirements;
 use App\Domain\TransferWise\Resources\Accounts;
 use App\Domain\TransferWise\Resources\CurrencyPairs;
+use App\Domain\TransferWise\Resources\Funds;
 use App\Domain\TransferWise\Resources\Profiles;
 use App\Domain\TransferWise\Resources\Quotes;
 use App\Domain\TransferWise\Resources\Rates;
@@ -40,6 +41,16 @@ class TransferWise extends AbstractClient
     public function currencyPairs(): CurrencyPairs
     {
         return new CurrencyPairs($this->client, $this->profileId);
+    }
+
+    /**
+     * Returns a new funds client.
+     *
+     * @return Funds
+     */
+    public function funds(): Funds
+    {
+        return new Funds($this->client, $this->profileId);
     }
 
     /**

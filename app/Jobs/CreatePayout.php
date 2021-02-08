@@ -11,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Str;
 
 class CreatePayout implements ShouldQueue
 {
@@ -68,8 +69,6 @@ class CreatePayout implements ShouldQueue
         // The payout amount.
         $amount = $this->payment->winnings->getAmount();
 
-        // @TODO Do transferwise conversion of the amount.
-
         // The local payout record.
         $this->payout = $this->user->payouts()->create([
             'amount' => $amount,
@@ -81,20 +80,24 @@ class CreatePayout implements ShouldQueue
         // Step 1: Create a quote. (Set to 'EUR' because USD to another currency is not possible with email accounts)
         $quote = $client->quotes()->create($amount, 'EUR', $this->currency);
 
-        // Step 2: Create a recipient account.
-        // @TODO THIS should be a bank account model most likely.
+        // Step 2: Create an email recipient account.
         $account = $client->accounts()->create($this->user, $this->currency);
 
         // Step 3: Create a transfer.
-        $transfer = $client->transfers()->create($account['id'], $quote['id']);
+        $transactionId = Str::uuid();
+        $transfer = $client->transfers()->create($account['id'], $quote['id'], $transactionId);
+
+        // Set the transferwise transfer id on the payout model.
+        $this->payout->update([
+            'transferwise_transfer_id' => $transfer['id'],
+            'transferwise_customer_transaction_id' => $transactionId,
+        ]);
 
         // Step 4: Fund a transfer.
-        $client->transfers()->fund($transfer['id']);
+        $client->funds()->create($transfer['id']);
 
         // Payout was a success.
-        $this->payout->update([
-            'status' => Payout::SUCCEEDED
-        ]);
+        $this->payout->update(['status' => Payout::SUCCEEDED]);
     }
 
     /**
