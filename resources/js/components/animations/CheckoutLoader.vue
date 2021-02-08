@@ -64,8 +64,8 @@
     }
 
     img {
-        max-width: 10rem;
-        max-height: 10rem;
+        max-width: 8rem;
+        max-height: 8rem;
     }
 
     @keyframes bounce {

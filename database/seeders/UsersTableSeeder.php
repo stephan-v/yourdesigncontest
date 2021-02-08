@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Auth;
 
 class UsersTableSeeder extends Seeder
 {
@@ -15,9 +14,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        Auth::login(
-            User::factory()->create()
-        );
+        User::factory()->tester()->create();
 
         User::factory()->count(5)->create();
     }

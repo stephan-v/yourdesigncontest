@@ -8,7 +8,7 @@
     <div class="container d-flex justify-content-center flex-grow-1 flex-column">
         <div class="row pt-5">
             <div class="col-md-7 mb-5">
-                <div class="position-relative page-header">
+                <div class="position-relative page-header mb-3">
                     <div class="dot-pattern"></div>
                     <h1>Checkout</h1>
                 </div>
@@ -34,7 +34,7 @@
 
                         <div>
                             <b>Money back guarantee</b>
-                            <p class="m-0">We offer a 100% money-back guarantee within 60 days of payment.</p>
+                            <p class="m-0">We offer a 100% money-back guarantee within 30 days of payment.</p>
                         </div>
                     </li>
 

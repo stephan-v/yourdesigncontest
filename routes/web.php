@@ -17,7 +17,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserInvitationController;
 use App\Http\Controllers\UserPasswordController;
 use App\Http\Controllers\UserPayoutController;
-use App\Http\Controllers\WinnerController;
+use App\Http\Controllers\ContestWinnerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,14 +49,8 @@ Route::get('contests/checkout/create', [ContestCheckoutController::class, 'creat
 Route::post('contests/checkout', [ContestCheckoutController::class, 'store']);
 Route::get('success', [ContestCheckoutController::class, 'success']);
 
-// Contest payout.
-Route::post('contests/{contest}/payout', [ContestPayoutController::class, 'store'])->middleware('auth')->name('contests.payout');
-
 // Wordpress Blog.
 Route::resource('blog', BlogController::class)->only(['index', 'show']);
-
-// User payout.
-Route::post('user/payout', [UserPayoutController::class, 'store'])->middleware('auth')->name('request.payout');
 
 // User routes.
 Route::resource('users', UserController::class)->only(['show', 'update']);
@@ -67,8 +61,21 @@ Route::middleware('auth')->group(function () {
     Route::patch('users/{user}/settings/password', [UserPasswordController::class, 'update'])->name('users.update.password');
     Route::get('users/{user}/payout', [UserController::class, 'payout'])->name('users.payout');
 
+    // Contest submissions.
     Route::resource('contests.submissions', ContestSubmissionController::class)->except('show');
     Route::post('contests/{contest}/submissions/{submission}/restore', [ContestSubmissionController::class, 'restore'])->name('contests.submission.restore');
+
+    // Assign a winner.
+    Route::post('contests/{contest}/submissions/{submission}/award', [ContestWinnerController::class, 'store'])->name('award');
+
+    // Designer invitations.
+    Route::resource('users.invites', UserInvitationController::class)->only(['create', 'store']);
+
+    // User payout.
+    Route::post('user/payout', [UserPayoutController::class, 'store'])->middleware('auth')->name('request.payout');
+
+    // Contest payout.
+    Route::post('contests/{contest}/payout', [ContestPayoutController::class, 'store'])->middleware('auth')->name('contests.payout');
 });
 
 // Contest handover section, comments and files.
@@ -89,10 +96,4 @@ Route::post('contact', [ContactController::class, 'email'])->name('contact.mail'
 
 // Faq pages.
 Route::get('faq', [FaqController::class, 'index'])->name('faq.index');
-
-// Assign a winner.
-Route::post('contests/{contest}/submissions/{submission}/award', [WinnerController::class, 'store'])->name('award');
-
-// Designer invitations.
-Route::resource('users.invites', UserInvitationController::class)->only(['create', 'store']);
 

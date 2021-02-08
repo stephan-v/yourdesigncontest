@@ -14,6 +14,7 @@
                    class="form-control mb-3"
                    id="amount"
                    :placeholder="placeholder"
+                   @input="clearErrors"
                    v-model.number="amount">
             <div class="alert alert-warning d-block">Select how much the winning designer will earn.</div>
         </div>
@@ -64,7 +65,7 @@
             return {
                 amount: null,
                 currency: 'eur',
-                rawErrors: [],
+                errors: [],
                 stripe: Stripe('pk_test_xS6i7CE8EvKafYNJijLGchad'),
                 percentage: process.env.MIX_PLATFORM_FEE,
             };
@@ -83,13 +84,17 @@
         },
 
         methods: {
+            clearErrors() {
+                this.errors = [];
+            },
+
             submit() {
                 axios.post('/contests/checkout', this.data).then((response) => {
                     this.stripe.redirectToCheckout({ sessionId: response.data }).then((result) => {
                         console.log(result.error);
                     });
                 }).catch((error) => {
-                    this.rawErrors = error.response.data.errors;
+                    this.errors = Object.values(error.response.data.errors).flat();
                 });
             },
         },
@@ -97,10 +102,6 @@
         computed: {
             user() {
                 return this.$store.getters['authentication/user'];
-            },
-
-            errors() {
-                return Object.values(this.rawErrors).flat();
             },
 
             data() {

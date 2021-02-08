@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\Comment as CommentModel;
+use App\Models\Comment as CommentModel;
 use App\Models\User;
 
 class Comment extends Notification

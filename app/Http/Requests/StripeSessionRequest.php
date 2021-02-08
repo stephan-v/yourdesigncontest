@@ -13,7 +13,7 @@ class StripeSessionRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('checkout', $this->route('contest'));
     }
 
     /**
@@ -24,10 +24,24 @@ class StripeSessionRequest extends FormRequest
     public function rules()
     {
         return [
-            'amount' => ['required', 'numeric', 'min:100'],
+            'amount' => ['required', 'numeric', 'min:5000'],
             'currency' => ['required', 'string'],
             'email' => ['required', 'email'],
             'name' => ['required', 'string'],
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        $amount = number_format($this->amount / 100, 2);
+
+        return [
+            'amount.min' => "The amount must be at least $amount $this->currency.",
         ];
     }
 }

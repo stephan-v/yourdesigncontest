@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\ContestCommentController;
+use App\Http\Controllers\Api\SubmissionCommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->name('api.')->namespace('Api')->group(function () {
-    Route::resource('comments', 'CommentController')->only(['update', 'destroy']);
-    Route::resource('contests.comments', 'ContestCommentController')->only(['index', 'store']);
-    Route::resource('submissions.comments', 'SubmissionCommentController')->only(['index', 'store']);
+Route::middleware('auth:api')->name('api.')->group(function () {
+    Route::resource('comments', CommentController::class)->only(['update', 'destroy']);
+    Route::resource('contests.comments', ContestCommentController::class)->only(['index', 'store']);
+    Route::resource('submissions.comments', SubmissionCommentController::class)->only(['index', 'store']);
 });

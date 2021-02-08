@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Currency;
+use App\Models\Currency;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;

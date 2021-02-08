@@ -3,6 +3,7 @@
 namespace App\Domain\TransferWise\Resources;
 
 use App\Domain\TransferWise\AbstractClient;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Quotes extends AbstractClient
 {
@@ -19,9 +20,10 @@ class Quotes extends AbstractClient
      * @param int $amount The amount in cents to get a quote for.
      * @param string $source The source currency.
      * @param string $target The target currency.
-     * @return mixed
+     * @return array The data.
+     * @throws GuzzleException Thrown if the Guzzle request fails.
      */
-    public function create(int $amount, string $source, string $target)
+    public function create(int $amount, string $source, string $target): array
     {
         $response = $this->client->post($this->resource, [
             'json' => [

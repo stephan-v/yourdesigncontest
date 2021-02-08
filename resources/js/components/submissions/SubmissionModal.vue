@@ -153,6 +153,10 @@
     }
 
     .submission-modal {
+        &.swal-modal {
+            will-change: inherit;
+        }
+
         .swal-content {
             margin: 0;
             padding: 0;

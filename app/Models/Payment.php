@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-    use HasFactory, PaymentPresenter;
+    use HasFactory;
+    use PaymentPresenter;
 
     /**
      * The attributes that should be cast.
@@ -26,7 +27,12 @@ class Payment extends Model
      * @var array $fillable
      */
     protected $fillable = [
-        'amount', 'currency', 'fee', 'contest_id', 'payment_id', 'user_id'
+        'amount',
+        'currency',
+        'fee',
+        'contest_id',
+        'payment_id',
+        'user_id',
     ];
 
     /**

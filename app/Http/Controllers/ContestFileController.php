@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contest;
-use App\File;
+use App\Models\File;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;

@@ -55,9 +55,7 @@
     a, a:hover {
         color: #747F8B;
         text-decoration: inherit;
-
-        border: 0 solid;
-        border-image: linear-gradient(to right, white 0%, #cedae0 40%, #cedae0 60%, white 100%) 1 20%
+        border-bottom: 1px solid lightgrey;
     }
 
     img {

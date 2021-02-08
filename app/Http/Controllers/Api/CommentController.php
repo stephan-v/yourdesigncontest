@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Comment;
+use App\Models\Comment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
 use Exception;

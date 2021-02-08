@@ -68,7 +68,7 @@
                                         @csrf
 
                                         <button class="btn btn-success" type="submit">
-                                            Approve files and release payment.
+                                            Approve files and finalize payment.
                                         </button>
                                     </form>
                                 @else

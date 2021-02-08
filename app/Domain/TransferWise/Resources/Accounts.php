@@ -4,6 +4,7 @@ namespace App\Domain\TransferWise\Resources;
 
 use App\Domain\TransferWise\AbstractClient;
 use App\Models\User;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Accounts extends AbstractClient
 {
@@ -17,9 +18,10 @@ class Accounts extends AbstractClient
     /**
      * Get all accounts.
      *
-     * @return mixed
+     * @return array The data.
+     * @throws GuzzleException Thrown if the Guzzle request fails.
      */
-    public function get()
+    public function get(): array
     {
         $response = $this->client->get($this->resource);
 
@@ -27,13 +29,14 @@ class Accounts extends AbstractClient
     }
 
     /**
-     * Create an account.
+     * Create a recipient account.
      *
      * @param User $user The user to create an account for.
      * @param string $currency The currency used to set up the account.
-     * @return mixed
+     * @return array The data.
+     * @throws GuzzleException Thrown if the Guzzle request fails.
      */
-    public function create(User $user, string $currency)
+    public function create(User $user, string $currency): array
     {
         $response = $this->client->post($this->resource, [
             'json' => [
@@ -43,7 +46,7 @@ class Accounts extends AbstractClient
                 'type' => 'email',
                 'details' => [
                     'email' => $user->email,
-                ]
+                ],
             ]
         ]);
 

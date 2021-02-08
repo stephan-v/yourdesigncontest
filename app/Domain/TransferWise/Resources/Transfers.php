@@ -3,7 +3,7 @@
 namespace App\Domain\TransferWise\Resources;
 
 use App\Domain\TransferWise\AbstractClient;
-use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Transfers extends AbstractClient
 {
@@ -12,7 +12,7 @@ class Transfers extends AbstractClient
      *
      * @var string $resource
      */
-    private $resource = 'v1/transfers';
+    private $resource = 'transfers';
 
     /**
      * Create a transfer.
@@ -20,10 +20,10 @@ class Transfers extends AbstractClient
      * @param int $accountId The target account id.
      * @param int $quoteId The quote id.
      * @param string $transactionId
-     * @return mixed
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array The data.
+     * @throws GuzzleException Thrown if the Guzzle request fails.
      */
-    public function create(int $accountId, int $quoteId, string $transactionId)
+    public function create(int $accountId, int $quoteId, string $transactionId): array
     {
         $response = $this->client->post($this->resource, [
             'json' => [
@@ -44,9 +44,10 @@ class Transfers extends AbstractClient
     /**
      * Get all transfers.
      *
-     * @return mixed
+     * @return array The data.
+     * @throws GuzzleException Thrown if the Guzzle request fails.
      */
-    public function get()
+    public function get(): array
     {
         $response = $this->client->get($this->resource);
 
