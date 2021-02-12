@@ -27,16 +27,14 @@ trait ContestPresenter
     }
 
     /**
-     * Get the contests's expiration date.
+     * Get the contest's expiration date.
      *
      * @return string The human readable expiration date.
      * @throws Exception Thrown if a Carbon exception is thrown.
      */
     public function getEndsInAttribute()
     {
-        return $this->expires_at->isFuture()
-            ? $this->expires_at->diffForHumans(['syntax' => CarbonInterface::DIFF_ABSOLUTE])
-            : 'finished';
+        return $this->expires_at->diffForHumans(['syntax' => CarbonInterface::DIFF_ABSOLUTE]);
     }
 
     /**

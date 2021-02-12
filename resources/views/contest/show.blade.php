@@ -77,7 +77,7 @@
                     <p>{{ $contest->description }}</p>
 
                     <span class="mb-4 alert alert-info small font-weight-bold">
-                        @if ($contest->winner)
+                        @if ($contest->winner || $contest->expired)
                             Contest finished
                         @else
                             Ends in {{ $contest->endsIn }}

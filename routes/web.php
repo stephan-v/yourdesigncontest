@@ -12,6 +12,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\StripeWebhookController;
+use App\Http\Controllers\TransferWiseWebhookController;
 use App\Http\Controllers\TusController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserInvitationController;
@@ -88,7 +89,9 @@ Route::get('notifications', [NotificationController::class, 'index']);
 Route::post('notifications/mark-as-read', [NotificationController::class, 'markAsRead']);
 
 // Stripe webhooks.
-Route::post('stripe/webhook', [StripeWebhookController::class, 'handleWebhook']);
+Route::post('webhooks/stripe', [StripeWebhookController::class, 'handleWebhook']);
+
+Route::post('webhooks/transferwise', [TransferWiseWebhookController::class, 'handleWebhook']);
 
 // Contact page.
 Route::get('contact', [ContactController::class, 'form'])->name('contact.form');

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 use App\Models\Contest;
 use App\Events\ContestWon;
