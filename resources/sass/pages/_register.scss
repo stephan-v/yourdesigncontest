@@ -1,0 +1,38 @@
+.socialite {
+    .heading {
+        &:before {
+            content: '';
+            width: 35%;
+            position: absolute;
+            z-index: -1;
+            height: 2px;
+            left: 50%;
+            top: 50%;
+            background: linear-gradient(45deg, transparent, #cacaca, transparent);
+            transform: translate(-50%);
+        }
+
+        &:after {
+            content: '';
+            width: 7%;
+            position: absolute;
+            z-index: -1;
+            height: 100%;
+            left: 50%;
+            background: whitesmoke;
+            transform: translate(-50%);
+        }
+    }
+
+    .btn-google {
+        color: #6da2fc;
+        border: 2px solid #6da2fc;
+        font-weight: bold;
+        letter-spacing: 1px;
+        font-size: 0.8rem;
+
+        img {
+            max-width: 1rem;
+        }
+    }
+}

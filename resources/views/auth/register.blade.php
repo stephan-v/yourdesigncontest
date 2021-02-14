@@ -1,64 +1,69 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container">
+    <div class="container d-flex justify-content-center flex-grow-1 flex-column">
         <div class="row justify-content-center mt-5">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
+            <div class="col-md-6">
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                            @csrf
+            </div>
 
-                            <div class="form-group">
-                                <label for="name">{{ __('Name') }}</label>
+            <div class="col-md-6">
+                <div class="position-relative page-header mb-3">
+                    <div class="dot-pattern"></div>
+                    <h1>{{ __('Register') }}</h1>
+                </div>
 
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Name">
+                <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    @csrf
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                    <div class="form-group">
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Name') }}">
 
-                            <div class="form-group">
-                                <label for="email">{{ __('E-Mail Address') }}</label>
-
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password">{{ __('Password') }}</label>
-
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password-confirm">{{ __('Confirm Password') }}</label>
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Password confirmation">
-                            </div>
-
-                            <div class="form-group mb-0">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </form>
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
+
+                    <div class="form-group">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('E-Mail Address') }}">
+
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="{{ __('Password') }}">
+
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Confirm Password') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary w-100 py-3">
+                            {{ __('Register') }}
+                        </button>
+                    </div>
+                </form>
+
+                <div class="socialite">
+                    <div class="mb-3 text-center heading position-relative">OR</div>
+
+                    <button class="btn btn-google w-100 d-flex align-items-center justify-content-center py-3">
+                        <img src="{{ asset('images/svg/google.svg') }}" alt="Register with Google Icon" class="d-inline mr-3">
+                        <span>LOGIN WITH GOOGLE</span>
+                    </button>
                 </div>
             </div>
         </div>
