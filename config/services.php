@@ -42,5 +42,11 @@ return [
         'key' => env('TRANSFERWISE_APP_KEY'),
         'uri' => env('TRANSFERWISE_APP_URI'),
         'profile' => env('TRANSFERWISE_PROFILE_ID'),
-    ]
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => 'http://your-callback-url',
+    ],
 ];

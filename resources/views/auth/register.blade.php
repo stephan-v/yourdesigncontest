@@ -2,12 +2,8 @@
 
 @section('content')
     <div class="container d-flex justify-content-center flex-grow-1 flex-column">
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-6">
-
-            </div>
-
-            <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
                 <div class="position-relative page-header mb-3">
                     <div class="dot-pattern"></div>
                     <h1>{{ __('Register') }}</h1>
@@ -51,20 +47,22 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary w-100 py-3">
+                        <button type="submit" class="btn btn-primary w-100">
                             {{ __('Register') }}
                         </button>
                     </div>
                 </form>
 
-                <div class="socialite">
+                <div class="socialite mb-3">
                     <div class="mb-3 text-center heading position-relative">OR</div>
 
-                    <button class="btn btn-google w-100 d-flex align-items-center justify-content-center py-3">
+                    <button class="btn btn-google w-100 d-flex align-items-center justify-content-center">
                         <img src="{{ asset('images/svg/google.svg') }}" alt="Register with Google Icon" class="d-inline mr-3">
                         <span>LOGIN WITH GOOGLE</span>
                     </button>
                 </div>
+
+                <a href="{{ route('login') }}" class="text-center d-block">I have an account. Sign in.</a>
             </div>
         </div>
     </div>
