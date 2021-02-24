@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\AbstractUser;
+use Laravel\Socialite\Facades\Socialite;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class LoginController extends Controller
 {
@@ -38,5 +43,40 @@ class LoginController extends Controller
     protected function redirectTo()
     {
         return route('contests.index');
+    }
+
+    /**
+     * Redirect to the given provider.
+     *
+     * @param string $provider The socialite provider.
+     * @return RedirectResponse The redirect response to the socialite provider.
+     */
+    public function redirectToProvider(string $provider)
+    {
+        return Socialite::driver($provider)->stateless()->redirect();
+    }
+
+    /**
+     * Handle the callback.
+     *
+     * @param string $provider The socialite provider.
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function handleProviderCallback(string $provider)
+    {
+        /** @var AbstractUser $socialiteUser */
+        $socialiteUser = Socialite::driver('google')->stateless()->user();
+
+        $user = User::firstOrCreate([
+            'provider' => $provider,
+            'provider_id' => $socialiteUser->getId(),
+        ], [
+            'name' => $socialiteUser->getName(),
+            'email' => $socialiteUser->getEmail(),
+        ]);
+
+        auth()->login($user, true);
+
+        return redirect()->intended(route('contests.index'));
     }
 }

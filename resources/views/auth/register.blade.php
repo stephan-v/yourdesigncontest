@@ -56,10 +56,10 @@
                 <div class="socialite mb-3">
                     <div class="mb-3 text-center heading position-relative">OR</div>
 
-                    <button class="btn btn-google w-100 d-flex align-items-center justify-content-center">
+                    <a href="{{ route('socialite.login', 'google') }}" class="btn btn-google w-100 d-flex align-items-center justify-content-center">
                         <img src="{{ asset('images/svg/google.svg') }}" alt="Register with Google Icon" class="d-inline mr-3">
-                        <span>LOGIN WITH GOOGLE</span>
-                    </button>
+                        <span>REGISTER WITH GOOGLE</span>
+                    </a>
                 </div>
 
                 <a href="{{ route('login') }}" class="text-center d-block">I have an account. Sign in.</a>

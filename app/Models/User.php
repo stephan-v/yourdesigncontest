@@ -20,7 +20,15 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'avatar', 'currency', 'email', 'name', 'password', 'stripe_customer_id', 'api_token',
+        'avatar',
+        'currency',
+        'email',
+        'provider',
+        'provider_id',
+        'name',
+        'password',
+        'stripe_customer_id',
+        'api_token',
     ];
 
     /**
@@ -29,7 +37,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'laravel_through_key',
+        'password',
+        'remember_token',
+        'laravel_through_key',
     ];
 
     /**

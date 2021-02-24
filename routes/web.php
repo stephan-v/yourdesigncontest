@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContestCheckoutController;
@@ -100,3 +101,6 @@ Route::post('contact', [ContactController::class, 'email'])->name('contact.mail'
 // Faq pages.
 Route::get('faq', [FaqController::class, 'index'])->name('faq.index');
 
+// Socialite routes.
+Route::get('login/{provider}', [LoginController::class, 'redirectToProvider'])->name('socialite.login');
+Route::get('login/{provider}/callback', [LoginController::class, 'handleProviderCallback'])->name('socialite.callback');
