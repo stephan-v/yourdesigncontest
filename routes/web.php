@@ -46,11 +46,6 @@ Auth::routes(['verify' => true]);
 // Contest routes.
 Route::resource('contests', ContestController::class)->only(['create', 'index', 'store', 'show']);
 
-// Checkout routes.
-Route::get('contests/checkout/create', [ContestCheckoutController::class, 'create'])->name('checkout.create');
-Route::post('contests/checkout', [ContestCheckoutController::class, 'store']);
-Route::get('success', [ContestCheckoutController::class, 'success']);
-
 // Wordpress Blog.
 Route::resource('blog', BlogController::class)->only(['index', 'show']);
 
@@ -78,6 +73,11 @@ Route::middleware('auth')->group(function () {
 
     // Contest payout.
     Route::post('contests/{contest}/payout', [ContestPayoutController::class, 'store'])->middleware('auth')->name('contests.payout');
+
+    // Checkout routes.
+    Route::get('contests/checkout/create', [ContestCheckoutController::class, 'create'])->name('checkout.create')->middleware('database.transaction');
+    Route::post('contests/checkout', [ContestCheckoutController::class, 'store']);
+    Route::get('success', [ContestCheckoutController::class, 'success']);
 });
 
 // Contest handover section, comments and files.

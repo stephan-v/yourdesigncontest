@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class StripeSessionRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StripeSessionRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->can('checkout', $this->route('contest'));
+        return true;
     }
 
     /**
@@ -38,10 +39,10 @@ class StripeSessionRequest extends FormRequest
      */
     public function messages()
     {
-        $amount = number_format($this->amount / 100, 2);
+        // @TODO Calculate the amount dynamically.
 
         return [
-            'amount.min' => "The amount must be at least $amount $this->currency.",
+            'amount.min' => 'The amount must be at least 50 ' . Str::upper($this->currency) . '.',
         ];
     }
 }

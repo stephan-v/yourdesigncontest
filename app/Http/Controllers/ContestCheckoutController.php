@@ -25,9 +25,7 @@ class ContestCheckoutController extends Controller
             return redirect('contests');
         }
 
-        $contest = $request->session()->get('contest');
-
-        return view('contest.checkout', compact('contest'));
+        return view('contest.checkout');
     }
 
     /**
@@ -39,8 +37,9 @@ class ContestCheckoutController extends Controller
      */
     public function store(StripeSessionRequest $request)
     {
-        // @TODO Wrap in transactional middleware.
         $data = $request->session()->get('contest');
+
+        dd($data);
 
         $contest = $request->user()->contests()->create($data);
 
