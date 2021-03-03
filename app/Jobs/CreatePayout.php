@@ -63,6 +63,7 @@ class CreatePayout implements ShouldQueue
      * Execute the job.
      *
      * @param TransferWise $client The TransferWise API client.
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function handle(TransferWise $client)
     {
