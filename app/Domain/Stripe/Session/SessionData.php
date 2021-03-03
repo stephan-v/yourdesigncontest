@@ -49,6 +49,9 @@ class SessionData implements Arrayable
                     'contest_id' => $this->contest->id,
                 ]
             ],
+            'metadata' => [
+                'contest_id' => $this->contest->id,
+            ],
             'line_items' => [
                 (new ContestLineItem($this->request))->toArray(),
             ],

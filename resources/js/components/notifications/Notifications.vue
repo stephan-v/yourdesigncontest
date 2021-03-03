@@ -206,7 +206,6 @@
         border-radius: 0.25rem;
 
         li {
-            border-bottom: 1px solid #e0e0e0;
             white-space: nowrap;
 
             &:last-child {

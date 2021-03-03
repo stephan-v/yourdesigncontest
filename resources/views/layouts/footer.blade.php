@@ -9,53 +9,62 @@
                     </div>
                 </div>
 
-                <div class="row pb-3">
+                <div class="row mb-3">
                     <div class="col-md-3 pb-3">
-                        <div class="text-white font-weight-bold mb-2">Company</div>
+                        <h5>Company</h5>
 
                         <ul class="list-unstyled">
                             <li class="mb-2">
-                                <a href="{{ route('home') }}" class="text-white">Home</a>
+                                <a href="{{ route('home') }}">Home</a>
                             </li>
 
                             <li class="mb-2">
-                                <a href="{{ route('contact.form') }}" class="text-white">Contact</a>
+                                <a href="{{ route('contact.form') }}">Contact</a>
                             </li>
                         </ul>
                     </div>
 
                     <div class="col-md-3 pb-3">
-                        <div class="text-white font-weight-bold mb-2">Designers</div>
+                        <h5>Designers</h5>
 
                         <ul class="list-unstyled">
                             <li class="mb-2">
-                                <a href="{{ route('contests.index') }}" class="text-white">Contests</a>
+                                <a href="{{ route('contests.index') }}">View contests</a>
                             </li>
                         </ul>
                     </div>
 
                     <div class="col-md-3 pb-3">
-                        <div class="text-white font-weight-bold mb-2">Contest holders</div>
+                        <h5>Contest holders</h5>
 
                         <ul class="list-unstyled">
                             <li class="mb-2">
-                                <a href="{{ route('contests.create') }}" class="text-white">Create contest</a>
+                                <a href="{{ route('contests.create') }}">Create contest</a>
                             </li>
                         </ul>
                     </div>
 
                     <div class="col-md-3 pb-3">
-                        <div class="text-white font-weight-bold mb-2">Info</div>
+                        <h5>Resources</h5>
 
                         <ul class="list-unstyled">
                             <li class="mb-2">
-                                <a href="{{ route('process') }}" class="text-white">How it works</a>
+                                <a href="{{ route('process') }}">How it works</a>
                             </li>
 
                             <li class="mb-2">
-                                <a href="{{ route('faq.index') }}" class="text-white">FAQ</a>
+                                <a href="{{ route('faq.index') }}">FAQ</a>
                             </li>
                         </ul>
+                    </div>
+                </div>
+
+                <hr class="bg-white mb-5">
+
+                <div class="row mb-5">
+                    <div class="col-md-12 text-white small text-center copyright">
+                        <p>© YourDesignContest 2021. All rights reserved.</p>
+                        <p>When you visit or interact with our sites, services or tools, we or our authorised service providers may use cookies for storing information to help provide you with a better, faster and safer experience and for marketing purposes.</p>
                     </div>
                 </div>
             </div>

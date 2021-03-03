@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Domain\Stripe\Session\SessionData;
 use App\Http\Requests\StripeSessionRequest;
+use App\Models\Contest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -39,8 +40,6 @@ class ContestCheckoutController extends Controller
     {
         $data = $request->session()->get('contest');
 
-        dd($data);
-
         $contest = $request->user()->contests()->create($data);
 
         // The Stripe checkout session.
@@ -63,10 +62,11 @@ class ContestCheckoutController extends Controller
         // The Stripe checkout session.
         $session = Session::retrieve($request->session_id);
 
-        $amount = reset($session->display_items)->amount / 100;
+        $amount = $session->amount_total / 100;
+        $contestId = $session->metadata->contest_id;
         $email = $session->customer_email;
 
-        $contest = $request->session()->get('contest');
+        $contest = Contest::findOrFail($contestId);
         $contest->load('payment');
 
         return view('checkout.success', compact('amount', 'contest', 'email'));

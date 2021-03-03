@@ -10,9 +10,9 @@
 
         <div class="container d-flex align-items-center h-100">
             <div class="wrapper">
-                <h1 class="font-weight-bold">Work with talented graphic <br> designers online</h1>
+                <h1 class="font-weight-bold">Creative &amp; bold designs <br> custom made for you</h1>
 
-                <p class="p-0 col-8">Get quality design ideas from an ocean of designers for your next graphic design project.</p>
+                <p class="p-0 col-8">Get quality design ideas from a large pool of talented designers for your next graphic design project.</p>
 
                 <a href="{{ route('contests.create') }}" class="btn btn-primary font-weight-bold mb-5">Start a contest</a>
 

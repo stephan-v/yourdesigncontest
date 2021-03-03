@@ -187,3 +187,46 @@
         vertical-align: baseline;
     }
 }
+
+footer {
+    color: white;
+
+    a {
+        color: rgba(255,255,255,.7);
+
+        &:hover {
+            color: rgba(255,255,255,.9);
+            text-decoration: none;
+        }
+    }
+
+    h5 {
+        font-size: 1rem;
+        position: relative;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        font-weight: bold;
+
+        &:before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 15px;
+            border-radius: 20px;
+            background-color: #fff;
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            height: 3px;
+            border-radius: 20px;
+            background-color: #fff;
+            width: 45px;
+            left: 20px;
+        }
+    }
+}
