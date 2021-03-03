@@ -14,7 +14,7 @@
 
                 <p class="p-0 col-8">Get quality design ideas from an ocean of designers for your next graphic design project.</p>
 
-                <a href="{{ route('contests.create') }}" class="btn btn-primary font-weight-bold mb-5">Start a contest <i class="fas fa-arrow-right fa-fw"></i></a>
+                <a href="{{ route('contests.create') }}" class="btn btn-primary font-weight-bold mb-5">Start a contest</a>
 
                 <div class="companies">
                     <p class="font-weight-bold position-relative">Trusted by</p>
@@ -26,91 +26,78 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 d-none d-lg-block">
-                <div class="collage">
-                    <div class="border-circle position-absolute"></div>
-                    <div class="circle position-absolute"></div>
+    <div class="position-relative">
+        <div class="container category-container">
+            <div class="row">
+                <div class="col-md-6 d-none d-lg-block">
+                    <div class="collage">
+                        <div class="border-circle position-absolute"></div>
+                        <div class="circle position-absolute"></div>
 
-                    <img src="{{ asset('images/collage-1.jpg') }}" alt="" class="img-fluid img-1">
-                    <img src="{{ asset('images/collage-2.jpg') }}" alt="" class="img-fluid img-2">
-                    <img src="{{ asset('images/collage-3.jpg') }}" alt="" class="img-fluid img-3">
-                    <img src="{{ asset('images/collage-4.jpg') }}" alt="" class="img-fluid img-4">
-                </div>
-            </div>
-
-            <div class="col-lg-6 categories">
-                <div class="mb-3 mb-md-5 position-relative">
-                    <div class="dot-pattern"></div>
-                    <h2 class="font-weight-bold">Explore your <br> category</h2>
+                        <img src="{{ asset('images/collage-1.jpg') }}" alt="" class="img-fluid img-1">
+                        <img src="{{ asset('images/collage-2.jpg') }}" alt="" class="img-fluid img-2">
+                        <img src="{{ asset('images/collage-3.jpg') }}" alt="" class="img-fluid img-3">
+                        <img src="{{ asset('images/collage-4.jpg') }}" alt="" class="img-fluid img-4">
+                    </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6 mb-1 mb-md-4">
-                        <span class="fa-stack fa-2x mb-2 graphic-design">
-                            <i class="fas fa-square fa-stack-2x"></i>
-                            <i class="fas fa-pencil-ruler fa-stack-1x fa-inverse"></i>
-                        </span>
-
-                        <h3 class="font-weight-bold">Graphic Design</h3>
-                        <p>Logo design, style guides, illustrations and much more. Explore our vast pool of creative talent.</p>
+                <div class="col-lg-6 categories">
+                    <div class="mb-3 mb-md-5 position-relative">
+                        <div class="dot-pattern"></div>
+                        <h2 class="font-weight-bold">Explore your <br> category</h2>
                     </div>
 
-                    <div class="col-md-6 mb-1 mb-md-4">
-                        <span class="fa-stack fa-2x mb-2 website-design">
-                            <i class="fas fa-square fa-stack-2x"></i>
-                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                        </span>
+                    <div class="row">
+                        <div class="col-md-6 mb-1 mb-md-4">
+                            <span class="fa-stack fa-2x mb-2 graphic-design">
+                                <i class="fas fa-square fa-stack-2x"></i>
+                                <i class="fas fa-pencil-ruler fa-stack-1x fa-inverse"></i>
+                            </span>
 
-                        <h3 class="font-weight-bold">Website Design</h3>
-                        <p>Streamline your designs from mobile UI apps to landing pages all the way to full blown platforms.</p>
-                    </div>
+                            <h3 class="font-weight-bold">Graphic Design</h3>
+                            <p>Logo design, style guides, illustrations and much more. Explore our vast pool of creative talent.</p>
+                        </div>
 
-                    <div class="col-md-6 mb-1 mb-md-4">
-                        <span class="fa-stack fa-2x mb-2 app-design">
-                            <i class="fas fa-square fa-stack-2x"></i>
-                            <i class="fas fa-mobile-alt fa-stack-1x fa-inverse"></i>
-                        </span>
+                        <div class="col-md-6 mb-1 mb-md-4">
+                            <span class="fa-stack fa-2x mb-2 website-design">
+                                <i class="fas fa-square fa-stack-2x"></i>
+                                <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+                            </span>
 
-                        <h3 class="font-weight-bold">App Design</h3>
-                        <p>Outsource your app UI design project and get it done quickly and delivered remotely online.</p>
-                    </div>
+                            <h3 class="font-weight-bold">Website Design</h3>
+                            <p>Streamline your designs from mobile UI apps to landing pages all the way to full blown platforms.</p>
+                        </div>
 
-                    <div class="col-md-6 mb-1 mb-md-4">
-                        <span class="fa-stack fa-2x mb-2 product-design">
-                            <i class="fas fa-square fa-stack-2x"></i>
-                            <i class="fas fa-box-open fa-stack-1x fa-inverse"></i>
-                        </span>
+                        <div class="col-md-6 mb-1 mb-md-4">
+                            <span class="fa-stack fa-2x mb-2 app-design">
+                                <i class="fas fa-square fa-stack-2x"></i>
+                                <i class="fas fa-mobile-alt fa-stack-1x fa-inverse"></i>
+                            </span>
 
-                        <h3 class="font-weight-bold">Product Design</h3>
-                        <p>Bring your product to life with drawings, 3D models, blueprints, and much more!</p>
+                            <h3 class="font-weight-bold">App Design</h3>
+                            <p>Outsource your app UI design project and get it done quickly and delivered remotely online.</p>
+                        </div>
+
+                        <div class="col-md-6 mb-1 mb-md-4">
+                            <span class="fa-stack fa-2x mb-2 product-design">
+                                <i class="fas fa-square fa-stack-2x"></i>
+                                <i class="fas fa-box-open fa-stack-1x fa-inverse"></i>
+                            </span>
+
+                            <h3 class="font-weight-bold">Product Design</h3>
+                            <p>Bring your product to life with drawings, 3D models, blueprints, and much more!</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <figure class="svg-scoop">
+            <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
+                <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
+            </svg>
+        </figure>
     </div>
 
-{{--    <div class="container">--}}
-{{--        <img src="{{ asset('images/header.jpg') }}" alt="A collaboration of graphic design images" class="img-fluid w-100">--}}
-
-{{--        <div class="bg-white p-4">--}}
-{{--            <h2>Do you need a logo or other graphic design?</h2>--}}
-
-{{--            <p>--}}
-{{--                Creative talent is everywhere. Through our platform we give creatives from all kind--}}
-{{--                of disciplines and backgrounds the change to create engaging content for their favourite brands.--}}
-{{--            </p>--}}
-
-{{--            <p>--}}
-{{--                On our platform we publish graphic design contests which you can join for free. You decide for yourself--}}
-{{--                which contests you want to enter, what you submit and who you work with. By joining contests you gain experience--}}
-{{--                catering to real clients, work on your portfolio and expand your network all while earning cash.--}}
-{{--            </p>--}}
-
-{{--            <p class="m-0">--}}
-{{--                GraphicDesignContests is the place to brand yourself as a creative specialist. Click here to learn more.--}}
-{{--            </p>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    <div class="position-relative bg-white" style="height: 200px"></div>
 @endsection

@@ -1,7 +1,7 @@
             <sweet-alert :flash-modal='@json(session("flash-modal"))'></sweet-alert>
         </div><!-- /#app -->
 
-        <footer class="footer mt-5 text-center text-md-left">
+        <footer class="footer text-center text-md-left">
             <div class="container">
                 <div class="row pt-5 pb-4">
                     <div class="col">
@@ -61,8 +61,6 @@
             </div>
         </footer>
 
-        <script>
-            window.user = @json($user);
-        </script>
+        <script>window.user = @json($user);</script>
     </body>
 </html>
