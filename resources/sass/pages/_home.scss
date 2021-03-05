@@ -16,7 +16,7 @@
 
 .banner-background {
     background: url('/images/home-header.jpg') 30% center;
-    height: 700px;
+    min-height: 700px;
     width: 75%;
     margin-left: 25%;
     position: absolute;
@@ -79,13 +79,13 @@
     }
 
     p {
-        color: #4cb5ff;
+        color: #2899b8;
 
         &:after {
             content: "";
             width: 100px;
             height: 1px;
-            background: #4cb5ff;
+            background: #2899b8;
             position: absolute;
             top: 50%;
             left: 85px;
@@ -107,7 +107,7 @@
     }
 
     .graphic-design {
-        color: #4cb5ff;
+        color: #2899b8;
     }
 
     .website-design {
@@ -203,8 +203,36 @@
     }
 }
 
+.statistics {
+    // 78px
+
+    padding-top: 52px;
+    padding-bottom: 100px;
+
+
+    .column-divider-20deg {
+        background: white;
+
+        @media (min-width: 768px) {
+            &:before {
+                transform: rotate(20deg);
+                left: 0;
+                position: absolute;
+                top: 0;
+                height: 100%;
+                border-left: .0625rem solid #e7eaf3;
+                content: "";
+            }
+        }
+    }
+}
+
 footer {
-    color: white;
+    color: rgba(255,255,255,.7);
+
+    hr {
+        background: rgba(255,255,255,.2);
+    }
 
     a {
         color: rgba(255,255,255,.7);
@@ -216,6 +244,7 @@ footer {
     }
 
     h5 {
+        color: white;
         font-size: 1rem;
         position: relative;
         margin-bottom: 1rem;
@@ -227,7 +256,7 @@ footer {
             position: absolute;
             bottom: 0;
             left: 0;
-            height: 3px;
+            height: 2px;
             width: 15px;
             border-radius: 20px;
             background-color: #fff;
@@ -237,11 +266,15 @@ footer {
             content: "";
             position: absolute;
             bottom: 0;
-            height: 3px;
+            height: 2px;
             border-radius: 20px;
             background-color: #fff;
             width: 45px;
             left: 20px;
         }
+    }
+
+    .copyright {
+        color: rgba(255, 255, 255,.4);
     }
 }

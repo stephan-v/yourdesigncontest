@@ -59,10 +59,10 @@
                     </div>
                 </div>
 
-                <hr class="bg-white mb-5">
+                <hr class="mb-5">
 
                 <div class="row mb-5">
-                    <div class="col-md-12 text-white small text-center copyright">
+                    <div class="col-md-12 small text-center copyright">
                         <p>© YourDesignContest 2021. All rights reserved.</p>
                         <p>When you visit or interact with our sites, services or tools, we or our authorised service providers may use cookies for storing information to help provide you with a better, faster and safer experience and for marketing purposes.</p>
                     </div>

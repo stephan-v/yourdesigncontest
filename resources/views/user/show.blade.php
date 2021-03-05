@@ -12,7 +12,7 @@
                     <div class="p-4 p-md-5">
                         <h1 class="lead">Hello {{ $user->name }}</h1>
 
-                        <p>This user has not written their own personal "about" story yet but we are sure if will be an amazing one.</p>
+                        <p>This user has not written their own personal "about" story yet but we are sure it will be an amazing one.</p>
 
                         @if (count(Auth::user()->contests))
                             <a href="{{ route('users.invites.create', $user) }}" class="btn btn-primary">

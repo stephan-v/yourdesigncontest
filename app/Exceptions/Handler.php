@@ -37,4 +37,19 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    /**
+     * Report or log an exception.
+     *
+     * @param Throwable $exception The exception which was thrown.
+     * @throws Throwable The re-thrown exception.
+     */
+    public function report(Throwable $exception)
+    {
+        if (app()->environment('production') && app()->bound('sentry') && $this->shouldReport($exception)) {
+            app('sentry')->captureException($exception);
+        }
+
+        parent::report($exception);
+    }
 }

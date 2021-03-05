@@ -187,7 +187,7 @@
         $count: 18px;
 
         font-size: 0.6rem;
-        background: #4cb5ff;
+        background: #2899b8;
         color: #fefefe;
         width: $count;
         height: $count;
