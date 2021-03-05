@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row mt-5 mb-3">
             <div class="col-md-6 mb-5">
-                <div class="company">
+                <div class="company rounded overflow-hidden">
                     <a href="{{ route('register') }}" class="d-block">
                         <p class="absolute-center text-center text-white">
                             I'm a designer wanting to compete for prizes.
@@ -16,7 +16,7 @@
             </div>
 
             <div class="col-md-6 mb-5">
-                <div class="designer">
+                <div class="designer rounded overflow-hidden">
                     <a href="{{ route('contests.create') }}" class="d-block">
                         <p class="absolute-center text-center text-white">
                             I'm a company looking for a winning design.
@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-md-12 pt-4 d-flex justify-content-center">
                 {{ $contests->links() }}
             </div>
