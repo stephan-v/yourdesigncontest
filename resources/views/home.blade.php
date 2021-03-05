@@ -4,9 +4,7 @@
 
 @section('content')
     <div class="main-banner w-100">
-        <div class="image-test">
-
-        </div>
+        <div class="banner-background"></div>
 
         <div class="container d-flex align-items-center h-100">
             <div class="wrapper">

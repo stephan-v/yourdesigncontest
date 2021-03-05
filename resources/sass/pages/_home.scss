@@ -14,14 +14,29 @@
     }
 }
 
-.image-test {
-    background: url('/images/home-header.jpg') 65% center;
+.banner-background {
+    background: url('/images/home-header.jpg') 30% center;
     height: 700px;
-    width: 50%;
-    margin-left: 50%;
+    width: 75%;
+    margin-left: 25%;
     position: absolute;
     z-index: -1;
-    transform: scaleX(-1);
+
+    &:before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, whitesmoke, transparent, transparent);
+    }
+
+    &:after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0, whitesmoke, transparent, transparent);
+    }
 
     .btn {
         background: #2aa1c2;
@@ -34,7 +49,7 @@
     height: 700px;
 
     @media (min-width: 768px) {
-        margin-bottom: 10rem;
+        margin-bottom: 8rem;
     }
 
     h1 {
