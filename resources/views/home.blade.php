@@ -142,7 +142,7 @@
                                         <use xlink:href="#SVGID_1_"></use>
                                     </clipPath>
                                     <g transform="matrix(1 0 0 1 0 1.907349e-06)" style="clip-path:url(#SVGID_2_);">
-                                        <image width="100" height="100" xlink:href="./assets/img/100x100/img10.jpg" transform="matrix(0.36 0 0 0.36 32.8571 25.1429)"></image>
+                                        <image width="100" height="100" xlink:href="{{ asset('images/avatars/img10.jpg') }}" transform="matrix(0.36 0 0 0.36 32.8571 25.1429)"></image>
                                     </g>
                                     <use xlink:href="#SVGID_1_" fill="none" stroke="#FFFFFF" stroke-width="4"></use>
                                     <defs>
@@ -152,7 +152,7 @@
                                         <use xlink:href="#SVGID_3_"></use>
                                     </clipPath>
                                     <g style="clip-path:url(#SVGID_4_);">
-                                        <image width="100" height="100" xlink:href="./assets/img/100x100/img3.jpg" transform="matrix(0.36 0 0 0.36 16.5714 2.8571)"></image>
+                                        <image width="100" height="100" xlink:href="{{ asset('images/avatars/img3.jpg') }}" transform="matrix(0.36 0 0 0.36 16.5714 2.8571)"></image>
                                     </g>
                                     <use xlink:href="#SVGID_3_" fill="none" stroke="#FFFFFF" stroke-width="4"></use>
                                     <defs>
@@ -162,7 +162,7 @@
                                         <use xlink:href="#SVGID_5_"></use>
                                     </clipPath>
                                     <g style="clip-path:url(#SVGID_6_);">
-                                        <image width="100" height="100" xlink:href="./assets/img/100x100/img2.jpg" transform="matrix(0.3771 0 0 0.3771 2 24.2857)"></image>
+                                        <image width="100" height="100" xlink:href="{{ asset('images/avatars/img2.jpg') }}" transform="matrix(0.3771 0 0 0.3771 2 24.2857)"></image>
                                     </g>
                                     <use xlink:href="#SVGID_5_" fill="none" stroke="#FFFFFF" stroke-width="4"></use>
                                 </svg>
