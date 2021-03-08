@@ -56,7 +56,7 @@ class SessionData implements Arrayable
                 (new ContestLineItem($this->request))->toArray(),
             ],
             'success_url' => config('app.url') . '/success?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => config('app.url') . '/cancel',
+            'cancel_url' => route('checkout.create'),
         ]);
 
         // If present for an existing customer use the Stripe customer id.
