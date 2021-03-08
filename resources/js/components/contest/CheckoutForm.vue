@@ -66,7 +66,7 @@
                 amount: null,
                 currency: 'eur',
                 errors: [],
-                stripe: Stripe('pk_test_xS6i7CE8EvKafYNJijLGchad'),
+                stripe: Stripe(process.env.MIX_STRIPE_KEY),
                 percentage: process.env.MIX_PLATFORM_FEE,
             };
         },

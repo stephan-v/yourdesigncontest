@@ -15,7 +15,7 @@ class StripeServiceProvider extends ServiceProvider
     public function register()
     {
         Stripe::setApiKey(
-            config('services.stripe.key')
+            config('services.stripe.secret')
         );
     }
 }
