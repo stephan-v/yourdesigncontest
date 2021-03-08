@@ -15,7 +15,7 @@
                         {{ $post->date }}
                     </div><!-- /.publish-date -->
 
-                    <img src="{{ $post->thumbnail->size('large')['url'] }}" alt="">
+                    <img src="{{ $post->thumbnail->size('medium_large')['url'] }}" alt="">
                 </div><!-- /.heading -->
             </header><!-- /.hero-inner-blog -->
 
