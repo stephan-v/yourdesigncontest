@@ -39,7 +39,6 @@
                     </li>
 
                     <div class="d-flex justify-content-center">
-                        <i class="fab fa-stripe fa-2x mr-3"></i>
                         <i class="fab fa-google-pay fa-2x mr-3"></i>
                         <i class="fab fa-apple-pay fa-2x mr-3"></i>
                         <i class="fab fa-cc-visa fa-2x mr-3"></i>
