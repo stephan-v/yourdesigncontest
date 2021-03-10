@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Login')
+
 @section('content')
     <div class="container d-flex justify-content-center flex-grow-1 flex-column">
         <div class="row">

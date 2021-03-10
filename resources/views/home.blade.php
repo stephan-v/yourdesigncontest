@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Home')
+
 @section('nav-classes', 'fixed-top')
 
 @section('content')

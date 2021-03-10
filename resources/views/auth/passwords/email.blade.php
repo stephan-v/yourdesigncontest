@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Send password reset link')
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center mt-5">

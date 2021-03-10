@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Success')
+
 @section('content')
     <div class="h-100 d-flex align-items-center">
         <div class="container">

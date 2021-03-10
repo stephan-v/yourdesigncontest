@@ -1,5 +1,7 @@
 @extends('layouts.sidebar')
 
+@section('title', 'Settings')
+
 @section('content')
         <h1>Edit your profile</h1>
 

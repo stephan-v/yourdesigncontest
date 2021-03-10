@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Checkout')
+
 @push('scripts')
     <script src="https://js.stripe.com/v3/"></script>
 @endpush

@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Contests')
+
 @section('content')
     <div class="container">
         <div class="row mt-5 mb-3">

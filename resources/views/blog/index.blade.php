@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Blog - YourDesignContest')
+@section('title', 'Blog')
 
 @section('description', 'Welcome to our blog.')
 

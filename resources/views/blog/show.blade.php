@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $post->title . ' - YourDesignContest')
+@section('title', $post->title)
 
 @section('description', $post->content)
 

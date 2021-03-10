@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Create submission')
+
 @section('content')
     <div class="container">
         <form action="{{ route('contests.submissions.store', $contest) }}" enctype="multipart/form-data" method="POST" class="row mt-5">

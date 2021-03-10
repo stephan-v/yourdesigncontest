@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Invite user')
+
 @section('content')
     <div class="container">
         <div class="row">

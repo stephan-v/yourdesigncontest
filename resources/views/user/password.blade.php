@@ -1,5 +1,7 @@
 @extends('layouts.sidebar')
 
+@section('title', 'Password')
+
 @section('content')
     <h1>Update your password</h1>
 

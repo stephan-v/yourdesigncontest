@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'FAQ')
+
 @section('content')
     <div class="container notifications-index">
         <div class="row">

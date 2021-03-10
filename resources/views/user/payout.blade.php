@@ -1,5 +1,7 @@
 @extends('layouts.sidebar')
 
+@section('title', 'Payout')
+
 @section('content')
     <h1>Designers only</h1>
 

@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Comments')
+
 @section('content')
     <div class="container mt-5">
         <h1 class="mb-3">Handover</h1>

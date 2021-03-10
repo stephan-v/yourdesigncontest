@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Profile')
+
 @section('content')
     <div class="container">
         <div class="user-header bg-white mb-5">
@@ -15,9 +17,7 @@
                         <p>This user has not written their own personal "about" story yet but we are sure it will be an amazing one.</p>
 
                         @if (count(Auth::user()->contests))
-                            <a href="{{ route('users.invites.create', $user) }}" class="btn btn-primary">
-                                Invite to join your contest
-                            </a>
+                            <a href="{{ route('users.invites.create', $user) }}" class="btn btn-primary">Invite to join one of your contest</a>
                         @endif
                     </div>
                 </div>
