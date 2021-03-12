@@ -75,9 +75,9 @@ Route::middleware('auth')->group(function () {
     Route::post('contests/{contest}/payout', [ContestPayoutController::class, 'store'])->middleware('auth')->name('contests.payout');
 
     // Checkout routes.
-    Route::get('contests/checkout/create', [ContestCheckoutController::class, 'create'])->name('checkout.create')->middleware('database.transaction');
-    Route::post('contests/checkout', [ContestCheckoutController::class, 'store']);
-    Route::get('success', [ContestCheckoutController::class, 'success']);
+    Route::get('contests/checkout/create', [ContestCheckoutController::class, 'create'])->name('checkout.create');
+    Route::post('contests/checkout', [ContestCheckoutController::class, 'store'])->middleware('database.transaction');
+    Route::get('success', [ContestCheckoutController::class, 'success'])->name('checkout.success');
 });
 
 // Contest handover section, comments and files.

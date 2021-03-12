@@ -15,12 +15,12 @@ class VerifyWebhookSignature
      * Handle the incoming request.
      *
      * @param Request $request
-     * @param \Closure $next
+     * @param Closure $next
      * @return Response
      *
      * @throws AccessDeniedHttpException
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         try {
             WebhookSignature::verifyHeader(

@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Contest;
 use App\Http\Middleware\VerifyWebhookSignature;
+use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Stripe\BalanceTransaction;
+use Stripe\Customer;
 use Stripe\Exception\ApiErrorException;
+use Stripe\PaymentIntent;
 use Symfony\Component\HttpFoundation\Response;
 
 class StripeWebhookController extends Controller
@@ -17,9 +21,7 @@ class StripeWebhookController extends Controller
      */
     public function __construct()
     {
-        if (config('services.stripe.webhook.secret')) {
-            $this->middleware(VerifyWebhookSignature::class);
-        }
+        $this->middleware(VerifyWebhookSignature::class);
     }
 
     /**
@@ -47,28 +49,24 @@ class StripeWebhookController extends Controller
      * @return Response The server response.
      * @throws ApiErrorException Thrown if the balance transaction could not be retrieved.
      */
-    public function handlePaymentIntentSucceeded(array $payload)
+    private function handlePaymentIntentSucceeded(array $payload)
     {
-        // @TODO Send out email receipt.
         $stripe = $payload['data']['object'];
 
-        // Fetch the contest.
-        $contest = Contest::findOrFail($stripe['metadata']['contest_id']);
+        $customer = Customer::retrieve($stripe['customer']);
+        $user = User::where('email', $customer['email'])->firstOrFail();
 
         // Update the stripe_customer_id so consecutive payments are linked to the same Stripe user.
-        $contest->user->update(['stripe_customer_id' => $stripe['customer']]);
+        $user->update(['stripe_customer_id' => $stripe['customer']]);
 
         // Fetch the Stripe incurred fees.
         $transaction = BalanceTransaction::retrieve(
             $stripe['charges']['data'][0]['balance_transaction']
         );
 
-        $contest->payment()->create([
-            'amount' => $stripe['amount'],
+        Payment::where('payment_id', $stripe['id'])->update([
             'fee' => $transaction->fee,
-            'currency' => $stripe['currency'],
-            'payment_id' => $stripe['id'],
-            'user_id' => $contest->user->id,
+            'status' => PaymentIntent::STATUS_SUCCEEDED
         ]);
 
         return $this->successMethod();
@@ -79,7 +77,7 @@ class StripeWebhookController extends Controller
      *
      * @return Response The server response.
      */
-    protected function successMethod()
+    private function successMethod()
     {
         return new Response('Webhook Handled', 200);
     }
@@ -90,7 +88,7 @@ class StripeWebhookController extends Controller
      * @param string $method The missing method.
      * @return Response The server response.
      */
-    protected function missingMethod(string $method)
+    private function missingMethod(string $method)
     {
         return new Response("Method: '$method' not found");
     }

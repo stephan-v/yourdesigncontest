@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container d-flex justify-content-center flex-grow-1 flex-column">
-        <div class="row pt-5">
+        <div class="row py-5">
             <div class="col-md-5 order-md-1 order-first mb-5">
                 <img src="{{ asset('images/contest.png') }}" alt="" class="img-fluid d-flex m-auto">
             </div>

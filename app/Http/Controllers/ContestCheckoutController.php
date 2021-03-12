@@ -47,6 +47,14 @@ class ContestCheckoutController extends Controller
             (new SessionData($request, $contest))->toArray()
         );
 
+        // Create a pending payment.
+        $contest->payment()->create([
+            'amount' => $request->amount,
+            'currency' => $request->currency,
+            'payment_id' => $session['payment_intent'],
+            'user_id' => $contest->user->id,
+        ]);
+
         return $session['id'];
     }
 

@@ -15,20 +15,14 @@ class CreateSubmissionsTable extends Migration
     {
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
-
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('filename');
             $table->float('rating', 9, 2)->nullable();
             $table->unsignedSmallInteger('order');
             $table->boolean('winner')->default(0);
-
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-
-            $table->unsignedBigInteger('contest_id');
-            $table->foreign('contest_id')->references('id')->on('contests');
-
+            $table->foreignId('contest_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->softDeletes();
             $table->timestamps();
         });

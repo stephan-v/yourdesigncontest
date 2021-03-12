@@ -19,10 +19,7 @@ class CreateContestsTable extends Migration
             $table->text('description');
             $table->enum('category', ['branding', 'webdesign', 'packaging']);
             $table->boolean('blind')->default(0);
-
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-
+            $table->foreignId('user_id')->constrained();
             $table->timestamp('expires_at');
             $table->timestamps();
         });

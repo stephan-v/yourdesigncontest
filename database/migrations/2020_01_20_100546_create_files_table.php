@@ -15,14 +15,10 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
-
             $table->string('name');
             $table->string('path');
             $table->integer('size');
-
-            $table->unsignedBigInteger('contest_id');
-            $table->foreign('contest_id')->references('id')->on('contests');
-
+            $table->foreignId('contest_id')->constrained();
             $table->timestamps();
         });
     }

@@ -44,18 +44,13 @@ class SessionData implements Arrayable
     {
         $data = collect([
             'payment_method_types' => ['card'],
-            'payment_intent_data' => [
-                'metadata' => [
-                    'contest_id' => $this->contest->id,
-                ]
-            ],
             'metadata' => [
                 'contest_id' => $this->contest->id,
             ],
             'line_items' => [
                 (new ContestLineItem($this->request))->toArray(),
             ],
-            'success_url' => config('app.url') . '/success?session_id={CHECKOUT_SESSION_ID}',
+            'success_url' => urldecode(route('checkout.success', ['session_id' => '{CHECKOUT_SESSION_ID}'])),
             'cancel_url' => route('checkout.create'),
         ]);
 
