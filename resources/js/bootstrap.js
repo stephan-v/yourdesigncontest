@@ -5,14 +5,6 @@ import vClickOutside from 'v-click-outside';
 import * as Sentry from '@sentry/vue';
 
 /**
- * Sentry error reporting.
- */
-Sentry.init({
-    Vue,
-    dsn: 'https://ce922e0cba5e456b8ac7cd7b539f10dc@o543359.ingest.sentry.io/5666616',
-});
-
-/**
  * Autoload the Vue components and register them globally.
  *
  * This will allow for components to be added and used without having to manually register them.
@@ -70,3 +62,13 @@ window.Echo = new Echo({
  * Global v-click-outside directive.
  */
 Vue.use(vClickOutside);
+
+/**
+ * Sentry error reporting.
+ */
+if (process.env.NODE_ENV === 'production') {
+    Sentry.init({
+        Vue,
+        dsn: 'https://ce922e0cba5e456b8ac7cd7b539f10dc@o543359.ingest.sentry.io/5666616',
+    });
+}
