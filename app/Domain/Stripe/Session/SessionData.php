@@ -56,7 +56,7 @@ class SessionData implements Arrayable
             'cancel_url' => route('checkout.create'),
         ]);
 
-        // Set the customer id if this is a returning customer, only one of these may can be used since Stripe will
+        // Set the customer id if this is a returning customer, only an id OR email may be used since Stripe will
         // automatically do a lookup of the email if you provide the customer id.
         if ($stripe_customer_id = $user->stripe_customer_id) {
             $data->put('customer', $stripe_customer_id);
