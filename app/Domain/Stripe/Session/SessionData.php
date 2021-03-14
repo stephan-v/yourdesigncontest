@@ -42,6 +42,8 @@ class SessionData implements Arrayable
      */
     public function toArray()
     {
+        $user = $this->request->user();
+
         $data = collect([
             'payment_method_types' => ['card'],
             'metadata' => [
@@ -54,12 +56,12 @@ class SessionData implements Arrayable
             'cancel_url' => route('checkout.create'),
         ]);
 
-        // If present for an existing customer use the Stripe customer id.
-        // Otherwise default to an email for customer reference.
-        if ($stripe_customer_id = $this->request->user()->stripe_customer_id) {
+        // Set the customer id if this is a returning customer, only one of these may can be used since Stripe will
+        // automatically do a lookup of the email if you provide the customer id.
+        if ($stripe_customer_id = $user->stripe_customer_id) {
             $data->put('customer', $stripe_customer_id);
         } else {
-            $data->put('customer_email', $this->request->email);
+            $data->put('customer_email', $user->email);
         }
 
         return $data->toArray();

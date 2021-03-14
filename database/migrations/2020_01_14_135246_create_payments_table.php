@@ -20,7 +20,7 @@ class CreatePaymentsTable extends Migration
             $table->unsignedBigInteger('fee')->nullable();
             $table->enum('currency', ['EUR', 'USD']);
             $table->string('payment_id');
-            $table->string('status')->default(PaymentIntent::STATUS_PROCESSING);
+            $table->string('status')->default('pending'); // @TODO add constant.
             $table->foreignId('contest_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

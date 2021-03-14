@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class StripeSessionRequest extends FormRequest
@@ -14,7 +15,7 @@ class StripeSessionRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -27,7 +28,6 @@ class StripeSessionRequest extends FormRequest
         return [
             'amount' => ['required', 'numeric', 'min:5000'],
             'currency' => ['required', 'string'],
-            'email' => ['required', 'email'],
             'name' => ['required', 'string'],
         ];
     }

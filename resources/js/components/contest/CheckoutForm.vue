@@ -108,7 +108,6 @@
                 return {
                     amount: this.total.getAmount(),
                     currency: this.currency,
-                    email: this.user.email, // @TODO SET EMAIL.
                     name: this.contestName,
                 };
             },

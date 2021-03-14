@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contest;
 use App\Http\Middleware\VerifyWebhookSignature;
 use App\Models\Payment;
 use App\Models\User;
@@ -43,6 +42,23 @@ class StripeWebhookController extends Controller
     }
 
     /**
+     * Handle a canceled payment intent.
+     *
+     * @param array $payload The Stripe payload.
+     * @return Response The server response.
+     */
+    private function handlePaymentIntentCanceled(array $payload)
+    {
+        $stripe = $payload['data']['object'];
+
+        Payment::where('payment_id', $stripe['id'])->update([
+            'status' => PaymentIntent::STATUS_CANCELED
+        ]);
+
+        return $this->successMethod();
+    }
+
+    /**
      * Handle a completed payment intent.
      *
      * @param array $payload The Stripe payload.
@@ -53,8 +69,9 @@ class StripeWebhookController extends Controller
     {
         $stripe = $payload['data']['object'];
 
-        $customer = Customer::retrieve($stripe['customer']);
-        $user = User::where('email', $customer['email'])->firstOrFail();
+        // Fetch the Stripe customer.
+        $email = Customer::retrieve($stripe['customer'])->email;
+        $user = User::whereEmail($email)->firstOrFail();
 
         // Update the stripe_customer_id so consecutive payments are linked to the same Stripe user.
         $user->update(['stripe_customer_id' => $stripe['customer']]);
@@ -64,6 +81,7 @@ class StripeWebhookController extends Controller
             $stripe['charges']['data'][0]['balance_transaction']
         );
 
+        // Updated the payment with incurred fees.
         Payment::where('payment_id', $stripe['id'])->update([
             'fee' => $transaction->fee,
             'status' => PaymentIntent::STATUS_SUCCEEDED
