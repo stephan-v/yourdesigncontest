@@ -11,7 +11,7 @@
                     <h1>{{ __('Register') }}</h1>
                 </div>
 
-                <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('register') }}">
                     @csrf
 
                     <div class="form-group">
