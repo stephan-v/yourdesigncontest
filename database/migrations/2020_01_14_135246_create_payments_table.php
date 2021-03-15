@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Stripe\PaymentIntent;
+use Stripe\Event;
 
 class CreatePaymentsTable extends Migration
 {
@@ -20,7 +20,7 @@ class CreatePaymentsTable extends Migration
             $table->unsignedBigInteger('fee')->nullable();
             $table->enum('currency', ['EUR', 'USD']);
             $table->string('payment_id');
-            $table->string('status')->default('pending'); // @TODO add constant.
+            $table->string('status')->default(Event::PAYMENT_INTENT_CREATED);
             $table->foreignId('contest_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

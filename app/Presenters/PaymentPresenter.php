@@ -4,6 +4,7 @@ namespace App\Presenters;
 
 use App\Domain\Money\Converter;
 use App\Domain\Money\Formatter;
+use Illuminate\Support\Str;
 use Money\Currency;
 use Money\Money as MoneyPHP;
 

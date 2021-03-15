@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Stripe\BalanceTransaction;
 use Stripe\Customer;
+use Stripe\Event;
 use Stripe\Exception\ApiErrorException;
-use Stripe\PaymentIntent;
 use Symfony\Component\HttpFoundation\Response;
 
 class StripeWebhookController extends Controller
@@ -42,6 +42,23 @@ class StripeWebhookController extends Controller
     }
 
     /**
+     * Handle a created payment intent.
+     *
+     * @param array $payload The Stripe payload.
+     * @return Response The server response.
+     */
+    private function handlePaymentIntentCreated(array $payload)
+    {
+        $stripe = $payload['data']['object'];
+
+        Payment::where('payment_id', $stripe['id'])->update([
+            'status' => Event::PAYMENT_INTENT_CREATED,
+        ]);
+
+        return $this->successMethod();
+    }
+
+    /**
      * Handle a canceled payment intent.
      *
      * @param array $payload The Stripe payload.
@@ -52,7 +69,41 @@ class StripeWebhookController extends Controller
         $stripe = $payload['data']['object'];
 
         Payment::where('payment_id', $stripe['id'])->update([
-            'status' => PaymentIntent::STATUS_CANCELED
+            'status' => Event::PAYMENT_INTENT_CANCELED,
+        ]);
+
+        return $this->successMethod();
+    }
+
+    /**
+     * Handle a created payment intent.
+     *
+     * @param array $payload The Stripe payload.
+     * @return Response The server response.
+     */
+    private function handlePaymentIntentPaymentFailed(array $payload)
+    {
+        $stripe = $payload['data']['object'];
+
+        Payment::where('payment_id', $stripe['id'])->update([
+            'status' => Event::PAYMENT_INTENT_PAYMENT_FAILED,
+        ]);
+
+        return $this->successMethod();
+    }
+
+    /**
+     * Handle a created payment intent.
+     *
+     * @param array $payload The Stripe payload.
+     * @return Response The server response.
+     */
+    private function handlePaymentIntentRequiresAction(array $payload)
+    {
+        $stripe = $payload['data']['object'];
+
+        Payment::where('payment_id', $stripe['id'])->update([
+            'status' => Event::PAYMENT_INTENT_REQUIRES_ACTION,
         ]);
 
         return $this->successMethod();
@@ -84,7 +135,7 @@ class StripeWebhookController extends Controller
         // Updated the payment with incurred fees.
         Payment::where('payment_id', $stripe['id'])->update([
             'fee' => $transaction->fee,
-            'status' => PaymentIntent::STATUS_SUCCEEDED
+            'status' => Event::PAYMENT_INTENT_SUCCEEDED,
         ]);
 
         return $this->successMethod();

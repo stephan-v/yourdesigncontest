@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Stripe\Event;
 use Stripe\PaymentIntent;
 
 class Payment extends Resource
@@ -54,9 +55,11 @@ class Payment extends Resource
             Text::make('Payment Id'),
 
             Badge::make('Status')->map([
-                'pending' => 'info',
-                PaymentIntent::STATUS_SUCCEEDED => 'success',
-                PaymentIntent::STATUS_CANCELED => 'danger',
+                Event::PAYMENT_INTENT_CREATED => 'info',
+                Event::PAYMENT_INTENT_SUCCEEDED => 'success',
+                Event::PAYMENT_INTENT_PAYMENT_FAILED => 'danger',
+                Event::PAYMENT_INTENT_REQUIRES_ACTION => 'warning',
+                Event::PAYMENT_INTENT_CANCELED => 'danger',
             ])->sortable(),
 
             BelongsTo::make('Contest')->sortable(),
