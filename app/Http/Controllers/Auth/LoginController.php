@@ -73,6 +73,7 @@ class LoginController extends Controller
         ], [
             'name' => $socialiteUser->getName(),
             'email' => $socialiteUser->getEmail(),
+            'email_verified_at' => now(),
         ]);
 
         auth()->login($user, true);

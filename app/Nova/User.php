@@ -54,9 +54,9 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
-            Text::make('Stripe Customer Id'),
+            Text::make('Stripe Customer Id')->readonly(),
 
-            Text::make('Provider'),
+            Text::make('Provider')->readonly(),
 
             Boolean::make('Email Verified', function() {
                 return (bool) $this->email_verified_at;
