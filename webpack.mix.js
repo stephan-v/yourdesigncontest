@@ -17,6 +17,11 @@ mix.js('resources/js/app.js', 'public/js')
     })
     .disableNotifications();
 
+if (mix.inProduction()) {
+    mix.version();
+} else {
+    mix.sourceMaps(true, 'cheap-module-inline-source-map');
+}
 
 /*
  |--------------------------------------------------------------------------
