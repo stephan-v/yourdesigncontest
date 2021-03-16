@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class VerificationController extends Controller
 {
@@ -44,34 +42,17 @@ class VerificationController extends Controller
     }
 
     /**
-     * Mark the authenticated user's email address as verified.
+     * The user has been verified.
      *
-     * @param Request $request
-     * @return Response
-     * @throws AuthorizationException
+     * @param Request $request The incoming server request.
+     * @return mixed
      */
-    public function verify(Request $request)
+    protected function verified(Request $request)
     {
-        if (! hash_equals((string) $request->route('id'), (string) $request->user()->getKey())) {
-            throw new AuthorizationException;
-        }
+        alert()->success('Success','Your email has been verified.');
 
-        if (! hash_equals((string) $request->route('hash'), sha1($request->user()->getEmailForVerification()))) {
-            throw new AuthorizationException;
-        }
-
-        if ($request->user()->hasVerifiedEmail()) {
-            return redirect($this->redirectPath());
-        }
-
-        if ($request->user()->markEmailAsVerified()) {
-            event(new Verified($request->user()));
-        }
-
-        return redirect($this->redirectPath())->with('flash', [
-            'title' => 'Success',
-            'text' => 'Your email has been verified.',
-            'icon' => 'success',
-        ]);
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect($this->redirectPath());
     }
 }

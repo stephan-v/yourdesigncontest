@@ -52,7 +52,7 @@ Route::resource('blog', BlogController::class)->only(['index', 'show']);
 // User routes.
 Route::resource('users', UserController::class)->only(['show', 'update']);
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('users/{user}/settings', [UserController::class, 'edit'])->name('users.edit');
     Route::get('users/{user}/settings/password', [UserPasswordController::class, 'edit'])->name('users.edit.password');
     Route::patch('users/{user}/settings/password', [UserPasswordController::class, 'update'])->name('users.update.password');
