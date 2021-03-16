@@ -16,7 +16,10 @@ class Comment extends Model
      *
      * @var array
      */
-    protected $fillable = ['value', 'user_id'];
+    protected $fillable = [
+        'comment',
+        'user_id',
+    ];
 
     /**
      * Get all of the owning commentable models.

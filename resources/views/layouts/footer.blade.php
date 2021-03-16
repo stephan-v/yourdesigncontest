@@ -1,3 +1,4 @@
+            <sweet-alert :flash-modal='@json(session("flash-modal"))'></sweet-alert>
         </div><!-- /#app -->
 
         <footer class="footer text-center text-md-left">

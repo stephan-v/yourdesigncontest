@@ -66,8 +66,8 @@
 
             submit() {
                 axios.post(this.route, {
+                    comment: this.comment,
                     user_id: this.user.id,
-                    value: this.comment,
                 }).then((response) => {
                     this.comments.unshift(response.data);
                     this.comment = '';

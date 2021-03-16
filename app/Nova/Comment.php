@@ -5,19 +5,17 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\MorphMany;
+use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
 
-class Submission extends Resource
+class Comment extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Submission::class;
+    public static $model = \App\Models\Comment::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -46,17 +44,11 @@ class Submission extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
 
-            Text::make('Title'),
-
-            Textarea::make('Description'),
-
-            Image::make('Filename', function() {
-                return "contests/{$this->contest->id}/submissions/{$this->filename}";
-            }),
-
-            MorphMany::make('Comments'),
+            Text::make('Comment'),
 
             BelongsTo::make('User'),
+
+            MorphTo::make('Commentable'),
         ];
     }
 

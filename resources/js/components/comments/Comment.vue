@@ -5,12 +5,12 @@
 
             <input type="text"
                    class="mb-2"
-                   v-model="comment.value"
+                   v-model="comment.comment"
                    ref="editable"
                    @blur="update"
                    @keyup.enter="update"
                    v-if="editing">
-            <div class="mb-2" v-else>{{ comment.value }}</div>
+            <div class="mb-2" v-else>{{ comment.comment }}</div>
         </div>
 
         <span class="text-muted d-flex justify-content-between">
@@ -94,8 +94,8 @@
 
             update() {
                 axios.patch(this.route, {
+                    comment: this.comment.comment,
                     user_id: this.comment.user.id,
-                    value: this.comment.value,
                 }).then(() => {
                     this.editing = false;
                 }).catch((error) => {
