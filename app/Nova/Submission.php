@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\MorphMany;
@@ -57,6 +58,10 @@ class Submission extends Resource
             MorphMany::make('Comments'),
 
             BelongsTo::make('User'),
+
+            DateTime::make('Created At')->format('D-M-yyyy H:m'),
+
+            DateTime::make('Updated At')->format('D-M-yyyy H:m'),
         ];
     }
 

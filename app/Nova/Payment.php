@@ -2,15 +2,14 @@
 
 namespace App\Nova;
 
-use Brick\Money\Money;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Badge;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Currency;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Stripe\Event;
-use Stripe\PaymentIntent;
 
 class Payment extends Resource
 {
@@ -65,6 +64,10 @@ class Payment extends Resource
             BelongsTo::make('Contest')->sortable(),
 
             BelongsTo::make('User')->sortable(),
+
+            DateTime::make('Created At')->format('D-M-yyyy H:m'),
+
+            DateTime::make('Updated At')->format('D-M-yyyy H:m'),
         ];
     }
 

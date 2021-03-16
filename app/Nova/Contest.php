@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
@@ -62,6 +63,10 @@ class Contest extends Resource
             HasOne::make('Payment'),
 
             HasMany::make('Submissions'),
+
+            DateTime::make('Created At')->format('D-M-yyyy H:m'),
+
+            DateTime::make('Updated At')->format('D-M-yyyy H:m'),
         ];
     }
 
