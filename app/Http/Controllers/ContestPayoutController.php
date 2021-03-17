@@ -23,7 +23,7 @@ class ContestPayoutController extends Controller
             'status' => Payout::APPROVED,
         ]);
 
-        alert()->success('Approved','Payment is underway to the winner of your design contest.');
+        alert()->success('Approved','Funds have been assigned to the winner of your design contest.');
 
         return back();
     }

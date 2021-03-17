@@ -43,7 +43,7 @@
     @can('manage', $contest)
         @if ($contest->winner)
             <div class="alert alert-warning p-3 m-0 text-center" role="alert">
-                The contest is finished.
+                The contest has finished.
                 Click <a href="{{ route('contests.files.index', $contest) }}">here</a> to review the final design files.
             </div>
         @endif

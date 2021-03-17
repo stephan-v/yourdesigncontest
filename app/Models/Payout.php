@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Casts\Money;
 use App\Presenters\PayoutPresenter;
 use App\QueryScopes\PayoutScopes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -41,15 +40,6 @@ class Payout extends Model
      * @const string SUCCEEDED
      */
     public const SUCCEEDED = 'succeeded';
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array $casts
-     */
-    protected $casts = [
-        'amount' => Money::class,
-    ];
 
     /**
      * The attributes that are mass assignable.
