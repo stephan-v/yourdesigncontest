@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Domain\Stripe\Constants\PaymentStatus;
 use App\Http\Middleware\VerifyWebhookSignature;
 use App\Models\Payment;
 use App\Models\User;
@@ -9,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Stripe\BalanceTransaction;
 use Stripe\Customer;
-use Stripe\Event;
 use Stripe\Exception\ApiErrorException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -52,7 +52,7 @@ class StripeWebhookController extends Controller
         $stripe = $payload['data']['object'];
 
         Payment::where('payment_id', $stripe['id'])->update([
-            'status' => Event::PAYMENT_INTENT_CREATED,
+            'status' => PaymentStatus::CREATED,
         ]);
 
         return $this->successMethod();
@@ -69,7 +69,7 @@ class StripeWebhookController extends Controller
         $stripe = $payload['data']['object'];
 
         Payment::where('payment_id', $stripe['id'])->update([
-            'status' => Event::PAYMENT_INTENT_CANCELED,
+            'status' => PaymentStatus::CANCELED,
         ]);
 
         return $this->successMethod();
@@ -86,7 +86,7 @@ class StripeWebhookController extends Controller
         $stripe = $payload['data']['object'];
 
         Payment::where('payment_id', $stripe['id'])->update([
-            'status' => Event::PAYMENT_INTENT_PAYMENT_FAILED,
+            'status' => PaymentStatus::FAILED,
         ]);
 
         return $this->successMethod();
@@ -103,7 +103,7 @@ class StripeWebhookController extends Controller
         $stripe = $payload['data']['object'];
 
         Payment::where('payment_id', $stripe['id'])->update([
-            'status' => Event::PAYMENT_INTENT_REQUIRES_ACTION,
+            'status' => PaymentStatus::REQUIRES_ACTION,
         ]);
 
         return $this->successMethod();
@@ -135,7 +135,7 @@ class StripeWebhookController extends Controller
         // Updated the payment with incurred fees.
         Payment::where('payment_id', $stripe['id'])->update([
             'fee' => $transaction->fee,
-            'status' => Event::PAYMENT_INTENT_SUCCEEDED,
+            'status' => PaymentStatus::SUCCEEDED,
         ]);
 
         return $this->successMethod();

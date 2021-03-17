@@ -45,6 +45,7 @@ class SessionData implements Arrayable
         $user = $this->request->user();
 
         $data = collect([
+            'mode' => 'payment',
             'payment_method_types' => ['card'],
             'metadata' => [
                 'contest_id' => $this->contest->id,

@@ -72,7 +72,7 @@ class ContestCheckoutController extends Controller
 
         $amount = $session->amount_total / 100;
         $contestId = $session->metadata->contest_id;
-        $email = $session->customer_email;
+        $email = $session->customer_details->email;
 
         $contest = Contest::findOrFail($contestId);
         $contest->load('payment');

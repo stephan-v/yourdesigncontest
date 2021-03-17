@@ -17,5 +17,7 @@ class StripeServiceProvider extends ServiceProvider
         Stripe::setApiKey(
             config('services.stripe.secret')
         );
+
+        Stripe::setApiVersion('2020-08-27');
     }
 }

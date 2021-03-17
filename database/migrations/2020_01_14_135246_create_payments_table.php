@@ -1,9 +1,9 @@
 <?php
 
+use App\Domain\Stripe\Constants\PaymentStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Stripe\Event;
 
 class CreatePaymentsTable extends Migration
 {
@@ -20,7 +20,7 @@ class CreatePaymentsTable extends Migration
             $table->unsignedBigInteger('fee')->nullable();
             $table->enum('currency', ['EUR', 'USD']);
             $table->string('payment_id');
-            $table->string('status')->default(Event::PAYMENT_INTENT_CREATED);
+            $table->string('status')->default(PaymentStatus::CREATED);
             $table->foreignId('contest_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

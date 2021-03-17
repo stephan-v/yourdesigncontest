@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Domain\Stripe\Constants\PaymentStatus;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Badge;
 use Laravel\Nova\Fields\BelongsTo;
@@ -54,11 +55,11 @@ class Payment extends Resource
             Text::make('Payment Id'),
 
             Badge::make('Status')->map([
-                Event::PAYMENT_INTENT_CREATED => 'info',
-                Event::PAYMENT_INTENT_SUCCEEDED => 'success',
-                Event::PAYMENT_INTENT_PAYMENT_FAILED => 'danger',
-                Event::PAYMENT_INTENT_REQUIRES_ACTION => 'warning',
-                Event::PAYMENT_INTENT_CANCELED => 'danger',
+                PaymentStatus::CANCELED => 'danger',
+                PaymentStatus::CREATED => 'info',
+                PaymentStatus::FAILED => 'danger',
+                PaymentStatus::REQUIRES_ACTION => 'warning',
+                PaymentStatus::SUCCEEDED => 'success',
             ])->sortable(),
 
             BelongsTo::make('Contest')->sortable(),
