@@ -11,6 +11,6 @@ trait SubmissionPresenter
      */
     public function getPathAttribute(): string
     {
-        return asset("contests/{$this->contest->id}/submissions/{$this->filename}");
+        return asset("submissions/{$this->filename}");
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use KABBOUCHI\NovaImpersonate\Impersonate;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
@@ -71,6 +72,8 @@ class User extends Resource
             DateTime::make('Created At')->format('D-M-yyyy H:m'),
 
             DateTime::make('Updated At')->format('D-M-yyyy H:m'),
+
+            Impersonate::make($this),
         ];
     }
 

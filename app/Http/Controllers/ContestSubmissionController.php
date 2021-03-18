@@ -39,7 +39,7 @@ class ContestSubmissionController extends Controller
     {
         $file = $request->file('image');
 
-        // Crop and fit the image.
+        // Load the image into Intervention for cropping and refitting.
         $image = Image::make($file);
 
         // Get the croppie.js coordinates.
@@ -56,9 +56,7 @@ class ContestSubmissionController extends Controller
 
         $fileName = $file->hashName();
 
-        $path = "contests/{$contest->id}/submissions/{$fileName}";
-
-        Storage::disk('public')->put($path, $image->encode());
+        Storage::disk('public')->put("submissions/{$fileName}", $image->encode());
 
         $contest->submissions()->create([
             'title' => $request->title,

@@ -39,14 +39,15 @@ class SubmissionCommentController extends Controller
             ->create($request->validated())
             ->load('user');
 
-        $user = $request->user();
+        // Notify the submission owner.
+        $user = $submission->user;
 
-        // Send out a notification to the submission or contest owner, depending on who comments.
-        if ($submission->user->id === $comment->user->id) {
+        // If the user owns the submission which is being commented on(reply) we notify the contest owner.
+        if ($request->user()->id === $submission->user->id) {
             $user = $submission->contest->user;
         }
 
-        // Notify the other party.
+        // Notify the user.
         $user->notify(new CommentNotification($comment, route('contests.show', $submission->contest)));
 
         return response($comment);

@@ -7,7 +7,7 @@
         </transition>
 
         <transition enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutUp">
-            <div class="notifications position-absolute" v-if="visible" v-click-outside="toggle">
+            <div class="notifications position-absolute shadow-lg" v-if="visible" v-click-outside="toggle">
                 <div class="triangle"></div>
 
                 <div class="notifications-header d-flex align-items-center justify-content-between p-3">

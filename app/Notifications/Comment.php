@@ -43,7 +43,7 @@ class Comment extends Notification
     {
         return [
             'avatar' => $this->comment->user->avatar,
-            'message' => "<b>{$this->comment->user->name}</b> commented on your submission.",
+            'message' => "<b>{$this->comment->user->name}</b> commented.",
             'route' => $this->route,
         ];
     }

@@ -51,8 +51,8 @@ class Submission extends Resource
 
             Textarea::make('Description'),
 
-            Image::make('Filename', function() {
-                return "contests/{$this->contest->id}/submissions/{$this->filename}";
+            Image::make('File', function() {
+                return "submissions/{$this->filename}";
             }),
 
             MorphMany::make('Comments'),

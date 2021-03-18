@@ -4,7 +4,7 @@
             <div class="font-weight-bold small mb-2">{{ comment.user.name }}</div>
 
             <input type="text"
-                   class="mb-2"
+                   class="mb-2 w-100"
                    v-model="comment.comment"
                    ref="editable"
                    @blur="update"

@@ -16,7 +16,7 @@ class ContestsTableSeeder extends Seeder
     public function run()
     {
         // Default contests.
-        Contest::factory()->count(20)->create()->each(function (Contest $contest) {
+        Contest::factory()->count(5)->create()->each(function (Contest $contest) {
             $contest->payment()->save(Payment::factory()->make());
         });
 

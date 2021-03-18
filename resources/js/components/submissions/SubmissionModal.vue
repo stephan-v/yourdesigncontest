@@ -63,7 +63,7 @@
             },
 
             owner() {
-                return this.user?.id === this.submission.contest.user_id;
+                return this.user?.id === this.submission.user_id;
             },
 
             locked() {

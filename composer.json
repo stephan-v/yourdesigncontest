@@ -17,6 +17,7 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "jgrossi/corcel": "^5.0",
+        "kabbouchi/nova-impersonate": "^1.5",
         "laravel/framework": "^8.0",
         "laravel/horizon": "^5.6.4",
         "laravel/nova": "~3.0",

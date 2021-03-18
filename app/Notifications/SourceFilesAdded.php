@@ -45,8 +45,7 @@ class SourceFilesAdded extends Notification
         return (new MailMessage)
             ->greeting('Hello')
             ->line('The winning designer has added their source files to your contest.')
-            ->action('View source files', route('contests.files.index', $this->contest))
-            ->line('Thank you for using our application!');
+            ->action('View source files', route('contests.files.index', $this->contest));
     }
 
     /**
