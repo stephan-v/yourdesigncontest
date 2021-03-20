@@ -81,7 +81,7 @@
                         @if ($contest->winner || $contest->expired)
                             Contest finished
                         @else
-                            Ends in {{ $contest->endsIn }}
+                            Ends in <countdown end-date="{{ $contest->expires_at }}"></countdown>
                         @endif
                     </span>
 

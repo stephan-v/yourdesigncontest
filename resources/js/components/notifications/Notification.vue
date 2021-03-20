@@ -13,7 +13,6 @@
 
 <script>
     import dayjs from 'dayjs';
-    import relativeTime from 'dayjs/plugin/relativeTime';
 
     export default {
         props: {
@@ -21,10 +20,6 @@
                 required: true,
                 type: Object,
             },
-        },
-
-        created() {
-            dayjs.extend(relativeTime);
         },
 
         computed: {

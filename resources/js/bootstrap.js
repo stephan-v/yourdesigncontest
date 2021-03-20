@@ -3,6 +3,9 @@ import Echo from 'laravel-echo';
 import Vue from 'vue';
 import vClickOutside from 'v-click-outside';
 import * as Sentry from '@sentry/vue';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import duration from 'dayjs/plugin/duration';
 
 /**
  * Autoload the Vue components and register them globally.
@@ -61,14 +64,23 @@ window.Echo = new Echo({
 /**
  * Global v-click-outside directive.
  */
+
 Vue.use(vClickOutside);
 
 /**
  * Sentry error reporting.
  */
+
 if (process.env.NODE_ENV === 'production') {
     Sentry.init({
         Vue,
         dsn: 'https://ce922e0cba5e456b8ac7cd7b539f10dc@o543359.ingest.sentry.io/5666616',
     });
 }
+
+/**
+ * Dayjs extensions.
+ */
+
+dayjs.extend(duration);
+dayjs.extend(relativeTime);
