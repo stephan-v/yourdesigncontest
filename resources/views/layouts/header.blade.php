@@ -51,6 +51,9 @@
                 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
             </script>
         @endif
+
+        {{-- Ziggy named routes for frontend usage --}}
+        @routes
     </head>
     <body>
         <div id="app" class="d-flex flex-column">

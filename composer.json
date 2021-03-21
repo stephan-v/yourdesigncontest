@@ -32,6 +32,7 @@
         "spatie/laravel-sitemap": "^5.5",
         "stechstudio/laravel-zipstream": "^2.1",
         "stripe/stripe-php": "^7.14",
+        "tightenco/ziggy": "^1.0",
         "wildbit/swiftmailer-postmark": "^3.1"
     },
     "require-dev": {
