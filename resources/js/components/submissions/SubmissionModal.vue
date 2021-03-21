@@ -6,7 +6,7 @@
                 <div>By <a :href="profile">{{ submission.user.name }}</a></div>
             </div>
 
-            <form class="text-center" @submit.prevent="award" v-if="!locked && owner">
+            <form class="text-center" @submit.prevent="award" v-if="!locked && contestOwner">
                 <button type="submit" class="btn btn-dark">Select as winner <i class="fas fa-award ml-1"></i></button>
             </form>
         </div>
@@ -58,6 +58,10 @@
         },
 
         computed: {
+            contestOwner() {
+                return this.user?.id === this.submission.contest.user_id;
+            },
+
             deletable() {
                 return !this.submission.deleted_at && !this.submission.winner;
             },
