@@ -49,7 +49,7 @@
 
 <script>
     import axios from 'axios';
-    import dayjs from 'dayjs';
+    import format from 'date-fns/format';
     import swal from 'sweetalert';
 
     export default {
@@ -79,7 +79,7 @@
             },
 
             created() {
-                return dayjs(this.submission.created_at).format('MMM D, YYYY');
+                return format(new Date(this.submission.created_at), 'MMM d, yyyy');
             },
 
             contest() {

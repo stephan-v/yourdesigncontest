@@ -59,7 +59,7 @@
         <div class="container">
             <div class="row winning-submission">
                 <div class="col-md-4">
-                    <div class="winner-placeholder intrinsic intrinsic--4x3 mb-4 position-relative">
+                    <div class="winner-placeholder intrinsic intrinsic--4x3 mb-4 position-relative shadow-sm">
                         @if ($contest->winner)
                             <div class="winner-badge position-absolute">Winner</div>
                             <img src="{{ $contest->submissions->firstWhere('winner', true)->path }}" class="intrinsic-item" alt="The design of the contest winner">
@@ -81,7 +81,7 @@
                         @if ($contest->winner || $contest->expired)
                             Contest finished
                         @else
-                            Ends in <countdown end-date="{{ $contest->expires_at }}"></countdown>
+                            Ends <countdown end-date="{{ $contest->expires_at }}"></countdown>
                         @endif
                     </span>
 

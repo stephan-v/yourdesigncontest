@@ -26,7 +26,7 @@
 
 <script>
     import axios from 'axios';
-    import dayjs from 'dayjs';
+    import formatDistanceToNow from 'date-fns/formatDistanceToNow';
     import swal from 'sweetalert';
 
     export default {
@@ -39,6 +39,8 @@
 
         created() {
             this.setHumanReadableCreationTime();
+
+            setInterval(this.setHumanReadableCreationTime, 5000);
         },
 
         props: {
@@ -101,11 +103,7 @@
             },
 
             setHumanReadableCreationTime() {
-                this.time = dayjs(this.comment.created_at).fromNow();
-
-                setInterval(() => {
-                    this.time = dayjs(this.comment.created_at).fromNow();
-                }, 5000);
+                this.time = formatDistanceToNow(new Date(this.comment.created_at), { addSuffix: true });
             },
         },
     };

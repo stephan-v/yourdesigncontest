@@ -44,7 +44,7 @@
         "bootstrap": "^4.4.1",
         "colorthief": "^2.3.0",
         "croppie": "^2.6.4",
-        "dayjs": "^1.8.20",
+        "date-fns": "^2.19.0",
         "dinero.js": "^1.6.0",
         "laravel-echo": "^1.6.1",
         "pusher-js": "^5.1.1",

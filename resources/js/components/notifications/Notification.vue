@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import dayjs from 'dayjs';
+    import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
     export default {
         props: {
@@ -23,12 +23,16 @@
         },
 
         computed: {
+            createdAt() {
+                return new Date(this.notification.created_at);
+            },
+
             data() {
                 return this.notification.data;
             },
 
             diffForHumans() {
-                return dayjs(this.notification.created_at).fromNow();
+                return formatDistanceToNow(this.createdAt, { addSuffix: true });
             },
 
             route() {

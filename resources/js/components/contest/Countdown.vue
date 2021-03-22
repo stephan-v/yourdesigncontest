@@ -3,7 +3,8 @@
 </template>
 
 <script>
-    import dayjs from 'dayjs';
+    import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
+    import isPast from 'date-fns/isPast';
 
     export default {
         props: {
@@ -16,7 +17,7 @@
         data() {
             return {
                 countdown: null,
-                now: dayjs(),
+                now: new Date(),
             };
         },
 
@@ -26,20 +27,22 @@
             setInterval(this.setCountdown, 1000);
         },
 
+        computed: {
+            expiresAt() {
+                return new Date(this.endDate);
+            },
+        },
+
         methods: {
             setCountdown() {
-                const differenceInSeconds = dayjs(this.endDate).unix() - dayjs().unix();
-
-                if (differenceInSeconds === 0) {
+                if (isPast(this.expiresAt)) {
                     window.location.reload();
                 }
 
-                if (differenceInSeconds > 86400) {
-                    this.countdown = dayjs(this.endDate).fromNow();
-                    return;
-                }
-
-                this.countdown = dayjs.duration(differenceInSeconds * 1000).format('HH:mm:ss');
+                this.countdown = formatDistanceToNowStrict(this.expiresAt, {
+                    addSuffix: true,
+                    roundingMethod: 'floor',
+                });
             },
         },
     };
