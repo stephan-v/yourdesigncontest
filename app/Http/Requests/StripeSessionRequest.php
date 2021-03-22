@@ -28,7 +28,6 @@ class StripeSessionRequest extends FormRequest
         return [
             'amount' => ['required', 'numeric', 'min:5000'],
             'currency' => ['required', 'string'],
-            'title' => ['required', 'string'],
         ];
     }
 
@@ -40,7 +39,6 @@ class StripeSessionRequest extends FormRequest
     public function messages()
     {
         // @TODO Calculate the amount dynamically.
-
         return [
             'amount.min' => 'The amount must be at least 50 ' . Str::upper($this->currency) . '.',
         ];

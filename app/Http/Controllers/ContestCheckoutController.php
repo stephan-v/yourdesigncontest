@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Domain\Stripe\Session\SessionData;
 use App\Http\Requests\StripeSessionRequest;
 use App\Models\Contest;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -39,6 +40,9 @@ class ContestCheckoutController extends Controller
     public function store(StripeSessionRequest $request)
     {
         $data = $request->session()->get('contest');
+
+        // Expires at contains the amount of weeks when the contest will end, convert it to a Date instance.
+        $data['expires_at'] = (new Carbon())->addWeeks($data['expires_at']);
 
         $contest = $request->user()->contests()->create($data);
 
@@ -76,6 +80,9 @@ class ContestCheckoutController extends Controller
 
         $contest = Contest::findOrFail($contestId);
         $contest->load('payment');
+
+        // Remove the contest form data from the session.
+        $request->session()->forget('contest');
 
         return view('checkout.success', compact('amount', 'contest', 'email'));
     }

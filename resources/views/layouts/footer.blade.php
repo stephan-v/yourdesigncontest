@@ -39,7 +39,7 @@
 
                         <ul class="list-unstyled">
                             <li class="mb-2">
-                                <a href="{{ route('contests.create') }}">Create contest</a>
+                                <a href="{{ route('contests.create') }}">Start a contest</a>
                             </li>
                         </ul>
                     </div>

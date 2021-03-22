@@ -16,7 +16,7 @@
                    :placeholder="placeholder"
                    @input="clearErrors"
                    v-model.number="amount">
-            <div class="alert alert-warning d-block">Select how much the winning designer will earn.</div>
+            <div class="alert alert-warning d-block">Choose how much the winning designer will earn.</div>
         </div>
 
         <div class="card mb-3">
@@ -71,13 +71,6 @@
             };
         },
 
-        props: {
-            contestTitle: {
-                required: true,
-                type: String,
-            },
-        },
-
         created() {
             Dinero.globalFormat = '$0,0';
             Dinero.globalLocale = 'en';
@@ -108,7 +101,6 @@
                 return {
                     amount: this.total.getAmount(),
                     currency: this.currency,
-                    title: this.contestTitle,
                 };
             },
 

@@ -76,7 +76,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Checkout routes.
     Route::get('contests/checkout/create', [ContestCheckoutController::class, 'create'])->name('checkout.create');
-    Route::post('contests/checkout', [ContestCheckoutController::class, 'store'])->middleware('database.transaction');
+    Route::post('contests/checkout', [ContestCheckoutController::class, 'store'])->name('checkout.store')->middleware('database.transaction');
     Route::get('success', [ContestCheckoutController::class, 'success'])->name('checkout.success');
 });
 

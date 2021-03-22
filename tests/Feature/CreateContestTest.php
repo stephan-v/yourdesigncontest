@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Http\Middleware\DatabaseTransaction;
+use App\Models\Contest;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -55,16 +57,25 @@ class CreateContestTest extends TestCase
      */
     public function test_contest_expires_at_date_is_carbon_instance()
     {
+        $this->withoutMiddleware(DatabaseTransaction::class);
+
         $user = User::factory()->create();
 
-        $this->actingAs($user)->post(route('contests.store'), [
+        $response = $this->actingAs($user)->post(route('contests.store'), [
             'title' => 'A test contest',
             'description' => 'A nice story',
             'category' => 'packaging',
             'expires_at' => 1
         ]);
 
-        $expiresAt = session()->get('contest.expires_at');
+        $response->assertRedirect(route('checkout.create'));
+
+        $this->post(route('checkout.store'), [
+            'amount' => 150000,
+            'currency' => 'EUR',
+        ]);
+
+        $expiresAt = Contest::latest()->first()->expires_at;
 
         $this->assertInstanceOf(Carbon::class, $expiresAt);
     }
@@ -74,17 +85,26 @@ class CreateContestTest extends TestCase
      */
     public function test_contest_expires_at_date_calculates_correct_week_offset()
     {
+        $this->withoutMiddleware(DatabaseTransaction::class);
+
         $user = User::factory()->create();
 
-        $this->actingAs($user)->post(route('contests.store'), [
+        $response = $this->actingAs($user)->post(route('contests.store'), [
             'title' => 'A test contest',
             'description' => 'A nice story',
             'category' => 'packaging',
             'expires_at' => 1
         ]);
 
+        $response->assertRedirect(route('checkout.create'));
+
+        $this->post(route('checkout.store'), [
+            'amount' => 150000,
+            'currency' => 'EUR',
+        ]);
+
         /** @var Carbon $expiresAt */
-        $expiresAt = session()->get('contest.expires_at');
+        $expiresAt = Contest::latest()->first()->expires_at;
 
         $this->assertTrue($expiresAt->isNextWeek());
     }
