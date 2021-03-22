@@ -65,6 +65,8 @@ class Contest extends Resource
 
             HasMany::make('Submissions'),
 
+            DateTime::make('Expires At')->format('D-M-yyyy H:m'),
+
             DateTime::make('Created At')->format('D-M-yyyy H:m'),
 
             DateTime::make('Updated At')->format('D-M-yyyy H:m'),
