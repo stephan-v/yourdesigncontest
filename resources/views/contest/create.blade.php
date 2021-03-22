@@ -30,13 +30,32 @@
                         <textarea name="description" class="form-control" id="description" rows="8" placeholder="Briefing of your contest">{{ old('description', session()->get('contest.description')) }}</textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="category">Category</label>
-                        <select name="category" class="form-control" id="category">
-                            <option value="branding" @if (old('branding', session()->get('contest.category'))) selected @endif>Branding</option>
-                            <option value="webdesign" @if (old('webdesign', session()->get('contest.category'))) selected @endif>Webdesign</option>
-                            <option value="packaging" @if (old('packaging', session()->get('contest.category'))) selected @endif>Packaging</option>
-                        </select>
+                    <div class="mb-2">Category</div>
+
+                    <div class="form-group row radio-images mb-4">
+                        <div class="col-md-4">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="category" value="branding" @if (old('category', session()->get('contest.category')) === 'branding' || !session()->has('contest.category')) checked @endif>
+                                <img src="https://cdn.dribbble.com/users/25514/screenshots/14919766/media/20dfa212877dc54d8027cfdff45978a8.png" alt="" class="img-fluid">
+                                <div class="category-title bg-white p-3 small font-weight-bold text-center">Branding</div>
+                            </label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="category" value="webdesign" @if (old('category', session()->get('contest.category')) === 'webdesign') checked @endif>
+                                <img src="https://cdn.dribbble.com/users/92173/screenshots/12432135/media/c4a81af9131f0026ff2995b1d9b3cf72.png" alt="" class="img-fluid">
+                                <div class="category-title bg-white p-3 small font-weight-bold text-center">Webdesign</div>
+                            </label>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="category" value="packaging" @if (old('category', session()->get('contest.category')) === 'packaging') checked @endif>
+                                <img src="https://cdn.dribbble.com/users/334782/screenshots/15269038/media/0492137085e66c60d7a78003a915cac1.jpg" alt="" class="img-fluid">
+                                <div class="category-title bg-white p-3 small font-weight-bold text-center">Packaging</div>
+                            </label>
+                        </div>
                     </div>
 
                     <div class="form-group mb-4">

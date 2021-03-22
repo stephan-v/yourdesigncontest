@@ -1,0 +1,31 @@
+.radio-images {
+    [type=radio] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+
+        &:checked {
+            + img {
+                border-top: 2px solid orange;
+                border-right: 2px solid orange;
+                border-left: 2px solid orange;
+            }
+
+            ~ .category-title {
+                border-right: 2px solid orange;
+                border-bottom: 2px solid orange;
+                border-left: 2px solid orange;
+            }
+        }
+    }
+
+    img {
+        cursor: pointer;
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    .category-title {
+        border-radius: 0 0 0.5rem 0.5rem;
+    }
+}
