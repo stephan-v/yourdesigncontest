@@ -23,9 +23,19 @@
     img {
         cursor: pointer;
         border-radius: 0.5rem 0.5rem 0 0;
+        border-top: 2px solid transparent;
+        border-right: 2px solid transparent;
+        border-left: 2px solid transparent;
     }
 
     .category-title {
         border-radius: 0 0 0.5rem 0.5rem;
+        border-right: 2px solid transparent;
+        border-bottom: 2px solid transparent;
+        border-left: 2px solid transparent;
+    }
+
+    img, .category-title {
+        transition: border 0.4s;
     }
 }
