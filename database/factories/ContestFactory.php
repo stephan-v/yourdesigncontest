@@ -22,7 +22,7 @@ class ContestFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->company,
+            'title' => $this->faker->company,
             'category' => $this->faker->randomElement(['branding', 'webdesign', 'packaging']),
             'description' => $this->faker->text,
             'user_id' => 1,

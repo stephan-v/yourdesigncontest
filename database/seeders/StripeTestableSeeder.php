@@ -31,7 +31,7 @@ class StripeTestableSeeder extends Seeder
 
         // Contest which has an actual Stripe payment to test.
         $contest = Contest::factory()->create([
-            'name' => 'Stripe testable',
+            'title' => 'Stripe testable',
             'expires_at'=> now()->addDays(3),
             'user_id' => 1,
         ]);

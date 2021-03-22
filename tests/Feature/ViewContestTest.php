@@ -21,7 +21,7 @@ class ViewContestTest extends TestCase
         $contest = $user->contests()->create([
             'category' => 'branding',
             'description' => 'Description',
-            'name' => 'A custom name',
+            'title' => 'A custom name',
             'expires_at' => (new Carbon())->addWeeks(1),
         ]);
 

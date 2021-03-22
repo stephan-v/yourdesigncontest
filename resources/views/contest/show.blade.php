@@ -2,7 +2,7 @@
 
 @section('meta')
     @php
-        $description = "A new design contest - {$contest->name}";
+        $description = "A new design contest - {$contest->title}";
         $image = asset('images/drawing-feedback-logos-critique-17845.jpg');
     @endphp
 
@@ -10,7 +10,7 @@
     <meta name="description" content="{{ $description }}" />
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="{{ $contest->name }}">
+    <meta itemprop="name" content="{{ $contest->title }}">
     <meta itemprop="description" content="{{ $description }}">
     <meta itemprop="image" content="{{ $image }}">
 
@@ -24,7 +24,7 @@
     <meta name="twitter:image:src" content="{{ $image }}">
 
     <!-- Open Graph data -->
-    <meta property="og:title" content="{{ $contest->name }}" />
+    <meta property="og:title" content="{{ $contest->title }}" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:image" content="{{ $image }}" />
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="col-md-8">
-                    <h1>{{ $contest->name }}</h1>
+                    <h1>{{ $contest->title }}</h1>
                     <div class="text-muted mb-2">Started by {{ $contest->user->name }}</div>
                     <p>{{ $contest->description }}</p>
 

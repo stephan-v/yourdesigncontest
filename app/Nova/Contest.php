@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Badge;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
@@ -26,7 +27,7 @@ class Contest extends Resource
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -34,7 +35,7 @@ class Contest extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'description', 'category',
+        'id', 'title', 'description', 'category',
     ];
 
     /**
@@ -48,7 +49,7 @@ class Contest extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('name')->sortable(),
+            Text::make('title')->sortable(),
 
             Textarea::make('Description'),
 

@@ -17,7 +17,10 @@ class Contest extends Model
      * @var array $fillable
      */
     protected $fillable = [
-        'description', 'expires_at', 'name', 'category'
+        'category',
+        'description',
+        'expires_at',
+        'title',
     ];
 
     /**

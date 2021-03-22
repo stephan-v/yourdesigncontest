@@ -21,8 +21,8 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="name">Contest name</label>
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Name of your contest" value="{{ old('name', session()->get('contest.name')) }}">
+                        <label for="title">Contest title</label>
+                        <input type="text" name="title" class="form-control" id="title" placeholder="Title of your contest" value="{{ old('title', session()->get('contest.title')) }}">
                     </div>
 
                     <div class="form-group">

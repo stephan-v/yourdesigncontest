@@ -18,7 +18,7 @@
                             <select name="contest_id" class="form-control @error('contest') is-invalid @enderror" id="contest_id">
                                 @foreach ($contests as $contest)
                                     <option value="{{ $contest->id }}" @if (old('contest_id') == $contest->id) selected @endif>
-                                        {{ $contest->name }}
+                                        {{ $contest->title }}
                                     </option>
                                 @endforeach
                             </select>

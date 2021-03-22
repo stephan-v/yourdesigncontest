@@ -48,11 +48,11 @@
 
                     @foreach ($contests as $contest)
                         <a href="{{ route('contests.show', $contest) }}" class="w-100 bg-white py-4 mb-3 rounded d-flex unlink">
-                            <span class="col">{{ $contest->name }}</span>
+                            <span class="col">{{ $contest->title }}</span>
                             <span class="col-2">{{ $contest->category }}</span>
                             <span class="col-2">{{ $contest->submissions->count() }}</span>
                             <span class="col-2">{{ $contest->payment->format }}</span>
-                            <span class="col-2">{{ $contest->active ? $contest->ends_in : 'finished' }}</span>
+                            <span class="col-2">{{ $contest->active ? $contest->endsIn : 'finished' }}</span>
                         </a>
                     @endforeach
                 </section>

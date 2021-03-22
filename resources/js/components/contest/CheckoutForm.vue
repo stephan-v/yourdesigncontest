@@ -72,7 +72,7 @@
         },
 
         props: {
-            contestName: {
+            contestTitle: {
                 required: true,
                 type: String,
             },
@@ -108,7 +108,7 @@
                 return {
                     amount: this.total.getAmount(),
                     currency: this.currency,
-                    name: this.contestName,
+                    title: this.contestTitle,
                 };
             },
 

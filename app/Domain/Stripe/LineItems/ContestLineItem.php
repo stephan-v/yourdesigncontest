@@ -32,7 +32,7 @@ class ContestLineItem implements Arrayable
     public function toArray()
     {
         return [
-            'name' => $this->request->name,
+            'name' => $this->request->title,
             'description' => 'Design contest',
             'images' => null,
             'amount' => $this->request->amount,

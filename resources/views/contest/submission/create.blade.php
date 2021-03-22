@@ -20,7 +20,7 @@
             </div>
 
             <div class="col-md-4">
-                <h1>Add a submission</h1>
+                <h1 class="h4">Add a submission</h1>
 
                 <div class="form-group">
                     <label for="title">Title</label>
