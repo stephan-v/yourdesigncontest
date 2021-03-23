@@ -11,6 +11,16 @@ class SubmissionPolicy
     use HandlesAuthorization;
 
     /**
+     * Determine whether the user can view the model.
+     *
+     * @return boolean Whether the user is allowed to view the user model.
+     */
+    public function view()
+    {
+        return true;
+    }
+
+    /**
      * Determine whether the user can update the submission.
      *
      * @param User $user The user that is currently logged in.

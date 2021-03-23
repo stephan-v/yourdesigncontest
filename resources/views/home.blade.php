@@ -125,7 +125,7 @@
                     l1.6-3.1C60.4,53.4,60.6,53.4,60.8,53.5z"></path>
                                 </svg>
                             </figure>
-                            <p class="mb-0"><span class="text-dark font-weight-bold">4.83 out of 5 starts</span> from 53 reviews</p>
+                            <p class="mb-0"><span class="text-dark font-weight-bold">Top tier</span> designs from graphic professionals around the world</p>
                         </div>
                         <!-- End Stats -->
                     </div>
@@ -169,7 +169,7 @@
                                     <use xlink:href="#SVGID_5_" fill="none" stroke="#FFFFFF" stroke-width="4"></use>
                                 </svg>
                             </figure>
-                            <p class=" mb-0">Over <span class="text-dark font-weight-bold">500</span> support questions have been closed</p>
+                            <p class=" mb-0">Large creative community standby to help with your <span class="text-dark font-weight-bold">dream design</span></p>
                         </div>
                         <!-- End Stats -->
                     </div>
@@ -192,7 +192,7 @@
                     c1.4,0,2.5-1.1,2.5-2.5v-0.5c0-1.4-1.1-2.5-2.5-2.5H19.5C18.1,58.4,17.1,57.4,17.1,56z"></path>
                                 </svg>
                             </figure>
-                            <p class="mb-0"><span class="text-dark font-weight-bold">3,700</span> contests started</p>
+                            <p class="mb-0"><span class="text-dark font-weight-bold">Personalized</span> designs to fit your contest briefing</p>
                         </div>
                         <!-- End Stats -->
                     </div>

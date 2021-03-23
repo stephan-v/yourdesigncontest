@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="col-md-8">
-                    <h1>{{ $contest->title }}</h1>
+                    <h1 class="h4">{{ $contest->title }}</h1>
                     <div class="text-muted mb-2">Started by {{ $contest->user->name }}</div>
                     <p>{{ $contest->description }}</p>
 
@@ -145,10 +145,7 @@
                         <div class="d-flex justify-content-between py-2">
                             <small class="text-muted">
                                 <span class="mr-1">#{{ $submission->order }}</span>
-
-                                <a href="{{ route('users.show', $submission->user) }}" class="font-weight-bold">
-                                    {{ $submission->user->name }}
-                                </a>
+                                <a href="{{ route('users.show', $submission->user) }}" class="font-weight-bold">{{ $submission->user->name }}</a>
                             </small>
 
                             <stars :initial-rating="{{ $submission->rating ?? 0 }}"

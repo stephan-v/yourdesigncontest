@@ -7,7 +7,6 @@ use App\Models\Contest;
 use App\Http\Requests\ContestRequest;
 use Exception;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 
 class ContestController extends Controller
@@ -22,13 +21,10 @@ class ContestController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request The incoming HTTP request.
      * @return View The HTML server response.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $request->session()->forget('contest');
-
         $contests = Contest::has('payment')
             ->with('submissions')
             ->orderBy('expires_at')

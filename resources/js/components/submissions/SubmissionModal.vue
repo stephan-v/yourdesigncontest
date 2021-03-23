@@ -1,7 +1,7 @@
 <template>
     <div class="text-left">
         <div class="d-flex align-items-center justify-content-between p-4">
-            <div>
+            <div class="align-items-start">
                 <h2 class="mb-1">{{ submission.title }}</h2>
                 <div>By <a :href="profile">{{ submission.user.name }}</a></div>
             </div>
