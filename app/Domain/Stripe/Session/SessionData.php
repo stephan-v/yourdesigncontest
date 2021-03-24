@@ -5,7 +5,7 @@ namespace App\Domain\Stripe\Session;
 use App\Models\Contest;
 use App\Domain\Stripe\LineItems\ContestLineItem;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SessionData implements Arrayable
 {
@@ -17,21 +17,21 @@ class SessionData implements Arrayable
     private $contest;
 
     /**
-     * The incoming server request.
+     * The session data.
      *
-     * @var Request $request
+     * @var array $data
      */
-    private $request;
+    private $data;
 
     /**
      * Initialize a new Stripe Contest line item.
      *
-     * @param Request $request The incoming server request.
+     * @param array $data The session data.
      * @param Contest $contest The contest to create a checkout session for.
      */
-    public function __construct(Request $request, Contest $contest)
+    public function __construct(array $data, Contest $contest)
     {
-        $this->request = $request;
+        $this->data = $data;
         $this->contest = $contest;
     }
 
@@ -42,8 +42,6 @@ class SessionData implements Arrayable
      */
     public function toArray()
     {
-        $user = $this->request->user();
-
         $data = collect([
             'mode' => 'payment',
             'payment_method_types' => ['card'],
@@ -51,11 +49,13 @@ class SessionData implements Arrayable
                 'contest_id' => $this->contest->id,
             ],
             'line_items' => [
-                (new ContestLineItem($this->request))->toArray(),
+                (new ContestLineItem($this->data))->toArray(),
             ],
             'success_url' => urldecode(route('checkout.success', ['session_id' => '{CHECKOUT_SESSION_ID}'])),
             'cancel_url' => route('checkout.create'),
         ]);
+
+        $user = Auth::user();
 
         // Set the customer id if this is a returning customer, only an id OR email may be used since Stripe will
         // automatically do a lookup of the email if you provide the customer id.

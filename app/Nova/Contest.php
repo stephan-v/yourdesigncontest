@@ -51,25 +51,27 @@ class Contest extends Resource
 
             Text::make('title')->sortable(),
 
+            Text::make('slug')->sortable(),
+
             Textarea::make('Description'),
 
             Select::make('Category')->options([
                 'packaging' => 'Packaging',
                 'webdesign' => 'Webdesign',
                 'branding' => 'Branding',
-            ]),
+            ])->sortable(),
 
-            BelongsTo::make('User'),
+            BelongsTo::make('User')->sortable(),
 
             HasOne::make('Payment'),
 
             HasMany::make('Submissions'),
 
-            DateTime::make('Expires At')->format('D-M-yyyy H:m'),
+            DateTime::make('Expires At')->format('D-M-yyyy H:m')->sortable(),
 
-            DateTime::make('Created At')->format('D-M-yyyy H:m'),
+            DateTime::make('Created At')->format('D-M-yyyy H:m')->sortable(),
 
-            DateTime::make('Updated At')->format('D-M-yyyy H:m'),
+            DateTime::make('Updated At')->format('D-M-yyyy H:m')->sortable(),
         ];
     }
 

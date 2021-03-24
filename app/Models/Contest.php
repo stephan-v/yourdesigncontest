@@ -5,11 +5,14 @@ namespace App\Models;
 use App\Presenters\ContestPresenter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Contest extends Model
 {
     use ContestPresenter;
     use HasFactory;
+    use HasSlug;
 
     /**
      * The attributes that are mass assignable.
@@ -88,5 +91,23 @@ class Contest extends Model
         return $this
             ->hasOneThrough(User::class, Submission::class, 'contest_id', 'id', 'id', 'user_id')
             ->where('winner', true);
+    }
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()->generateSlugsFrom('title')->saveSlugsTo('slug');
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string The route key name.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 }

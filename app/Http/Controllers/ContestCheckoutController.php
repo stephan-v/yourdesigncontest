@@ -48,7 +48,11 @@ class ContestCheckoutController extends Controller
 
         // The Stripe checkout session.
         $session = Session::create(
-            (new SessionData($request, $contest))->toArray()
+            (new SessionData([
+                'amount' => $request->amount,
+                'currency' => $request->currency,
+                'title' => $data['title'],
+            ], $contest))->toArray()
         );
 
         // Create a pending payment.

@@ -48,13 +48,13 @@ class Comment extends Resource
 
             Textarea::make('Comment'),
 
-            BelongsTo::make('User'),
+            BelongsTo::make('User')->sortable(),
 
             MorphTo::make('Commentable'),
 
-            DateTime::make('Created At')->format('D-M-yyyy H:m'),
+            DateTime::make('Created At')->format('D-M-yyyy H:m')->sortable(),
 
-            DateTime::make('Updated At')->format('D-M-yyyy H:m'),
+            DateTime::make('Updated At')->format('D-M-yyyy H:m')->sortable(),
         ];
     }
 

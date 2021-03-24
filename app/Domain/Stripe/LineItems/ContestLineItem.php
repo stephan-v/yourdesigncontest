@@ -3,25 +3,24 @@
 namespace App\Domain\Stripe\LineItems;
 
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Http\Request;
 
 class ContestLineItem implements Arrayable
 {
     /**
-     * The incoming server request.
+     * The session data.
      *
-     * @var Request $request
+     * @var array $data
      */
-    private $request;
+    private $data;
 
     /**
      * Initialize a new Stripe Contest line item.
      *
-     * @param Request $request The incoming server request.
+     * @param array $data The session data.
      */
-    public function __construct(Request $request)
+    public function __construct(array $data)
     {
-        $this->request = $request;
+        $this->data = $data;
     }
 
     /**
@@ -32,11 +31,11 @@ class ContestLineItem implements Arrayable
     public function toArray()
     {
         return [
-            'name' => $this->request->title,
+            'name' => $this->data['title'],
             'description' => 'Design contest',
             'images' => null,
-            'amount' => $this->request->amount,
-            'currency' => $this->request->currency,
+            'amount' => $this->data['amount'],
+            'currency' => $this->data['currency'],
             'quantity' => 1,
         ];
     }

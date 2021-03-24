@@ -69,9 +69,9 @@ class User extends Resource
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
 
-            DateTime::make('Created At')->format('D-M-yyyy H:m'),
+            DateTime::make('Created At')->format('D-M-yyyy H:m')->sortable(),
 
-            DateTime::make('Updated At')->format('D-M-yyyy H:m'),
+            DateTime::make('Updated At')->format('D-M-yyyy H:m')->sortable(),
 
             Impersonate::make($this),
         ];
