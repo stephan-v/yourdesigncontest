@@ -23,7 +23,7 @@ class ViewHandoverTest extends TestCase
 
         // Act.
         $this->actingAs($owner);
-        $response = $this->get('/contests/' . $contest->id . '/files');
+        $response = $this->get(route('contests.files.index', $contest));
 
         // Assert.
         $response->assertOk();
@@ -40,7 +40,7 @@ class ViewHandoverTest extends TestCase
 
         // Act.
         $this->actingAs($designer);
-        $response = $this->get('/contests/' . $contest->id . '/files');
+        $response = $this->get(route('contests.files.index', $contest));
 
         // Assert.
         $response->assertOk();
@@ -58,7 +58,7 @@ class ViewHandoverTest extends TestCase
 
         // Act.
         $this->actingAs($visitor);
-        $response = $this->get('/contests/' . $contest->id . '/files');
+        $response = $this->get(route('contests.files.index', $contest));
 
         // Assert.
         $response->assertForbidden();

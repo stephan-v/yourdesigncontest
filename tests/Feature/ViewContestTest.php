@@ -30,7 +30,7 @@ class ViewContestTest extends TestCase
         );
 
         // Act.
-        $response = $this->get('/contests/' . $contest->id);
+        $response = $this->get(route('contests.show', $contest));
 
         // Assert.
         $response->assertSee('A custom name');
@@ -49,7 +49,7 @@ class ViewContestTest extends TestCase
         );
 
         // Act.
-        $response = $this->get('/contests/' . $contest->id);
+        $response = $this->get(route('contests.show', $contest));
 
         // Assert.
         $response->assertRedirect('/');

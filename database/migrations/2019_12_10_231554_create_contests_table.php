@@ -16,6 +16,7 @@ class CreateContestsTable extends Migration
         Schema::create('contests', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug');
             $table->text('description');
             $table->enum('category', ['branding', 'webdesign', 'packaging']);
             $table->boolean('blind')->default(0);
