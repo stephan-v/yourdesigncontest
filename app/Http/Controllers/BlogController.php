@@ -27,7 +27,7 @@ class BlogController extends Controller
      */
     public function show(string $slug)
     {
-        $post = Post::slug($slug)->published()->first();
+        $post = Post::slug($slug)->published()->firstOrFail();
 
         return view('blog.show', compact('post'));
     }
