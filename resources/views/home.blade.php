@@ -34,10 +34,10 @@
                         <div class="border-circle position-absolute"></div>
                         <div class="circle position-absolute"></div>
 
-                        <img src="{{ asset('images/collage-1.jpg') }}" alt="" class="img-fluid img-1">
-                        <img src="{{ asset('images/collage-2.jpg') }}" alt="" class="img-fluid img-2">
-                        <img src="{{ asset('images/collage-3.jpg') }}" alt="" class="img-fluid img-3">
-                        <img src="{{ asset('images/collage-4.jpg') }}" alt="" class="img-fluid img-4">
+                        <img src="{{ asset('images/collage-1.jpg') }}" alt="Meeting room Kanban session" class="img-fluid img-1">
+                        <img src="{{ asset('images/collage-2.jpg') }}" alt="Office work behind laptop" class="img-fluid img-2">
+                        <img src="{{ asset('images/collage-3.jpg') }}" alt="Home office" class="img-fluid img-3">
+                        <img src="{{ asset('images/collage-4.jpg') }}" alt="Co-workers talking" class="img-fluid img-4">
                     </div>
                 </div>
 

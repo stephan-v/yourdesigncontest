@@ -22,12 +22,16 @@ class ContactController extends Controller
 
     /**
      * Send out a contact email request.
+     *
      * @param ContactRequest $request The server request.
      * @return RedirectResponse Returns a redirect back to the previous location.
      */
     public function email(ContactRequest $request)
     {
         Mail::to($request->email)->send(new ContactMail($request->all()));
+
+        // @TODO fix.
+        Mail::to('info@yourdesigncontest.com')->send(new ContactMail($request->all()));
 
         return back()->with('message', 'Thanks for contacting us we will respond as soon as possible.');
     }

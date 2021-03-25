@@ -119,7 +119,7 @@
                             <div class="deleted">
                                 <picture class="intrinsic intrinsic--4x3">
                                     <div class="absolute-center font-weight-bold text-center small">Deleted by user</div>
-                                    <img src="{{ $submission->path }}" alt="" class="intrinsic-item">
+                                    <img src="{{ $submission->path }}" alt="{{ $submission->title }}" class="intrinsic-item">
                                 </picture>
                             </div>
                         @else
@@ -131,7 +131,7 @@
                                 @endif
 
                                 <picture class="intrinsic intrinsic--4x3 overflow-hidden rounded">
-                                    <img src="{{ $submission->path }}" alt="" class="intrinsic-item">
+                                    <img src="{{ $submission->path }}" alt="{{ $submission->title }}" class="intrinsic-item">
                                 </picture>
                             </submission>
                         @endif
