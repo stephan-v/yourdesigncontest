@@ -58,6 +58,18 @@
                         @enderror
                     </div>
 
+                    <div style="display: none">
+                        <div class="form-group">
+                            <label for="detection">Detection</label>
+                            <input type="text" class="form-control" id="detection" name="detection">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <input type="text" class="form-control" id="time" name="time" value="{{ microtime(true) }}">
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn btn-primary w-100">Let's talk</button>
                 </form>
             </div>

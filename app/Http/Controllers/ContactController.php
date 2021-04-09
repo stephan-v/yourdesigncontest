@@ -28,6 +28,21 @@ class ContactController extends Controller
      */
     public function email(ContactRequest $request)
     {
+        if (!$request->has('detection')) {
+            abort(422, 'Spam detected');
+        }
+
+        if (!empty(request('detection'))) {
+            abort(422, 'Spam detected');
+        }
+
+        $now = microtime(true);
+        $elapsed = $now - request('time');
+
+        if ($elapsed  <= 3) {
+            abort(422, 'Spam detected');
+        }
+
         Mail::to($request->email)->send(new ContactMail($request->all()));
 
         // @TODO fix.
